@@ -1,6 +1,7 @@
 ﻿ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -14,6 +15,7 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+        public bool disableMovement = false;
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -160,6 +162,11 @@ namespace StarterAssets
             GroundedCheck();
             Move();
         }
+        public void BoostForward(float speed1)
+        {
+            Vector3 targetDirection = Vector3.forward;
+            _controller.Move(targetDirection.normalized * speed1 * Time.deltaTime);
+        }
 
         private void LateUpdate()
         {
@@ -213,6 +220,8 @@ namespace StarterAssets
 
         private void Move()
         {
+            if (disableMovement)
+                _input.move = Vector2.zero;
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
