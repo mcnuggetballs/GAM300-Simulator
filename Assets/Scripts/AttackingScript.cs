@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,14 @@ public class AttackingScript : MonoBehaviour
     [SerializeField]
     protected Animator anim;
     public static int noOfClicks = 0;
-
+    protected ThirdPersonController controller;
+    private void Start()
+    {
+        if (controller == null)
+        {
+            controller = GetComponent<ThirdPersonController>();
+        }
+    }
     // Update is called once per frame
     public void ResetClicks()
     {
@@ -15,7 +23,7 @@ public class AttackingScript : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (controller.Grounded && Input.GetMouseButtonDown(0))
         {
             OnClick();
         }
