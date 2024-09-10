@@ -29,7 +29,11 @@ public class OnAnimationEnd : StateMachineBehaviour
         }
         if (finalCombo)
         {
-            animator.GetComponent<AttackingScript>().ResetClicks();
+            AttackingScript attackingScript = animator.GetComponent<AttackingScript>();
+            if (attackingScript != null)
+            {
+                attackingScript.ResetClicks();
+            }
         }
     }
 
