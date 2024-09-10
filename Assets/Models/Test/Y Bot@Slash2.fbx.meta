@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6ffdf466f4e6517438e7d5896847ccd1
+guid: 17989b56c5f443c4da77dde3a6534bac
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Slash2
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 21
@@ -46,8 +46,8 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1

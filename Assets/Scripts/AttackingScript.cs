@@ -23,7 +23,7 @@ public class AttackingScript : MonoBehaviour
     }
     void Update()
     {
-        if (controller.Grounded && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             OnClick();
         }
@@ -35,11 +35,16 @@ public class AttackingScript : MonoBehaviour
         {
             anim.SetBool("Hit1", true);
         }
-        noOfClicks = Mathf.Clamp(noOfClicks, 0, 2);
-        if (noOfClicks >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
+        noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
+        if (noOfClicks >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
             anim.SetBool("Hit2", true);
             anim.SetBool("Hit1", false);
+        }
+        if (noOfClicks >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
+        {
+            anim.SetBool("Hit3", true);
+            anim.SetBool("Hit2", false);
         }
     }
 }

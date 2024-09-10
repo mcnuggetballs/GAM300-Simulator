@@ -1,16 +1,13 @@
-using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedBoost : StateMachineBehaviour
+public class ResetCombo : StateMachineBehaviour
 {
-    [SerializeField]
-    float boostAmount;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<ThirdPersonController>().BoostForward(boostAmount);
+        animator.GetComponent<AttackingScript>().ResetClicks();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

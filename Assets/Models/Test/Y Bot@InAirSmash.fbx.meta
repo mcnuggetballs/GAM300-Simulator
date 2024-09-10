@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6ffdf466f4e6517438e7d5896847ccd1
+guid: cd6afddde7ee1bf4abd98e5bd4153301
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Standing Melee Run Jump Attack
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 21
-      lastFrame: 100
+      firstFrame: 66
+      lastFrame: 102
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -46,8 +46,8 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
