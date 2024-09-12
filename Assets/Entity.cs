@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,6 +20,10 @@ public class Entity : MonoBehaviour
     float knockBackAmount = 0;
     float hitDuration = 0.1f;
     float hitTimer = 0;
+    public float GetHealthFraction()
+    {
+        return currentHealth / maxHealth;
+    }
     private void Start()
     {
         currentHealth = maxHealth;
@@ -32,9 +37,15 @@ public class Entity : MonoBehaviour
         {
             animator.SetTrigger("Hurt");
         }
-        if (currentHealth < 0 )
+        if (currentHealth <= 0 )
         {
             currentHealth = 0;
+            animator.SetTrigger("Death");
+            animator.SetBool("Dead",true);
+            if (GetComponent<ThirdPersonController>())
+            {
+                GetComponent<ThirdPersonController>().disableMovement = true;
+            }
         }
     }
 
@@ -50,9 +61,15 @@ public class Entity : MonoBehaviour
         {
             animator.SetTrigger("Hurt");
         }
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
             currentHealth = 0;
+            animator.SetTrigger("Death");
+            animator.SetBool("Dead", true);
+            if (GetComponent<ThirdPersonController>())
+            {
+                GetComponent<ThirdPersonController>().disableMovement = true;
+            }
         }
     }
 

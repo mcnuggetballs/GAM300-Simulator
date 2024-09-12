@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8a7028a34b4c30f4daa8918abd81f82c
+guid: 3b15713a829ed104fae992f6f6c64b17
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,7 +31,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Dying Backwards
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 77
+      lastFrame: 275
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -77,20 +106,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - 3b15713a829ed104fae992f6f6c64b17
-  - c316b2e1b5c697a4dbbc5f3cae6994b8
-  - 73ab7912f12a21f49a8b3a03d496c26e
-  - cd6afddde7ee1bf4abd98e5bd4153301
-  - 8937ac51113603840a3d5e8cfb942e74
-  - fa650cfe5503a524f957298f0db66df2
-  - 97dcc6c5afa78f9408d5ac5fbbdffd50
-  - 645dfcecd45350e46981605850f88937
-  - f14f541ae630f494b96a2539f75acca1
-  - 69cf7df2878a92442a3242af9c491cc2
-  - 17989b56c5f443c4da77dde3a6534bac
-  - 6d4ca47f9192a644db0b8c29dc830140
-  - 7d58709294d66e547832a3f3bf606ec6
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -864,11 +880,11 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
