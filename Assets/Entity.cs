@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Entity : MonoBehaviour
 {
@@ -20,11 +21,15 @@ public class Entity : MonoBehaviour
     float knockBackAmount = 0;
     float hitDuration = 0.1f;
     float hitTimer = 0;
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
     public float GetHealthFraction()
     {
         return currentHealth / maxHealth;
     }
-    private void Start()
+    private void Awake()
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
@@ -42,6 +47,14 @@ public class Entity : MonoBehaviour
             currentHealth = 0;
             animator.SetTrigger("Death");
             animator.SetBool("Dead",true);
+            if (GetComponent<CapsuleCollider>())
+            {
+                Destroy(GetComponent<CapsuleCollider>());
+            }
+            if (GetComponent<CharacterController>())
+            {
+                Destroy(GetComponent<CharacterController>());
+            }
             if (GetComponent<ThirdPersonController>())
             {
                 GetComponent<ThirdPersonController>().disableMovement = true;
@@ -65,7 +78,14 @@ public class Entity : MonoBehaviour
         {
             currentHealth = 0;
             animator.SetTrigger("Death");
-            animator.SetBool("Dead", true);
+            if (GetComponent<CapsuleCollider>())
+            {
+                Destroy(GetComponent<CapsuleCollider>());
+            }
+            if (GetComponent<CharacterController>())
+            {
+                Destroy(GetComponent<CharacterController>());
+            }
             if (GetComponent<ThirdPersonController>())
             {
                 GetComponent<ThirdPersonController>().disableMovement = true;
