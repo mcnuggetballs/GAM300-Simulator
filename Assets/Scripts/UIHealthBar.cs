@@ -15,7 +15,6 @@ public class UIHealthBar : MonoBehaviour
     {
         if (healthBar != null )
         {
-            Debug.LogError(healthBar.fillAmount);
             healthBar.fillAmount = theEntity.GetHealthFraction();
             if (healthBar.fillAmount >= 0.75f)
             {
