@@ -28,6 +28,7 @@ public class OpenBriefScript : MonoBehaviour
             briefCaseAnimator.SetBool("Open", !briefCaseAnimator.GetBool("Open"));
             mainCamera.enabled = !playerAnimator.GetBool("OpenBrief");
             suitcaseCamera.enabled = playerAnimator.GetBool("OpenBrief");
+            
         }
     }
 }
