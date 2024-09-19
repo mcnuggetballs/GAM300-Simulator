@@ -109,19 +109,19 @@ public class Entity : MonoBehaviour
 
     private void Update()
     {
-        if (hasBeenHit)
-        {
-            hitTimer += Time.deltaTime;
-            CharacterController controller = GetComponent<CharacterController>();
-            if (controller != null)
-            {
-                controller.Move(hitDir * knockBackAmount * Time.deltaTime);
-            }
-            if (hitTimer >= hitDuration)
-            {
-                hitTimer = 0;
-                hasBeenHit = false;
-            }
-        }
+        //if (hasBeenHit)
+        //{
+        //    hitTimer += Time.deltaTime;
+        //    CharacterController controller = GetComponent<CharacterController>();
+        //    if (controller != null)
+        //    {
+        //        controller.Move(hitDir * knockBackAmount * Time.deltaTime);
+        //    }
+        //    if (hitTimer >= hitDuration)
+        //    {
+        //        hitTimer = 0;
+        //        hasBeenHit = false;
+        //    }
+        //}
     }
 }
