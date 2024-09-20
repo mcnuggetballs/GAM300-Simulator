@@ -223,6 +223,10 @@ namespace StarterAssets
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            if (GameManager.Instance.GetHackMode())
+            {
+                targetSpeed = MoveSpeed;
+            }
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -372,6 +376,10 @@ namespace StarterAssets
                 }
 
                 // Jump
+                if (GameManager.Instance.GetHackMode())
+                {
+                    _input.jump = false;
+                }
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
                     // the square root of H * -2 * G = how much velocity needed to reach desired height

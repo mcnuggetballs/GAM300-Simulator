@@ -4,7 +4,6 @@ using UnityEngine;
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
 */
 
-[RequireComponent(typeof(CharacterController))]
 public class EnemyController : MonoBehaviour
 {
     public bool disableMovement = false;

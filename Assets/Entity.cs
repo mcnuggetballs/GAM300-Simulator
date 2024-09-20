@@ -21,6 +21,51 @@ public class Entity : MonoBehaviour
     float knockBackAmount = 0;
     float hitDuration = 0.1f;
     float hitTimer = 0;
+
+    bool selected;
+    private Color originalTintColor = new Color(1.0f, 0f, 0f, 1.0f);
+    private Color selectedTintColor = new Color(1.0f, 0f, 1.0f, 1.0f);
+
+    public bool Selected
+    {
+        get
+        {
+            return selected;
+        }
+
+        set
+        {
+            if (selected != value)
+            {
+                selected = value;
+                //Im unsure why this isn't working. placed fix in update but it is bad. hopefully can fix soon
+                //if (selected)
+                //{
+                //    SetTintColor(selectedTintColor);
+                //}
+                //else
+                //{
+                //    SetTintColor(originalTintColor);
+                //}
+            }
+        }
+    }
+    
+    public void SetTintColor(Color color)
+    {
+        SkinnedMeshRenderer[] renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (SkinnedMeshRenderer renderer in renderers)
+        {
+            if (renderer.material.HasProperty("_TintColor"))
+            {
+                renderer.material.SetColor("_TintColor", color);
+            }
+            if (renderer.material.HasProperty("_HighlightColor"))
+            {
+                renderer.material.SetColor("_HighlightColor", color);
+            }
+        }
+    }
     public float GetCurrentHealth()
     {
         return currentHealth;
@@ -47,6 +92,19 @@ public class Entity : MonoBehaviour
             currentHealth = 0;
             animator.SetTrigger("Death");
             animator.SetBool("Dead",true);
+
+            if (GetComponent<EnemyController>())
+            {
+                Destroy(GetComponent<EnemyController>());
+            }
+            if (GetComponent<EnemyMovementScript>())
+            {
+                Destroy(GetComponent<EnemyMovementScript>());
+            }
+            if (GetComponent<ThirdPersonController>())
+            {
+                GetComponent<ThirdPersonController>().disableMovement = true;
+            }
             if (GetComponent<CapsuleCollider>())
             {
                 Destroy(GetComponent<CapsuleCollider>());
@@ -54,10 +112,6 @@ public class Entity : MonoBehaviour
             if (GetComponent<CharacterController>())
             {
                 Destroy(GetComponent<CharacterController>());
-            }
-            if (GetComponent<ThirdPersonController>())
-            {
-                GetComponent<ThirdPersonController>().disableMovement = true;
             }
         }
     }
@@ -78,6 +132,19 @@ public class Entity : MonoBehaviour
         {
             currentHealth = 0;
             animator.SetTrigger("Death");
+
+            if (GetComponent<EnemyController>())
+            {
+                Destroy(GetComponent<EnemyController>());
+            }
+            if (GetComponent<EnemyMovementScript>())
+            {
+                Destroy(GetComponent<EnemyMovementScript>());
+            }
+            if (GetComponent<ThirdPersonController>())
+            {
+                GetComponent<ThirdPersonController>().disableMovement = true;
+            }
             if (GetComponent<CapsuleCollider>())
             {
                 Destroy(GetComponent<CapsuleCollider>());
@@ -85,10 +152,6 @@ public class Entity : MonoBehaviour
             if (GetComponent<CharacterController>())
             {
                 Destroy(GetComponent<CharacterController>());
-            }
-            if (GetComponent<ThirdPersonController>())
-            {
-                GetComponent<ThirdPersonController>().disableMovement = true;
             }
         }
     }
@@ -123,5 +186,17 @@ public class Entity : MonoBehaviour
         //        hasBeenHit = false;
         //    }
         //}
+
+        //temporary fix
+        if (!GameManager.Instance.GetHackMode())
+            return;
+        if (selected)
+        {
+            SetTintColor(selectedTintColor);
+        }
+        else
+        {
+            SetTintColor(originalTintColor);
+        }
     }
 }

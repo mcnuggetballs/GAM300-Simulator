@@ -26,7 +26,7 @@ public class HitCollider : MonoBehaviour
             {
                 if (theEntity.gameObject.layer == parentLayer)
                     return;
-                theEntity.TakeDamage(damage, hitDirection, 10);
+                theEntity.TakeDamage(damage);
             }
         }
     }
@@ -40,7 +40,7 @@ public class HitCollider : MonoBehaviour
             {
                 if (theEntity.gameObject.layer == parentLayer)
                     return;
-                theEntity.TakeDamage(damage, hitDirection, 10);
+                theEntity.TakeDamage(damage);
             }
         }
     }

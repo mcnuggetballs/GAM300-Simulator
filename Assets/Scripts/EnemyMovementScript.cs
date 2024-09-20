@@ -21,7 +21,8 @@ public class EnemyMovementScript : MonoBehaviour
             playerPos.y = 0;
             Vector3 enemyPos = transform.position;
             enemyPos.y = 0;
-            theEnemy.Move((playerPos - enemyPos).normalized, theEnemy.MoveSpeed);
+            if (theEnemy)
+                theEnemy.Move((playerPos - enemyPos).normalized, theEnemy.MoveSpeed);
         }
     }
 }

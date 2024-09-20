@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class OnAnimationStart : StateMachineBehaviour
 {
+    [SerializeField]
+    protected string value;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        AttackingScript attackingScript = animator.GetComponent<AttackingScript>();
-        if (attackingScript != null )
+        if (animator != null)
         {
-            attackingScript.ResetClicks();
+            animator.SetBool(value, false);
         }
     }
 

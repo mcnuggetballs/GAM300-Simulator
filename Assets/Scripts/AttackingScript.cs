@@ -7,7 +7,7 @@ public class AttackingScript : MonoBehaviour
 {
     [SerializeField]
     protected Animator anim;
-    public static int noOfClicks = 0;
+    public int noOfClicks = 0;
     protected ThirdPersonController controller;
     private void Start()
     {
@@ -27,6 +27,16 @@ public class AttackingScript : MonoBehaviour
         {
             OnClick();
         }
+
+        //temp fix
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("ClosePhone") && !anim.GetCurrentAnimatorStateInfo(0).IsName("OpenPhone"))
+        {
+            GetComponent<ThirdPersonController>().disableMovement = false;
+        }
+        else
+        {
+            GetComponent<ThirdPersonController>().disableMovement = true;
+        }
     }
     void OnClick()
     {
@@ -34,14 +44,15 @@ public class AttackingScript : MonoBehaviour
         if (noOfClicks == 1)
         {
             anim.SetBool("Hit1", true);
+            anim.SetBool("Hit2", false);
         }
-        noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
-        if (noOfClicks >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
+        if (noOfClicks >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.15f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
             anim.SetBool("Hit2", true);
             anim.SetBool("Hit1", false);
+            ResetClicks();
         }
-        if (noOfClicks >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
+        if (noOfClicks >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.15f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
         {
             anim.SetBool("Hit3", true);
             anim.SetBool("Hit2", false);

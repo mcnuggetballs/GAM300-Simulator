@@ -939,6 +939,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7813590141776298306, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7813590141776298306, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a8291c6e352d2914fb6e046cc2b13e53, type: 2}
     - target: {fileID: -4706228988682842286, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -966,7 +974,7 @@ PrefabInstance:
     - target: {fileID: 5822821947120931875, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 1acc4cd2a0d3d7141aec0d46222f9005, type: 2}
+      objectReference: {fileID: 2100000, guid: a8291c6e352d2914fb6e046cc2b13e53, type: 2}
     - target: {fileID: 5866666021909216657, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
       propertyPath: m_Controller
       value: 
@@ -2184,7 +2192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd489e0347ed4d9468d2a031821e8dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableMovement: 0
+  disableMovement: 1
   MoveSpeed: 2
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
@@ -4192,6 +4200,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hackKey: 9
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  currentSelectedEntity: {fileID: 0}
+  sphereRadius: 0.5
+  sphereCastDistance: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
