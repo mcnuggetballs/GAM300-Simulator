@@ -27,6 +27,13 @@ public class AttackingScript : MonoBehaviour
         {
             OnClick();
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (GetComponent<Entity>())
+            {
+                anim.SetTrigger(GetComponent<Entity>().GetSkillName());
+            }
+        }
 
         //temp fix
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("ClosePhone") && !anim.GetCurrentAnimatorStateInfo(0).IsName("OpenPhone"))
@@ -46,13 +53,13 @@ public class AttackingScript : MonoBehaviour
             anim.SetBool("Hit1", true);
             anim.SetBool("Hit2", false);
         }
-        if (noOfClicks >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.15f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
+        if (noOfClicks >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
             anim.SetBool("Hit2", true);
             anim.SetBool("Hit1", false);
             ResetClicks();
         }
-        if (noOfClicks >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.15f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
+        if (noOfClicks >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
         {
             anim.SetBool("Hit3", true);
             anim.SetBool("Hit2", false);

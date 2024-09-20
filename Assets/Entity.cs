@@ -16,6 +16,8 @@ public class Entity : MonoBehaviour
     protected float baseDamage = 10;
     Animator animator;
 
+    [SerializeField]
+    string skillName;
     bool hasBeenHit = false;
     Vector3 hitDir;
     float knockBackAmount = 0;
@@ -50,7 +52,14 @@ public class Entity : MonoBehaviour
             }
         }
     }
-    
+    public void CopySkill(string skill)
+    {
+        skillName = skill;
+    }
+    public string GetSkillName()
+    {
+        return skillName;
+    }
     public void SetTintColor(Color color)
     {
         SkinnedMeshRenderer[] renderers = GetComponentsInChildren<SkinnedMeshRenderer>();

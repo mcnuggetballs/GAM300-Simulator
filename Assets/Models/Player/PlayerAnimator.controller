@@ -840,7 +840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c503640a53bcd04fa7598a05996a738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateName: Hit3
+  stateName: Smash
   animationDamageMultiplier: 1.5
   animationTime: 0.5
   length: 1.5
@@ -1209,13 +1209,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: SmashAbility
-    m_Type: 9
+  - m_Name: Hacking
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Hacking
+  - m_Name: Smash
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1263,7 +1263,7 @@ AnimatorStateMachine:
     m_Position: {x: 0, y: 50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6340560720610935952}
-    m_Position: {x: -430, y: 360, z: 0}
+    m_Position: {x: -590, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1508612520526254962}
     m_Position: {x: 690, y: 400, z: 0}
@@ -1309,7 +1309,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: SmashAbility
+    m_ConditionEvent: Smash
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6340560720610935952}
@@ -1615,7 +1615,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: OpenPhone
-  m_Speed: 2
+  m_Speed: 4
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2824637919271930916}
@@ -1838,7 +1838,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ClosePhone
-  m_Speed: 1
+  m_Speed: 6
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -801366780773325217}
@@ -1864,7 +1864,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hit3
+  m_Name: Smash
   m_Speed: 1.8
   m_CycleOffset: 0
   m_Transitions:
@@ -2219,8 +2219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 814259faf3b5d1342bca756026fb4a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: Hit3
-  finalCombo: 1
+  value: Smash
+  finalCombo: 0
 --- !u!114 &8509092405216758345
 MonoBehaviour:
   m_ObjectHideFlags: 1

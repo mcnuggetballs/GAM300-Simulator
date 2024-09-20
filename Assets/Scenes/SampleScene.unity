@@ -905,7 +905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.149
+      value: -0.2300001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2121,6 +2121,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   baseDamage: 10
+  skillName: Smash
 --- !u!143 &1167210396
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2174,7 +2175,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167210389}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95014d0dab729e24a9104c4dff8e64f0, type: 3}
   m_Name: 
@@ -2192,7 +2193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd489e0347ed4d9468d2a031821e8dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableMovement: 1
+  disableMovement: 0
   MoveSpeed: 2
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
@@ -4166,6 +4167,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   baseDamage: 10
+  skillName: 
 --- !u!95 &5866666020628277960 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5694850320125990594, guid: f98cb4339a8f5ba4ea20e84615e0ff7b, type: 3}

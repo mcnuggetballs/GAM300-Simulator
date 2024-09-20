@@ -21,6 +21,16 @@ public class PlayerHack : MonoBehaviour
             GameManager.Instance.ToggleHackMode(!GameManager.Instance.GetHackMode());
             animator.SetBool("Hacking", !animator.GetBool("Hacking"));
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (currentSelectedEntity!= null)
+            {
+                if (GetComponent<Entity>() != null)
+                {
+                    GetComponent<Entity>().CopySkill(currentSelectedEntity.GetSkillName());
+                }
+            }
+        }
         CheckForEnemyHover();
     }
 
