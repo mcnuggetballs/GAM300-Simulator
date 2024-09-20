@@ -1,15 +1,9 @@
 using UnityEditor;
 using UnityEngine;
-#if ENABLE_INPUT_SYSTEM 
-using UnityEngine.InputSystem;
-#endif
 
 namespace StarterAssets
 {
     [RequireComponent(typeof(Rigidbody))]
-#if ENABLE_INPUT_SYSTEM 
-    [RequireComponent(typeof(PlayerInput))]
-#endif
     public class ThirdPersonControllerRB : MonoBehaviour
     {
         public bool disableMovement = false;
@@ -17,20 +11,17 @@ namespace StarterAssets
         [Header("Player")]
         public float MoveSpeed = 2.0f;
         public float SprintSpeed = 5.335f;
-        [Range(0.0f, 0.3f)]
-        public float RotationSmoothTime = 0.12f;
+        [Range(0.0f, 0.3f)] public float RotationSmoothTime = 0.12f;
         public float SpeedChangeRate = 10.0f;
 
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
-        [Space(10)]
-        public float JumpHeight = 1.2f;
+        [Space(10)] public float JumpHeight = 1.2f;
         public float Gravity = -15.0f;
 
-        [Space(10)]
-        public float JumpTimeout = 0.50f;
+        [Space(10)] public float JumpTimeout = 0.50f;
         public float FallTimeout = 0.15f;
 
         [Header("Player Grounded")]
@@ -54,7 +45,6 @@ namespace StarterAssets
         private float _targetRotation = 0.0f;
         private float _rotationVelocity;
         private float _verticalVelocity;
-        private float _terminalVelocity = 53.0f;
 
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
@@ -65,31 +55,16 @@ namespace StarterAssets
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
-#if ENABLE_INPUT_SYSTEM 
-        private PlayerInput _playerInput;
-#endif
         private Animator _animator;
         private Rigidbody _rigidbody;
-        private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
         private bool _hasAnimator;
 
-        private bool IsCurrentDeviceMouse
-        {
-            get
-            {
-#if ENABLE_INPUT_SYSTEM
-                return _playerInput.currentControlScheme == "KeyboardMouse";
-#else
-                return false;
-#endif
-            }
-        }
-
         private void Awake()
         {
+            // get a reference to our main camera
             if (_mainCamera == null)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -102,24 +77,18 @@ namespace StarterAssets
 
             _hasAnimator = TryGetComponent(out _animator);
             _rigidbody = GetComponent<Rigidbody>();
-            _input = GetComponent<StarterAssetsInputs>();
-#if ENABLE_INPUT_SYSTEM 
-            _playerInput = GetComponent<PlayerInput>();
-#else
-            Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
-#endif
+            _rigidbody.freezeRotation = true; // Freeze rotation so character doesn't tip over.
 
             AssignAnimationIDs();
 
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
-
-            // Set rigidbody properties
-            _rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         }
 
         private void Update()
         {
+            _hasAnimator = TryGetComponent(out _animator);
+
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -152,35 +121,71 @@ namespace StarterAssets
 
         private void CameraRotation()
         {
-            if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
-            {
-                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
+            // Get input for camera look direction
+            float lookX = Input.GetAxis("Mouse X");
+            float lookY = Input.GetAxis("Mouse Y");
 
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+            // If there's input and camera position isn't locked
+            if ((lookX != 0 || lookY != 0) && !LockCameraPosition)
+            {
+                // Don't multiply mouse input by Time.deltaTime
+                _cinemachineTargetYaw += lookX;
+                _cinemachineTargetPitch -= lookY;
             }
 
+            // Clamp the pitch
             _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
 
-            CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0.0f);
+            // Cinemachine will follow this target
+            CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
+                _cinemachineTargetYaw, 0.0f);
         }
 
         private void Move()
         {
-            float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
-            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            // Set target speed based on move speed, sprint speed and if sprint is pressed
+            float targetSpeed = Input.GetKey(KeyCode.LeftShift) ? SprintSpeed : MoveSpeed;
+            if (GameManager.Instance.GetHackMode())
+            {
+                targetSpeed = MoveSpeed;
+            }
 
-            if (disableMovement) targetSpeed = 0.0f;
+            // If there's no input or movement is disabled, set target speed to 0
+            float horizontal = 0;
+            float vertical = 0;
+            if (Input.GetKey(KeyCode.W))
+            {
+                vertical = 1;
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                vertical = -1;
+            }
 
+            if (Input.GetKey(KeyCode.D))
+            {
+                horizontal = 1;
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                horizontal = -1;
+            }
+
+            if ((horizontal == 0 && vertical == 0) || disableMovement)
+            {
+                targetSpeed = 0.0f;
+            }
+
+            // Get the current horizontal speed ignoring vertical velocity
             float currentHorizontalSpeed = new Vector3(_rigidbody.velocity.x, 0.0f, _rigidbody.velocity.z).magnitude;
 
             float speedOffset = 0.1f;
-            float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
+            // Accelerate or decelerate to target speed
             if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
             {
-                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
+                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed, Time.deltaTime * SpeedChangeRate);
                 _speed = Mathf.Round(_speed * 1000f) / 1000f;
             }
             else
@@ -188,27 +193,33 @@ namespace StarterAssets
                 _speed = targetSpeed;
             }
 
+            // Update the animation blend value
             _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
             if (_animationBlend < 0.01f) _animationBlend = 0f;
 
-            Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+            // Get movement input direction
+            Vector3 inputDirection = new Vector3(horizontal, 0.0f, vertical).normalized;
 
-            if (_input.move != Vector2.zero)
+            // If there's movement input, rotate the player to face the input direction relative to the camera
+            if (inputDirection != Vector3.zero)
             {
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
 
+                // Rotate to face the input direction
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
 
+            // Calculate movement direction based on camera's rotation
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
-            _rigidbody.velocity = new Vector3(targetDirection.x * _speed, _rigidbody.velocity.y, targetDirection.z * _speed);
+            // Apply movement to the rigidbody
+            _rigidbody.velocity = new Vector3(targetDirection.normalized.x * _speed, _rigidbody.velocity.y, targetDirection.normalized.z * _speed);
 
+            // Update animator if using character
             if (_hasAnimator)
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
         }
 
@@ -229,9 +240,11 @@ namespace StarterAssets
                     _verticalVelocity = -2f;
                 }
 
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+                // Jump
+                if (Input.GetButtonDown("Jump") && _jumpTimeoutDelta <= 0.0f)
                 {
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                    _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _verticalVelocity, _rigidbody.velocity.z);
 
                     if (_hasAnimator)
                     {
@@ -239,6 +252,7 @@ namespace StarterAssets
                     }
                 }
 
+                // Jump timeout
                 if (_jumpTimeoutDelta >= 0.0f)
                 {
                     _jumpTimeoutDelta -= Time.deltaTime;
@@ -260,15 +274,10 @@ namespace StarterAssets
                     }
                 }
 
-                _input.jump = false;
-            }
-
-            if (_verticalVelocity < _terminalVelocity)
-            {
+                // Apply gravity
                 _verticalVelocity += Gravity * Time.deltaTime;
+                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _verticalVelocity, _rigidbody.velocity.z);
             }
-
-            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _verticalVelocity, _rigidbody.velocity.z);
         }
 
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
@@ -286,29 +295,7 @@ namespace StarterAssets
             if (Grounded) Gizmos.color = transparentGreen;
             else Gizmos.color = transparentRed;
 
-            Gizmos.DrawSphere(
-                new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
-                GroundedRadius);
-        }
-
-        private void OnFootstep(AnimationEvent animationEvent)
-        {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                if (FootstepAudioClips.Length > 0)
-                {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(Vector3.zero), FootstepAudioVolume);
-                }
-            }
-        }
-
-        private void OnLand(AnimationEvent animationEvent)
-        {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(Vector3.zero), FootstepAudioVolume);
-            }
+            Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
         }
     }
 }

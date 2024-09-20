@@ -11,6 +11,8 @@ public class Exploder : MonoBehaviour
     public float explodeDuration = 0.5f;
     public LayerMask layerMask; // Add a LayerMask to filter the layers
     protected bool exploded = false;
+    [SerializeField]
+    float damage = 30;
 
     public virtual IEnumerator explode()
     {
@@ -97,7 +99,7 @@ public class Exploder : MonoBehaviour
             {
                 if (theEntity != null)
                 {
-                    theEntity.TakeDamage(15);
+                    theEntity.TakeDamage(damage);
                 }
                 if (hit.rigidbody)
                 {

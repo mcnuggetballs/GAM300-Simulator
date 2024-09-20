@@ -36,11 +36,11 @@ public class AttackingScript : MonoBehaviour
         //temp fix
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("ClosePhone") && !anim.GetCurrentAnimatorStateInfo(0).IsName("OpenPhone"))
         {
-            GetComponent<ThirdPersonController>().disableMovement = false;
+            GetComponent<ThirdPersonControllerRB>().disableMovement = false;
         }
         else
         {
-            GetComponent<ThirdPersonController>().disableMovement = true;
+            GetComponent<ThirdPersonControllerRB>().disableMovement = true;
         }
     }
     void OnClick()
