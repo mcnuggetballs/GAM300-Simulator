@@ -9,6 +9,7 @@ public class AttackingScript : MonoBehaviour
     protected Animator anim;
     public int noOfClicks = 0;
     protected ThirdPersonController controller;
+    public string skillName;
     private void Start()
     {
         if (controller == null)
@@ -29,10 +30,7 @@ public class AttackingScript : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            if (GetComponent<Entity>())
-            {
-                anim.SetTrigger(GetComponent<Entity>().GetSkillName());
-            }
+            anim.SetTrigger(skillName);
         }
 
         //temp fix

@@ -16,65 +16,12 @@ public class Entity : MonoBehaviour
     protected float baseDamage = 10;
     Animator animator;
 
-    [SerializeField]
-    string skillName;
     bool hasBeenHit = false;
     Vector3 hitDir;
     float knockBackAmount = 0;
     float hitDuration = 0.1f;
     float hitTimer = 0;
 
-    bool selected;
-    private Color originalTintColor = new Color(1.0f, 0f, 0f, 1.0f);
-    private Color selectedTintColor = new Color(1.0f, 0f, 1.0f, 1.0f);
-
-    public bool Selected
-    {
-        get
-        {
-            return selected;
-        }
-
-        set
-        {
-            if (selected != value)
-            {
-                selected = value;
-                //Im unsure why this isn't working. placed fix in update but it is bad. hopefully can fix soon
-                //if (selected)
-                //{
-                //    SetTintColor(selectedTintColor);
-                //}
-                //else
-                //{
-                //    SetTintColor(originalTintColor);
-                //}
-            }
-        }
-    }
-    public void CopySkill(string skill)
-    {
-        skillName = skill;
-    }
-    public string GetSkillName()
-    {
-        return skillName;
-    }
-    public void SetTintColor(Color color)
-    {
-        SkinnedMeshRenderer[] renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-        foreach (SkinnedMeshRenderer renderer in renderers)
-        {
-            if (renderer.material.HasProperty("_TintColor"))
-            {
-                renderer.material.SetColor("_TintColor", color);
-            }
-            if (renderer.material.HasProperty("_HighlightColor"))
-            {
-                renderer.material.SetColor("_HighlightColor", color);
-            }
-        }
-    }
     public float GetCurrentHealth()
     {
         return currentHealth;
@@ -195,19 +142,5 @@ public class Entity : MonoBehaviour
         //        hasBeenHit = false;
         //    }
         //}
-    }
-    private void LateUpdate()
-    {
-        //temporary fix
-        if (!GameManager.Instance.GetHackMode())
-            return;
-        if (selected)
-        {
-            SetTintColor(selectedTintColor);
-        }
-        else
-        {
-            SetTintColor(originalTintColor);
-        }
     }
 }

@@ -7,7 +7,7 @@ public class PlayerHack : MonoBehaviour
 {
     public KeyCode hackKey;
     public LayerMask enemyLayer;
-    public Entity currentSelectedEntity;
+    public Hackable currentSelectedEntity;
     public float sphereRadius = 0.5f;
     public float sphereCastDistance = 10f;
     private Animator animator;
@@ -45,10 +45,7 @@ public class PlayerHack : MonoBehaviour
                 if (hackBarAmount >= 1.0f)
                 {
                     hackBarAmount = 0.0f;
-                    if (GetComponent<Entity>() != null)
-                    {
-                        GetComponent<Entity>().CopySkill(currentSelectedEntity.GetSkillName());
-                    }
+                    currentSelectedEntity.Hack(GetComponent<Entity>());
                 }
             }
             else
@@ -74,19 +71,22 @@ public class PlayerHack : MonoBehaviour
         if (Physics.SphereCast(ray, sphereRadius, out hit, sphereCastDistance, enemyLayer))
         {
             // Get the Entity script on the object
-            Entity entity = hit.collider.GetComponent<Entity>();
+            Hackable hackable = hit.collider.GetComponent<Hackable>();
 
-            if (entity != null)
+            if (hackable != null)
             {
                 // If there's a new entity under the mouse, deselect the old one
-                if (currentSelectedEntity != null && currentSelectedEntity != entity)
+                if (currentSelectedEntity != null && currentSelectedEntity != hackable)
                 {
                     currentSelectedEntity.Selected = false;
                 }
 
-                // Set the selected entity and mark it as selected
-                currentSelectedEntity = entity;
-                currentSelectedEntity.Selected = true;
+                if (currentSelectedEntity != hackable)
+                {
+                    // Set the selected entity and mark it as selected
+                    currentSelectedEntity = hackable;
+                    currentSelectedEntity.Selected = true;
+                }
             }
         }
         else
