@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using StarterAssets;
 
 public class Exploder : MonoBehaviour
 {
@@ -99,7 +100,8 @@ public class Exploder : MonoBehaviour
             {
                 if (theEntity != null)
                 {
-                    theEntity.TakeDamage(damage);
+                    if (!theEntity.GetComponent<ThirdPersonControllerRB>())
+                        theEntity.TakeDamage(damage);
                 }
                 if (hit.rigidbody)
                 {

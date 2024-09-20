@@ -66,7 +66,7 @@ public class Entity : MonoBehaviour
             }
             if (GetComponent<CapsuleCollider>())
             {
-                GetComponent<CapsuleCollider>().height = 0.5f;
+                GetComponent<CapsuleCollider>().height = 0.05f;
                 GetComponent<CapsuleCollider>().center= Vector3.zero;
             }
             if (GetComponent<CharacterController>())
@@ -110,7 +110,7 @@ public class Entity : MonoBehaviour
             }
             if (GetComponent<CapsuleCollider>())
             {
-                GetComponent<CapsuleCollider>().height = 0.1f;
+                GetComponent<CapsuleCollider>().height = 0.05f;
                 GetComponent<CapsuleCollider>().center = Vector3.zero;
             }
             if (GetComponent<CharacterController>())

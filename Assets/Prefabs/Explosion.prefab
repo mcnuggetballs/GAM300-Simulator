@@ -14471,10 +14471,10 @@ MonoBehaviour:
   explosionTime: 0
   randomizeExplosionTime: 0
   radius: 50
-  power: 1
+  power: 50
   probeCount: 150
   explodeDuration: 0.5
   layerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
   damage: 30
