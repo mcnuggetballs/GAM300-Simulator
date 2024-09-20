@@ -10,6 +10,13 @@ public class EnemySlamAI : MonoBehaviour
     public LayerMask playerLayer;
     public LayerMask obstructionLayer;
 
+    [Header("Attack Settings")]
+    public float attackRange = 2f;         // The range within which the enemy will attack
+    private Animator animator;             // Reference to the Animator
+    public float attackCooldown = 1f;      // Time to wait after attacking before moving again
+    private bool isInAttackCooldown = false; // Flag to track if the enemy is in attack cooldown
+    private float attackCooldownTimer = 0f;  // Timer to track the cooldown duration
+
     [Header("Idle Movement Settings")]
     public float idleMoveSpeed = 2f;        // Speed of idle movement
     public float moveDuration = 3f;         // How long the enemy moves in a random direction
@@ -28,33 +35,73 @@ public class EnemySlamAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         theEnemy = GetComponent<EnemyControllerRB>();
+        animator = GetComponent<Animator>(); // Get the Animator component
         SetRandomDirection(); // Set an initial random direction
     }
 
     void Update()
     {
+        // Handle the attack cooldown timer
+        if (isInAttackCooldown)
+        {
+            attackCooldownTimer += Time.deltaTime;
+            if (attackCooldownTimer >= attackCooldown)
+            {
+                isInAttackCooldown = false;  // Cooldown over, resume movement
+                attackCooldownTimer = 0f;
+            }
+        }
+
         // Check if the player is within the field of view and distance
         playerInSight = CheckPlayerInSight();
 
         if (playerInSight)
         {
             Debug.Log("Player detected");
-            if (player)
-            {
-                Vector3 playerPos = player.transform.position;
-                playerPos.y = 0;  // Keep movement on the same y-plane
-                Vector3 enemyPos = transform.position;
-                enemyPos.y = 0;
-
-                // Move towards the player
-                if (theEnemy)
-                    theEnemy.Move((playerPos - enemyPos).normalized, theEnemy.MoveSpeed);
-            }
+            HandlePlayerChase();
         }
         else
         {
             // Handle random idle movement
             HandleRandomMovement();
+        }
+    }
+
+    // Handle movement towards the player and attack logic
+    private void HandlePlayerChase()
+    {
+        if (player && !isInAttackCooldown)  // Ensure enemy is not in attack cooldown
+        {
+            Vector3 playerPos = player.transform.position;
+            playerPos.y = 0;  // Keep movement on the same y-plane
+            Vector3 enemyPos = transform.position;
+            enemyPos.y = 0;
+
+            float distanceToPlayer = Vector3.Distance(enemyPos, playerPos);
+
+            if (distanceToPlayer <= attackRange)
+            {
+                // If within attack range, set the "Slam" animator bool to true and enter cooldown
+                if (animator)
+                {
+                    animator.SetBool("Smash", true);
+                }
+
+                // Stop moving after the attack and start cooldown
+                if (theEnemy)
+                {
+                    theEnemy.Move(Vector3.zero, 0);
+                    isInAttackCooldown = true;  // Start attack cooldown
+                }
+            }
+            else
+            {
+                // If not in attack range, move towards the player
+                if (theEnemy)
+                {
+                    theEnemy.Move((playerPos - enemyPos).normalized, theEnemy.MoveSpeed);
+                }
+            }
         }
     }
 
@@ -136,5 +183,9 @@ public class EnemySlamAI : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(transform.position, leftBoundary * detectionRadius);
         Gizmos.DrawRay(transform.position, rightBoundary * detectionRadius);
+
+        // Draw attack range
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
