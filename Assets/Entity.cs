@@ -195,7 +195,9 @@ public class Entity : MonoBehaviour
         //        hasBeenHit = false;
         //    }
         //}
-
+    }
+    private void LateUpdate()
+    {
         //temporary fix
         if (!GameManager.Instance.GetHackMode())
             return;

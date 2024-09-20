@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHack : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class PlayerHack : MonoBehaviour
     public float sphereRadius = 0.5f;
     public float sphereCastDistance = 10f;
     private Animator animator;
+    [SerializeField]
+    GameObject hackBarGameObject;
+    [SerializeField]
+    Image hackBar;
+    float hackBarAmount = 0;
+    
     private void Awake()
     {
         animator= GetComponent<Animator>();
@@ -21,23 +28,45 @@ public class PlayerHack : MonoBehaviour
             GameManager.Instance.ToggleHackMode(!GameManager.Instance.GetHackMode());
             animator.SetBool("Hacking", !animator.GetBool("Hacking"));
         }
-        if (Input.GetMouseButtonDown(0))
+
+        if (!GameManager.Instance.GetHackMode())
         {
-            if (currentSelectedEntity!= null)
+            hackBarGameObject.SetActive(false);
+            hackBarAmount = 0;
+            return;
+        }
+        if (Input.GetMouseButton(0))
+        {
+            if (currentSelectedEntity != null)
             {
-                if (GetComponent<Entity>() != null)
+                hackBar.fillAmount = hackBarAmount;
+                hackBarGameObject.SetActive(true);
+                hackBarAmount += Time.deltaTime;
+                if (hackBarAmount >= 1.0f)
                 {
-                    GetComponent<Entity>().CopySkill(currentSelectedEntity.GetSkillName());
+                    hackBarAmount = 0.0f;
+                    if (GetComponent<Entity>() != null)
+                    {
+                        GetComponent<Entity>().CopySkill(currentSelectedEntity.GetSkillName());
+                    }
                 }
             }
+            else
+            {
+                hackBarGameObject.SetActive(false);
+                hackBarAmount = 0;
+            }
+        }
+        else
+        {
+            hackBarGameObject.SetActive(false);
+            hackBarAmount = 0;
         }
         CheckForEnemyHover();
     }
 
     void CheckForEnemyHover()
     {
-        if (!GameManager.Instance.GetHackMode())
-            return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 

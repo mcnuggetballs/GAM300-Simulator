@@ -2,21 +2,36 @@ using UnityEngine;
 
 public class MaterialChanger : MonoBehaviour
 {
-    private Material[] originalMaterials;
+    [SerializeField]
+    bool skinnedMesh = false;
+    private Material[] originalMeshMaterials;
+    private Material[] originalSkinnedMaterials;
 
     public Material hackMaterial;
 
-    private SkinnedMeshRenderer[] meshRenderers;
+    private SkinnedMeshRenderer[] skinnedmeshRenderers;
+    private MeshRenderer[] meshRenderers;
 
     void Start()
     {
         //Get all the materials
-        meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-
-        originalMaterials = new Material[meshRenderers.Length];
-        for (int i = 0; i < meshRenderers.Length; i++)
+        if (!skinnedMesh)
         {
-            originalMaterials[i] = meshRenderers[i].material;
+            meshRenderers = GetComponentsInChildren<MeshRenderer>();
+            originalMeshMaterials = new Material[meshRenderers.Length];
+            for (int i = 0; i < meshRenderers.Length; i++)
+            {
+                originalMeshMaterials[i] = meshRenderers[i].material;
+            }
+        }
+        else
+        {
+            skinnedmeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+            originalSkinnedMaterials = new Material[skinnedmeshRenderers.Length];
+            for (int i = 0; i < skinnedmeshRenderers.Length; i++)
+            {
+                originalSkinnedMaterials[i] = skinnedmeshRenderers[i].material;
+            }
         }
     }
 
@@ -26,22 +41,49 @@ public class MaterialChanger : MonoBehaviour
         if (GameManager.Instance.GetHackMode())
         {
             // Change all materials to hack material
-            foreach (var renderer in meshRenderers)
+            if (!skinnedMesh)
             {
-                if (renderer.material != hackMaterial)
+                foreach (var renderer in meshRenderers)
                 {
-                    renderer.material = hackMaterial;
+                    if (renderer.material != hackMaterial)
+                    {
+                        renderer.material = hackMaterial;
+                    }
+                }
+            }
+            else
+            {
+                foreach (var renderer in skinnedmeshRenderers)
+                {
+                    if (renderer.material != hackMaterial)
+                    {
+                        renderer.material = hackMaterial;
+                    }
                 }
             }
         }
         else
         {
             // Change all materials back to the original materials
-            for (int i = 0; i < meshRenderers.Length; i++)
+
+            if (!skinnedMesh)
             {
-                if (meshRenderers[i].material != originalMaterials[i])
+                for (int i = 0; i < meshRenderers.Length; i++)
                 {
-                    meshRenderers[i].material = originalMaterials[i];
+                    if (meshRenderers[i].material != originalMeshMaterials[i])
+                    {
+                        meshRenderers[i].material = originalMeshMaterials[i];
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < skinnedmeshRenderers.Length; i++)
+                {
+                    if (skinnedmeshRenderers[i].material != originalSkinnedMaterials[i])
+                    {
+                        skinnedmeshRenderers[i].material = originalSkinnedMaterials[i];
+                    }
                 }
             }
         }

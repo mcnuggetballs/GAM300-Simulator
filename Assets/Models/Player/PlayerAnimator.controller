@@ -198,6 +198,7 @@ AnimatorState:
   m_StateMachineBehaviours:
   - {fileID: 5747337009037029906}
   - {fileID: -514665279616640996}
+  - {fileID: -6508620683125153483}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 1
   m_WriteDefaultValues: 1
@@ -212,6 +213,19 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: Speed
+--- !u!114 &-6508620683125153483
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 171eb821b0a2cb248bbd4503af04c310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: Smash
 --- !u!114 &-6386498780083455745
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -841,7 +855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateName: Smash
-  animationDamageMultiplier: 1.5
+  animationDamageMultiplier: 2
   animationTime: 0.5
   length: 1.5
   width: 2
