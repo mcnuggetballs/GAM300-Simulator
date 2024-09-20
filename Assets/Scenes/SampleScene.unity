@@ -888,13 +888,13 @@ PrefabInstance:
       addedObject: {fileID: 1167210394}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1167210411}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1167210395}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1167210400}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1167210403}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1167210410}
@@ -1847,19 +1847,6 @@ MonoBehaviour:
   theEntity: {fileID: 1167210395}
   theHealthBar: {fileID: 761601708}
   displayDuration: 2
---- !u!114 &1167210403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167210389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95014d0dab729e24a9104c4dff8e64f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thePlayer: {fileID: 5866666020628277953}
 --- !u!114 &1167210405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1945,6 +1932,29 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 257
   _jump: 0
+--- !u!114 &1167210411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167210389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7fbb7d1befbb324f876d10db9a47b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRadius: 40
+  fieldOfViewAngle: 70
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  idleMoveSpeed: 2
+  moveDuration: 3
+  idlePauseTime: 2
 --- !u!1 &1173208994
 GameObject:
   m_ObjectHideFlags: 0

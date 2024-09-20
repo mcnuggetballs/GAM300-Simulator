@@ -7,22 +7,12 @@ public class EnemyMovementScript : MonoBehaviour
 {
     [SerializeField]
     Entity thePlayer;
-    EnemyControllerRB theEnemy;
     private void Awake()
     {
-        theEnemy = GetComponent<EnemyControllerRB>();
     }
 
     private void FixedUpdate()
     {
-        if (thePlayer)
-        {
-            Vector3 playerPos = thePlayer.transform.position;
-            playerPos.y = 0;
-            Vector3 enemyPos = transform.position;
-            enemyPos.y = 0;
-            if (theEnemy)
-                theEnemy.Move((playerPos - enemyPos).normalized, theEnemy.MoveSpeed);
-        }
+        
     }
 }

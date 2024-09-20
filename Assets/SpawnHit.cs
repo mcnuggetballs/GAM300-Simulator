@@ -48,7 +48,6 @@ public class SpawnHit : StateMachineBehaviour
                         hitCollider.parentLayer = animator.gameObject.layer;
                         hitCollider.spawnDuration = duration;
                         hitCollider.hitDirection = animator.transform.forward;
-                        Debug.LogError(animator.transform.forward);
                         Entity entity = animator.GetComponent<Entity>();
                         if (entity != null)
                         {
