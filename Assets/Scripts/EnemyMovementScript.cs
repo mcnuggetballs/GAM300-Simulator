@@ -7,10 +7,10 @@ public class EnemyMovementScript : MonoBehaviour
 {
     [SerializeField]
     Entity thePlayer;
-    EnemyController theEnemy;
+    EnemyControllerRB theEnemy;
     private void Awake()
     {
-        theEnemy = GetComponent<EnemyController>();
+        theEnemy = GetComponent<EnemyControllerRB>();
     }
 
     private void FixedUpdate()

@@ -48,7 +48,10 @@ public class Entity : MonoBehaviour
             currentHealth = 0;
             animator.SetTrigger("Death");
             animator.SetBool("Dead",true);
-
+            if (GetComponent<Rigidbody>())
+            {
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
             if (GetComponent<EnemyController>())
             {
                 Destroy(GetComponent<EnemyController>());
@@ -57,13 +60,14 @@ public class Entity : MonoBehaviour
             {
                 Destroy(GetComponent<EnemyMovementScript>());
             }
-            if (GetComponent<ThirdPersonController>())
+            if (GetComponent<ThirdPersonControllerRB>())
             {
-                GetComponent<ThirdPersonController>().disableMovement = true;
+                GetComponent<ThirdPersonControllerRB>().disableMovement = true;
             }
             if (GetComponent<CapsuleCollider>())
             {
-                Destroy(GetComponent<CapsuleCollider>());
+                GetComponent<CapsuleCollider>().height = 0.5f;
+                GetComponent<CapsuleCollider>().center= Vector3.zero;
             }
             if (GetComponent<CharacterController>())
             {
@@ -88,7 +92,10 @@ public class Entity : MonoBehaviour
         {
             currentHealth = 0;
             animator.SetTrigger("Death");
-
+            if (GetComponent<Rigidbody>())
+            {
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
             if (GetComponent<EnemyController>())
             {
                 Destroy(GetComponent<EnemyController>());
@@ -97,13 +104,14 @@ public class Entity : MonoBehaviour
             {
                 Destroy(GetComponent<EnemyMovementScript>());
             }
-            if (GetComponent<ThirdPersonController>())
+            if (GetComponent<ThirdPersonControllerRB>())
             {
-                GetComponent<ThirdPersonController>().disableMovement = true;
+                GetComponent<ThirdPersonControllerRB>().disableMovement = true;
             }
             if (GetComponent<CapsuleCollider>())
             {
-                Destroy(GetComponent<CapsuleCollider>());
+                GetComponent<CapsuleCollider>().height = 0.1f;
+                GetComponent<CapsuleCollider>().center = Vector3.zero;
             }
             if (GetComponent<CharacterController>())
             {
