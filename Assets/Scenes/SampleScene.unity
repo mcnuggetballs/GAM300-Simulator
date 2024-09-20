@@ -2449,6 +2449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5e7fe3a29dfab45b9042419d56d387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinnedMesh: 1
   hackMaterial: {fileID: 2100000, guid: aed07a3e115f8b1489d6284cee5b8f92, type: 2}
 --- !u!1 &1173156293
 GameObject:
@@ -2900,6 +2901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5e7fe3a29dfab45b9042419d56d387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinnedMesh: 0
   hackMaterial: {fileID: 0}
 --- !u!1 &1303388628
 GameObject:
@@ -3899,6 +3901,10 @@ PrefabInstance:
       value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6428502659324782820, guid: 74be82cbd3349a44d90866b7cbaed00c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428502659324782820, guid: 74be82cbd3349a44d90866b7cbaed00c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
@@ -4147,6 +4153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5e7fe3a29dfab45b9042419d56d387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinnedMesh: 0
   hackMaterial: {fileID: 2100000, guid: aed07a3e115f8b1489d6284cee5b8f92, type: 2}
 --- !u!1 &919132148293347840 stripped
 GameObject:
