@@ -38,6 +38,11 @@ public class PathfindingScript : MonoBehaviour
             return;
         }
 
+        if (Vector3.Distance(transform.position, _navMeshAgent.nextPosition) > 1.0f)
+        {
+            _navMeshAgent.Warp(transform.position);
+        }
+
         if (_navMeshAgent.isOnOffMeshLink && !isJumping)
         {
             // Start the jump

@@ -58,8 +58,9 @@ public class PlayerHack : MonoBehaviour
         {
             hackBarGameObject.SetActive(false);
             hackBarAmount = 0;
+
+            CheckForEnemyHover();
         }
-        CheckForEnemyHover();
     }
 
     void CheckForEnemyHover()
