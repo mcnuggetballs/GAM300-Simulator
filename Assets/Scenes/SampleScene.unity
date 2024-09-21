@@ -3882,6 +3882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LiftAnimator: {fileID: 622349045}
+  LiftAnimationTime: 1
 --- !u!4 &1435615283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5354191714713289539, guid: f98cb4339a8f5ba4ea20e84615e0ff7b, type: 3}
@@ -5260,10 +5261,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5188305349242597819, guid: 9e1460a23ffee0b449418963ad5483d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7596156966297270510, guid: 9e1460a23ffee0b449418963ad5483d9, type: 3}
-      propertyPath: ToggleTransition
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

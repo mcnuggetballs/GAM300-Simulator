@@ -25,6 +25,7 @@ public class HoverUI : MonoBehaviour
     void Start()
     {
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         gameObject.SetActive(false);
     }
 
