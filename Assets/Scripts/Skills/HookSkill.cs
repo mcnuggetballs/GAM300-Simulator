@@ -5,12 +5,12 @@ using UnityEngine;
 public class HookSkill : Skill
 {
     public float hookRange = 10f;       // Range within which the enemy can be hooked
-    public float pullSpeed = 25f;       // Speed at which the enemy is pulled
+    public float pullSpeed = 55f;       // Speed at which the enemy is pulled
     public LayerMask enemyLayer;        // Layer of enemies to check for hooking
     public LineRenderer lineRenderer;   // Reference to the LineRenderer for the hook
 
-    public float hookTravelSpeed = 30f; // Speed at which the hook travels toward the enemy
-    public float hookMissDuration = 0.5f; // Duration the hook remains visible when it misses
+    public float hookTravelSpeed = 60f; // Speed at which the hook travels toward the enemy
+    public float hookMissDuration = 0.2f; // Duration the hook remains visible when it misses
     public float hitPullDelay = 0.2f;   // Delay before pulling the enemy in after hit
 
     // This method will be called to activate the hooking skill

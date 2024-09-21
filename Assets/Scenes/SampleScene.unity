@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 296037698}
   - component: {fileID: 296037697}
   - component: {fileID: 296037696}
+  - component: {fileID: 296037700}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -477,6 +478,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -13.848, y: 0, z: 0}
+--- !u!114 &296037700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296037695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5e7fe3a29dfab45b9042419d56d387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: 0
+  hackMaterial: {fileID: 2100000, guid: d0f0843c6ac55d04887d08ae26e5289f, type: 2}
 --- !u!1001 &554346998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -788,7 +803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMesh: 0
-  hackMaterial: {fileID: 2100000, guid: 1c64e2da83a6e304dac9c737c06211b9, type: 2}
+  hackMaterial: {fileID: 2100000, guid: d0f0843c6ac55d04887d08ae26e5289f, type: 2}
 --- !u!1001 &734333247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1151,7 +1166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMesh: 0
-  hackMaterial: {fileID: 2100000, guid: 1c64e2da83a6e304dac9c737c06211b9, type: 2}
+  hackMaterial: {fileID: 2100000, guid: d0f0843c6ac55d04887d08ae26e5289f, type: 2}
 --- !u!1 &918365568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2246,7 +2261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMesh: 0
-  hackMaterial: {fileID: 2100000, guid: 1c64e2da83a6e304dac9c737c06211b9, type: 2}
+  hackMaterial: {fileID: 2100000, guid: d0f0843c6ac55d04887d08ae26e5289f, type: 2}
 --- !u!1 &1286455625
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,7 +2381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMesh: 0
-  hackMaterial: {fileID: 2100000, guid: 1c64e2da83a6e304dac9c737c06211b9, type: 2}
+  hackMaterial: {fileID: 2100000, guid: d0f0843c6ac55d04887d08ae26e5289f, type: 2}
 --- !u!1 &1303388628
 GameObject:
   m_ObjectHideFlags: 0
@@ -3383,6 +3398,10 @@ PrefabInstance:
       propertyPath: hackBarGameObject
       value: 
       objectReference: {fileID: 1738506937}
+    - target: {fileID: 1842454117524388975, guid: ea312509593c5bb4b9650448d7337319, type: 3}
+      propertyPath: sphereCastDistance
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6436512736933251112, guid: ea312509593c5bb4b9650448d7337319, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -6,7 +6,7 @@ public class Hackable : MonoBehaviour
 {
 
     protected Color originalTintColor = new Color(1.0f, 0f, 0f, 1.0f);
-    protected Color selectedTintColor = new Color(1.0f, 0f, 1.0f, 1.0f);
+    protected Color selectedTintColor = new Color(0.0f, 1.0f, 0.0f, 1.0f);
     protected bool selected;
     public bool Selected
     {
