@@ -15,11 +15,22 @@ public class HookSkill : Skill
     public float hookTravelSpeed = 60f; // Speed at which the hook travels toward the enemy
     public float hookMissDuration = 0.2f; // Duration the hook remains visible when it misses
     public float hitPullDelay = 0.2f;   // Delay before pulling the enemy in after hit
+    private float shootDelay = 0.1f;
 
     // This method will be called to activate the hooking skill
     public override void Activate(GameObject user)
     {
         if (isOnCooldown) return;  // Prevent activation if the skill is on cooldown
+        if (user.GetComponent<Animator>())
+        {
+            user.GetComponent<Animator>().SetBool("Hook",true);
+        }
+        StartCoroutine(Cast(user));
+        
+    }
+    private IEnumerator Cast(GameObject user)
+    {
+        yield return new WaitForSeconds(shootDelay);
         if ((enemyLayer.value & (1 << user.layer)) != 0)
         {
             targetLayer = playerLayer;
