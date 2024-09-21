@@ -237,14 +237,34 @@ public class HookSkill : Skill
         {
             hookStartPoint = user.transform;
         }
+
         // Enable the LineRenderer
         lineRenderer.enabled = true;
 
-        // Set LineRenderer positions to show the hook miss
+        // Set the initial position of the LineRenderer at the hook start point
         lineRenderer.SetPosition(0, hookStartPoint.position);  // Start at the hook start point
-        lineRenderer.SetPosition(1, missPosition);             // End at the miss position
+        lineRenderer.SetPosition(1, hookStartPoint.position);  // Initially, the end is also at the start
 
-        // Keep the LineRenderer active for a short time to show the miss
+        // The total distance the hook should travel (to the miss position)
+        float totalDistance = Vector3.Distance(hookStartPoint.position, missPosition);
+        float traveledDistance = 0f;
+
+        // Animate the line towards the miss position
+        while (traveledDistance < totalDistance)
+        {
+            // Increment the traveled distance based on hook travel speed
+            traveledDistance += hookTravelSpeed * Time.deltaTime;
+
+            // Calculate the new hook position based on the traveled distance
+            Vector3 hookPosition = Vector3.Lerp(hookStartPoint.position, missPosition, traveledDistance / totalDistance);
+
+            // Update the LineRenderer to extend toward the miss position
+            lineRenderer.SetPosition(1, hookPosition);  // Set the second position to the current hook position
+
+            yield return null;  // Wait until the next frame
+        }
+
+        // Once the hook reaches its maximum distance, wait for a short duration to show the miss
         yield return new WaitForSeconds(hookMissDuration);
 
         // Disable the LineRenderer after the miss is shown
@@ -260,4 +280,5 @@ public class HookSkill : Skill
             user.GetComponent<ThirdPersonControllerRB>().disableMovement = false;
         }
     }
+
 }
