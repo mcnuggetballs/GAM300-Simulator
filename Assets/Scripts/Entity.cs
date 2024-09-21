@@ -15,12 +15,18 @@ public class Entity : MonoBehaviour
     [SerializeField]
     protected float baseDamage = 10;
     Animator animator;
+    public Skill skill;
 
     bool hasBeenHit = false;
     Vector3 hitDir;
     float knockBackAmount = 0;
     float hitDuration = 0.1f;
     float hitTimer = 0;
+    [Header("Body")]
+    public Transform rightHand;
+    public Transform leftHand;
+    public Transform neck;
+
 
     public float GetCurrentHealth()
     {

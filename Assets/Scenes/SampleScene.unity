@@ -197,6 +197,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 177048582}
   m_CullTransparentMesh: 1
+--- !u!4 &234817365 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
+  m_PrefabInstance: {fileID: 734333247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &247116113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,6 +1416,11 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!4 &962723229 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
+  m_PrefabInstance: {fileID: 734333247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &997748159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,6 +1763,11 @@ LightProbeGroup:
   - {x: 7.1518564, y: 2.7763042, z: -11.2319765}
   - {x: 8.993203, y: 2.3566551, z: -8.796325}
   m_Dering: 1
+--- !u!4 &1030591274 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8917946187470260701, guid: ea312509593c5bb4b9650448d7337319, type: 3}
+  m_PrefabInstance: {fileID: 8230715967997963764}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1119458387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,6 +1842,10 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   baseDamage: 10
+  skill: {fileID: 8418487014961730765, guid: b887478ffc1e60b4391b21a701c5ecf5, type: 3}
+  rightHand: {fileID: 962723229}
+  leftHand: {fileID: 234817365}
+  neck: {fileID: 1567846030}
 --- !u!4 &1167210398 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
@@ -1873,7 +1892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c05a15bfd74854aa75b174eefbe2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Smash
 --- !u!54 &1167210409
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1952,6 +1970,8 @@ MonoBehaviour:
   obstructionLayer:
     serializedVersion: 2
     m_Bits: 1
+  attackRange: 2
+  attackCooldown: 1
   idleMoveSpeed: 2
   moveDuration: 3
   idlePauseTime: 2
@@ -2617,6 +2637,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498331591}
   m_CullTransparentMesh: 1
+--- !u!4 &1567846030 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6515712193588681746, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
+  m_PrefabInstance: {fileID: 734333247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1630274948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,6 +2822,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1778163072 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 365755306406876378, guid: ea312509593c5bb4b9650448d7337319, type: 3}
+  m_PrefabInstance: {fileID: 8230715967997963764}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1783406465
 GameObject:
   m_ObjectHideFlags: 0
@@ -3274,6 +3304,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6428502659324782820, guid: 74be82cbd3349a44d90866b7cbaed00c, type: 3}
   m_PrefabInstance: {fileID: 1890195597}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1992217409 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6429451224929943530, guid: ea312509593c5bb4b9650448d7337319, type: 3}
+  m_PrefabInstance: {fileID: 8230715967997963764}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2065413994
 GameObject:
   m_ObjectHideFlags: 0
@@ -3328,6 +3363,18 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 935975639}
+    - target: {fileID: 1308003665217936228, guid: ea312509593c5bb4b9650448d7337319, type: 3}
+      propertyPath: neck
+      value: 
+      objectReference: {fileID: 1992217409}
+    - target: {fileID: 1308003665217936228, guid: ea312509593c5bb4b9650448d7337319, type: 3}
+      propertyPath: leftHand
+      value: 
+      objectReference: {fileID: 1778163072}
+    - target: {fileID: 1308003665217936228, guid: ea312509593c5bb4b9650448d7337319, type: 3}
+      propertyPath: rightHand
+      value: 
+      objectReference: {fileID: 1030591274}
     - target: {fileID: 1842454117524388975, guid: ea312509593c5bb4b9650448d7337319, type: 3}
       propertyPath: hackBar
       value: 

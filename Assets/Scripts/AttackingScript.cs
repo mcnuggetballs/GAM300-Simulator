@@ -28,20 +28,27 @@ public class AttackingScript : MonoBehaviour
         {
             OnClick();
         }
+
         if (Input.GetMouseButtonDown(1))
         {
-            anim.SetTrigger(skillName);
+            if (GetComponent<Entity>())
+            {
+                if (GetComponent<Entity>().skill)
+                {
+                    GetComponent<Entity>().skill.Activate(gameObject);
+                }
+            }
         }
 
         //temp fix
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("ClosePhone") && !anim.GetCurrentAnimatorStateInfo(0).IsName("OpenPhone"))
-        {
-            GetComponent<ThirdPersonControllerRB>().disableMovement = false;
-        }
-        else
-        {
-            GetComponent<ThirdPersonControllerRB>().disableMovement = true;
-        }
+        //if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("ClosePhone") && !anim.GetCurrentAnimatorStateInfo(0).IsName("OpenPhone"))
+        //{
+        //    GetComponent<ThirdPersonControllerRB>().disableMovement = false;
+        //}
+        //else
+        //{
+        //    GetComponent<ThirdPersonControllerRB>().disableMovement = true;
+        //}
     }
     void OnClick()
     {

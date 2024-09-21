@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class EnemyHackable : Hackable
 {
-    [SerializeField]
-    string skillName;
     public override void Hack(Entity player)
     {
-        player.GetComponent<AttackingScript>().skillName = skillName;
+        player.GetComponent<Entity>().skill = Instantiate(GetComponent<Entity>().skill);
     }
 
     protected override void SetTintColor(Color color)
