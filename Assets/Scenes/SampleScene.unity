@@ -3077,6 +3077,10 @@ PrefabInstance:
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 1030591274}
+    - target: {fileID: 1308003665217936228, guid: ea312509593c5bb4b9650448d7337319, type: 3}
+      propertyPath: skillPrefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1842454117524388975, guid: ea312509593c5bb4b9650448d7337319, type: 3}
       propertyPath: hackBar
       value: 
