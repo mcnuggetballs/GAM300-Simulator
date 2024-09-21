@@ -49,9 +49,15 @@ MonoBehaviour:
   cooldownTime: 3
   hookRange: 20
   pullSpeed: 55
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
   lineRenderer: {fileID: 4305383428785528378}
   hookTravelSpeed: 60
   hookMissDuration: 0.2

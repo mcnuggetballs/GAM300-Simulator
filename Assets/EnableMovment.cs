@@ -20,7 +20,8 @@ public class EnableMovment : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<ThirdPersonControllerRB>().disableMovement = false;
+        if (animator.GetComponent<ThirdPersonControllerRB>())
+            animator.GetComponent<ThirdPersonControllerRB>().disableMovement = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

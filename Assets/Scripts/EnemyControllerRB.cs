@@ -61,7 +61,10 @@ public class EnemyControllerRB : MonoBehaviour
             _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         }
     }
-
+    public void Jump()
+    {
+        _jump = true;
+    }
     private void Start()
     {
         _hasAnimator = TryGetComponent(out _animator);

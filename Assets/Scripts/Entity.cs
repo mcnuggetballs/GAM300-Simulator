@@ -16,6 +16,7 @@ public class Entity : MonoBehaviour
     protected float baseDamage = 10;
     Animator animator;
     public Skill skill;
+    public GameObject skillPrefab;
 
     bool hasBeenHit = false;
     Vector3 hitDir;
@@ -40,6 +41,8 @@ public class Entity : MonoBehaviour
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
+        if (skillPrefab)
+            skill = Instantiate(skillPrefab).GetComponent<Skill>();
     }
 
     public void TakeDamage(float value)
@@ -62,9 +65,9 @@ public class Entity : MonoBehaviour
             {
                 Destroy(GetComponent<EnemyController>());
             }
-            if (GetComponent<EnemyMovementScript>())
+            if (GetComponent<PathfindingScript>())
             {
-                Destroy(GetComponent<EnemyMovementScript>());
+                Destroy(GetComponent<PathfindingScript>());
             }
             if (GetComponent<ThirdPersonControllerRB>())
             {
@@ -106,9 +109,9 @@ public class Entity : MonoBehaviour
             {
                 Destroy(GetComponent<EnemyController>());
             }
-            if (GetComponent<EnemyMovementScript>())
+            if (GetComponent<PathfindingScript>())
             {
-                Destroy(GetComponent<EnemyMovementScript>());
+                Destroy(GetComponent<PathfindingScript>());
             }
             if (GetComponent<ThirdPersonControllerRB>())
             {

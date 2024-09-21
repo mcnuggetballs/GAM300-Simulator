@@ -55,16 +55,15 @@ public class SpawnHit : StateMachineBehaviour
                         }
                         Vector3 spawnPos = new Vector3(animator.transform.position.x,animator.transform.position.y + positionHeightOffset,animator.transform.position.z);
                         hitCollider.Spawn(spawnPos + animator.transform.forward * positionForwardOffset * 0.5f, width, height, length);
-                        Debug.LogError("Spawned");
                     }
                     else
                     {
-                        Debug.LogError("Doesnt have hit collider component");
+                        Debug.LogError("No Hit");
                     }
                 }
                 else
                 {
-                    Debug.LogError("Doesnt Spawn Hit Collider");
+                    Debug.LogError("No Hit");
                 }
                 spawned = true;
             }

@@ -6,7 +6,9 @@ public class HookSkill : Skill
 {
     public float hookRange = 10f;       // Range within which the enemy can be hooked
     public float pullSpeed = 55f;       // Speed at which the enemy is pulled
-    public LayerMask enemyLayer;        // Layer of enemies to check for hooking
+    public LayerMask targetLayer;
+    public LayerMask enemyLayer;
+    public LayerMask playerLayer;
     public LineRenderer lineRenderer;   // Reference to the LineRenderer for the hook
 
     public float hookTravelSpeed = 60f; // Speed at which the hook travels toward the enemy
@@ -17,7 +19,14 @@ public class HookSkill : Skill
     public override void Activate(GameObject user)
     {
         if (isOnCooldown) return;  // Prevent activation if the skill is on cooldown
-
+        if ((enemyLayer.value & (1 << user.layer)) != 0)
+        {
+            targetLayer = playerLayer;
+        }
+        else
+        {
+            targetLayer = enemyLayer;
+        }
         // Disable movement during the hook
         if (user.GetComponent<ThirdPersonControllerRB>())
         {
@@ -27,27 +36,61 @@ public class HookSkill : Skill
         {
             user.GetComponent<EnemyControllerRB>().disableMovement = true;
         }
-
-        // Cast a ray from the camera forward
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-        RaycastHit hit;
-
-        // If the ray hits an enemy
-        if (Physics.Raycast(ray, out hit, hookRange, enemyLayer))
+        if ((enemyLayer.value & (1 << user.layer)) != 0)
         {
-            // Enable the LineRenderer before launching the hook
-            lineRenderer.enabled = true;
+            // Cast a ray from the camera forward
+            Vector3 playerDir = Vector3.zero;
+            playerDir = user.transform.forward;
+            if (user.GetComponent<EnemyAI>())
+            {
+                playerDir = user.GetComponent<EnemyAI>().GetCurrentPlayerPos();
+                playerDir.y = user.GetComponent<Entity>().neck.position.y;
+                playerDir = (playerDir - user.GetComponent<Entity>().neck.position).normalized;
+            }
+            Ray ray = new Ray(user.GetComponent<Entity>().neck.position, playerDir);
+            RaycastHit hit;
 
-            // Start launching the hook toward the enemy
-            StartCoroutine(LaunchHook(hit.collider.gameObject, user));
+            // If the ray hits an enemy
+            if (Physics.Raycast(ray, out hit, hookRange, targetLayer))
+            {
+                // Enable the LineRenderer before launching the hook
+                lineRenderer.enabled = true;
+
+                // Start launching the hook toward the enemy
+                StartCoroutine(LaunchHook(hit.collider.gameObject, user));
+            }
+            else
+            {
+                // No enemy hit, show the hook going to the point where the raycast hit the environment
+                Vector3 hookMissPosition = ray.origin + ray.direction * hookRange;
+
+                // Show the miss with LineRenderer
+                StartCoroutine(ShowMiss(user, hookMissPosition));
+            }
         }
         else
         {
-            // No enemy hit, show the hook going to the point where the raycast hit the environment
-            Vector3 hookMissPosition = ray.origin + ray.direction * hookRange;
+            // Cast a ray from the camera forward
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            RaycastHit hit;
 
-            // Show the miss with LineRenderer
-            StartCoroutine(ShowMiss(user, hookMissPosition));
+            // If the ray hits an enemy
+            if (Physics.Raycast(ray, out hit, hookRange, targetLayer))
+            {
+                // Enable the LineRenderer before launching the hook
+                lineRenderer.enabled = true;
+
+                // Start launching the hook toward the enemy
+                StartCoroutine(LaunchHook(hit.collider.gameObject, user));
+            }
+            else
+            {
+                // No enemy hit, show the hook going to the point where the raycast hit the environment
+                Vector3 hookMissPosition = ray.origin + ray.direction * hookRange;
+
+                // Show the miss with LineRenderer
+                StartCoroutine(ShowMiss(user, hookMissPosition));
+            }
         }
 
         // Start the skill cooldown
