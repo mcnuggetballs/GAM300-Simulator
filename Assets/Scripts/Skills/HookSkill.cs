@@ -1,6 +1,7 @@
 using StarterAssets;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HookSkill : Skill
 {
@@ -53,6 +54,16 @@ public class HookSkill : Skill
             // If the ray hits an enemy
             if (Physics.Raycast(ray, out hit, hookRange, targetLayer))
             {
+                if (hit.collider.GetComponent<NavMeshAgent>())
+                {
+                    hit.collider.GetComponent<NavMeshAgent>().CompleteOffMeshLink();
+                    hit.collider.GetComponent<NavMeshAgent>().enabled = false;
+                }
+                if (hit.collider.GetComponent<PathfindingScript>())
+                {
+                    hit.collider.GetComponent<PathfindingScript>().isJumping = false;
+                    hit.collider.GetComponent<PathfindingScript>().enabled = false;
+                }
                 // Enable the LineRenderer before launching the hook
                 lineRenderer.enabled = true;
 
@@ -77,6 +88,16 @@ public class HookSkill : Skill
             // If the ray hits an enemy
             if (Physics.Raycast(ray, out hit, hookRange, targetLayer))
             {
+                if (hit.collider.GetComponent<NavMeshAgent>())
+                {
+                    hit.collider.GetComponent<NavMeshAgent>().CompleteOffMeshLink();
+                    hit.collider.GetComponent<NavMeshAgent>().enabled = false;
+                }
+                if (hit.collider.GetComponent<PathfindingScript>())
+                {
+                    hit.collider.GetComponent<PathfindingScript>().isJumping = false;
+                    hit.collider.GetComponent<PathfindingScript>().enabled = false;
+                }
                 // Enable the LineRenderer before launching the hook
                 lineRenderer.enabled = true;
 
@@ -193,6 +214,15 @@ public class HookSkill : Skill
 
         // Disable the LineRenderer once the hook is complete
         lineRenderer.enabled = false;
+        if (enemy.GetComponent<NavMeshAgent>())
+        {
+            enemy.GetComponent<NavMeshAgent>().enabled = true;
+        }
+
+        if (enemy.GetComponent<PathfindingScript>())
+        {
+            enemy.GetComponent<PathfindingScript>().enabled = true;
+        }
     }
 
     private IEnumerator ShowMiss(GameObject user, Vector3 missPosition)

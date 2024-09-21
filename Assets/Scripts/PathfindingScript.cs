@@ -12,7 +12,7 @@ public class PathfindingScript : MonoBehaviour
     private int _currentPathIndex = 0;
 
     // Variables for handling the jump
-    private bool isJumping = false;
+    public bool isJumping = false;
     private Vector3 jumpStartPos;
     private Vector3 jumpEndPos;
     private float jumpDuration = 1.0f; // Time to complete the jump
@@ -103,6 +103,8 @@ public class PathfindingScript : MonoBehaviour
 
     public void FindPath(Vector3 targetPos)
     {
+        if (!(_navMeshAgent.isOnNavMesh && _navMeshAgent.isActiveAndEnabled))
+            return;
         NavMeshPath path = new NavMeshPath();
         _navMeshAgent.CalculatePath(targetPos, path);
 
