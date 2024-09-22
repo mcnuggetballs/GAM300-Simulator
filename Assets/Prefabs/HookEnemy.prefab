@@ -599,6 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c05a15bfd74854aa75b174eefbe2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hacked: 0
 --- !u!54 &5618352076286077933
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -661,6 +662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyController: {fileID: 421259242955904825}
+  isJumping: 0
 --- !u!114 &7424496979811558650
 MonoBehaviour:
   m_ObjectHideFlags: 0
