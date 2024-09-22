@@ -104,11 +104,11 @@ public class EnemyControllerRB : MonoBehaviour
             _animator.SetBool(_animIDGrounded, Grounded);
         }
     }
-    public void Move(Vector3 dir, float speed)
+    public void Move(Vector3 dir, float speed, bool ignore = false)
     {
         // Set target speed based on move speed, sprint speed and if sprint is pressed
         float targetSpeed = speed;
-        if (disableMovement)
+        if (disableMovement && ignore == false)
             targetSpeed = 0.0f;
 
         // Get the current horizontal speed ignoring vertical velocity

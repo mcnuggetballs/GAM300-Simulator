@@ -33,7 +33,7 @@ public class AttackingScript : MonoBehaviour
         {
             if (GetComponent<Entity>())
             {
-                if (GetComponent<Entity>().skill)
+                if (GetComponent<Entity>().skill && GetComponent<ThirdPersonControllerRB>().Grounded)
                 {
                     GetComponent<Entity>().skill.Activate(gameObject);
                 }
@@ -52,22 +52,27 @@ public class AttackingScript : MonoBehaviour
     }
     void OnClick()
     {
-        noOfClicks++;
-        if (noOfClicks == 1)
+        if (noOfClicks == 0)
+        {
+            noOfClicks++;
+        }
+        if (noOfClicks == 1 && anim.GetBool("Hit2") == false)
         {
             anim.SetBool("Hit1", true);
             anim.SetBool("Hit2", false);
+            noOfClicks++;
         }
-        if (noOfClicks >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
+        if (noOfClicks >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
             anim.SetBool("Hit2", true);
             anim.SetBool("Hit1", false);
-            ResetClicks();
+            noOfClicks++;
         }
-        if (noOfClicks >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
+        if (noOfClicks >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
         {
-            anim.SetBool("Hit3", true);
+            anim.SetBool("Hit1", true);
             anim.SetBool("Hit2", false);
+            ResetClicks();
         }
     }
 }

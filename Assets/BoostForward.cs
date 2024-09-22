@@ -3,17 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisableMovement : StateMachineBehaviour
+public class BoostForward : StateMachineBehaviour
 {
+    [SerializeField]
+    float speed;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
+    //    
     //}
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<ThirdPersonController>().disableMovement = true;
+        ThirdPersonControllerRB thirdPersonRB = animator.GetComponent<ThirdPersonControllerRB>();
+        if (thirdPersonRB != null)
+        {
+            thirdPersonRB.Move(animator.transform.forward, speed);
+        }
+
+        EnemyControllerRB enemyRB = animator.GetComponent<EnemyControllerRB>();
+        if (enemyRB != null)
+        {
+            enemyRB.Move(animator.transform.forward, speed, true);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

@@ -93,6 +93,10 @@ public class Entity : MonoBehaviour
         currentHealth -= value;
         hitTimer = 0;
         hasBeenHit = true;
+        if (GetComponent<Rigidbody>())
+        {
+            GetComponent<Rigidbody>().AddForce(hitDir * kb);
+        }
         if (animator != null)
         {
             animator.SetTrigger("Hurt");

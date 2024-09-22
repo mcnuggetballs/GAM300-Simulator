@@ -144,7 +144,9 @@ namespace StarterAssets
 
         private void Move()
         {
-            // Set target speed based on move speed, sprint speed and if sprint is pressed
+            if (disableMovement)
+                return;
+            // Set target speed based on move speed, sprint speed, and if sprint is pressed
             float targetSpeed = Input.GetKey(KeyCode.LeftShift) ? SprintSpeed : MoveSpeed;
             if (GameManager.Instance.GetHackMode())
             {
@@ -200,18 +202,73 @@ namespace StarterAssets
             // Get movement input direction
             Vector3 inputDirection = new Vector3(horizontal, 0.0f, vertical).normalized;
 
-            // If there's movement input, rotate the player to face the input direction relative to the camera
+            // If there's movement input, rotate the player to face the camera's forward direction
             if (inputDirection != Vector3.zero)
             {
-                _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
+                // Use the camera's forward direction for player rotation
+                _targetRotation = _mainCamera.transform.eulerAngles.y;
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
 
-                // Rotate to face the input direction
+                // Rotate the player to face the camera's forward direction
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
 
-            // Calculate movement direction based on camera's rotation
-            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+            // Calculate movement direction based on camera's forward direction
+            Vector3 targetDirection = _mainCamera.transform.forward * vertical + _mainCamera.transform.right * horizontal;
+            targetDirection.y = 0.0f; // Ignore the vertical component to stay on the ground
+
+            // Apply movement to the rigidbody
+            _rigidbody.velocity = new Vector3(targetDirection.normalized.x * _speed, _rigidbody.velocity.y, targetDirection.normalized.z * _speed);
+
+            // Update animator if using character
+            if (_hasAnimator)
+            {
+                _animator.SetFloat(_animIDSpeed, _animationBlend);
+            }
+        }
+
+        public void Move(Vector3 dir,float speed)
+        {
+            // Set target speed based on move speed, sprint speed, and if sprint is pressed
+            float targetSpeed = speed;
+
+            // Get the current horizontal speed ignoring vertical velocity
+            float currentHorizontalSpeed = new Vector3(_rigidbody.velocity.x, 0.0f, _rigidbody.velocity.z).magnitude;
+
+            float speedOffset = 0.1f;
+
+            // Accelerate or decelerate to target speed
+            if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
+            {
+                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed, Time.deltaTime * SpeedChangeRate);
+                _speed = Mathf.Round(_speed * 1000f) / 1000f;
+            }
+            else
+            {
+                _speed = targetSpeed;
+            }
+
+            // Update the animation blend value
+            _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
+            if (_animationBlend < 0.01f) _animationBlend = 0f;
+
+            // Get movement input direction
+            Vector3 inputDirection = new Vector3(dir.x, 0.0f, dir.z).normalized;
+
+            // If there's movement input, rotate the player to face the camera's forward direction
+            if (inputDirection != Vector3.zero)
+            {
+                // Use the camera's forward direction for player rotation
+                _targetRotation = _mainCamera.transform.eulerAngles.y;
+                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
+
+                // Rotate the player to face the camera's forward direction
+                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+            }
+
+            // Calculate movement direction based on camera's forward direction
+            Vector3 targetDirection = dir;
+            targetDirection.y = 0.0f; // Ignore the vertical component to stay on the ground
 
             // Apply movement to the rigidbody
             _rigidbody.velocity = new Vector3(targetDirection.normalized.x * _speed, _rigidbody.velocity.y, targetDirection.normalized.z * _speed);
