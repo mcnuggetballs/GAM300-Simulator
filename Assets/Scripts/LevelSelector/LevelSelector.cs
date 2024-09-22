@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelSelector : MonoBehaviour
 {
@@ -16,10 +17,13 @@ public class LevelSelector : MonoBehaviour
     private GameObject ButtonPenthouse;
 
     [Header("Level Counter")]
-    [SerializeField]
-    private int currentLevel = 1;
+    //[SerializeField]
+    public static int currentLevel = 1;
 
-
+    void Awake()
+    {
+        //SwitchLevel(1);
+    }
 
 
     // Start is called before the first frame update
@@ -33,18 +37,21 @@ public class LevelSelector : MonoBehaviour
     }
 
     //reload scene for a new level
-    public void SwitchLevel(int level)
+    public static void SwitchLevel(int level)
     {
         switch (level)
         {
             case 1:
                 currentLevel = 1;
+                SceneManager.LoadScene(0);
                 break;
             case 2:
                 currentLevel = 2;
+                SceneManager.LoadScene(0);
                 break;
             case 3:
                 currentLevel = 3;
+                SceneManager.LoadScene(0);
                 break;
         }
     }

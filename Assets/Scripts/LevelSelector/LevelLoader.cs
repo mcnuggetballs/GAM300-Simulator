@@ -8,6 +8,9 @@ public class LevelLoader : MonoBehaviour
     [Header("Transition's Variables")]
     public Animator ScreenTransition;
     public float ScreenTransitionTime = 1.0f;
+
+    private int CurrentLevel = LevelSelector.currentLevel;
+
     //public bool ToggleTransition; //true means on
 
     // Start is called before the first frame update
@@ -31,6 +34,11 @@ public class LevelLoader : MonoBehaviour
                 SceneManager.LoadScene("LevelSelector");
                 LiftTrigger.hasEntered = false;
             }*/
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 

@@ -244,6 +244,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: BOSSSSSSSSSSSS
+  ButtonLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &10036818
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1039,6 +1042,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: Medium 3.1.1
+  ButtonLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &217646642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,6 +1194,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: Medium 1.2.1
+  ButtonLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &349559297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,6 +1650,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: Medium 2.1.1
+  ButtonLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &717197245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,8 +1796,8 @@ GameObject:
   - component: {fileID: 862584984}
   - component: {fileID: 862584988}
   - component: {fileID: 862584987}
-  m_Layer: 0
-  m_Name: Button_1_Easy
+  m_Layer: 7
+  m_Name: Level_2_Button_Easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1919,6 +1931,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: Easy 2
+  ButtonLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &910610558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,8 +1948,8 @@ GameObject:
   - component: {fileID: 910610560}
   - component: {fileID: 910610564}
   - component: {fileID: 910610563}
-  m_Layer: 0
-  m_Name: Button_1_Easy
+  m_Layer: 7
+  m_Name: Level_1_Button_1_Easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2068,6 +2083,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: Easy 1
+  ButtonLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &982726166
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,6 +2360,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: Medium 3.1.2
+  ButtonLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1164322701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2491,6 +2512,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: Medium 2.1.2
+  ButtonLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1172453450
 GameObject:
   m_ObjectHideFlags: 0
@@ -2538,8 +2562,8 @@ GameObject:
   - component: {fileID: 1325753431}
   - component: {fileID: 1325753435}
   - component: {fileID: 1325753434}
-  m_Layer: 0
-  m_Name: Button_1_Easy
+  m_Layer: 7
+  m_Name: Level_3_Button_Easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2673,6 +2697,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: Easy 3
+  ButtonLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1618726233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2766,7 +2793,6 @@ MonoBehaviour:
   - {fileID: 176467610}
   - {fileID: 1139166188}
   ButtonPenthouse: {fileID: 10036812}
-  currentLevel: 1
 --- !u!1 &1710534080
 GameObject:
   m_ObjectHideFlags: 0
@@ -3054,6 +3080,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: Medium 1.2.2
+  ButtonLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1963310294
 GameObject:
   m_ObjectHideFlags: 0
