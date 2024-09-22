@@ -1,58 +1,94 @@
-using StarterAssets;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BoostForward : StateMachineBehaviour
 {
-    [SerializeField] private float dashSpeed = 5.0f; // Speed of the dash
-    [SerializeField] private float dashDuration = 0.2f; // Duration of the dash in seconds
-    private ThirdPersonControllerRB controller; // Reference to the character controller
-    private float elapsedTime = 0.0f; // Timer to track the duration of the dash
+    public float dashSpeed = 10f;           // The speed of the dash
+    public float dashRange = 5f;            // Maximum range of the sphere cast
+    public float sphereCastRadius = 0.5f;   // Radius of the sphere cast
+    public LayerMask enemyLayer;            // LayerMask to filter enemies
+    public float stopDistance = 1f;         // Distance from the enemy at which the player stops dashing
+    public float dashDuration = 0.2f;       // Duration of the dash
+
+    private Rigidbody rb;
+    private float dashStartTime;
+    private Vector3 dashDirection;
+    private Vector3 targetPosition;         // The target position (enemy's position) to dash towards
+    private bool enemyHit;                  // Whether an enemy was hit by the sphere cast
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Get reference to the character controller
-        if (controller == null)
+        if ((enemyLayer.value & (1 << animator.gameObject.layer)) != 0)
         {
-            controller = animator.GetComponent<ThirdPersonControllerRB>();
+            enemyLayer = LayerMask.GetMask("Player");
+        }
+        else
+        {
+            enemyLayer = LayerMask.GetMask("Enemy");
         }
 
-        // Temporarily disable normal movement control
-        if (controller != null)
+        // Get the Rigidbody component to apply the dash
+        rb = animator.GetComponent<Rigidbody>();
+        if (rb != null)
         {
-            controller.disableMovement = true;
-            elapsedTime = 0.0f; // Reset the timer
+            // Calculate the dash direction and target position based on the enemy hit by the sphere cast
+            dashDirection = GetDashDirection(animator.transform);
+
+            // Start the dash and record the start time
+            dashStartTime = Time.time;
         }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (controller != null && elapsedTime < dashDuration)
+        if (rb != null)
         {
-            // Calculate the forward direction based on the character's facing direction
-            Vector3 forwardDirection = controller.transform.forward;
+            // If an enemy was hit, stop at the enemy's position
+            if (enemyHit && Vector3.Distance(rb.position, targetPosition) <= stopDistance)
+            {
+                rb.velocity = Vector3.zero;  // Stop the dash
+                return;                      // Exit the update
+            }
 
-            // Apply the dash movement by setting the Rigidbody's velocity
-            controller.GetComponent<Rigidbody>().velocity = forwardDirection * dashSpeed;
-
-            // Update the elapsed time
-            elapsedTime += Time.deltaTime;
-        }
-        else if (controller != null)
-        {
-            // Stop the dash by zeroing out forward velocity once the dash is complete
-            controller.GetComponent<Rigidbody>().velocity = new Vector3(0, controller.GetComponent<Rigidbody>().velocity.y, 0);
+            // If the dash is still in progress (within dashDuration), apply the movement
+            if (Time.time < dashStartTime + dashDuration)
+            {
+                rb.velocity = dashDirection * dashSpeed;
+            }
+            else
+            {
+                // Stop the dash by zeroing out the velocity after dash duration
+                rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            }
         }
     }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // Perform a sphere cast and return the dash direction
+    private Vector3 GetDashDirection(Transform playerTransform)
     {
-        // Re-enable normal movement control
-        if (controller != null)
+        RaycastHit hit;
+        Vector3 origin = playerTransform.position; // Start slightly above the ground
+        Vector3 direction = playerTransform.forward; // Dash forward by default
+
+        // Perform a sphere cast in the forward direction
+        if (Physics.SphereCast(origin, sphereCastRadius, direction, out hit, dashRange, enemyLayer))
         {
-            controller.disableMovement = false;
+            Vector3 hitPoint = hit.point;
+            hitPoint.y = playerTransform.position.y;
+            // If an enemy is hit, store the target position
+            targetPosition = hitPoint;
+            enemyHit = true;
+
+            // Return the direction towards the hit point (enemy's position)
+            return (hitPoint - playerTransform.position).normalized;
         }
+
+        // If no enemy is hit, return the player's forward direction
+        enemyHit = false;
+        return direction;
     }
+
 }

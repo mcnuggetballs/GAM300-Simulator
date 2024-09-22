@@ -68,6 +68,7 @@ public class Entity : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Hurt");
+            StartCoroutine(ResetTriggerAfterDelay("Hurt", 0.1f));  // Adjust delay as needed
         }
 
         // Handle knockback if the enemy is still alive
@@ -172,5 +173,12 @@ public class Entity : MonoBehaviour
     private void Update()
     {
         // Other logic, such as health checks or movement, goes here.
+    }
+
+    // Coroutine to reset the trigger after a short delay
+    IEnumerator ResetTriggerAfterDelay(string triggerName, float delay)
+    {
+    yield return new WaitForSeconds(delay);
+    animator.ResetTrigger(triggerName);
     }
 }

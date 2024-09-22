@@ -298,7 +298,7 @@ namespace StarterAssets
                 }
 
                 // Jump
-                if (Input.GetButtonDown("Jump") && _jumpTimeoutDelta <= 0.0f)
+                if (Input.GetButtonDown("Jump") && !disableMovement && _jumpTimeoutDelta <= 0.0f)
                 {
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
                     _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _verticalVelocity, _rigidbody.velocity.z);
