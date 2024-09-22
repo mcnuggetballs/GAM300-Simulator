@@ -259,7 +259,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd200b45fdf06be489e29e9bf005873a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  dashSpeed: 15
+  dashDuration: 0.2
+  stopDistance: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &-6508620683125153483
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -846,7 +854,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd200b45fdf06be489e29e9bf005873a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  dashSpeed: 15
+  dashDuration: 0.2
+  stopDistance: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1101 &-1862264779689137343
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -968,7 +984,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd200b45fdf06be489e29e9bf005873a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  dashSpeed: 15
+  dashDuration: 0.2
+  stopDistance: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &-1196268646918053539
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1035,6 +1059,7 @@ AnimatorState:
   - {fileID: -3257999559808918985}
   - {fileID: 6784660525337454564}
   - {fileID: 7654426372125772442}
+  - {fileID: -505760968971000295}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1209,6 +1234,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f309bc06b56ebc46ad737184cbf9760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-505760968971000295
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b9b4e8ff5a9e34a8fafe72a418ddb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 1
 --- !u!114 &-385988220068517266
 MonoBehaviour:
   m_ObjectHideFlags: 1

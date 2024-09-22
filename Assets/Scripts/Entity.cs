@@ -1,19 +1,12 @@
 using StarterAssets;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class Entity : MonoBehaviour
 {
-    [SerializeField]
-    protected float maxHealth = 100;
-    [SerializeField]
-    protected float currentHealth;
-    [SerializeField]
-    protected float baseDamage = 10;
+    [SerializeField] protected float maxHealth = 100;
+    [SerializeField] protected float currentHealth;
+    [SerializeField] protected float baseDamage = 10;
     Animator animator;
     public Skill skill;
     public GameObject skillPrefab;
@@ -23,24 +16,30 @@ public class Entity : MonoBehaviour
     float knockBackAmount = 0;
     float hitDuration = 0.1f;
     float hitTimer = 0;
+
     [Header("Body")]
     public Transform rightHand;
     public Transform leftHand;
     public Transform neck;
 
+    private Rigidbody _rigidbody;
+    private Coroutine knockbackCoroutine;
 
     public float GetCurrentHealth()
     {
         return currentHealth;
     }
+
     public float GetHealthFraction()
     {
         return currentHealth / maxHealth;
     }
+
     private void Awake()
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody>();
         if (skillPrefab)
             skill = Instantiate(skillPrefab).GetComponent<Skill>();
     }
@@ -52,84 +51,107 @@ public class Entity : MonoBehaviour
         {
             animator.SetTrigger("Hurt");
         }
-        if (currentHealth <= 0 )
+        if (currentHealth <= 0)
         {
-            currentHealth = 0;
-            animator.SetTrigger("Death");
-            animator.SetBool("Dead",true);
-            if (GetComponent<Rigidbody>())
-            {
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
-            if (GetComponent<EnemyController>())
-            {
-                Destroy(GetComponent<EnemyController>());
-            }
-            if (GetComponent<PathfindingScript>())
-            {
-                Destroy(GetComponent<PathfindingScript>());
-            }
-            if (GetComponent<ThirdPersonControllerRB>())
-            {
-                GetComponent<ThirdPersonControllerRB>().disableMovement = true;
-            }
-            if (GetComponent<CapsuleCollider>())
-            {
-                GetComponent<CapsuleCollider>().height = 0.05f;
-                GetComponent<CapsuleCollider>().center= Vector3.zero;
-            }
-            if (GetComponent<CharacterController>())
-            {
-                Destroy(GetComponent<CharacterController>());
-            }
+            Die();
         }
     }
 
-    public void TakeDamage(float value,Vector3 hitDirection, float kb)
+    public void TakeDamage(float value, Vector3 hitDirection, float kb)
     {
         hitDir = hitDirection;
-        Debug.LogError("Take Hit "+ hitDirection);
         knockBackAmount = kb;
         currentHealth -= value;
-        hitTimer = 0;
         hasBeenHit = true;
-        if (GetComponent<Rigidbody>())
-        {
-            GetComponent<Rigidbody>().AddForce(hitDir * kb);
-        }
+
+        // Trigger hurt animation
         if (animator != null)
         {
             animator.SetTrigger("Hurt");
         }
-        if (currentHealth <= 0)
+
+        // Handle knockback if the enemy is still alive
+        if (currentHealth > 0)
         {
-            currentHealth = 0;
+            if (knockbackCoroutine != null)
+            {
+                StopCoroutine(knockbackCoroutine);
+            }
+            knockbackCoroutine = StartCoroutine(ApplyKnockback(hitDir, knockBackAmount, hitDuration));
+        }
+        else
+        {
+            Die();
+        }
+    }
+
+    private IEnumerator ApplyKnockback(Vector3 direction, float knockbackForce, float duration)
+    {
+        float timer = 0;
+        Vector3 knockbackVelocity = direction * knockbackForce;
+
+        // Temporarily stop movement or AI control here if needed
+        if (GetComponent<EnemyControllerRB>())
+        {
+            GetComponent<EnemyControllerRB>().disableMovement = true;
+        }
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+
+            // Smoothly apply knockback over time
+            _rigidbody.velocity = new Vector3(knockbackVelocity.x, _rigidbody.velocity.y, knockbackVelocity.z);
+
+            yield return null; // Wait until the next frame
+        }
+
+        // Re-enable movement after knockback is done
+        if (GetComponent<EnemyControllerRB>())
+        {
+            GetComponent<EnemyControllerRB>().disableMovement = false;
+        }
+
+        // Reset velocity after knockback
+        _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
+    }
+
+    public void Die()
+    {
+        currentHealth = 0;
+        if (animator != null)
+        {
             animator.SetTrigger("Death");
-            if (GetComponent<Rigidbody>())
-            {
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
-            if (GetComponent<EnemyController>())
-            {
-                Destroy(GetComponent<EnemyController>());
-            }
-            if (GetComponent<PathfindingScript>())
-            {
-                Destroy(GetComponent<PathfindingScript>());
-            }
-            if (GetComponent<ThirdPersonControllerRB>())
-            {
-                GetComponent<ThirdPersonControllerRB>().disableMovement = true;
-            }
-            if (GetComponent<CapsuleCollider>())
-            {
-                GetComponent<CapsuleCollider>().height = 0.05f;
-                GetComponent<CapsuleCollider>().center = Vector3.zero;
-            }
-            if (GetComponent<CharacterController>())
-            {
-                Destroy(GetComponent<CharacterController>());
-            }
+            animator.SetBool("Dead", true);
+        }
+
+        // Additional cleanup logic on death
+        if (_rigidbody)
+        {
+            _rigidbody.velocity = Vector3.zero;
+        }
+
+        DisableComponentsOnDeath();
+    }
+
+    private void DisableComponentsOnDeath()
+    {
+        if (GetComponent<EnemyControllerRB>())
+        {
+            Destroy(GetComponent<EnemyControllerRB>());
+        }
+        if (GetComponent<PathfindingScript>())
+        {
+            Destroy(GetComponent<PathfindingScript>());
+        }
+        if (GetComponent<CapsuleCollider>())
+        {
+            GetComponent<CapsuleCollider>().height = 0.05f;
+            GetComponent<CapsuleCollider>().center = Vector3.zero;
+        }
+        if (GetComponent<CharacterController>())
+        {
+            Destroy(GetComponent<CharacterController>());
         }
     }
 
@@ -149,19 +171,6 @@ public class Entity : MonoBehaviour
 
     private void Update()
     {
-        //if (hasBeenHit)
-        //{
-        //    hitTimer += Time.deltaTime;
-        //    CharacterController controller = GetComponent<CharacterController>();
-        //    if (controller != null)
-        //    {
-        //        controller.Move(hitDir * knockBackAmount * Time.deltaTime);
-        //    }
-        //    if (hitTimer >= hitDuration)
-        //    {
-        //        hitTimer = 0;
-        //        hasBeenHit = false;
-        //    }
-        //}
+        // Other logic, such as health checks or movement, goes here.
     }
 }
