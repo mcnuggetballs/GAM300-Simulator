@@ -25,7 +25,6 @@ public class ExplodingHackable : Hackable
                 GetComponent<Rigidbody>().AddTorque(randomTorque * selfTorqueForce, ForceMode.Impulse);
             }
         }
-        Destroy(this);
     }
     private Vector3 GetRandomDirectionInDome()
     {

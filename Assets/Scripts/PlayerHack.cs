@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,8 +26,11 @@ public class PlayerHack : MonoBehaviour
     {
         if (Input.GetKeyDown(hackKey))
         {
-            GameManager.Instance.ToggleHackMode(!GameManager.Instance.GetHackMode());
-            animator.SetBool("Hacking", !animator.GetBool("Hacking"));
+            if (GetComponent<ThirdPersonControllerRB>() && GetComponent<ThirdPersonControllerRB>().Grounded)
+            {
+                GameManager.Instance.ToggleHackMode(!GameManager.Instance.GetHackMode());
+                animator.SetBool("Hacking", !animator.GetBool("Hacking"));
+            }
         }
 
         if (!GameManager.Instance.GetHackMode())
@@ -46,6 +50,9 @@ public class PlayerHack : MonoBehaviour
                 {
                     hackBarAmount = 0.0f;
                     currentSelectedEntity.Hack(GetComponent<Entity>());
+                    currentSelectedEntity.hacked = true;
+                    currentSelectedEntity.Selected = false;
+                    currentSelectedEntity = null;
                 }
             }
             else
@@ -73,6 +80,10 @@ public class PlayerHack : MonoBehaviour
         {
             // Get the Entity script on the object
             Hackable hackable = hit.collider.GetComponent<Hackable>();
+            if (hackable && hackable.hacked)
+            {
+                hackable = null;
+            }
 
             if (hackable != null)
             {

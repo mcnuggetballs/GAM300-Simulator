@@ -1,5 +1,6 @@
 using StarterAssets;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -145,15 +146,33 @@ public class Entity : MonoBehaviour
         {
             Destroy(GetComponent<PathfindingScript>());
         }
+        if (GetComponent<EnemyAI>())
+        {
+            Destroy(GetComponent<EnemyAI>());
+        }
+        if (GetComponent<ThirdPersonControllerRB>())
+        {
+            Destroy(GetComponent<ThirdPersonControllerRB>());
+        }
+        if (GetComponent<Rigidbody>()) 
+        {
+            GetComponent<Rigidbody>().velocity= Vector3.zero;
+            GetComponent<Rigidbody>().useGravity = true;
+        }
+        if (GetComponent<EnemyHackable>())
+        {
+            Destroy(GetComponent<EnemyHackable>());
+        }
+        if (GetComponent<Entity>())
+        {
+            Destroy(GetComponent<Entity>());
+        }
         if (GetComponent<CapsuleCollider>())
         {
-            GetComponent<CapsuleCollider>().height = 0.05f;
-            GetComponent<CapsuleCollider>().center = Vector3.zero;
+            Destroy(GetComponent<CapsuleCollider>());
         }
-        if (GetComponent<CharacterController>())
-        {
-            Destroy(GetComponent<CharacterController>());
-        }
+        gameObject.AddComponent<BoxCollider>().size = new Vector3(0.01f, 0.01f, 0.01f);
+        gameObject.layer = 0;
     }
 
     public void Heal(float value)

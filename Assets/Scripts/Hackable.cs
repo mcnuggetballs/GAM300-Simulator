@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Hackable : MonoBehaviour
 {
-
+    public bool hacked = false;
     protected Color originalTintColor = new Color(1.0f, 0f, 0f, 1.0f);
     protected Color selectedTintColor = new Color(0.0f, 1.0f, 0.0f, 1.0f);
+    protected Color hackedTintColor = new Color(0.0f,0.0f,0.0f,1.0f);
     protected bool selected;
     public bool Selected
     {
@@ -61,11 +62,25 @@ public class Hackable : MonoBehaviour
             return;
         if (selected)
         {
-            SetTintColor(selectedTintColor);
+            if (hacked)
+            {
+                SetTintColor(hackedTintColor);
+            }
+            else
+            {
+                SetTintColor(selectedTintColor);
+            }
         }
         else
         {
-            SetTintColor(originalTintColor);
+            if (hacked)
+            {
+                SetTintColor(hackedTintColor);
+            }
+            else
+            {
+                SetTintColor(originalTintColor);
+            }
         }
     }
 }

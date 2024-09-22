@@ -24,20 +24,4 @@ public class EnemyHackable : Hackable
             }
         }
     }
-
-
-    protected override void LateUpdate()
-    {
-        //temporary fix
-        if (!GameManager.Instance.GetHackMode())
-            return;
-        if (selected)
-        {
-            SetTintColor(selectedTintColor);
-        }
-        else
-        {
-            SetTintColor(originalTintColor);
-        }
-    }
 }
