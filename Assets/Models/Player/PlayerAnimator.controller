@@ -259,8 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd200b45fdf06be489e29e9bf005873a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 10
-  dashRange: 5
+  dashSpeed: 5
+  dashRange: 2.5
   sphereCastRadius: 0.5
   enemyLayer:
     serializedVersion: 2
@@ -853,8 +853,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd200b45fdf06be489e29e9bf005873a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 10
-  dashRange: 5
+  dashSpeed: 5
+  dashRange: 2.5
   sphereCastRadius: 0.5
   enemyLayer:
     serializedVersion: 2
@@ -982,8 +982,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd200b45fdf06be489e29e9bf005873a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 10
-  dashRange: 5
+  dashSpeed: 5
+  dashRange: 2.5
   sphereCastRadius: 0.5
   enemyLayer:
     serializedVersion: 2
