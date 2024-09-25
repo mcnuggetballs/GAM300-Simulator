@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] LayerMask obstacleLayer;
     [SerializeField] float patrolWaitTime = 2f;
     [SerializeField] float attackCooldown = 1f;
+    [SerializeField] float stoppingDistance = 0.0f;
     Entity theEntity;
 
     private Vector3 _lastKnownPlayerPosition;
@@ -85,9 +86,20 @@ public class EnemyAI : MonoBehaviour
     {
         if (HasLineOfSight())
         {
-            SetDestinationAndPathfinding(_lastKnownPlayerPosition);
+            float distanceToPlayer = Vector3.Distance(transform.position, _lastKnownPlayerPosition);
 
-            if (Vector3.Distance(transform.position, _lastKnownPlayerPosition) <= attackRadius)
+            // Stop the enemy at the stopping distance instead of moving all the way to the player
+            if (distanceToPlayer > stoppingDistance)
+            {
+                // Calculate a position closer to the player but within the stopping distance
+                Vector3 directionToPlayer = (_lastKnownPlayerPosition - transform.position).normalized;
+                Vector3 targetPosition = _lastKnownPlayerPosition - directionToPlayer * stoppingDistance;
+
+                SetDestinationAndPathfinding(targetPosition);
+            }
+
+            // Switch to attacking if within attack range
+            if (distanceToPlayer <= attackRadius)
             {
                 _currentState = State.Attacking;
             }

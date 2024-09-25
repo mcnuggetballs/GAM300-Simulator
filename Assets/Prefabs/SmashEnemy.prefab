@@ -692,6 +692,7 @@ MonoBehaviour:
     m_Bits: 0
   patrolWaitTime: 2
   attackCooldown: 1
+  stoppingDistance: 0
 --- !u!4 &5447998065122179960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a7028a34b4c30f4daa8918abd81f82c, type: 3}
