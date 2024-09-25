@@ -27,37 +27,12 @@ public class HitCollider : MonoBehaviour
                 if (theEntity.gameObject.layer == parentLayer)
                     return;
                 theEntity.TakeDamage(damage, hitDirection,15);
+
+                VFXManager.Instance.Spawn("Hit_02", GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
             }
         }
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (!colliders.Contains(collision.collider))
-        {
-            colliders.Add(collision.collider);
-            Entity theEntity = collision.transform.GetComponent<Entity>();
-            if (theEntity)
-            {
-                if (theEntity.gameObject.layer == parentLayer)
-                    return;
 
-                Vector3 referencePoint = theEntity.transform.position;
-                ContactPoint closestContact = collision.contacts[0];
-                float closestDistance = Vector3.Distance(referencePoint, closestContact.point);
-
-                foreach (ContactPoint contact in collision.contacts)
-                {
-                    float distance = Vector3.Distance(referencePoint, contact.point);
-
-                    if (distance < closestDistance)
-                    {
-                        closestContact = contact;
-                        closestDistance = distance;
-                    }
-                }
-            }
-        }
-    }
     private void Update()
     {
         timer += Time.deltaTime;
