@@ -43,15 +43,15 @@ public class LevelSelector : MonoBehaviour
         {
             case 1:
                 currentLevel = 1;
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
                 break;
             case 2:
                 currentLevel = 2;
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
                 break;
             case 3:
                 currentLevel = 3;
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
                 break;
         }
     }
