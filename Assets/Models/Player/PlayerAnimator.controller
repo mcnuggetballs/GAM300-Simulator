@@ -261,12 +261,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashSpeed: 5
   dashRange: 2.5
-  sphereCastRadius: 0.5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
   stopDistance: 1
   dashDuration: 0.2
+  viewAngleThreshold: 60
 --- !u!114 &-6508620683125153483
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -855,12 +855,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashSpeed: 5
   dashRange: 2.5
-  sphereCastRadius: 0.5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   stopDistance: 1
   dashDuration: 0.2
+  viewAngleThreshold: 60
 --- !u!1101 &-1862264779689137343
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -984,12 +984,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashSpeed: 5
   dashRange: 2.5
-  sphereCastRadius: 0.5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
   stopDistance: 1
   dashDuration: 0.2
+  viewAngleThreshold: 60
 --- !u!114 &-1196268646918053539
 MonoBehaviour:
   m_ObjectHideFlags: 1
