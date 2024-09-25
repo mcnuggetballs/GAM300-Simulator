@@ -40,7 +40,21 @@ public class HitCollider : MonoBehaviour
             {
                 if (theEntity.gameObject.layer == parentLayer)
                     return;
-                theEntity.TakeDamage(damage, hitDirection, 15);
+
+                Vector3 referencePoint = theEntity.transform.position;
+                ContactPoint closestContact = collision.contacts[0];
+                float closestDistance = Vector3.Distance(referencePoint, closestContact.point);
+
+                foreach (ContactPoint contact in collision.contacts)
+                {
+                    float distance = Vector3.Distance(referencePoint, contact.point);
+
+                    if (distance < closestDistance)
+                    {
+                        closestContact = contact;
+                        closestDistance = distance;
+                    }
+                }
             }
         }
     }
