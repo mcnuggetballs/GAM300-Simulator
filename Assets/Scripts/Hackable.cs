@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,13 @@ using UnityEngine;
 public class Hackable : MonoBehaviour
 {
     public bool hacked = false;
+    public bool isClose = false;
     protected Color originalTintColor = new Color(1.0f, 0f, 0f, 1.0f);
+    protected Color closeTintColor = new Color(1.0f, 0.5f, 0f, 1.0f);
     protected Color selectedTintColor = new Color(0.0f, 1.0f, 0.0f, 1.0f);
     protected Color hackedTintColor = new Color(0.0f,0.0f,0.0f,1.0f);
     protected bool selected;
+    PlayerHack playerHack;
     public bool Selected
     {
         get
@@ -57,6 +61,19 @@ public class Hackable : MonoBehaviour
 
     protected virtual void LateUpdate()
     {
+        playerHack = FindAnyObjectByType<PlayerHack>();
+        if (playerHack != null)
+        {
+            float distanceToCam = Vector3.Distance(transform.position, Camera.main.transform.position);
+            if (distanceToCam < playerHack.sphereCastDistance)
+            {
+                isClose = true;
+            }
+            else
+            {
+                isClose = false;
+            }
+        }
         //temporary fix
         if (!GameManager.Instance.GetHackMode())
             return;
@@ -76,6 +93,10 @@ public class Hackable : MonoBehaviour
             if (hacked)
             {
                 SetTintColor(hackedTintColor);
+            }
+            else if (isClose)
+            {
+                SetTintColor(closeTintColor);
             }
             else
             {
