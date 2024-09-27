@@ -64,6 +64,8 @@ namespace StarterAssets
 
         private void Awake()
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             // get a reference to our main camera
             if (_mainCamera == null)
             {
