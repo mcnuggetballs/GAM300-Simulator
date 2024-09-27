@@ -10,27 +10,40 @@ public class UIHealthBar : MonoBehaviour
     Entity theEntity;
     [SerializeField]
     Image healthBar;
+    [SerializeField]
+    Sprite green;
+    [SerializeField]
+    Sprite yellow;
+    [SerializeField]
+    Sprite red;
+    [SerializeField]
+    Image theID;
+    [SerializeField]
+    Sprite idGreen;
+    [SerializeField]
+    Sprite idYellow;
+    [SerializeField]
+    Sprite idRed;
 
     private void Update()
     {
         if (healthBar != null )
         {
             healthBar.fillAmount = theEntity.GetHealthFraction();
-            if (healthBar.fillAmount >= 0.75f)
+            if (healthBar.fillAmount >= 0.6666666666666667f)
             {
-                healthBar.color = Color.green;
+                theID.sprite = idGreen;
+                healthBar.sprite = green;
             }
-            else if (healthBar.fillAmount >= 0.5f)
+            else if (healthBar.fillAmount >= 0.3333333333333333f)
             {
-                healthBar.color = new Color((float)139/ (float)255, (float)195 / (float)255, (float)74 / (float)255);
-            }
-            else if (healthBar.fillAmount >= 0.25f)
-            {
-                healthBar.color = Color.yellow;
+                theID.sprite = idYellow;
+                healthBar.sprite = yellow;
             }
             else
             {
-                healthBar.color = Color.red;
+                theID.sprite = idRed;
+                healthBar.sprite = red;
             }
         }
     }
