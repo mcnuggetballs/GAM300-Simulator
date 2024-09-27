@@ -3,17 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering.Universal;
+
 public class CameraHack : MonoBehaviour
 {
     [SerializeField]
     Animator cameraAnimator;
     [SerializeField]
-    CinemachinePostProcessing cinemachinePostProcessing;
+    CinemachineVolumeSettings cinemachineVolumeSettings;
 
-    private Grain grain;
-    private ColorGrading colorGrading;
-    private Vignette vignette;
+    private ColorAdjustments colorAdjustments;
+    private UnityEngine.Rendering.Universal.Vignette vignette;
+    private FilmGrain filmGrain;
 
     [SerializeField]
     float colourGradingTemperature;
@@ -23,25 +26,26 @@ public class CameraHack : MonoBehaviour
     float vignetteIntensity;
     [SerializeField]
     float grainIntensity;
+    [SerializeField]
+    float grainResponse;
     // Update is called once per frame
     void Update()
     {
-        cinemachinePostProcessing.m_Profile.TryGetSettings(out grain);
-        cinemachinePostProcessing.m_Profile.TryGetSettings(out colorGrading);
-        cinemachinePostProcessing.m_Profile.TryGetSettings(out vignette);
-
-        // Modify grain settings
-        if (grain != null)
+        cinemachineVolumeSettings.m_Profile.TryGet(out colorAdjustments);
+        cinemachineVolumeSettings.m_Profile.TryGet(out vignette);
+        cinemachineVolumeSettings.m_Profile.TryGet(out filmGrain);
+        if (colorAdjustments != null)
         {
-            grain.intensity.value = grainIntensity;
-        }
-        if (colorGrading != null)
-        {
-            colorGrading.temperature.value = colourGradingTemperature;
+            colorAdjustments.saturation.SetValue(new ClampedFloatParameter(colourGradingSaturation,-100,100));
         }
         if (vignette != null)
         {
-            vignette.intensity.value = vignetteIntensity;
+            vignette.intensity.SetValue(new ClampedFloatParameter(vignetteIntensity, 0, 1));
+        }
+        if (filmGrain != null)
+        {
+            filmGrain.intensity.SetValue(new ClampedFloatParameter(grainIntensity, 0, 1));
+            filmGrain.response.SetValue(new ClampedFloatParameter(grainIntensity, 0, 1));
         }
         cameraAnimator.SetBool("Hack", GameManager.Instance.GetHackMode());
     }
