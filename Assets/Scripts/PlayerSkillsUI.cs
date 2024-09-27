@@ -10,6 +10,10 @@ public class PlayerSkillsUI : MonoBehaviour
     Image iconImage;
     [SerializeField]
     Image fill;
+    [SerializeField]
+    Image slotBG;
+    [SerializeField]
+    Image triangle;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +29,9 @@ public class PlayerSkillsUI : MonoBehaviour
             {
                 iconImage.sprite = entity.skill.icon;
                 iconImage.color = Color.white;
+                slotBG.sprite = entity.skill.iconBorder;
+                triangle.sprite = entity.skill.iconTriangle;
+                fill.sprite = entity.skill.iconFill;
                 fill.fillAmount = (entity.skill.cooldownTime - entity.skill.GetCooldownRemaining())/entity.skill.cooldownTime;
             }
             else

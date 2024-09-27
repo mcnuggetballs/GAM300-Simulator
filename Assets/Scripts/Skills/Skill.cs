@@ -6,6 +6,9 @@ public abstract class Skill : MonoBehaviour
 {
     public string skillName;
     public Sprite icon;
+    public Sprite iconFill;
+    public Sprite iconBorder;
+    public Sprite iconTriangle;
     public float cooldownTime;
     protected bool isOnCooldown = false;
     protected float cooldownRemaining = 0f;
