@@ -4249,11 +4249,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6829087722424681303, guid: 8a7d92b6f103c2946a7125b24780a771, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6829087722424681303, guid: 8a7d92b6f103c2946a7125b24780a771, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 90
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6829087722424681303, guid: 8a7d92b6f103c2946a7125b24780a771, type: 3}
       propertyPath: m_AnchoredPosition.x
