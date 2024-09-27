@@ -1429,7 +1429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c668fce017e1f104ca7751309efe416a, type: 3}
       propertyPath: m_Name
-      value: player 1
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c668fce017e1f104ca7751309efe416a, type: 3}
       propertyPath: m_Layer
@@ -1762,10 +1762,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.11
-  m_Height: 1.1314323
+  m_Radius: 0.10999999
+  m_Height: 1.1262296
   m_Direction: 1
-  m_Center: {x: 0, y: 0.57721126, z: 0}
+  m_Center: {x: 0, y: 0.5798129, z: 0}
 --- !u!4 &4551055653878787818 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: c668fce017e1f104ca7751309efe416a, type: 3}
