@@ -25,17 +25,23 @@ public class HoverUIMessage : MonoBehaviour
         {
             case "Level_1_Button_1_Easy":
                 Debug.Log("Button Level 1 Easy clicked");
-                LevelSelector.SwitchLevel(1);
+                SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
+                SceneTransition.Instance.TransitionToScene("Whiteboxed");
+                //LevelSelector.SwitchLevel(1);
                 //LevelLoader.CurrentLevel = 1;
                 break;
             case "Level_2_Button_Easy":
                 Debug.Log("Button Level 2 Easy clicked");
-                LevelSelector.SwitchLevel(2);
+                SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
+                SceneTransition.Instance.TransitionToScene("Whiteboxed");
+                //LevelSelector.SwitchLevel(2);
                 //LevelLoader.CurrentLevel = 2;
                 break;
             case "Level_3_Button_Easy":
                 Debug.Log("Button Level 3 Easy clicked");
-                LevelSelector.SwitchLevel(3);
+                SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
+                SceneTransition.Instance.TransitionToScene("Whiteboxed");
+                //LevelSelector.SwitchLevel(3);
                 //LevelLoader.CurrentLevel = 3;
                 break;
         }
