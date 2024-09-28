@@ -3236,7 +3236,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberText: {fileID: 36447939}
   scrollBar: {fileID: 8330705601622985997}
-  pages: 3
 --- !u!1 &2141418814
 GameObject:
   m_ObjectHideFlags: 0
@@ -3332,7 +3331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 43bf6ab13e0fffd4ea784381ace82f22, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c491b60179291b4780b8132ce270259, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3547,7 +3546,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 599f039d282c45e4f9f4bc1ef78aaa04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5af54435e9375f24598fea5ccc393bea, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3749,7 +3748,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fefa4bf1b36453f4ba4b6263a9a49d1a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a10a6356cde8f4841a043a876494e66d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
