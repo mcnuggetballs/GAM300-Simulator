@@ -163,10 +163,6 @@ public class Entity : MonoBehaviour
         {
             Destroy(GetComponent<EnemyHackable>());
         }
-        if (GetComponent<Entity>())
-        {
-            Destroy(GetComponent<Entity>());
-        }
         if (GetComponent<CapsuleCollider>())
         {
             Destroy(GetComponent<CapsuleCollider>());
