@@ -17,13 +17,30 @@ public class PlayerHack : MonoBehaviour
     [SerializeField]
     Image hackBar;
     float hackBarAmount = 0;
-    
+    [Header("Hack Charge")]
+    protected float chargeValue = 0;
+    public float maxChargeValue = 40;
+    [SerializeField]
+    Image hackCharge;
+    public void AddChargeValue(float amount)
+    {
+        chargeValue += amount;
+        if (chargeValue > maxChargeValue)
+        {
+            chargeValue = maxChargeValue;
+        }
+    }
     private void Awake()
     {
         animator= GetComponent<Animator>();
     }
     void Update()
     {
+        if (hackCharge)
+        {
+            hackCharge.fillAmount = chargeValue / maxChargeValue;
+        }
+
         if (Input.GetKeyDown(hackKey))
         {
             if (GetComponent<ThirdPersonControllerRB>() && GetComponent<ThirdPersonControllerRB>().Grounded)
@@ -41,7 +58,7 @@ public class PlayerHack : MonoBehaviour
         }
         if (Input.GetMouseButton(0))
         {
-            if (currentSelectedEntity != null)
+            if (currentSelectedEntity != null && chargeValue >= 10)
             {
                 hackBar.fillAmount = hackBarAmount;
                 hackBarGameObject.SetActive(true);
@@ -53,6 +70,7 @@ public class PlayerHack : MonoBehaviour
                     currentSelectedEntity.hacked = true;
                     currentSelectedEntity.Selected = false;
                     currentSelectedEntity = null;
+                    chargeValue -= 10.0f;
                 }
             }
             else

@@ -57,6 +57,7 @@ public class SpawnHit : StateMachineBehaviour
                         hitCollider.Spawn(spawnPos + animator.transform.forward * positionForwardOffset * 0.5f, width, height, length);
                         hitCollider.transform.rotation = Quaternion.Euler(0.0f, animator.transform.eulerAngles.y, 0.0f);
                         hitCollider.transform.parent = animator.transform;
+                        hitCollider.spawnedFrom = animator.gameObject;
                     }
                     else
                     {

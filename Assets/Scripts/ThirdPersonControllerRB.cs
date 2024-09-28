@@ -62,6 +62,15 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
         private bool _hasAnimator;
 
+        [Header("Dash")]
+        public float DashSpeed = 10.0f; // New: Dash speed
+        public float DashDuration = 0.5f; // New: Duration of the dash in seconds
+        public float DashCooldown = 2.0f; // New: Cooldown between dashes
+        // New variables for dash state
+        private bool _isDashing = false;
+        private float _dashTimeLeft;
+        private float _dashCooldownLeft;
+        private Vector3 _dashDirection;
         private void Awake()
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -90,7 +99,8 @@ namespace StarterAssets
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-
+            // Handle dashing
+            HandleDash();
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -143,21 +153,21 @@ namespace StarterAssets
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
 
-
-            // Use the camera's forward direction for player rotation
+            CinemachineCameraTarget.transform.parent = null;
             _targetRotation = _mainCamera.transform.eulerAngles.y;
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
-
-            // Rotate the player to face the camera's forward direction
             transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+            CinemachineCameraTarget.transform.parent = transform;
         }
 
         private void Move()
         {
-            if (disableMovement)
+            if (disableMovement || _isDashing)
                 return;
+
             // Set target speed based on move speed, sprint speed, and if sprint is pressed
-            float targetSpeed = Input.GetKey(KeyCode.LeftShift) ? SprintSpeed : MoveSpeed;
+            //float targetSpeed = Input.GetKey(KeyCode.LeftShift) ? SprintSpeed : MoveSpeed;
+            float targetSpeed = SprintSpeed;
             if (GameManager.Instance.GetHackMode())
             {
                 targetSpeed = MoveSpeed;
@@ -184,7 +194,7 @@ namespace StarterAssets
                 horizontal = -1;
             }
 
-            if ((horizontal == 0 && vertical == 0) || disableMovement)
+            if (horizontal == 0 && vertical == 0)
             {
                 targetSpeed = 0.0f;
             }
@@ -249,20 +259,6 @@ namespace StarterAssets
             // Update the animation blend value
             _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
             if (_animationBlend < 0.01f) _animationBlend = 0f;
-
-            // Get movement input direction
-            Vector3 inputDirection = new Vector3(dir.x, 0.0f, dir.z).normalized;
-
-            // If there's movement input, rotate the player to face the camera's forward direction
-            if (inputDirection != Vector3.zero)
-            {
-                // Use the camera's forward direction for player rotation
-                _targetRotation = _mainCamera.transform.eulerAngles.y;
-                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
-
-                // Rotate the player to face the camera's forward direction
-                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-            }
 
             // Calculate movement direction based on camera's forward direction
             Vector3 targetDirection = dir;
@@ -351,6 +347,55 @@ namespace StarterAssets
             else Gizmos.color = transparentRed;
 
             Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
+        }
+
+        private void HandleDash()
+        {
+            // Check for dash input and ensure dash is not on cooldown
+            if (Input.GetKeyDown(KeyCode.LeftShift) && _dashCooldownLeft <= 0.0f && !_isDashing)
+            {
+                StartDash();
+            }
+
+            // If dashing, handle dash movement and cooldown timer
+            if (_isDashing)
+            {
+                if (_dashTimeLeft > 0)
+                {
+                    _dashTimeLeft -= Time.deltaTime;
+                    _rigidbody.velocity = _dashDirection * DashSpeed; // Maintain the same direction for the duration of the dash
+                }
+                else
+                {
+                    EndDash();
+                }
+            }
+
+            // Handle cooldown
+            if (_dashCooldownLeft > 0)
+            {
+                _dashCooldownLeft -= Time.deltaTime;
+            }
+        }
+
+        private void StartDash()
+        {
+            _isDashing = true;
+            _dashTimeLeft = DashDuration;
+            _dashCooldownLeft = DashCooldown;
+
+            // Set the dash direction to the current movement direction
+            _dashDirection = new Vector3(_rigidbody.velocity.x, 0.0f, _rigidbody.velocity.z).normalized;
+            if (_dashDirection.magnitude == 0)
+            {
+                // If no movement input, dash forward
+                _dashDirection = transform.forward;
+            }
+        }
+
+        private void EndDash()
+        {
+            _isDashing = false;
         }
     }
 }
