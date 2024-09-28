@@ -12,7 +12,18 @@ public class MainMenuHandler : MonoBehaviour
     }
     public void PressStartButton()
     {
-        animator.SetTrigger("Start");
+        animator.SetTrigger("Close");
+        animator.SetBool("Start",true);
+    }
+    public void PressHowToPlayButton()
+    {
+        animator.SetTrigger("Close");
+        animator.SetBool("HowToPlay", true);
+    }
+    public void CloseHowToPlayButton()
+    {
+        animator.SetTrigger("Close");
+        animator.SetBool("HowToPlay", false);
     }
     public void SetScene(string sceneName)
     {
