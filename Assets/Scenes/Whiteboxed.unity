@@ -2684,6 +2684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseUI: {fileID: 1239138487}
   deadUI: {fileID: 442147560}
+  playerEntity: {fileID: 0}
 --- !u!1 &196478109
 GameObject:
   m_ObjectHideFlags: 0
@@ -24552,7 +24553,7 @@ PrefabInstance:
       objectReference: {fileID: 2026585266}
     - target: {fileID: 8271928831877810571, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: DashSpeed
-      value: 15
+      value: 22.5
       objectReference: {fileID: 0}
     - target: {fileID: 8271928831877810571, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: MoveSpeed
@@ -24564,7 +24565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8271928831877810571, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: DashDuration
-      value: 0.1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8271928831877810571, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: CinemachineCameraTarget
