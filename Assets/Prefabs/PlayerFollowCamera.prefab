@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2614119872116586838}
   - component: {fileID: 6007255502575056098}
-  - component: {fileID: 6657695366087452346}
   - component: {fileID: 8461539249669087094}
   - component: {fileID: 3929353036501966936}
+  - component: {fileID: 2589920522079324604}
   m_Layer: 0
   m_Name: PlayerFollowCamera
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3815071365798011542}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.39999998, y: 1.375, z: 12.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -75,23 +75,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1361403904455200775}
---- !u!114 &6657695366087452346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3815071365798011542}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FocusTracksTarget: 0
-  m_FocusTracking: 0
-  m_FocusTarget: {fileID: 0}
-  m_FocusOffset: 0
-  m_Profile: {fileID: 11400000, guid: 78f41eb577f718a4094b83454d006f1d, type: 2}
 --- !u!114 &8461539249669087094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,11 +88,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraAnimator: {fileID: 3929353036501966936}
-  cinemachinePostProcessing: {fileID: 6657695366087452346}
+  cinemachineVolumeSettings: {fileID: 2589920522079324604}
   colourGradingTemperature: 0
   colourGradingSaturation: 0
   vignetteIntensity: 0
   grainIntensity: 0
+  grainResponse: 0
 --- !u!95 &3929353036501966936
 Animator:
   serializedVersion: 5
@@ -131,6 +115,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2589920522079324604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815071365798011542}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449ef5ebbe24720439ec31d15f7b6f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FocusTracksTarget: 0
+  m_FocusTracking: 0
+  m_FocusTarget: {fileID: 0}
+  m_FocusOffset: 0
+  m_Profile: {fileID: 11400000, guid: dbd4a899b2b7ba04d931a89d854dcbb5, type: 2}
 --- !u!1 &4600133420126124762
 GameObject:
   m_ObjectHideFlags: 0
