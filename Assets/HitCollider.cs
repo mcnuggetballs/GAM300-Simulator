@@ -11,6 +11,7 @@ public class HitCollider : MonoBehaviour
     float timer = 0;
     public int parentLayer;
     public Vector3 hitDirection;
+    public GameObject spawnedFrom;
     public void Spawn(Vector3 pos, float xSize, float ySize, float zSize)
     {
         transform.position = pos;
@@ -27,6 +28,14 @@ public class HitCollider : MonoBehaviour
                 if (theEntity.gameObject.layer == parentLayer)
                     return;
                 theEntity.TakeDamage(damage, hitDirection,15);
+
+                if (spawnedFrom!= null)
+                {
+                    if (spawnedFrom.GetComponent<PlayerHack>())
+                    {
+                        spawnedFrom.GetComponent<PlayerHack>().AddChargeValue(1.0f);
+                    }
+                }
 
                 VFXManager.Instance.Spawn("Hit_02", GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
             }
