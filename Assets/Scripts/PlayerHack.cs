@@ -22,6 +22,18 @@ public class PlayerHack : MonoBehaviour
     public float maxChargeValue = 40;
     [SerializeField]
     Image hackCharge;
+    public float GetChargeValue()
+    {
+        return chargeValue;
+    }
+    public void RemoveChargeValue(float amount)
+    {
+        chargeValue -= amount;
+        if (chargeValue < 0)
+        {
+            chargeValue = 0;
+        }
+    }
     public void AddChargeValue(float amount)
     {
         chargeValue += amount;

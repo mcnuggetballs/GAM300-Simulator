@@ -10,12 +10,14 @@ public class AttackingScript : MonoBehaviour
     public int noOfClicks = 0;
     protected ThirdPersonController controller;
     public string skillName;
+    PlayerHack playerHack;
     private void Start()
     {
         if (controller == null)
         {
             controller = GetComponent<ThirdPersonController>();
         }
+        playerHack = GetComponent<PlayerHack>();
     }
     // Update is called once per frame
     public void ResetClicks()
@@ -29,13 +31,17 @@ public class AttackingScript : MonoBehaviour
             OnClick();
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (playerHack && playerHack.GetChargeValue() >= 10)
         {
-            if (GetComponent<Entity>())
+            if (Input.GetMouseButtonDown(1))
             {
-                if (GetComponent<Entity>().skill && GetComponent<ThirdPersonControllerRB>().Grounded)
+                if (GetComponent<Entity>())
                 {
-                    GetComponent<Entity>().skill.Activate(gameObject);
+                    if (GetComponent<Entity>().skill && GetComponent<ThirdPersonControllerRB>().Grounded)
+                    {
+                        playerHack.RemoveChargeValue(10.0f);
+                        GetComponent<Entity>().skill.Activate(gameObject);
+                    }
                 }
             }
         }
