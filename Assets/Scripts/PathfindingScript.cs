@@ -34,7 +34,7 @@ public class PathfindingScript : MonoBehaviour
         if (_path == null || _path.Length == 0 || _currentPathIndex >= _path.Length || !foundPath)
         {
             foundPath = false;
-            enemyController.Move(Vector3.zero, 0); // Stop movement if no path is found
+            enemyController.StopMovement(); // Stop movement if no path is found
             return;
         }
 

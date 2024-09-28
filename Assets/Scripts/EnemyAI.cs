@@ -112,6 +112,10 @@ public class EnemyAI : MonoBehaviour
 
     private void Attack()
     {
+        if (GetComponent<EnemyControllerRB>() != null)
+        {
+            GetComponent<EnemyControllerRB>().SetLookDirection((player.position - transform.position).normalized);
+        }
         if (_timeSinceLastAttack >= attackCooldown)
         {
             // Attack logic here

@@ -142,6 +142,14 @@ namespace StarterAssets
             // Cinemachine will follow this target
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
+
+
+            // Use the camera's forward direction for player rotation
+            _targetRotation = _mainCamera.transform.eulerAngles.y;
+            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
+
+            // Rotate the player to face the camera's forward direction
+            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         }
 
         private void Move()
@@ -201,20 +209,6 @@ namespace StarterAssets
             _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
             if (_animationBlend < 0.01f) _animationBlend = 0f;
 
-            // Get movement input direction
-            Vector3 inputDirection = new Vector3(horizontal, 0.0f, vertical).normalized;
-
-            // If there's movement input, rotate the player to face the camera's forward direction
-            if (inputDirection != Vector3.zero)
-            {
-                // Use the camera's forward direction for player rotation
-                _targetRotation = _mainCamera.transform.eulerAngles.y;
-                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
-
-                // Rotate the player to face the camera's forward direction
-                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-            }
-
             // Calculate movement direction based on camera's forward direction
             Vector3 targetDirection = _mainCamera.transform.forward * vertical + _mainCamera.transform.right * horizontal;
             targetDirection.y = 0.0f; // Ignore the vertical component to stay on the ground
@@ -226,6 +220,8 @@ namespace StarterAssets
             if (_hasAnimator)
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
+                _animator.SetFloat("MoveX", horizontal);
+                _animator.SetFloat("MoveY", vertical);
             }
         }
 
