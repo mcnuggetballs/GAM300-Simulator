@@ -27,7 +27,11 @@ public class HitCollider : MonoBehaviour
                 if (theEntity.gameObject.layer == parentLayer)
                     return;
                 theEntity.TakeDamage(damage, hitDirection,15);
-
+                if(other.CompareTag("Player"))
+                {
+                    AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[0],0.2f,other.transform.position,true);
+                }
+                else AudioManager.instance.PlayCachedSound(AudioManager.instance.HitSoundsFX,other.transform.position,0.3f);
                 VFXManager.Instance.Spawn("Hit_02", GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
             }
         }

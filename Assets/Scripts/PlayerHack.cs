@@ -30,6 +30,7 @@ public class PlayerHack : MonoBehaviour
             {
                 GameManager.Instance.ToggleHackMode(!GameManager.Instance.GetHackMode());
                 animator.SetBool("Hacking", !animator.GetBool("Hacking"));
+                AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[1],0.2f,transform.position);
             }
         }
 

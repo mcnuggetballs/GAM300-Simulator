@@ -1,5 +1,6 @@
 using StarterAssets;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -30,6 +31,7 @@ public class HookSkill : Skill
     }
     private IEnumerator Cast(GameObject user)
     {
+        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[2],0.2f,transform.position);
         yield return new WaitForSeconds(shootDelay);
         if ((enemyLayer.value & (1 << user.layer)) != 0)
         {
@@ -77,7 +79,7 @@ public class HookSkill : Skill
                 }
                 // Enable the LineRenderer before launching the hook
                 lineRenderer.enabled = true;
-
+                AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[3],0.2f,transform.position);
                 // Start launching the hook toward the enemy
                 StartCoroutine(LaunchHook(hit.collider.gameObject, user));
             }
@@ -111,6 +113,7 @@ public class HookSkill : Skill
                 }
                 // Enable the LineRenderer before launching the hook
                 lineRenderer.enabled = true;
+                AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[3],0.2f,transform.position);
 
                 // Start launching the hook toward the enemy
                 StartCoroutine(LaunchHook(hit.collider.gameObject, user));

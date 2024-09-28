@@ -16,9 +16,11 @@ public class AudioManager : MonoBehaviour
 
     //hard code babeyyy~
     public AudioClip[] HitSoundsFX;
+    public AudioClip[] WhooshSoundsFX;
     public AudioClip[] PlayerHurtFX;
     public AudioClip[] EnemySounds;
     public AudioClip[] MiscSounds;
+    public AudioClip[] ExplosionSounds;
     private void Awake()
     {
         instance = this;

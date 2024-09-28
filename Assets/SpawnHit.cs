@@ -55,6 +55,7 @@ public class SpawnHit : StateMachineBehaviour
                         }
                         Vector3 spawnPos = new Vector3(animator.transform.position.x,animator.transform.position.y + positionHeightOffset,animator.transform.position.z);
                         hitCollider.Spawn(spawnPos + animator.transform.forward * positionForwardOffset * 0.5f, width, height, length);
+                        AudioManager.instance.PlayCachedSound(AudioManager.instance.WhooshSoundsFX,spawnPos,0.2f);
                     }
                     else
                     {
