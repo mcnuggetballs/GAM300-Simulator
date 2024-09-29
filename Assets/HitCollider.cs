@@ -11,6 +11,7 @@ public class HitCollider : MonoBehaviour
     float timer = 0;
     public int parentLayer;
     public Vector3 hitDirection;
+    public GameObject spawnedFrom;
     public void Spawn(Vector3 pos, float xSize, float ySize, float zSize)
     {
         transform.position = pos;
@@ -32,6 +33,15 @@ public class HitCollider : MonoBehaviour
                     AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[0],0.2f,other.transform.position,true);
                 }
                 else AudioManager.instance.PlayCachedSound(AudioManager.instance.HitSoundsFX,other.transform.position,0.3f);
+
+                if (spawnedFrom!= null)
+                {
+                    if (spawnedFrom.GetComponent<PlayerHack>())
+                    {
+                        spawnedFrom.GetComponent<PlayerHack>().AddChargeValue(1.0f);
+                    }
+                }
+
                 VFXManager.Instance.Spawn("Hit_02", GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
             }
         }

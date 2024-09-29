@@ -59,6 +59,7 @@ public class ScreenTransitionManager : MonoBehaviour
     private IEnumerator LoadScene()
     {
         SceneManager.LoadScene(nextSceneName);
+        Time.timeScale = 1f;
 
         //wait for the scene to load
         yield return null;

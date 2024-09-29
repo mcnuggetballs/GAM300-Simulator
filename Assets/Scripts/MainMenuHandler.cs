@@ -12,11 +12,45 @@ public class MainMenuHandler : MonoBehaviour
     }
     public void PressStartButton()
     {
-        animator.SetTrigger("Start");
+        animator.SetTrigger("Close");
+        animator.SetBool("Start",true);
+    }
+    public void PressHowToPlayButton()
+    {
+        animator.SetTrigger("Close");
+        animator.SetBool("HowToPlay", true);
+    }
+    public void CloseHowToPlayButton()
+    {
+        animator.SetTrigger("Close");
+        animator.SetBool("HowToPlay", false);
+    }
+
+    public void PressSettingsButton()
+    {
+        animator.SetTrigger("Close");
+        animator.SetBool("Settings", true);
+    }
+    public void CloseSettingsButton()
+    {
+        animator.SetTrigger("Close");
+        animator.SetBool("Settings", false);
     }
     public void SetScene(string sceneName)
     {
         SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
         SceneTransition.Instance.TransitionToScene(sceneName);
+    }
+
+    public void ResumeGameAnimationComplete()
+    {
+        if (IngameUIManager.Instance)
+        {
+            if (animator.GetBool("HowToPlay"))
+                return;
+            if (animator.GetBool("Settings"))
+                return;
+            IngameUIManager.Instance.ResumeGameAnimationComplete();
+        }
     }
 }

@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyControllerRB : MonoBehaviour
@@ -53,6 +54,8 @@ public class EnemyControllerRB : MonoBehaviour
     [SerializeField]
     private bool _jump = false;
 
+    Vector3 targetDirection = Vector3.zero;
+
     private void Awake()
     {
         // get a reference to our main camera
@@ -85,6 +88,18 @@ public class EnemyControllerRB : MonoBehaviour
         GroundedCheck();
     }
 
+    private void LateUpdate()
+    {
+        _targetRotation = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg;
+        float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
+        transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+    }
+
+    public void SetLookDirection(Vector3 dir)
+    {
+        targetDirection = dir.normalized;
+    }
+
     private void AssignAnimationIDs()
     {
         _animIDSpeed = Animator.StringToHash("Speed");
@@ -102,6 +117,17 @@ public class EnemyControllerRB : MonoBehaviour
         if (_hasAnimator)
         {
             _animator.SetBool(_animIDGrounded, Grounded);
+        }
+    }
+    public void StopMovement()
+    {
+        _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
+
+        if (_hasAnimator)
+        {
+            _animator.SetFloat(_animIDSpeed, 0);
+            _animator.SetFloat("MoveX", 0);
+            _animator.SetFloat("MoveY", 0);
         }
     }
     public void Move(Vector3 dir, float speed, bool ignore = false)
@@ -132,17 +158,7 @@ public class EnemyControllerRB : MonoBehaviour
         if (_animationBlend < 0.01f) _animationBlend = 0f;
 
         // normalise input direction
-        Vector3 inputDirection = dir.normalized;
-
-        // If there's movement input, rotate the player to face the input direction relative to the camera
-        if (inputDirection != Vector3.zero)
-        {
-            _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
-            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
-
-            // Rotate to face the input direction
-            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-        }
+        this.targetDirection = dir.normalized;
 
         // Calculate movement direction based on camera's rotation
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
@@ -154,6 +170,8 @@ public class EnemyControllerRB : MonoBehaviour
         if (_hasAnimator)
         {
             _animator.SetFloat(_animIDSpeed, _animationBlend);
+            _animator.SetFloat("MoveX", 0);
+            _animator.SetFloat("MoveY", 1);
         }
     }
 

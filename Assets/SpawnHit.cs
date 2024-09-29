@@ -39,7 +39,7 @@ public class SpawnHit : StateMachineBehaviour
         {
             if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= animationTime && animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
             {
-                GameObject theGameObject = Instantiate(Resources.Load("HitCollider", typeof(GameObject)),animator.transform) as GameObject;
+                GameObject theGameObject = Instantiate(Resources.Load("HitCollider", typeof(GameObject))) as GameObject;
                 if (theGameObject != null)
                 {
                     HitCollider hitCollider = theGameObject.GetComponent<HitCollider>();
@@ -56,6 +56,9 @@ public class SpawnHit : StateMachineBehaviour
                         Vector3 spawnPos = new Vector3(animator.transform.position.x,animator.transform.position.y + positionHeightOffset,animator.transform.position.z);
                         hitCollider.Spawn(spawnPos + animator.transform.forward * positionForwardOffset * 0.5f, width, height, length);
                         AudioManager.instance.PlayCachedSound(AudioManager.instance.WhooshSoundsFX,spawnPos,0.2f);
+                        hitCollider.transform.rotation = Quaternion.Euler(0.0f, animator.transform.eulerAngles.y, 0.0f);
+                        hitCollider.transform.parent = animator.transform;
+                        hitCollider.spawnedFrom = animator.gameObject;
                     }
                     else
                     {
