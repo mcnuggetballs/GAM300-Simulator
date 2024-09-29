@@ -41,4 +41,16 @@ public class MainMenuHandler : MonoBehaviour
         SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
         SceneTransition.Instance.TransitionToScene(sceneName);
     }
+
+    public void ResumeGameAnimationComplete()
+    {
+        if (IngameUIManager.Instance)
+        {
+            if (animator.GetBool("HowToPlay"))
+                return;
+            if (animator.GetBool("Settings"))
+                return;
+            IngameUIManager.Instance.ResumeGameAnimationComplete();
+        }
+    }
 }

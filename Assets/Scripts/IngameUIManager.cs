@@ -1,20 +1,26 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager1 : MonoBehaviour
+public class IngameUIManager : MonoBehaviour
 {
     bool isPaused = false;
     bool isDead = false;
     [SerializeField]
     GameObject pauseUI;
-    [SerializeField]
-    GameObject deadUI;
     public Entity playerEntity;
+    public static IngameUIManager Instance { get; private set; }
+
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         PlayerHack playerHack = FindAnyObjectByType<PlayerHack>();
         if (playerHack)
             playerEntity = playerHack.GetComponent<Entity>();
@@ -39,7 +45,7 @@ public class GameManager1 : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.0f);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        deadUI.SetActive(true);
+        GetComponent<Animator>().SetTrigger("Open");
         Time.timeScale = 0f;
         yield return null;
     }
@@ -58,7 +64,7 @@ public class GameManager1 : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && isDead == false)
         {
             PressPause();
         }
@@ -74,16 +80,22 @@ public class GameManager1 : MonoBehaviour
 
     void PauseGame()
     {
+        pauseUI.GetComponent<Animator>().SetTrigger("Open");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        pauseUI.SetActive(true);
         Time.timeScale = 0f;
+        pauseUI.SetActive(true);
     }
 
     void ResumeGame()
     {
+        pauseUI.GetComponent<Animator>().SetTrigger("Close");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void ResumeGameAnimationComplete()
+    {
         pauseUI.SetActive(false);
         Time.timeScale = 1f;
     }
