@@ -25,6 +25,17 @@ public class MainMenuHandler : MonoBehaviour
         animator.SetTrigger("Close");
         animator.SetBool("HowToPlay", false);
     }
+
+    public void PressSettingsButton()
+    {
+        animator.SetTrigger("Close");
+        animator.SetBool("Settings", true);
+    }
+    public void CloseSettingsButton()
+    {
+        animator.SetTrigger("Close");
+        animator.SetBool("Settings", false);
+    }
     public void SetScene(string sceneName)
     {
         SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
