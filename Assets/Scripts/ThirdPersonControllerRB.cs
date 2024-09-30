@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 namespace StarterAssets
 {
@@ -13,10 +14,6 @@ namespace StarterAssets
         public float SprintSpeed = 5.335f;
         [Range(0.0f, 0.3f)] public float RotationSmoothTime = 0.12f;
         public float SpeedChangeRate = 10.0f;
-
-        public AudioClip LandingAudioClip;
-        public AudioClip[] FootstepAudioClips;
-        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
         [Space(10)] public float JumpHeight = 1.2f;
         public float Gravity = -15.0f;

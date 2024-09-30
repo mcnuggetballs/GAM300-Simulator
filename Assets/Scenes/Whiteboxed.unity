@@ -5680,7 +5680,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8501681008190486832, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
   m_PrefabInstance: {fileID: 1618813458254536692}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871470018}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58ecdcdb00d8ebe4b81eec9a4e7aa5e6, type: 3}
@@ -8477,27 +8477,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866240122}
   m_CullTransparentMesh: 1
---- !u!1 &871470018 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3052415916858715251, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
-  m_PrefabInstance: {fileID: 1618813458254536692}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &871470026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871470018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4eb6b1cc4ac7b1e4f85eecbb7ff2653e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iconImage: {fileID: 21903742}
-  fill: {fileID: 1046547334}
-  slotBG: {fileID: 1467177776}
-  triangle: {fileID: 1366790489}
 --- !u!1 &875595549
 GameObject:
   m_ObjectHideFlags: 0
@@ -17554,11 +17533,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627994831}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1631300762 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8534109798183962495, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
-  m_PrefabInstance: {fileID: 1618813458254536692}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1667748363 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2136600320241781674, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
@@ -24734,13 +24708,25 @@ PrefabInstance:
       propertyPath: hackBarGameObject
       value: 
       objectReference: {fileID: 2026585266}
+    - target: {fileID: 7174194740232241242, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: fill
+      value: 
+      objectReference: {fileID: 1046547334}
+    - target: {fileID: 7174194740232241242, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: slotBG
+      value: 
+      objectReference: {fileID: 1467177776}
+    - target: {fileID: 7174194740232241242, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: triangle
+      value: 
+      objectReference: {fileID: 1366790489}
+    - target: {fileID: 7174194740232241242, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: iconImage
+      value: 
+      objectReference: {fileID: 21903742}
     - target: {fileID: 8271928831877810571, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: DashSpeed
       value: 22.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8271928831877810571, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
-      propertyPath: MoveSpeed
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8271928831877810571, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: SprintSpeed
@@ -24750,17 +24736,10 @@ PrefabInstance:
       propertyPath: DashDuration
       value: 0.15
       objectReference: {fileID: 0}
-    - target: {fileID: 8271928831877810571, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
-      propertyPath: CinemachineCameraTarget
-      value: 
-      objectReference: {fileID: 1631300762}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3052415916858715251, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 871470026}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
 --- !u!4 &1628528730517036645
 Transform:

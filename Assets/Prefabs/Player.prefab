@@ -1697,6 +1697,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c668fce017e1f104ca7751309efe416a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6570543130884617560}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c668fce017e1f104ca7751309efe416a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7174194740232241242}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c668fce017e1f104ca7751309efe416a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4613121359359477459}
   m_SourcePrefab: {fileID: 100100000, guid: c668fce017e1f104ca7751309efe416a, type: 3}
 --- !u!4 &2384529241123124937 stripped
 Transform:
@@ -1749,12 +1755,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disableMovement: 0
   MoveSpeed: 2
-  SprintSpeed: 5.335
+  SprintSpeed: 4
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
-  LandingAudioClip: {fileID: 0}
-  FootstepAudioClips: []
-  FootstepAudioVolume: 0.5
   JumpHeight: 2
   Gravity: -15
   JumpTimeout: 0.05
@@ -1770,6 +1773,9 @@ MonoBehaviour:
   BottomClamp: -70
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  DashSpeed: 22.5
+  DashDuration: 0.15
+  DashCooldown: 2
 --- !u!114 &6247563875273722324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1842,6 +1848,8 @@ MonoBehaviour:
   sphereCastDistance: 20
   hackBarGameObject: {fileID: 0}
   hackBar: {fileID: 0}
+  maxChargeValue: 40
+  hackCharge: {fileID: 0}
 --- !u!136 &6570543130884617560
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1865,6 +1873,47 @@ CapsuleCollider:
   m_Height: 1.1262296
   m_Direction: 1
   m_Center: {x: 0, y: 0.5798129, z: 0}
+--- !u!114 &7174194740232241242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3052415916858715251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb6b1cc4ac7b1e4f85eecbb7ff2653e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iconImage: {fileID: 0}
+  fill: {fileID: 0}
+  slotBG: {fileID: 0}
+  triangle: {fileID: 0}
+--- !u!114 &4613121359359477459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3052415916858715251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa5c0722f6a84543a2436fcdbfd8bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
+  FootstepAudioClips:
+  - {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
+  - {fileID: 8300000, guid: 85016e0f2b01da248b9663dd49a161b0, type: 3}
+  - {fileID: 8300000, guid: 186de84b3207156479abe98f4958fed0, type: 3}
+  - {fileID: 8300000, guid: 1a91fcd19acf1e54bba0945d9f390849, type: 3}
+  - {fileID: 8300000, guid: 14e8a8d2158bec840b56c54f5266e692, type: 3}
+  - {fileID: 8300000, guid: 29841e7d5bbfb5b419c9ad16ca8bc4c1, type: 3}
+  - {fileID: 8300000, guid: dd1af302b8902684d9381de1f2d3a5af, type: 3}
+  - {fileID: 8300000, guid: 67c8b33e424ccdc4486edf538ab91c5a, type: 3}
+  - {fileID: 8300000, guid: 274649b0e221539409070ebf6c18918b, type: 3}
+  - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
+  FootstepAudioVolume: 0.3
 --- !u!4 &4551055653878787818 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: c668fce017e1f104ca7751309efe416a, type: 3}
