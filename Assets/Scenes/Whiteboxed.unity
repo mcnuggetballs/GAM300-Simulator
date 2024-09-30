@@ -24705,6 +24705,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 28805850}
     - target: {fileID: 4907923929549781509, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: chargeHitAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907923929549781509, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: hackBarGameObject
       value: 
       objectReference: {fileID: 2026585266}
@@ -24736,7 +24740,12 @@ PrefabInstance:
       propertyPath: DashDuration
       value: 0.15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1969532062446412220, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+    - {fileID: 2448456125188317990, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+    - {fileID: 1212539631949895082, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+    - {fileID: 9116758444012427900, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+    - {fileID: 4583711459749390863, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     private float _timeSinceLastAttack;
     private float _timeSinceLastPatrol;
     private bool _playerDetected;
+    Animator animator;
 
     public Vector3 GetCurrentPlayerPos()
     {
@@ -36,6 +37,11 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        if (animator != null )
+        {
+            animator.SetBool("CanStun", true);
+        }
         theEntity = GetComponent<Entity>();
         _currentState = State.Patrolling;
         _timeSinceLastAttack = attackCooldown;
@@ -60,6 +66,12 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    public void Aggro()
+    {
+        _playerDetected = true;
+        _lastKnownPlayerPosition = player.position;
+        _currentState = State.Chasing;
+    }
     private void Patrol()
     {
         if (_playerDetected = DetectPlayer())
@@ -118,6 +130,13 @@ public class EnemyAI : MonoBehaviour
         }
         if (_timeSinceLastAttack >= attackCooldown)
         {
+            if (theEntity.GetHealthFraction() <= 0.5f)
+            {
+                if (animator != null)
+                {
+                    animator.SetBool("CanStun", false);
+                }
+            }
             // Attack logic here
             if (theEntity)
             {

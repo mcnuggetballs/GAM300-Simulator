@@ -20,6 +20,7 @@ public class PlayerHack : MonoBehaviour
     [Header("Hack Charge")]
     protected float chargeValue = 0;
     public float maxChargeValue = 40;
+    public float chargeHitAmount = 10;
     [SerializeField]
     Image hackCharge;
     public float GetChargeValue()
@@ -79,6 +80,14 @@ public class PlayerHack : MonoBehaviour
                 {
                     hackBarAmount = 0.0f;
                     currentSelectedEntity.Hack(GetComponent<Entity>());
+                    if (currentSelectedEntity.GetComponent<EnemyAI>())
+                    {
+                        if (currentSelectedEntity.GetComponent<Animator>())
+                        {
+                            currentSelectedEntity.GetComponent<Animator>().SetTrigger("Stun");
+                        }
+                        currentSelectedEntity.GetComponent<EnemyAI>().Aggro();
+                    }
                     currentSelectedEntity.hacked = true;
                     currentSelectedEntity.Selected = false;
                     currentSelectedEntity = null;

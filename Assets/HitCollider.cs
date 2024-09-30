@@ -33,7 +33,7 @@ public class HitCollider : MonoBehaviour
                 {
                     if (spawnedFrom.GetComponent<PlayerHack>())
                     {
-                        spawnedFrom.GetComponent<PlayerHack>().AddChargeValue(1.0f);
+                        spawnedFrom.GetComponent<PlayerHack>().AddChargeValue(spawnedFrom.GetComponent<PlayerHack>().chargeHitAmount);
                     }
                 }
 

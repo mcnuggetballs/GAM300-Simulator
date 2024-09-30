@@ -135,7 +135,7 @@ public class EnemyControllerRB : MonoBehaviour
         // Set target speed based on move speed, sprint speed and if sprint is pressed
         float targetSpeed = speed;
         if (disableMovement && ignore == false)
-            targetSpeed = 0.0f;
+            return;
 
         // Get the current horizontal speed ignoring vertical velocity
         float currentHorizontalSpeed = new Vector3(_rigidbody.velocity.x, 0.0f, _rigidbody.velocity.z).magnitude;

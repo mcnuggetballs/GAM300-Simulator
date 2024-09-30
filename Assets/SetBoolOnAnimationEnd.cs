@@ -1,34 +1,30 @@
-using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementOnStart : StateMachineBehaviour
+public class SetBoolOnAnimationEnd : StateMachineBehaviour
 {
     [SerializeField]
-    bool value;
+    private string boolName;
+    [SerializeField]
+    private bool value;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        if (animator.GetComponent<ThirdPersonControllerRB>())
-            animator.GetComponent<ThirdPersonControllerRB>().disableMovement = value;
-        if (animator.GetComponent<EnemyControllerRB>())
-        {
-            animator.GetComponent<EnemyControllerRB>().disableMovement = value;
-            animator.GetComponent<EnemyControllerRB>().StopMovement();
-        }
-    }
+    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
+    //    
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.SetBool(boolName, value);
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
