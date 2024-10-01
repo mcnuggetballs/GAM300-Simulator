@@ -35,7 +35,7 @@ public class HitCollider : MonoBehaviour
                 if (spawnedFrom != null && spawnedFrom.GetComponent<PlayerHack>())
                 {
                     // Trigger the slowdown effect for feedback
-                    GameManager.Instance.TriggerSlowdown(0.75f, 0.2f);
+                    GameManager.Instance.TriggerSlowdown(0.075f, 0.2f);
 
                     // Add charge value to the player
                     spawnedFrom.GetComponent<PlayerHack>().AddChargeValue(spawnedFrom.GetComponent<PlayerHack>().chargeHitAmount);
