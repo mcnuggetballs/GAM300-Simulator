@@ -27,16 +27,21 @@ public class HitCollider : MonoBehaviour
             {
                 if (theEntity.gameObject.layer == parentLayer)
                     return;
-                theEntity.TakeDamage(damage, hitDirection,15);
 
-                if (spawnedFrom!= null)
+                // Apply damage
+                theEntity.TakeDamage(damage, hitDirection, 15);
+
+                // Slow the game if the player hits the enemy
+                if (spawnedFrom != null && spawnedFrom.GetComponent<PlayerHack>())
                 {
-                    if (spawnedFrom.GetComponent<PlayerHack>())
-                    {
-                        spawnedFrom.GetComponent<PlayerHack>().AddChargeValue(spawnedFrom.GetComponent<PlayerHack>().chargeHitAmount);
-                    }
+                    // Trigger the slowdown effect for feedback
+                    GameManager.Instance.TriggerSlowdown(0.75f, 0.2f);
+
+                    // Add charge value to the player
+                    spawnedFrom.GetComponent<PlayerHack>().AddChargeValue(spawnedFrom.GetComponent<PlayerHack>().chargeHitAmount);
                 }
 
+                // Spawn visual effects on hit
                 VFXManager.Instance.Spawn("Hit_02", GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
             }
         }

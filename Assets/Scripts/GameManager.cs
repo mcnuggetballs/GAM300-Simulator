@@ -29,4 +29,10 @@ public class GameManager
     {
         hackMode = value;
     }
+
+    // Method to trigger the slowdown effect
+    public void TriggerSlowdown(float slowdownDuration, float slowdownFactor)
+    {
+        TimeManager.Instance.TriggerSlowdown(slowdownDuration, slowdownFactor);
+    }
 }
