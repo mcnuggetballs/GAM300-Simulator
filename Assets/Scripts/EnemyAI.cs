@@ -5,37 +5,37 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] Transform player;
-    [SerializeField] PathfindingScript pathfinding;
-    [SerializeField] float detectionRadius = 10f;
-    [SerializeField] float attackRadius = 2f;
-    [SerializeField] LayerMask playerLayer;
-    [SerializeField] LayerMask obstacleLayer;
-    [SerializeField] float patrolWaitTime = 2f;
-    [SerializeField] float attackCooldown = 1f;
-    [SerializeField] float stoppingDistance = 0.0f;
-    Entity theEntity;
+    [SerializeField] protected Transform player;
+    [SerializeField] protected PathfindingScript pathfinding;
+    [SerializeField] protected float detectionRadius = 10f;
+    [SerializeField] protected float attackRadius = 2f;
+    [SerializeField] protected LayerMask playerLayer;
+    [SerializeField] protected LayerMask obstacleLayer;
+    [SerializeField] protected float patrolWaitTime = 2f;
+    [SerializeField] protected float attackCooldown = 1f;
+    [SerializeField] protected float stoppingDistance = 0.0f;
+    protected Entity theEntity;
 
-    private Vector3 _lastKnownPlayerPosition;
-    private float _timeSinceLastAttack;
-    private float _timeSinceLastPatrol;
-    private bool _playerDetected;
+    protected Vector3 _lastKnownPlayerPosition;
+    protected float _timeSinceLastAttack;
+    protected float _timeSinceLastPatrol;
+    protected bool _playerDetected;
     Animator animator;
 
     public Vector3 GetCurrentPlayerPos()
     {
         return player.transform.position;
     }
-    private enum State
+    protected enum State
     {
         Patrolling,
         Chasing,
         Attacking
     }
 
-    private State _currentState;
+    protected State _currentState;
 
-    private void Start()
+    protected void Start()
     {
         animator = GetComponent<Animator>();
         if (animator != null )
@@ -48,7 +48,7 @@ public class EnemyAI : MonoBehaviour
         _timeSinceLastPatrol = 0f;
     }
 
-    private void Update()
+    protected void Update()
     {
         _timeSinceLastAttack += Time.deltaTime;
 
@@ -66,13 +66,13 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void Aggro()
+    protected void Aggro()
     {
         _playerDetected = true;
         _lastKnownPlayerPosition = player.position;
         _currentState = State.Chasing;
     }
-    private void Patrol()
+    protected void Patrol()
     {
         if (_playerDetected = DetectPlayer())
         {
@@ -94,7 +94,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void Chase()
+    protected void Chase()
     {
         if (HasLineOfSight())
         {
@@ -122,7 +122,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void Attack()
+    protected void Attack()
     {
         if (GetComponent<EnemyControllerRB>() != null)
         {
@@ -149,7 +149,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private bool DetectPlayer()
+    protected bool DetectPlayer()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius, playerLayer);
         foreach (var hit in hits)
@@ -166,7 +166,7 @@ public class EnemyAI : MonoBehaviour
         return false;
     }
 
-    private bool HasLineOfSight()
+    protected bool HasLineOfSight()
     {
         Vector3 directionToPlayer = (player.position - transform.position).normalized;
         if (!Physics.Raycast(transform.position, directionToPlayer, Vector3.Distance(transform.position, player.position), obstacleLayer))
@@ -177,7 +177,7 @@ public class EnemyAI : MonoBehaviour
         return false;
     }
 
-    private Vector3 GetRandomNavMeshPosition(Vector3 origin, float distance)
+    protected Vector3 GetRandomNavMeshPosition(Vector3 origin, float distance)
     {
         Vector3 randomDirection = Random.insideUnitSphere * distance;
         randomDirection += origin;
@@ -187,7 +187,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     // New Method to enforce the correct order
-    private void SetDestinationAndPathfinding(Vector3 targetPosition)
+    protected void SetDestinationAndPathfinding(Vector3 targetPosition)
     {
         // Ensures that SetDestination is called first, then pathfinding
         if (pathfinding != null)
@@ -196,7 +196,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    protected void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
