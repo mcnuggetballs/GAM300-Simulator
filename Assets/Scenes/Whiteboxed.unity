@@ -30958,14 +30958,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: HookEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 8177037625554484287, guid: 0ea1fc195cc3ae24288f15ccc8c184cc, type: 3}
+    - target: {fileID: 5547055471741310623, guid: 0ea1fc195cc3ae24288f15ccc8c184cc, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 582099529}
-    - target: {fileID: 8383504803748634869, guid: 0ea1fc195cc3ae24288f15ccc8c184cc, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 096e3106e59ba464083775bff8a46391, type: 2}
+    - target: {fileID: 5547055471741310623, guid: 0ea1fc195cc3ae24288f15ccc8c184cc, type: 3}
+      propertyPath: attackRadius
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5547055471741310623, guid: 0ea1fc195cc3ae24288f15ccc8c184cc, type: 3}
+      propertyPath: attackCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5547055471741310623, guid: 0ea1fc195cc3ae24288f15ccc8c184cc, type: 3}
+      propertyPath: stoppingDistance
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -26,6 +26,10 @@ public class EnemyAI : MonoBehaviour
     {
         return player.transform.position;
     }
+    public Vector3 GetCurrentPlayerNeckPos()
+    {
+        return player.GetComponent<Entity>().neck.position;
+    }
     protected enum State
     {
         Patrolling,
@@ -35,7 +39,7 @@ public class EnemyAI : MonoBehaviour
 
     protected State _currentState;
 
-    protected void Start()
+    protected virtual void Start()
     {
         animator = GetComponent<Animator>();
         if (animator != null )
@@ -48,7 +52,7 @@ public class EnemyAI : MonoBehaviour
         _timeSinceLastPatrol = 0f;
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         _timeSinceLastAttack += Time.deltaTime;
 
@@ -66,13 +70,13 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    protected void Aggro()
+    public virtual void Aggro()
     {
         _playerDetected = true;
         _lastKnownPlayerPosition = player.position;
         _currentState = State.Chasing;
     }
-    protected void Patrol()
+    protected virtual void Patrol()
     {
         if (_playerDetected = DetectPlayer())
         {
@@ -94,7 +98,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    protected void Chase()
+    protected virtual void Chase()
     {
         if (HasLineOfSight())
         {
@@ -122,7 +126,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    protected void Attack()
+    protected virtual void Attack()
     {
         if (GetComponent<EnemyControllerRB>() != null)
         {
@@ -149,7 +153,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    protected bool DetectPlayer()
+    protected virtual bool DetectPlayer()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius, playerLayer);
         foreach (var hit in hits)
@@ -166,7 +170,7 @@ public class EnemyAI : MonoBehaviour
         return false;
     }
 
-    protected bool HasLineOfSight()
+    protected virtual bool HasLineOfSight()
     {
         Vector3 directionToPlayer = (player.position - transform.position).normalized;
         if (!Physics.Raycast(transform.position, directionToPlayer, Vector3.Distance(transform.position, player.position), obstacleLayer))

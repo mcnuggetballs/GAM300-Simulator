@@ -700,7 +700,7 @@ PrefabInstance:
       addedObject: {fileID: 1281126349258720039}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 332ad02f052095e49b165090bbe43494, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8177037625554484287}
+      addedObject: {fileID: 5547055471741310623}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 332ad02f052095e49b165090bbe43494, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2846511679505089060}
@@ -898,7 +898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyController: {fileID: 3274181693376604287}
   isJumping: 0
---- !u!114 &8177037625554484287
+--- !u!114 &5547055471741310623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -907,13 +907,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1951315739171085759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f676fbea2b09f5a43881471e96819da1, type: 3}
+  m_Script: {fileID: 11500000, guid: b91bf97ab264da14289fb44b341eaf61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   pathfinding: {fileID: 1281126349258720039}
   detectionRadius: 15
-  attackRadius: 10
+  attackRadius: 8
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -921,8 +921,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   patrolWaitTime: 2
-  attackCooldown: 1
-  stoppingDistance: 5
+  attackCooldown: 3
+  stoppingDistance: 4
+  hasPulled: 0
+  switchState: 0
+  complete: 0
 --- !u!208 &2846511679505089060
 NavMeshObstacle:
   m_ObjectHideFlags: 0
