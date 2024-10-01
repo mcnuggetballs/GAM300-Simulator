@@ -39,8 +39,11 @@ public class AttackingScript : MonoBehaviour
                 {
                     if (GetComponent<Entity>().skill && GetComponent<ThirdPersonControllerRB>().Grounded && anim.GetBool("Hit2") == false && anim.GetBool("Hit1") == false)
                     {
-                        playerHack.RemoveChargeValue(10.0f);
-                        GetComponent<Entity>().skill.Activate(gameObject);
+                        if (GetComponent<Entity>().skill.GetCooldownRemaining() <= 0)
+                        {
+                            playerHack.RemoveChargeValue(10.0f);
+                            GetComponent<Entity>().skill.Activate(gameObject);
+                        }
                     }
                 }
             }
