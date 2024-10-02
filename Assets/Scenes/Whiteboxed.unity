@@ -2086,7 +2086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2136600320241781674, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.04
+      value: -0.212
       objectReference: {fileID: 0}
     - target: {fileID: 2136600320241781674, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2122,7 +2122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6808417480939854286, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_Name
-      value: Plant (3)
+      value: Lamp
       objectReference: {fileID: 0}
     - target: {fileID: 8506525951701473897, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3485,7 +3485,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.972549, g: 0.9607843, b: 0.8784314, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.39
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -7048,7 +7048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2136600320241781674, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.16
+      value: -0.212
       objectReference: {fileID: 0}
     - target: {fileID: 2136600320241781674, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7082,9 +7082,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2227221128747775612, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
+      propertyPath: m_Intensity
+      value: 8.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754285934020915390, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6808417480939854286, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_Name
-      value: Plant (2)
+      value: Lamp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8076,13 +8084,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840858015}
     m_Modifications:
+    - target: {fileID: 899309580399630158, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
+      propertyPath: m_EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 899309580399630158, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 899309580399630158, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
+      propertyPath: m_EffectColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 899309580399630158, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
+      propertyPath: m_EffectDistance.x
+      value: 64.39
+      objectReference: {fileID: 0}
     - target: {fileID: 2136600320241781674, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.85
       objectReference: {fileID: 0}
     - target: {fileID: 2136600320241781674, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.06
+      value: -0.212
       objectReference: {fileID: 0}
     - target: {fileID: 2136600320241781674, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8116,9 +8140,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2754285934020915390, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754285934020915390, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
+      propertyPath: m_Shadows.m_Strength
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6808417480939854286, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_Name
-      value: Plant (4)
+      value: Lamp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14756,7 +14788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2136600320241781674, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.61
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 2136600320241781674, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14792,7 +14824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6808417480939854286, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_Name
-      value: Plant (1)
+      value: Lamp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17435,7 +17467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6773324922809860145, guid: 778e6a06a424db64595beb4fdc46ab1d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.31
+      value: -0.213
       objectReference: {fileID: 0}
     - target: {fileID: 6773324922809860145, guid: 778e6a06a424db64595beb4fdc46ab1d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19306,7 +19338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6773324922809860145, guid: 778e6a06a424db64595beb4fdc46ab1d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.31
+      value: -0.213
       objectReference: {fileID: 0}
     - target: {fileID: 6773324922809860145, guid: 778e6a06a424db64595beb4fdc46ab1d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22449,7 +22481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8082916552229010337, guid: b7305cea8d0e9b94fb51059c368c1c69, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.31
+      value: -0.213
       objectReference: {fileID: 0}
     - target: {fileID: 8082916552229010337, guid: b7305cea8d0e9b94fb51059c368c1c69, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22709,7 +22741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2136600320241781674, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.61
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 2136600320241781674, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22745,7 +22777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6808417480939854286, guid: 0fdcadedfbbff2d49b2a1ec12030fb54, type: 3}
       propertyPath: m_Name
-      value: Plant
+      value: Lamp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23019,10 +23051,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840858015}
     m_Modifications:
-    - target: {fileID: 9216545923390705100, guid: 4d452c7688b58a044a831b300b808425, type: 3}
-      propertyPath: m_Name
-      value: DeskFilledHighlighted1 (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 2967059239719145777, guid: 4d452c7688b58a044a831b300b808425, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.4746017
@@ -23062,6 +23090,10 @@ PrefabInstance:
     - target: {fileID: 2967059239719145777, guid: 4d452c7688b58a044a831b300b808425, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216545923390705100, guid: 4d452c7688b58a044a831b300b808425, type: 3}
+      propertyPath: m_Name
+      value: DeskFilledHighlighted1 (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -23139,10 +23171,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840858015}
     m_Modifications:
-    - target: {fileID: 9216545923390705100, guid: 4d452c7688b58a044a831b300b808425, type: 3}
-      propertyPath: m_Name
-      value: DeskFilledHighlighted1 (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 2967059239719145777, guid: 4d452c7688b58a044a831b300b808425, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.119974
@@ -23182,6 +23210,10 @@ PrefabInstance:
     - target: {fileID: 2967059239719145777, guid: 4d452c7688b58a044a831b300b808425, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216545923390705100, guid: 4d452c7688b58a044a831b300b808425, type: 3}
+      propertyPath: m_Name
+      value: DeskFilledHighlighted1 (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -23385,10 +23417,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840858015}
     m_Modifications:
-    - target: {fileID: 9216545923390705100, guid: 4d452c7688b58a044a831b300b808425, type: 3}
-      propertyPath: m_Name
-      value: DeskFilledHighlighted1 (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 2967059239719145777, guid: 4d452c7688b58a044a831b300b808425, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.119992
@@ -23428,6 +23456,10 @@ PrefabInstance:
     - target: {fileID: 2967059239719145777, guid: 4d452c7688b58a044a831b300b808425, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216545923390705100, guid: 4d452c7688b58a044a831b300b808425, type: 3}
+      propertyPath: m_Name
+      value: DeskFilledHighlighted1 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
