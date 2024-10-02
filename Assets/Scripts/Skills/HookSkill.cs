@@ -19,14 +19,18 @@ public class HookSkill : Skill
     private float shootDelay = 0.06f;
 
     // This method will be called to activate the hooking skill
-    public override void Activate(GameObject user)
+    public override bool Activate(GameObject user)
     {
-        if (isOnCooldown) return;  // Prevent activation if the skill is on cooldown
+        if (user.GetComponent<Animator>() && !user.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Idle Walk Run Blend"))
+            return false;
+        if (isOnCooldown)
+            return false;  // Prevent activation if the skill is on cooldown
         if (user.GetComponent<Animator>())
         {
             user.GetComponent<Animator>().SetBool("Hook", true);
         }
         StartCoroutine(Cast(user));
+        return true;
     }
 
     private IEnumerator Cast(GameObject user)

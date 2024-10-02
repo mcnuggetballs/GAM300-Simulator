@@ -17,6 +17,27 @@ public class HookEnemyAI : EnemyAI
         enemyControllerRB= GetComponent<EnemyControllerRB>();
         animator = GetComponent<Animator>();
     }
+    protected override void Update()
+    {
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Hurt"))
+        {
+            _timeSinceLastAttack += Time.deltaTime;
+        }
+
+        switch (_currentState)
+        {
+            case State.Patrolling:
+                Patrol();
+                break;
+            case State.Chasing:
+                Chase();
+                break;
+            case State.Attacking:
+                Attack();
+                break;
+        }
+    }
+
     protected override void Attack()
     {
         if (animator != null)

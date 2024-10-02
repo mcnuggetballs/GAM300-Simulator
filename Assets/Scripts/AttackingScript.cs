@@ -41,8 +41,10 @@ public class AttackingScript : MonoBehaviour
                     {
                         if (GetComponent<Entity>().skill.GetCooldownRemaining() <= 0)
                         {
-                            playerHack.RemoveChargeValue(10.0f);
-                            GetComponent<Entity>().skill.Activate(gameObject);
+                            if (GetComponent<Entity>().skill.Activate(gameObject))
+                            {
+                                playerHack.RemoveChargeValue(10.0f);
+                            }
                         }
                     }
                 }
