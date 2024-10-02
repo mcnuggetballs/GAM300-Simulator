@@ -62,13 +62,13 @@ public class AttackingScript : MonoBehaviour
             anim.SetBool("Hit2", false);
             noOfClicks++;
         }
-        if (noOfClicks >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
+        if (noOfClicks >= 2 && anim.GetCurrentAnimatorStateInfo(1).normalizedTime > 0.25f && anim.GetCurrentAnimatorStateInfo(1).IsName("Hit1"))
         {
             anim.SetBool("Hit2", true);
             anim.SetBool("Hit1", false);
             noOfClicks++;
         }
-        if (noOfClicks >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
+        if (noOfClicks >= 3 && anim.GetCurrentAnimatorStateInfo(1).normalizedTime > 0.25f && anim.GetCurrentAnimatorStateInfo(1).IsName("Hit2"))
         {
             anim.SetBool("Hit1", true);
             anim.SetBool("Hit2", false);

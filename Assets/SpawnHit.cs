@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpawnHit : StateMachineBehaviour
 {
     [SerializeField]
+    int animationLayer;
+    [SerializeField]
     string stateName;
     [SerializeField]
     float animationDamageMultiplier = 1;
@@ -37,7 +39,7 @@ public class SpawnHit : StateMachineBehaviour
     {
         if (!spawned)
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= animationTime && animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
+            if (animator.GetCurrentAnimatorStateInfo(animationLayer).normalizedTime >= animationTime && animator.GetCurrentAnimatorStateInfo(animationLayer).IsName(stateName))
             {
                 GameObject theGameObject = Instantiate(Resources.Load("HitCollider", typeof(GameObject))) as GameObject;
                 if (theGameObject != null)

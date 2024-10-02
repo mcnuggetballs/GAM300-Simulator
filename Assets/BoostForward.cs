@@ -52,11 +52,6 @@ public class BoostForward : StateMachineBehaviour
             {
                 rb.velocity = dashDirection * dashSpeed;
             }
-            else
-            {
-                // Stop the dash by zeroing out the velocity after dash duration
-                rb.velocity = new Vector3(0, rb.velocity.y, 0);
-            }
         }
     }
 
