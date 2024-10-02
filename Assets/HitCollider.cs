@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,17 @@ public class HitCollider : MonoBehaviour
 
                 // Spawn visual effects on hit
                 VFXManager.Instance.Spawn("Hit_02", GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
+
+                CameraShake.ShakeSettings shakeSettings = new CameraShake.ShakeSettings
+                {
+                    duration = 0.1f,
+                    shakeStrength = new Vector3(0.05f, 0.05f, 0.05f),
+                    shakeCurve = AnimationCurve.EaseInOut(0, 1, 1, 0),
+                    shakeSpace = CameraShake.ShakeSpace.World
+                };
+
+                // Trigger camera shake using GameManager (target the main camera)
+                GameManager.Instance.TriggerCameraShake(shakeSettings, Camera.main);
             }
         }
     }
