@@ -753,9 +753,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ecdcdb00d8ebe4b81eec9a4e7aa5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 60
   currentHealth: 0
-  baseDamage: 10
+  baseDamage: 5
   skill: {fileID: 2657135923057153150, guid: 587fff9eea54ae142955e2ee9bcad806, type: 3}
   skillPrefab: {fileID: 6302454628970879240, guid: 587fff9eea54ae142955e2ee9bcad806, type: 3}
   rightHand: {fileID: 6018200990853545746}
@@ -912,7 +912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   pathfinding: {fileID: 1281126349258720039}
-  detectionRadius: 15
+  detectionRadius: 3
   attackRadius: 8
   playerLayer:
     serializedVersion: 2

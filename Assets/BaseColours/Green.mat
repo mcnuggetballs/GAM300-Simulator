@@ -147,7 +147,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.33377445, g: 0.4716981, b: 0.05962975, a: 1}
     - _BaseMap_Tiling: {r: 1, g: 1, b: 0, a: 0}
-    - _Color: {r: 0.33377445, g: 0.4716981, b: 0.05962975, a: 1}
+    - _Color: {r: 0.33377442, g: 0.4716981, b: 0.059629723, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}

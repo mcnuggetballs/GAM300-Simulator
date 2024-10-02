@@ -758,9 +758,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ecdcdb00d8ebe4b81eec9a4e7aa5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 80
   currentHealth: 0
-  baseDamage: 10
+  baseDamage: 6
   skill: {fileID: 8418487014961730765, guid: b887478ffc1e60b4391b21a701c5ecf5, type: 3}
   skillPrefab: {fileID: 3619375499344857683, guid: b887478ffc1e60b4391b21a701c5ecf5, type: 3}
   rightHand: {fileID: 594610895024178031}
@@ -917,7 +917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   pathfinding: {fileID: 3056565879768199586}
-  detectionRadius: 5
+  detectionRadius: 3
   attackRadius: 2
   playerLayer:
     serializedVersion: 2
@@ -926,7 +926,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   patrolWaitTime: 2
-  attackCooldown: 1
+  attackCooldown: 5
   stoppingDistance: 0
 --- !u!208 &4838147567513864950
 NavMeshObstacle:
