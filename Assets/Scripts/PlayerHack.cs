@@ -115,7 +115,7 @@ public class PlayerHack : MonoBehaviour
         RaycastHit hit;
 
         // Perform a SphereCast in the direction of the ray
-        if (Physics.SphereCast(ray, sphereRadius, out hit, sphereCastDistance, enemyLayer))
+        if (Physics.SphereCast(ray, sphereRadius, out hit, Mathf.Infinity, enemyLayer))
         {
             // Get the Entity script on the object
             Hackable hackable = hit.collider.GetComponent<Hackable>();
@@ -132,7 +132,7 @@ public class PlayerHack : MonoBehaviour
                     currentSelectedEntity.Selected = false;
                 }
 
-                if (currentSelectedEntity != hackable)
+                if (currentSelectedEntity != hackable && Vector3.Distance(transform.GetComponent<Entity>().neck.position, hackable.transform.position) <= sphereCastDistance)
                 {
                     // Set the selected entity and mark it as selected
                     currentSelectedEntity = hackable;

@@ -29,20 +29,15 @@ public class HitCollider : MonoBehaviour
                 if (theEntity.gameObject.layer == parentLayer)
                     return;
 
-                // Apply damage
                 theEntity.TakeDamage(damage, hitDirection, 15);
 
-                // Slow the game if the player hits the enemy
                 if (spawnedFrom != null && spawnedFrom.GetComponent<PlayerHack>())
                 {
-                    // Trigger the slowdown effect for feedback
                     GameManager.Instance.TriggerSlowdown(0.075f, 0.2f);
 
-                    // Add charge value to the player
                     spawnedFrom.GetComponent<PlayerHack>().AddChargeValue(spawnedFrom.GetComponent<PlayerHack>().chargeHitAmount);
                 }
 
-                // Spawn visual effects on hit
                 VFXManager.Instance.Spawn("Hit_02", GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
 
                 CameraShake.ShakeSettings shakeSettings = new CameraShake.ShakeSettings
@@ -50,10 +45,11 @@ public class HitCollider : MonoBehaviour
                     duration = 0.1f,
                     shakeStrength = new Vector3(0.05f, 0.05f, 0.05f),
                     shakeCurve = AnimationCurve.EaseInOut(0, 1, 1, 0),
-                    shakeSpace = CameraShake.ShakeSpace.World
+                    shakeSpace = CameraShake.ShakeSpace.World,
+                    shakePosition = transform.position,
+                    maxDistance = 5f
                 };
 
-                // Trigger camera shake using GameManager (target the main camera)
                 GameManager.Instance.TriggerCameraShake(shakeSettings, Camera.main);
             }
         }

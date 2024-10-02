@@ -17,14 +17,17 @@ public class CameraShake : MonoBehaviour
         public Vector3 shakeStrength = new Vector3(0.1f, 0.1f, 0.1f);
         public AnimationCurve shakeCurve = AnimationCurve.Linear(0, 1, 1, 0);
         [Range(0, 0.1f)] public float shakesDelay = 0;
+        public Vector3 shakePosition = Vector3.zero; // The position from where the shake will originate
+        public float maxDistance = 10f; // Maximum distance where the shake will have full effect
     }
 
     private bool isShaking = false;
     private Vector3 originalPosition;
     private Vector3 shakeVector;
     private float elapsedTime;
-    private Transform cameraParent; // Reference to the parent of the camera
+    private Transform cameraParent;
     private ShakeSettings settings;
+    private Transform playerTransform;
 
     public void StartShake(ShakeSettings shakeSettings, Transform cameraParentTransform)
     {
@@ -39,6 +42,9 @@ public class CameraShake : MonoBehaviour
         elapsedTime = 0f;
         originalPosition = cameraParent.localPosition;
 
+        // Find the player reference using FindObjectOfType
+        playerTransform = FindObjectOfType<PlayerHack>().transform;
+
         StartCoroutine(ShakeRoutine());
     }
 
@@ -51,11 +57,13 @@ public class CameraShake : MonoBehaviour
                 yield break;
             }
 
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             float progress = Mathf.Clamp01(elapsedTime / settings.duration);
 
+            float distance = Vector3.Distance(settings.shakePosition, playerTransform.position);
+            float distanceFactor = Mathf.Clamp01(1 - (distance / settings.maxDistance));
             Vector3 randomVec = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            shakeVector = Vector3.Scale(randomVec, settings.shakeStrength) * settings.shakeCurve.Evaluate(progress);
+            shakeVector = Vector3.Scale(randomVec, settings.shakeStrength * distanceFactor) * settings.shakeCurve.Evaluate(progress);
 
             if (settings.shakeSpace == ShakeSpace.Screen)
             {

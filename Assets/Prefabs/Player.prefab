@@ -1845,10 +1845,11 @@ MonoBehaviour:
     m_Bits: 320
   currentSelectedEntity: {fileID: 0}
   sphereRadius: 0.5
-  sphereCastDistance: 20
+  sphereCastDistance: 25
   hackBarGameObject: {fileID: 0}
   hackBar: {fileID: 0}
   maxChargeValue: 40
+  chargeHitAmount: 10
   hackCharge: {fileID: 0}
 --- !u!136 &6570543130884617560
 CapsuleCollider:
