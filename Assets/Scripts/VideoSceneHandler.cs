@@ -31,7 +31,7 @@ public class VideoSceneHandler : MonoBehaviour
             {
                 finished = true;
                 SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.Fade);
-                SceneTransition.Instance.TransitionToScene("Whiteboxed");
+                SceneTransition.Instance.TransitionToScene("Lift");
             }
         }
     }
@@ -42,7 +42,7 @@ public class VideoSceneHandler : MonoBehaviour
         {
             finished = true;
             SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.Fade);
-            SceneTransition.Instance.TransitionToScene("Whiteboxed");
+            SceneTransition.Instance.TransitionToScene("Lift");
         }
     }
 }
