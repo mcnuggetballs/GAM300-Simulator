@@ -15468,6 +15468,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840858015}
     m_Modifications:
+    - target: {fileID: -9158636819078260051, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3ac310b7d776894cb777927d2a7ebdc, type: 2}
     - target: {fileID: -8679921383154817045, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3536
@@ -15520,10 +15524,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4171001361061973571, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3ac310b7d776894cb777927d2a7ebdc, type: 2}
     - target: {fileID: 919132149155446097, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
       propertyPath: m_Name
       value: waffle shelf (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1170970068873931921, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3ac310b7d776894cb777927d2a7ebdc, type: 2}
+    - target: {fileID: 2929640277652407947, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3ac310b7d776894cb777927d2a7ebdc, type: 2}
+    - target: {fileID: 5901893356585517859, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3ac310b7d776894cb777927d2a7ebdc, type: 2}
+    - target: {fileID: 7483894711331120201, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3ac310b7d776894cb777927d2a7ebdc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18017,6 +18041,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3d46d507a5ca1a744ad7c82d8f418140, type: 3}
       propertyPath: m_Name
       value: cielingLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d46d507a5ca1a744ad7c82d8f418140, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23661,9 +23689,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6582698683872789457, guid: 39bfb862e3ff7cc4ea2dd57b756450ee, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -413930134452501938, guid: 39bfb862e3ff7cc4ea2dd57b756450ee, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 39bfb862e3ff7cc4ea2dd57b756450ee, type: 3}
       propertyPath: m_Name
       value: cabinet
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 39bfb862e3ff7cc4ea2dd57b756450ee, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7355035721249272359, guid: 39bfb862e3ff7cc4ea2dd57b756450ee, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337422202249671189, guid: 39bfb862e3ff7cc4ea2dd57b756450ee, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28372,6 +28420,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840858015}
     m_Modifications:
+    - target: {fileID: -9158636819078260051, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3ac310b7d776894cb777927d2a7ebdc, type: 2}
     - target: {fileID: -8679921383154817045, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5657
@@ -28424,10 +28476,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4171001361061973571, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3ac310b7d776894cb777927d2a7ebdc, type: 2}
     - target: {fileID: 919132149155446097, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
       propertyPath: m_Name
       value: waffle shelf
       objectReference: {fileID: 0}
+    - target: {fileID: 1170970068873931921, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3ac310b7d776894cb777927d2a7ebdc, type: 2}
+    - target: {fileID: 2929640277652407947, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3ac310b7d776894cb777927d2a7ebdc, type: 2}
+    - target: {fileID: 5901893356585517859, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3ac310b7d776894cb777927d2a7ebdc, type: 2}
+    - target: {fileID: 7483894711331120201, guid: 5e146ac0fefa84440b6e1ff99cd6ba07, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3ac310b7d776894cb777927d2a7ebdc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
