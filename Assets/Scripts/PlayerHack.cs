@@ -23,6 +23,9 @@ public class PlayerHack : MonoBehaviour
     public float chargeHitAmount = 10;
     [SerializeField]
     Image hackCharge;
+    [SerializeField]
+    GameObject hackChargeNotif;
+    Coroutine hackNotifCoroutine = null;
     public float GetChargeValue()
     {
         return chargeValue;
@@ -46,6 +49,10 @@ public class PlayerHack : MonoBehaviour
     private void Awake()
     {
         animator= GetComponent<Animator>();
+        if (hackChargeNotif)
+        {
+            hackChargeNotif.SetActive(false);
+        }
     }
     void Update()
     {
@@ -58,9 +65,33 @@ public class PlayerHack : MonoBehaviour
         {
             if (GetComponent<ThirdPersonControllerRB>() && GetComponent<ThirdPersonControllerRB>().Grounded)
             {
-                GameManager.Instance.ToggleHackMode(!GameManager.Instance.GetHackMode());
-                animator.SetBool("Hacking", !animator.GetBool("Hacking"));
-                AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[1], 0.2f, transform.position);
+                if (GameManager.Instance.GetHackMode() == false)
+                {
+                    if (chargeValue >= 10)
+                    {
+                        GameManager.Instance.ToggleHackMode(true);
+                        animator.SetBool("Hacking", true);
+                        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[1], 0.2f, transform.position);
+                    }
+                    else
+                    {
+                        if (hackChargeNotif)
+                        {
+                            if (hackNotifCoroutine != null)
+                            {
+                                StopCoroutine(hackNotifCoroutine);
+                            }
+                            hackChargeNotif.SetActive(true);
+                            hackNotifCoroutine = StartCoroutine(DisableHackChargeNotif(3.0f));
+                        }
+                    }
+                }
+                else
+                {
+                    GameManager.Instance.ToggleHackMode(false);
+                    animator.SetBool("Hacking", false);
+                    AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[1], 0.2f, transform.position);
+                }
             }
         }
 
@@ -150,5 +181,15 @@ public class PlayerHack : MonoBehaviour
                 currentSelectedEntity = null;
             }
         }
+    }
+
+    IEnumerator DisableHackChargeNotif(float afterSeconds)
+    {
+        yield return new WaitForSeconds(afterSeconds);
+        if (hackChargeNotif)
+        {
+            hackChargeNotif.SetActive(false);
+        }
+        yield return null;
     }
 }
