@@ -1763,8 +1763,8 @@ MonoBehaviour:
   JumpTimeout: 0.05
   FallTimeout: 0.1
   Grounded: 0
-  GroundedOffset: -0.14
-  GroundedRadius: 0.15
+  GroundedOffset: -0.15
+  GroundedRadius: 0.18
   GroundLayers:
     serializedVersion: 2
     m_Bits: 769
@@ -1851,6 +1851,8 @@ MonoBehaviour:
   maxChargeValue: 40
   chargeHitAmount: 10
   hackCharge: {fileID: 0}
+  hackChargeNotif: {fileID: 0}
+  crosshair: {fileID: 0}
 --- !u!136 &6570543130884617560
 CapsuleCollider:
   m_ObjectHideFlags: 0
