@@ -1,4 +1,5 @@
-    using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class IngameUIManager : MonoBehaviour
     public Entity playerEntity;
     [SerializeField]
     MainMenuHandler mainMenuHandle;
+    [Header("Tutorial")]
+    [SerializeField]
+    TMPro.TextMeshProUGUI robotCount;
     public static IngameUIManager Instance { get; private set; }
 
     private void Awake()

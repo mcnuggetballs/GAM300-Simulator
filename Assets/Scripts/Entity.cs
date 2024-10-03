@@ -140,6 +140,10 @@ public class Entity : MonoBehaviour
     {
         if (GetComponent<EnemyControllerRB>())
         {
+            if (Objective1Manager.Instance != null)
+            {
+                Objective1Manager.Instance.currentEnemies -= 1;
+            }
             Destroy(GetComponent<EnemyControllerRB>());
         }
         if (GetComponent<PathfindingScript>())

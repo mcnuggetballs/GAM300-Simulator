@@ -912,8 +912,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   pathfinding: {fileID: 1281126349258720039}
-  detectionRadius: 7
-  attackRadius: 4
+  detectionRadius: 3
+  attackRadius: 2.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 8

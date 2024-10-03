@@ -964,7 +964,7 @@ MonoBehaviour:
   player: {fileID: 0}
   pathfinding: {fileID: 3590129645282747466}
   detectionRadius: 10
-  attackRadius: 20
+  attackRadius: 10
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
