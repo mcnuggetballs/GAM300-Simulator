@@ -38,11 +38,15 @@ public class PlayerHack : MonoBehaviour
     [SerializeField]
     GameObject explodableHackDisplay;
     [SerializeField]
+    GameObject shootHackDisplay;
+    [SerializeField]
     GameObject smashHackedDisplay;
     [SerializeField]
     GameObject hookHackedDisplay;
     [SerializeField]
     GameObject explodableHackedDisplay;
+    [SerializeField]
+    GameObject shootHackedDisplay;
     [SerializeField]
     GameObject hackingInProgressDisplay;
     public bool isHackingHackable = false;
@@ -104,6 +108,8 @@ public class PlayerHack : MonoBehaviour
         hookHackDisplay.SetActive(false);
         hookHackedDisplay.SetActive(false); 
         hackingInProgressDisplay.SetActive(false);
+        shootHackDisplay.SetActive(false);
+        shootHackedDisplay.SetActive(false);
     }
     public void UpdateHackDisplay()
     {
@@ -130,6 +136,11 @@ public class PlayerHack : MonoBehaviour
                         {
                             DisableAllDisplay();
                             hookHackedDisplay.SetActive(true);
+                        }
+                        else if (lastHackedHackable.GetComponent<EnemyHackable>().GetEnemySkill().skillName == "Shoot")
+                        {
+                            DisableAllDisplay();
+                            shootHackedDisplay.SetActive(true);
                         }
                     }
                 }
@@ -165,6 +176,11 @@ public class PlayerHack : MonoBehaviour
                     {
                         DisableAllDisplay();
                         hookHackDisplay.SetActive(true);
+                    }
+                    else if (currentSelectedEntity.GetComponent<EnemyHackable>().GetEnemySkill().skillName == "Shoot")
+                    {
+                        DisableAllDisplay();
+                        shootHackDisplay.SetActive(true);
                     }
                 }
             }
