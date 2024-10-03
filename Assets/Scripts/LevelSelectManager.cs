@@ -71,6 +71,14 @@ public class LevelSelectManager : MonoBehaviour
         }
     }
 
+    public void InvalidButton()
+    {
+        if (animator)
+        {
+            animator.SetTrigger("InvalidButton");
+        }
+    }
+
     IEnumerator ProceedToLevel()
     {
         yield return new WaitForSeconds(3.0f);
