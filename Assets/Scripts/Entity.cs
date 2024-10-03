@@ -197,7 +197,7 @@ public class Entity : MonoBehaviour
             if (skill)
             {
                 Debug.LogError(gameObject.name + " " + skill.name);
-                if (skill.GetCooldownRemaining() <= 0)
+                if (skill.GetCooldownRemaining() <= 0 && GetComponent<PlayerHack>().GetChargeValue() >= 10)
                 {
                     IngameUIManager.Instance.GetComponent<Animator>().SetBool("CanUse", true);
                 }
