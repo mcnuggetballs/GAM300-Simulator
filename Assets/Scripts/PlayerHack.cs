@@ -107,7 +107,6 @@ public class PlayerHack : MonoBehaviour
     }
     public void UpdateHackDisplay()
     {
-
         if (hasHacked)
         {
             hackDisplayTimer += Time.deltaTime;

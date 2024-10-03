@@ -188,6 +188,25 @@ public class Entity : MonoBehaviour
     private void Update()
     {
         // Other logic, such as health checks or movement, goes here.
+        if (GetComponent<PlayerHack>())
+        {
+            if (skill)
+            {
+                Debug.LogError(gameObject.name + " " + skill.name);
+                if (skill.GetCooldownRemaining() <= 0)
+                {
+                    IngameUIManager.Instance.GetComponent<Animator>().SetBool("CanUse", true);
+                }
+                else
+                {
+                    IngameUIManager.Instance.GetComponent<Animator>().SetBool("CanUse", false);
+                }
+            }
+            else
+            {
+                IngameUIManager.Instance.GetComponent<Animator>().SetBool("CanUse", false);
+            }
+        }
     }
 
     // Coroutine to reset the trigger after a short delay
