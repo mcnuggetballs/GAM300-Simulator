@@ -28,6 +28,8 @@ public class CameraHack : MonoBehaviour
     float grainIntensity;
     [SerializeField]
     float grainResponse;
+    [SerializeField]
+    Animator hackModeOverlayAnimator;
     // Update is called once per frame
     void Update()
     {
@@ -48,5 +50,7 @@ public class CameraHack : MonoBehaviour
             filmGrain.response.SetValue(new ClampedFloatParameter(grainIntensity, 0, 1));
         }
         cameraAnimator.SetBool("Hack", GameManager.Instance.GetHackMode());
+        if (hackModeOverlayAnimator)
+            hackModeOverlayAnimator.SetBool("HackMode", GameManager.Instance.GetHackMode());
     }
 }

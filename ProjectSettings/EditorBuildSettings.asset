@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/StartingCutscene.unity
     guid: e0a8bd9d42fc85b44bb8c42f1e3b06fe
   - enabled: 1
-    path: Assets/Scenes/LevelSelector.unity
-    guid: ff14d6c6e529e0d40945f52897b03687
+    path: Assets/Scenes/Lift.unity
+    guid: f80c5a5f8a9cfd24c96652c71b92224a
   - enabled: 1
     path: Assets/Scenes/Whiteboxed.unity
     guid: ca821157e80b32a408a35516b993a9d0
