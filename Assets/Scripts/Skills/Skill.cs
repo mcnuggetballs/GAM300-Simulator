@@ -12,7 +12,7 @@ public abstract class Skill : MonoBehaviour
     public float cooldownTime;
     protected bool isOnCooldown = false;
     protected float cooldownRemaining = 0f;
-    public abstract void Activate(GameObject user);
+    public abstract bool Activate(GameObject user);
 
     public virtual IEnumerator Cooldown()
     {

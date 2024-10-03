@@ -20,6 +20,7 @@ public class PlayerHack : MonoBehaviour
     [Header("Hack Charge")]
     protected float chargeValue = 0;
     public float maxChargeValue = 40;
+    public float chargeHitAmount = 10;
     [SerializeField]
     Image hackCharge;
     public float GetChargeValue()
@@ -80,6 +81,14 @@ public class PlayerHack : MonoBehaviour
                 {
                     hackBarAmount = 0.0f;
                     currentSelectedEntity.Hack(GetComponent<Entity>());
+                    if (currentSelectedEntity.GetComponent<EnemyAI>())
+                    {
+                        if (currentSelectedEntity.GetComponent<Animator>())
+                        {
+                            currentSelectedEntity.GetComponent<Animator>().SetTrigger("Stun");
+                        }
+                        currentSelectedEntity.GetComponent<EnemyAI>().Aggro();
+                    }
                     currentSelectedEntity.hacked = true;
                     currentSelectedEntity.Selected = false;
                     currentSelectedEntity = null;
@@ -107,7 +116,7 @@ public class PlayerHack : MonoBehaviour
         RaycastHit hit;
 
         // Perform a SphereCast in the direction of the ray
-        if (Physics.SphereCast(ray, sphereRadius, out hit, sphereCastDistance, enemyLayer))
+        if (Physics.SphereCast(ray, sphereRadius, out hit, Mathf.Infinity, enemyLayer))
         {
             // Get the Entity script on the object
             Hackable hackable = hit.collider.GetComponent<Hackable>();
@@ -124,7 +133,7 @@ public class PlayerHack : MonoBehaviour
                     currentSelectedEntity.Selected = false;
                 }
 
-                if (currentSelectedEntity != hackable)
+                if (currentSelectedEntity != hackable && Vector3.Distance(transform.GetComponent<Entity>().neck.position, hackable.transform.position) <= sphereCastDistance)
                 {
                     // Set the selected entity and mark it as selected
                     currentSelectedEntity = hackable;

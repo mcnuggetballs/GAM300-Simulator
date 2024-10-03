@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,5 +29,19 @@ public class GameManager
     public void ToggleHackMode(bool value)
     {
         hackMode = value;
+    }
+
+    public void TriggerSlowdown(float slowdownDuration, float slowdownFactor)
+    {
+        TimeManager.Instance.TriggerSlowdown(slowdownDuration, slowdownFactor);
+    }
+    public void TriggerCameraShake(CameraShake.ShakeSettings settings, Camera camera = null)
+    {
+        if (camera == null)
+        {
+            camera = Camera.main;
+        }
+
+        CameraShakeManager.Instance.StartShake(settings, camera);
     }
 }

@@ -92,7 +92,10 @@ public class PathfindingScript : MonoBehaviour
         float distance = Vector3.Distance(transform.position, _path[_currentPathIndex]);
 
         // Move towards the current point in the path
-        enemyController.Move(direction, enemyController.MoveSpeed);
+        if (!enemyController.disableMovement)
+        {
+            enemyController.Move(direction, enemyController.MoveSpeed);
+        }
 
         // If close enough to the current path point, move to the next one
         if (distance < 0.1f)

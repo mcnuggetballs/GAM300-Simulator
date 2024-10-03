@@ -8,7 +8,7 @@ public class BoostForward : StateMachineBehaviour
     public float dashRange = 5f;            // Maximum range of the overlap sphere
     float sphereRadius = 10.0f;             // Radius of the overlap sphere
     public LayerMask enemyLayer;            // LayerMask to filter enemies
-    public float stopDistance = 1f;         // Distance from the enemy at which the player stops dashing
+    protected float stopDistance = 0.1f;         // Distance from the enemy at which the player stops dashing
     public float dashDuration = 0.2f;       // Duration of the dash
     public float viewAngleThreshold = 60f;  // Maximum angle difference between player forward and enemy direction
 

@@ -6,29 +6,34 @@ using UnityEngine.AI;
 
 public class HookSkill : Skill
 {
-    public float hookRange = 10f;       // Range within which the enemy can be hooked
-    public float pullSpeed = 55f;       // Speed at which the enemy is pulled
+    public float hookRange = 10f;        // Range within which the enemy can be hooked
+    public float pullSpeed = 55f;        // Speed at which the enemy is pulled
     public LayerMask targetLayer;
     public LayerMask enemyLayer;
     public LayerMask playerLayer;
-    public LineRenderer lineRenderer;   // Reference to the LineRenderer for the hook
+    public LineRenderer lineRenderer;    // Reference to the LineRenderer for the hook
 
-    public float hookTravelSpeed = 60f; // Speed at which the hook travels toward the enemy
-    public float hookMissDuration = 0.2f; // Duration the hook remains visible when it misses
-    public float hitPullDelay = 0.2f;   // Delay before pulling the enemy in after hit
-    private float shootDelay = 0.1f;
+    public float hookTravelSpeed = 60f;  // Speed at which the hook travels toward the enemy
+    public float hookMissDuration = 0.2f;// Duration the hook remains visible when it misses
+    public float hitPullDelay = 0.2f;    // Delay before pulling the enemy in after hit
+    public float sphereCastRadius = 0.5f;// Radius of the sphere for the sphere cast
+    private float shootDelay = 0.06f;
 
     // This method will be called to activate the hooking skill
-    public override void Activate(GameObject user)
+    public override bool Activate(GameObject user)
     {
-        if (isOnCooldown) return;  // Prevent activation if the skill is on cooldown
+        if (user.GetComponent<Animator>() && !user.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Idle Walk Run Blend"))
+            return false;
+        if (isOnCooldown)
+            return false;  // Prevent activation if the skill is on cooldown
         if (user.GetComponent<Animator>())
         {
-            user.GetComponent<Animator>().SetBool("Hook",true);
+            user.GetComponent<Animator>().SetBool("Hook", true);
         }
         StartCoroutine(Cast(user));
-        
+        return true;
     }
+
     private IEnumerator Cast(GameObject user)
     {
         AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[2],0.2f,transform.position);
@@ -36,11 +41,14 @@ public class HookSkill : Skill
         if ((enemyLayer.value & (1 << user.layer)) != 0)
         {
             targetLayer = playerLayer;
+            targetLayer = targetLayer | LayerMask.GetMask("Default");
         }
         else
         {
             targetLayer = enemyLayer;
+            targetLayer = targetLayer | LayerMask.GetMask("Default");
         }
+
         // Disable movement during the hook
         if (user.GetComponent<ThirdPersonControllerRB>())
         {
@@ -50,86 +58,103 @@ public class HookSkill : Skill
         {
             user.GetComponent<EnemyControllerRB>().disableMovement = true;
         }
+
         if ((enemyLayer.value & (1 << user.layer)) != 0)
         {
-            // Cast a ray from the camera forward
-            Vector3 playerDir = Vector3.zero;
-            playerDir = user.transform.forward;
+            // Cast a spherecast from the user forward
+            Vector3 playerDir = user.transform.forward;
             if (user.GetComponent<EnemyAI>())
             {
                 playerDir = user.GetComponent<EnemyAI>().GetCurrentPlayerPos();
-                playerDir.y = user.GetComponent<Entity>().neck.position.y;
+                playerDir.y = user.GetComponent<EnemyAI>().GetCurrentPlayerNeckPos().y;
                 playerDir = (playerDir - user.GetComponent<Entity>().neck.position).normalized;
             }
+
             Ray ray = new Ray(user.GetComponent<Entity>().neck.position, playerDir);
             RaycastHit hit;
 
-            // If the ray hits an enemy
-            if (Physics.Raycast(ray, out hit, hookRange, targetLayer))
+            yield return new WaitForSeconds(shootDelay);
+
+            // If the spherecast hits an enemy
+            if (Physics.SphereCast(ray, sphereCastRadius, out hit, hookRange, targetLayer))
             {
-                if (hit.collider.GetComponent<NavMeshAgent>())
+                if (hit.collider.GetComponent<Entity>())
                 {
-                    hit.collider.GetComponent<NavMeshAgent>().CompleteOffMeshLink();
-                    hit.collider.GetComponent<NavMeshAgent>().enabled = false;
+                    HandleHit(hit, user);
+                    AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[3],0.2f,transform.position);
                 }
-                if (hit.collider.GetComponent<PathfindingScript>())
+                else
                 {
-                    hit.collider.GetComponent<PathfindingScript>().isJumping = false;
-                    hit.collider.GetComponent<PathfindingScript>().enabled = false;
+                    Vector3 hookMissPosition = hit.transform.position;
+                    StartCoroutine(ShowMiss(user, hookMissPosition));
                 }
-                // Enable the LineRenderer before launching the hook
-                lineRenderer.enabled = true;
-                AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[3],0.2f,transform.position);
-                // Start launching the hook toward the enemy
-                StartCoroutine(LaunchHook(hit.collider.gameObject, user));
             }
             else
             {
-                // No enemy hit, show the hook going to the point where the raycast hit the environment
+                // Show the hook going to the point where the spherecast missed
                 Vector3 hookMissPosition = ray.origin + ray.direction * hookRange;
-
-                // Show the miss with LineRenderer
                 StartCoroutine(ShowMiss(user, hookMissPosition));
             }
         }
         else
         {
-            // Cast a ray from the camera forward
+            // Cast a spherecast from the camera forward
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
 
-            // If the ray hits an enemy
-            if (Physics.Raycast(ray, out hit, hookRange, targetLayer))
+            // If the spherecast hits an enemy
+            if (Physics.SphereCast(ray, sphereCastRadius, out hit, hookRange, targetLayer))
             {
-                if (hit.collider.GetComponent<NavMeshAgent>())
+                if (hit.collider.GetComponent<Entity>())
                 {
-                    hit.collider.GetComponent<NavMeshAgent>().CompleteOffMeshLink();
-                    hit.collider.GetComponent<NavMeshAgent>().enabled = false;
+                    HandleHit(hit, user);
+                    AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[3],0.2f,transform.position);
                 }
-                if (hit.collider.GetComponent<PathfindingScript>())
+                else
                 {
-                    hit.collider.GetComponent<PathfindingScript>().isJumping = false;
-                    hit.collider.GetComponent<PathfindingScript>().enabled = false;
+                    Vector3 hookMissPosition = hit.transform.position;
+                    StartCoroutine(ShowMiss(user, hookMissPosition));
                 }
-                // Enable the LineRenderer before launching the hook
-                lineRenderer.enabled = true;
-                AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[3],0.2f,transform.position);
-
-                // Start launching the hook toward the enemy
-                StartCoroutine(LaunchHook(hit.collider.gameObject, user));
             }
             else
             {
-                // No enemy hit, show the hook going to the point where the raycast hit the environment
+                // Show the hook going to the point where the spherecast missed
                 Vector3 hookMissPosition = ray.origin + ray.direction * hookRange;
-
-                // Show the miss with LineRenderer
                 StartCoroutine(ShowMiss(user, hookMissPosition));
             }
         }
 
         // Start the skill cooldown
         StartCoroutine(Cooldown());
+    }
+
+    // Handles what happens when the spherecast hits a target
+    private void HandleHit(RaycastHit hit, GameObject user)
+    {
+        if (hit.collider.GetComponent<NavMeshAgent>())
+        {
+            hit.collider.GetComponent<NavMeshAgent>().CompleteOffMeshLink();
+            hit.collider.GetComponent<NavMeshAgent>().enabled = false;
+        }
+        if (hit.collider.GetComponent<PathfindingScript>())
+        {
+            hit.collider.GetComponent<PathfindingScript>().isJumping = false;
+            hit.collider.GetComponent<PathfindingScript>().enabled = false;
+        }
+        if (hit.collider.GetComponent<Animator>())
+        {
+            hit.collider.GetComponent<Animator>().SetTrigger("Stun");
+            if (hit.collider.GetComponent<ThirdPersonControllerRB>())
+            {
+                hit.collider.GetComponent<ThirdPersonControllerRB>().StopMovement();
+            }
+        }
+
+        // Enable the LineRenderer before launching the hook
+        lineRenderer.enabled = true;
+
+        // Start launching the hook toward the enemy
+        StartCoroutine(LaunchHook(hit.collider.gameObject, user));
     }
 
     private IEnumerator LaunchHook(GameObject enemy, GameObject user)
@@ -216,6 +241,10 @@ public class HookSkill : Skill
             yield return null;  // Wait until the next frame
         }
 
+        if (user.GetComponent<HookEnemyAI>())
+        {
+            user.GetComponent<HookEnemyAI>().hasPulled = true;
+        }
         // Re-enable movement for the user after pulling is done
         if (user.GetComponent<EnemyControllerRB>())
         {
@@ -292,6 +321,13 @@ public class HookSkill : Skill
         if (user.GetComponent<ThirdPersonControllerRB>())
         {
             user.GetComponent<ThirdPersonControllerRB>().disableMovement = false;
+        }
+
+        if (user.GetComponent<HookEnemyAI>())
+        {
+            user.GetComponent<HookEnemyAI>().switchState = true;
+            user.GetComponent<HookEnemyAI>().hasPulled = true;
+            user.GetComponent<HookEnemyAI>().complete = true;
         }
     }
 

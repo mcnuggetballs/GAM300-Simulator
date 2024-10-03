@@ -64,7 +64,7 @@ public class Hackable : MonoBehaviour
         playerHack = FindAnyObjectByType<PlayerHack>();
         if (playerHack != null)
         {
-            float distanceToCam = Vector3.Distance(transform.position, Camera.main.transform.position);
+            float distanceToCam = Vector3.Distance(transform.position, playerHack.GetComponent<Entity>().neck.transform.position);
             if (distanceToCam < playerHack.sphereCastDistance)
             {
                 isClose = true;

@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 namespace StarterAssets
 {
@@ -13,10 +14,6 @@ namespace StarterAssets
         public float SprintSpeed = 5.335f;
         [Range(0.0f, 0.3f)] public float RotationSmoothTime = 0.12f;
         public float SpeedChangeRate = 10.0f;
-
-        public AudioClip LandingAudioClip;
-        public AudioClip[] FootstepAudioClips;
-        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
         [Space(10)] public float JumpHeight = 1.2f;
         public float Gravity = -15.0f;
@@ -71,6 +68,18 @@ namespace StarterAssets
         private float _dashTimeLeft;
         private float _dashCooldownLeft;
         private Vector3 _dashDirection;
+
+        public void StopMovement()
+        {
+            _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
+
+            if (_hasAnimator)
+            {
+                _animator.SetFloat(_animIDSpeed, 0);
+                _animator.SetFloat("MoveX", 0);
+                _animator.SetFloat("MoveY", 0);
+            }
+        }
         private void Awake()
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -351,6 +360,14 @@ namespace StarterAssets
 
         private void HandleDash()
         {
+            if (disableMovement)
+            {
+                if (_isDashing)
+                {
+                    EndDash();
+                }
+                return;
+            }
             // Check for dash input and ensure dash is not on cooldown
             if (Input.GetKeyDown(KeyCode.LeftShift) && _dashCooldownLeft <= 0.0f && !_isDashing)
             {

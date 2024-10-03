@@ -66,6 +66,7 @@ MonoBehaviour:
   hookTravelSpeed: 60
   hookMissDuration: 0.2
   hitPullDelay: 0.2
+  sphereCastRadius: 0.1
 --- !u!120 &4305383428785528378
 LineRenderer:
   serializedVersion: 2

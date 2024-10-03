@@ -43,6 +43,7 @@ public class IngameUIManager : MonoBehaviour
     private IEnumerator ShowDeathScreen()
     {
         yield return new WaitForSecondsRealtime(1.0f);
+        TimeManager.Instance.PauseGame();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         GetComponent<Animator>().SetTrigger("Open");
@@ -80,6 +81,7 @@ public class IngameUIManager : MonoBehaviour
 
     void PauseGame()
     {
+        TimeManager.Instance.PauseGame();
         pauseUI.GetComponent<Animator>().SetTrigger("Open");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -89,6 +91,7 @@ public class IngameUIManager : MonoBehaviour
 
     void ResumeGame()
     {
+        TimeManager.Instance.ResumeGame();
         pauseUI.GetComponent<Animator>().SetTrigger("Close");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -96,6 +99,7 @@ public class IngameUIManager : MonoBehaviour
 
     public void ResumeGameAnimationComplete()
     {
+        TimeManager.Instance.ResumeGame();
         pauseUI.SetActive(false);
         Time.timeScale = 1f;
     }

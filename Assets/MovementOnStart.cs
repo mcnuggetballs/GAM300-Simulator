@@ -13,7 +13,10 @@ public class MovementOnStart : StateMachineBehaviour
         if (animator.GetComponent<ThirdPersonControllerRB>())
             animator.GetComponent<ThirdPersonControllerRB>().disableMovement = value;
         if (animator.GetComponent<EnemyControllerRB>())
+        {
             animator.GetComponent<EnemyControllerRB>().disableMovement = value;
+            animator.GetComponent<EnemyControllerRB>().StopMovement();
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -825,8 +825,8 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 3
-    functionName: SetScene
-    data: LevelSelector
+    functionName: SetSceneFade
+    data: StartingCutscene
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

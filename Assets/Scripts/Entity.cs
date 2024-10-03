@@ -92,11 +92,11 @@ public class Entity : MonoBehaviour
         float timer = 0;
         Vector3 knockbackVelocity = direction * knockbackForce;
 
-        // Temporarily stop movement or AI control here if needed
-        if (GetComponent<EnemyControllerRB>())
-        {
-            GetComponent<EnemyControllerRB>().disableMovement = true;
-        }
+        //// Temporarily stop movement or AI control here if needed
+        //if (GetComponent<EnemyControllerRB>())
+        //{
+        //    GetComponent<EnemyControllerRB>().disableMovement = true;
+        //}
 
         while (timer < duration)
         {
@@ -108,11 +108,11 @@ public class Entity : MonoBehaviour
             yield return null; // Wait until the next frame
         }
 
-        // Re-enable movement after knockback is done
-        if (GetComponent<EnemyControllerRB>())
-        {
-            GetComponent<EnemyControllerRB>().disableMovement = false;
-        }
+        //// Re-enable movement after knockback is done
+        //if (GetComponent<EnemyControllerRB>())
+        //{
+        //    GetComponent<EnemyControllerRB>().disableMovement = false;
+        //}
 
         // Reset velocity after knockback
         _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);

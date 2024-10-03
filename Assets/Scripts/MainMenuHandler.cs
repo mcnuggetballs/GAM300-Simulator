@@ -41,6 +41,11 @@ public class MainMenuHandler : MonoBehaviour
         SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
         SceneTransition.Instance.TransitionToScene(sceneName);
     }
+    public void SetSceneFade(string sceneName)
+    {
+        SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.Fade);
+        SceneTransition.Instance.TransitionToScene(sceneName);
+    }
 
     public void ResumeGameAnimationComplete()
     {

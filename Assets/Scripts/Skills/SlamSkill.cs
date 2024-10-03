@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class SlamSkill : Skill
 {
-    public override void Activate(GameObject user)
+    public override bool Activate(GameObject user)
     {
-        if (isOnCooldown) return;
+        if (user.GetComponent<Animator>() && !user.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Idle Walk Run Blend"))
+            return false;
+        if (isOnCooldown)
+            return false;
 
         if (user.GetComponent<Animator>())
             user.GetComponent<Animator>().SetTrigger("Smash");
 
         StartCoroutine(Cooldown());
+        return true;
     }
 }
