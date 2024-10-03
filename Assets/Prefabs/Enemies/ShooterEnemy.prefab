@@ -766,8 +766,8 @@ MonoBehaviour:
   maxHealth: 40
   currentHealth: 0
   baseDamage: 3
-  skill: {fileID: 0}
-  skillPrefab: {fileID: 0}
+  skill: {fileID: 8352938892195927653, guid: bdac1c74357cc26459a7ed77a8569951, type: 3}
+  skillPrefab: {fileID: 7590855833796580705, guid: bdac1c74357cc26459a7ed77a8569951, type: 3}
   rightHand: {fileID: 1475812046983217420}
   leftHand: {fileID: 2486826475685984984}
   neck: {fileID: 7123790570817528664}
@@ -870,7 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c05a15bfd74854aa75b174eefbe2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hacked: 1
+  hacked: 0
   isClose: 0
 --- !u!195 &2589518897891523939
 NavMeshAgent:
@@ -974,8 +974,6 @@ MonoBehaviour:
   patrolWaitTime: 2
   attackCooldown: 3
   stoppingDistance: 0
-  projectilePrefab: {fileID: 7385132342798039772, guid: 3bba069c7e0fb1548910d16ccd675317, type: 3}
-  shootingPoint: {fileID: 2486826475685984984}
   shootCooldown: 3
 --- !u!4 &7123790570817528664 stripped
 Transform:

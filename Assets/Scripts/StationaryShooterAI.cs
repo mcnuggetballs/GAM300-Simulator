@@ -4,8 +4,6 @@ using UnityEngine;
 public class StationaryShooterAI : EnemyAI
 {
     Animator animator;
-    [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform shootingPoint;
     [SerializeField] private float shootCooldown = 2f;
 
     private float _timeSinceLastShot = 0f;
@@ -83,29 +81,14 @@ public class StationaryShooterAI : EnemyAI
 
         if (_timeSinceLastShot >= shootCooldown)
         {
-            if (GetComponent<Animator>())
-                GetComponent<Animator>().SetTrigger("Hook");
-            StartCoroutine(ShootAtPlayer());
+
+            if (theEntity)
+            {
+                if (theEntity.skill)
+                    theEntity.skill.Activate(gameObject);
+            }
             _timeSinceLastShot = 0f;
             _currentState = State.Chasing;
         }
-    }
-
-    private IEnumerator ShootAtPlayer()
-    {
-        yield return new WaitForSeconds(0.2f);
-        if (shootingPoint != null && projectilePrefab != null)
-        {
-            GameObject projectile = Instantiate(projectilePrefab, shootingPoint.position, Quaternion.identity);
-
-            Vector3 directionToPlayer = (player.GetComponent<Entity>().neck.position - shootingPoint.position).normalized;
-            
-            Projectile projectileScript = projectile.GetComponent<Projectile>();
-            if (projectileScript != null)
-            {
-                projectileScript.Initialize(directionToPlayer, gameObject);
-            }
-        }
-        yield return null;
     }
 }
