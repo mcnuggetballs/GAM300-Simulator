@@ -22843,6 +22843,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChairHighlighted (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1430032903318623244, guid: 16b20a1d12296ed41a809d7bb50f2058, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7386807684671452862, guid: 16b20a1d12296ed41a809d7bb50f2058, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.5
