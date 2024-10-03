@@ -833,8 +833,8 @@ MonoBehaviour:
   JumpTimeout: 0.05
   FallTimeout: 0.15
   Grounded: 1
-  GroundedOffset: -0.14
-  GroundedRadius: 0.15
+  GroundedOffset: -0.118
+  GroundedRadius: 0.14
   GroundLayers:
     serializedVersion: 2
     m_Bits: 257
@@ -917,7 +917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   pathfinding: {fileID: 3056565879768199586}
-  detectionRadius: 3
+  detectionRadius: 7
   attackRadius: 2
   playerLayer:
     serializedVersion: 2
@@ -927,7 +927,7 @@ MonoBehaviour:
     m_Bits: 0
   patrolWaitTime: 2
   attackCooldown: 5
-  stoppingDistance: 0
+  stoppingDistance: 2
 --- !u!208 &4838147567513864950
 NavMeshObstacle:
   m_ObjectHideFlags: 0
