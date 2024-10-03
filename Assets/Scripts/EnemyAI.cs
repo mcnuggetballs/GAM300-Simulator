@@ -102,21 +102,34 @@ public class EnemyAI : MonoBehaviour
     {
         if (HasLineOfSight())
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, _lastKnownPlayerPosition);
+            Vector3 mypos = transform.position;
+            if (transform.position.y - _lastKnownPlayerPosition.y <= 4.0f)
+            {
+                mypos.y = _lastKnownPlayerPosition.y;
+            }
+            float distanceToPlayer = Vector3.Distance(mypos, _lastKnownPlayerPosition);
 
             // Stop the enemy at the stopping distance instead of moving all the way to the player
             if (distanceToPlayer > stoppingDistance)
             {
                 // Calculate a position closer to the player but within the stopping distance
                 Vector3 directionToPlayer = (_lastKnownPlayerPosition - transform.position).normalized;
-                Vector3 targetPosition = _lastKnownPlayerPosition - directionToPlayer * stoppingDistance;
 
-                SetDestinationAndPathfinding(targetPosition);
+                SetDestinationAndPathfinding(_lastKnownPlayerPosition);
+            }
+            else
+            {
+                SetDestinationAndPathfinding(transform.position);
             }
 
             // Switch to attacking if within attack range
             if (distanceToPlayer <= attackRadius)
             {
+                if (GetComponent<EnemyControllerRB>() != null)
+                {
+                    GetComponent<EnemyControllerRB>().SetLookDirection((player.position - transform.position).normalized);
+                }
+
                 if (_timeSinceLastAttack >= attackCooldown)
                 {
                     _currentState = State.Attacking;
@@ -172,8 +185,8 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual bool HasLineOfSight()
     {
-        Vector3 directionToPlayer = (player.position - transform.position).normalized;
-        if (!Physics.Raycast(transform.position, directionToPlayer, Vector3.Distance(transform.position, player.position), obstacleLayer))
+        Vector3 directionToPlayer = (player.GetComponent<Entity>().neck.position - GetComponent<Entity>().neck.position).normalized;
+        if (!Physics.Raycast(GetComponent<Entity>().neck.position, directionToPlayer, Vector3.Distance(GetComponent<Entity>().neck.position, player.GetComponent<Entity>().neck.position), obstacleLayer))
         {
             _lastKnownPlayerPosition = player.position;
             return true;

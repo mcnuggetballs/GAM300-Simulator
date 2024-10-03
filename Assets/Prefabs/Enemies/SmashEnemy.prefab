@@ -927,7 +927,7 @@ MonoBehaviour:
     m_Bits: 0
   patrolWaitTime: 2
   attackCooldown: 5
-  stoppingDistance: 2
+  stoppingDistance: 1.5
 --- !u!208 &4838147567513864950
 NavMeshObstacle:
   m_ObjectHideFlags: 0

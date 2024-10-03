@@ -108,8 +108,12 @@ public class HookEnemyAI : EnemyAI
         {
             return;
         }
-
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        Vector3 mypos = transform.position;
+        if (transform.position.y - player.position.y <= 4.0f)
+        {
+            mypos.y = player.position.y;
+        }
+        float distanceToPlayer = Vector3.Distance(mypos, player.position);
 
         if (HasLineOfSight())
         {
@@ -118,8 +122,11 @@ public class HookEnemyAI : EnemyAI
             {
                 // Otherwise, continue to chase the player but stop within stopping distance
                 Vector3 directionToPlayer = (player.position - transform.position).normalized;
-                Vector3 targetPosition = player.position - directionToPlayer * stoppingDistance;
-                SetDestinationAndPathfinding(targetPosition);
+                SetDestinationAndPathfinding(player.position);
+            }
+            else
+            {
+                SetDestinationAndPathfinding(transform.position);
             }
             if (distanceToPlayer <= attackRadius)
             {
