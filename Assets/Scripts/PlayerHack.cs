@@ -94,6 +94,22 @@ public class PlayerHack : MonoBehaviour
                 }
             }
         }
+        if (chargeValue < 10 && GameManager.Instance.GetHackMode() == true)
+        {
+            GameManager.Instance.ToggleHackMode(false);
+            animator.SetBool("Hacking", false);
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[1], 0.2f, transform.position);
+
+            if (hackChargeNotif)
+            {
+                if (hackNotifCoroutine != null)
+                {
+                    StopCoroutine(hackNotifCoroutine);
+                }
+                hackChargeNotif.SetActive(true);
+                hackNotifCoroutine = StartCoroutine(DisableHackChargeNotif(3.0f));
+            }
+        }
 
         if (!GameManager.Instance.GetHackMode())
         {
