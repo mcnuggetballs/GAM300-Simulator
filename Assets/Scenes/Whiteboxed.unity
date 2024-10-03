@@ -8008,6 +8008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseUI: {fileID: 1239138487}
   playerEntity: {fileID: 0}
+  mainMenuHandle: {fileID: 1239138492}
 --- !u!95 &692872275
 Animator:
   serializedVersion: 5
