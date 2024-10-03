@@ -28,6 +28,28 @@ public class PlayerHack : MonoBehaviour
     [SerializeField]
     GameObject crosshair;
     Coroutine hackNotifCoroutine = null;
+    [Header("HackModeUI")]
+    [SerializeField]
+    GameObject defaultHackDisplay;
+    [SerializeField]
+    GameObject smashHackDisplay;
+    [SerializeField]
+    GameObject hookHackDisplay;
+    [SerializeField]
+    GameObject explodableHackDisplay;
+    [SerializeField]
+    GameObject smashHackedDisplay;
+    [SerializeField]
+    GameObject hookHackedDisplay;
+    [SerializeField]
+    GameObject explodableHackedDisplay;
+    [SerializeField]
+    GameObject hackingInProgressDisplay;
+    public bool isHackingHackable = false;
+    public bool hasHacked = false;
+    float hackDisplayTimer = 0;
+    float hackDisplayTime = 1.5f;
+    protected Hackable lastHackedHackable = null;
     public void DisplayHackNotification()
     {
         if (hackChargeNotif)
@@ -72,6 +94,94 @@ public class PlayerHack : MonoBehaviour
             crosshair.SetActive(false);
         }
     }
+    private void DisableAllDisplay()
+    {
+        defaultHackDisplay.SetActive(false);
+        explodableHackDisplay.SetActive(false);
+        explodableHackedDisplay.SetActive(false);
+        smashHackDisplay.SetActive(false);
+        smashHackedDisplay.SetActive(false);
+        hookHackDisplay.SetActive(false);
+        hookHackedDisplay.SetActive(false); 
+        hackingInProgressDisplay.SetActive(false);
+    }
+    public void UpdateHackDisplay()
+    {
+
+        if (hasHacked)
+        {
+            hackDisplayTimer += Time.deltaTime;
+            if (hackDisplayTimer <= hackDisplayTime)
+            {
+                if (lastHackedHackable)
+                {
+                    if (lastHackedHackable.GetComponent<ExplodingHackable>())
+                    {
+                        DisableAllDisplay();
+                        explodableHackedDisplay.SetActive(true);
+                    }
+                    else if (lastHackedHackable.GetComponent<EnemyHackable>())
+                    {
+                        if (lastHackedHackable.GetComponent<EnemyHackable>().GetEnemySkill().skillName == "Slam")
+                        {
+                            DisableAllDisplay();
+                            smashHackedDisplay.SetActive(true);
+                        }
+                        else if (lastHackedHackable.GetComponent<EnemyHackable>().GetEnemySkill().skillName == "Hook")
+                        {
+                            DisableAllDisplay();
+                            hookHackedDisplay.SetActive(true);
+                        }
+                    }
+                }
+                else
+                {
+                    hasHacked = false;
+                    hackDisplayTimer = 0;
+                }
+            }
+            else
+            {
+                hasHacked = false;
+                hackDisplayTimer = 0;
+            }
+        }
+        else if (currentSelectedEntity != null)
+        {
+            if (!isHackingHackable)
+            {
+                if (currentSelectedEntity.GetComponent<ExplodingHackable>())
+                {
+                    DisableAllDisplay();
+                    explodableHackDisplay.SetActive(true);
+                }
+                else if (currentSelectedEntity.GetComponent<EnemyHackable>())
+                {
+                    if (currentSelectedEntity.GetComponent<EnemyHackable>().GetEnemySkill().skillName == "Slam")
+                    {
+                        DisableAllDisplay();
+                        smashHackDisplay.SetActive(true);
+                    }
+                    else if (currentSelectedEntity.GetComponent<EnemyHackable>().GetEnemySkill().skillName == "Hook")
+                    {
+                        DisableAllDisplay();
+                        hookHackDisplay.SetActive(true);
+                    }
+                }
+            }
+            else
+            {
+                DisableAllDisplay();
+                hackingInProgressDisplay.SetActive(true);
+            }
+        }
+        else
+        {
+            DisableAllDisplay();
+            defaultHackDisplay.SetActive(true);
+        }
+    }
+
     void Update()
     {
         if (hackCharge)
@@ -135,12 +245,14 @@ public class PlayerHack : MonoBehaviour
         {
             if (currentSelectedEntity != null && chargeValue >= 10)
             {
+                isHackingHackable = true;
                 hackBar.fillAmount = hackBarAmount;
                 hackBarGameObject.SetActive(true);
                 hackBarAmount += Time.deltaTime;
                 if (hackBarAmount >= 1.0f)
                 {
                     hackBarAmount = 0.0f;
+                    lastHackedHackable = currentSelectedEntity;
                     currentSelectedEntity.Hack(GetComponent<Entity>());
                     if (currentSelectedEntity.GetComponent<EnemyAI>())
                     {
@@ -150,6 +262,7 @@ public class PlayerHack : MonoBehaviour
                         }
                         currentSelectedEntity.GetComponent<EnemyAI>().Aggro();
                     }
+                    hasHacked = true;
                     currentSelectedEntity.hacked = true;
                     currentSelectedEntity.Selected = false;
                     currentSelectedEntity = null;
@@ -158,17 +271,21 @@ public class PlayerHack : MonoBehaviour
             }
             else
             {
+                isHackingHackable = false;
                 hackBarGameObject.SetActive(false);
                 hackBarAmount = 0;
             }
         }
         else
         {
+            isHackingHackable = false;
             hackBarGameObject.SetActive(false);
             hackBarAmount = 0;
 
             CheckForEnemyHover();
         }
+
+        UpdateHackDisplay();
     }
 
     void CheckForEnemyHover()

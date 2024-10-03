@@ -9,6 +9,11 @@ public class EnemyHackable : Hackable
         player.GetComponent<Entity>().skill = Instantiate(GetComponent<Entity>().skill);
     }
 
+    public Skill GetEnemySkill()
+    {
+        return GetComponent<Entity>().skill;
+    }
+
     protected override void SetTintColor(Color color)
     {
         SkinnedMeshRenderer[] renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
