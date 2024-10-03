@@ -117,7 +117,10 @@ public class EnemyAI : MonoBehaviour
             // Switch to attacking if within attack range
             if (distanceToPlayer <= attackRadius)
             {
-                _currentState = State.Attacking;
+                if (_timeSinceLastAttack >= attackCooldown)
+                {
+                    _currentState = State.Attacking;
+                }
             }
         }
         else
@@ -132,25 +135,22 @@ public class EnemyAI : MonoBehaviour
         {
             GetComponent<EnemyControllerRB>().SetLookDirection((player.position - transform.position).normalized);
         }
-        if (_timeSinceLastAttack >= attackCooldown)
+        if (theEntity.GetHealthFraction() <= 0.5f)
         {
-            if (theEntity.GetHealthFraction() <= 0.5f)
+            if (animator != null)
             {
-                if (animator != null)
-                {
-                    animator.SetBool("CanStun", false);
-                }
+                animator.SetBool("CanStun", false);
             }
-            // Attack logic here
-            if (theEntity)
-            {
-                if (theEntity.skill)
-                    theEntity.skill.Activate(gameObject);
-            }
-
-            _timeSinceLastAttack = 0f;
-            _currentState = State.Chasing;
         }
+        // Attack logic here
+        if (theEntity)
+        {
+            if (theEntity.skill)
+                theEntity.skill.Activate(gameObject);
+        }
+
+        _timeSinceLastAttack = 0f;
+        _currentState = State.Chasing;
     }
 
     protected virtual bool DetectPlayer()

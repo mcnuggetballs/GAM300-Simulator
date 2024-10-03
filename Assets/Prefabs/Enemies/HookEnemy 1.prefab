@@ -738,9 +738,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.33
-  m_Height: 3.7202117
+  m_Height: 3.7818854
   m_Direction: 1
-  m_Center: {x: 0.0040518907, y: 1.8988856, z: -0.007913792}
+  m_Center: {x: 0.00405189, y: 1.8680495, z: -0.007913807}
 --- !u!114 &7929692271707577858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,8 +828,8 @@ MonoBehaviour:
   JumpTimeout: 0.05
   FallTimeout: 0.15
   Grounded: 1
-  GroundedOffset: -0.14
-  GroundedRadius: 0.15
+  GroundedOffset: -0.118
+  GroundedRadius: 0.14
   GroundLayers:
     serializedVersion: 2
     m_Bits: 257
@@ -912,8 +912,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   pathfinding: {fileID: 1281126349258720039}
-  detectionRadius: 3
-  attackRadius: 8
+  detectionRadius: 7
+  attackRadius: 4
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -936,11 +936,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.35, y: 1.84, z: 0.35}
+  m_Extents: {x: 0.35, y: 1.8909425, z: 0.35}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1.77, z: 0}
+  m_Center: {x: 0, y: 1.87, z: 0}
   m_TimeToStationary: 0.5
 --- !u!114 &4761342211670709755
 MonoBehaviour:
