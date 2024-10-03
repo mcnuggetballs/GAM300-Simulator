@@ -19226,6 +19226,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skill enabled
       objectReference: {fileID: 0}
+    - target: {fileID: 255404765784649277, guid: f6db9efef408cd54d9e4db956dd5f5fd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4923367244588412436, guid: f6db9efef408cd54d9e4db956dd5f5fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 848.2
