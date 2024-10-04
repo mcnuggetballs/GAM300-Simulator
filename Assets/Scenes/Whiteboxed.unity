@@ -837,22 +837,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4a79ac45819fd69438471057e5ea800b, type: 3}
   - {fileID: 8300000, guid: 8c9e9ccd975f683418f7c54117a8728e, type: 3}
   EnemyPatrolSounds:
-  - {fileID: 8300000, guid: df89f5d0e3261a24a9703c2f8492e390, type: 3}
   - {fileID: 8300000, guid: ab9d893fac14a2149b9a589bb4c3a0b7, type: 3}
   - {fileID: 8300000, guid: e95fe1190c3a80949b4e7d4a4af177fd, type: 3}
   - {fileID: 8300000, guid: 4144bb71db74d3f4d8aaa44d5bcbfbd5, type: 3}
   - {fileID: 8300000, guid: f5f003dde6857a9498153422acc1e2ce, type: 3}
   - {fileID: 8300000, guid: d7f8053edf6f6d84398bee585917c41e, type: 3}
-  - {fileID: 8300000, guid: c1c61d0dc09fddc4688e76e7ca20a566, type: 3}
-  - {fileID: 8300000, guid: 43b1e00e591f3684dad08b9a815d8648, type: 3}
-  - {fileID: 8300000, guid: 751323bcc98d8314187b359be0edd47c, type: 3}
-  - {fileID: 8300000, guid: 72e25e13c5af26d44b16810019abb363, type: 3}
-  - {fileID: 8300000, guid: 1b81bdbff5c4b0a4f93dd7c4e110e44c, type: 3}
-  - {fileID: 8300000, guid: 3172c0169a69fb648a8f557a5aef7265, type: 3}
-  - {fileID: 8300000, guid: cfdd0b10eb64f8a4b828f945bd6738f4, type: 3}
-  - {fileID: 8300000, guid: 9cc38b583e629d44ab0a81a87e492863, type: 3}
-  - {fileID: 8300000, guid: 1812bcebdf834854cadcb6ba20f13a6d, type: 3}
-  - {fileID: 8300000, guid: b3bcc1008b872ad4b8e885833179a55a, type: 3}
   EnemyHookSounds:
   - {fileID: 8300000, guid: 032b274639c0e7b41bd8b64f8c9933a1, type: 3}
   - {fileID: 8300000, guid: 24ad9aeb0af25aa4198086ca48dea1d0, type: 3}
@@ -8171,7 +8160,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 406eaf55d2828e14c914e41aa5bcc71e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
