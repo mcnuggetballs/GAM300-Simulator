@@ -35,7 +35,7 @@ public class FootstepAnimationSounds : MonoBehaviour
         if (_lastFootstep > 0 && footstep < 0 || _lastFootstep < 0 && footstep > 0)
         {
             var index = UnityEngine.Random.Range(0, FootstepAudioClips.Length);
-            AudioManager.instance.PlaySoundAtLocation(FootstepAudioClips[index], transform.position);
+            AudioManager.instance.PlaySoundAtLocation(FootstepAudioClips[index], FootstepAudioVolume, transform.position);
         }
         _lastFootstep = footstep;
     }
