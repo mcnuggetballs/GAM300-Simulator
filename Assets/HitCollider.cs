@@ -51,11 +51,7 @@ public class HitCollider : MonoBehaviour
                 {
                     AudioManager.instance.PlayCachedSound(AudioManager.instance.HitSoundsFX,other.transform.position,0.2f);
                 }
-
-                if (tag == "Smash")
-                    AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemySmashSounds[0], GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
-                else
-                    VFXManager.Instance.Spawn("Hit_02", GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
+                VFXManager.Instance.Spawn("Hit_02", GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
 
                 CameraShake.ShakeSettings shakeSettings = new CameraShake.ShakeSettings
                 {

@@ -703,9 +703,6 @@ PrefabInstance:
       addedObject: {fileID: 370477894442080375}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 332ad02f052095e49b165090bbe43494, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4838147567513864950}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 332ad02f052095e49b165090bbe43494, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 836539834704175468}
   m_SourcePrefab: {fileID: 100100000, guid: 332ad02f052095e49b165090bbe43494, type: 3}
 --- !u!4 &594610895024178031 stripped
@@ -928,22 +925,6 @@ MonoBehaviour:
   patrolWaitTime: 2
   attackCooldown: 5
   stoppingDistance: 1.5
---- !u!208 &4838147567513864950
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4670511869322011074}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.35, y: 1.84, z: 0.35}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1.77, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &836539834704175468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,7 +944,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0be3b253727555d4899bf0d6fc208f25, type: 3}
   - {fileID: 8300000, guid: f9d896c5cc2a9d148a8f0586ff9cbd14, type: 3}
   - {fileID: 8300000, guid: b5d9fd3068318fd4aa30886d0ea4200d, type: 3}
-  FootstepAudioVolume: 0.25
+  FootstepAudioVolume: 1
 --- !u!4 &5447998065122179960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 332ad02f052095e49b165090bbe43494, type: 3}

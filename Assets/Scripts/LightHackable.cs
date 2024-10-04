@@ -23,7 +23,7 @@ public class LightHackable : Hackable
                 found = true;
             }
         }
-        AudioManager.instance.PlayCachedSound(AudioManager.instance.ExplosionSounds, transform.position, 1.0f);
+        AudioManager.instance.PlayCachedSound(AudioManager.instance.ExplosionSounds, transform.position, 0.6f);
         if (found)
             isActive = false;
     }

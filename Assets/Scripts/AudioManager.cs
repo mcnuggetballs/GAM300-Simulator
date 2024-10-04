@@ -105,6 +105,8 @@ public class AudioManager : MonoBehaviour
         temp.volume = volume;
         temp.clip = clips[Random.Range(0, clips.Length)];
         temp.Play();
+        temp.rolloffMode = AudioRolloffMode.Linear;
+        temp.maxDistance = 60;
         RemoveUnusedAudioSource();
     }
 

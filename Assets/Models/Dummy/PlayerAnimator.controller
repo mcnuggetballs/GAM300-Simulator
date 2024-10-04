@@ -727,6 +727,20 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &-3075983422022293420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9ffc2e92cfde647953e8b5c9d91788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateName: Smash
+  animationTime: 0.5
 --- !u!1101 &-3064839470338398649
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -2377,6 +2391,7 @@ AnimatorState:
   - {fileID: -1938597643147797371}
   - {fileID: -4067049056305830784}
   - {fileID: -211909782545294378}
+  - {fileID: -3075983422022293420}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

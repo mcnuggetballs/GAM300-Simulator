@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class FootstepAnimationSounds : MonoBehaviour
         {
             if (FootstepAudioClips.Length > 0)
             {
-                var index = Random.Range(0, FootstepAudioClips.Length);
+                var index = UnityEngine.Random.Range(0, FootstepAudioClips.Length);
                 AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.position, FootstepAudioVolume);
             }
         }
@@ -33,8 +34,8 @@ public class FootstepAnimationSounds : MonoBehaviour
         var footstep = GetComponent<Animator>().GetFloat("Footstep");
         if (_lastFootstep > 0 && footstep < 0 || _lastFootstep < 0 && footstep > 0)
         {
-            var index = Random.Range(0, FootstepAudioClips.Length);
-            AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.position, FootstepAudioVolume);
+            var index = UnityEngine.Random.Range(0, FootstepAudioClips.Length);
+            AudioManager.instance.PlaySoundAtLocation(FootstepAudioClips[index], transform.position);
         }
         _lastFootstep = footstep;
     }

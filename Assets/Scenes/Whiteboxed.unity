@@ -5039,7 +5039,6 @@ GameObject:
   - component: {fileID: 276348336}
   - component: {fileID: 276348339}
   - component: {fileID: 276348338}
-  - component: {fileID: 276348337}
   m_Layer: 0
   m_Name: ball (4)
   m_TagString: Untagged
@@ -5062,27 +5061,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1840858015}
   m_LocalEulerAnglesHint: {x: 25.299, y: -323.247, z: 23.506}
---- !u!135 &276348337
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276348335}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &276348338
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8158,9 +8136,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 406eaf55d2828e14c914e41aa5bcc71e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 72570679ed98868429148638adb294d1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8928,7 +8906,6 @@ GameObject:
   - component: {fileID: 561236071}
   - component: {fileID: 561236074}
   - component: {fileID: 561236073}
-  - component: {fileID: 561236072}
   m_Layer: 0
   m_Name: ball (8)
   m_TagString: Untagged
@@ -8951,27 +8928,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1840858015}
   m_LocalEulerAnglesHint: {x: -0.194, y: -228.432, z: 40.314}
---- !u!135 &561236072
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561236070}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &561236073
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11727,7 +11683,6 @@ GameObject:
   - component: {fileID: 763357327}
   - component: {fileID: 763357330}
   - component: {fileID: 763357329}
-  - component: {fileID: 763357328}
   m_Layer: 0
   m_Name: ball (6)
   m_TagString: Untagged
@@ -11750,27 +11705,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1840858015}
   m_LocalEulerAnglesHint: {x: 3.581, y: -192.04, z: 20.103}
---- !u!135 &763357328
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763357326}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &763357329
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12297,7 +12231,6 @@ GameObject:
   - component: {fileID: 796354367}
   - component: {fileID: 796354370}
   - component: {fileID: 796354369}
-  - component: {fileID: 796354368}
   m_Layer: 0
   m_Name: ball (3)
   m_TagString: Untagged
@@ -12320,27 +12253,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1840858015}
   m_LocalEulerAnglesHint: {x: -0.194, y: -259.223, z: 40.314}
---- !u!135 &796354368
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796354366}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &796354369
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13027,7 +12939,6 @@ GameObject:
   - component: {fileID: 824681715}
   - component: {fileID: 824681718}
   - component: {fileID: 824681717}
-  - component: {fileID: 824681716}
   m_Layer: 0
   m_Name: ball (2)
   m_TagString: Untagged
@@ -13050,27 +12961,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1840858015}
   m_LocalEulerAnglesHint: {x: -15.977, y: -150.284, z: 26.481}
---- !u!135 &824681716
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824681714}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &824681717
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15707,7 +15597,6 @@ GameObject:
   - component: {fileID: 949301945}
   - component: {fileID: 949301948}
   - component: {fileID: 949301947}
-  - component: {fileID: 949301946}
   m_Layer: 0
   m_Name: ball (5)
   m_TagString: Untagged
@@ -15730,27 +15619,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1840858015}
   m_LocalEulerAnglesHint: {x: 9.042, y: -334.903, z: 27.15}
---- !u!135 &949301946
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 949301944}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &949301947
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23836,8 +23704,8 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.060000002
-  m_MinRegionArea: 1
+  m_VoxelSize: 0.11666667
+  m_MinRegionArea: 0
   m_NavMeshData: {fileID: 23800000, guid: 81007cfe3367cc64c89b09e6522b1599, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &1360861664
@@ -29368,7 +29236,6 @@ GameObject:
   - component: {fileID: 1656682538}
   - component: {fileID: 1656682541}
   - component: {fileID: 1656682540}
-  - component: {fileID: 1656682539}
   m_Layer: 0
   m_Name: ball (1)
   m_TagString: Untagged
@@ -29391,27 +29258,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1840858015}
   m_LocalEulerAnglesHint: {x: -9.139, y: -275.74, z: 161.622}
---- !u!135 &1656682539
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1656682537}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1656682540
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34446,7 +34292,6 @@ GameObject:
   - component: {fileID: 1949011401}
   - component: {fileID: 1949011404}
   - component: {fileID: 1949011403}
-  - component: {fileID: 1949011402}
   m_Layer: 0
   m_Name: ball (7)
   m_TagString: Untagged
@@ -34469,27 +34314,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1840858015}
   m_LocalEulerAnglesHint: {x: 64.292, y: -311.165, z: 63.64}
---- !u!135 &1949011402
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949011400}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1949011403
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35336,7 +35160,6 @@ GameObject:
   - component: {fileID: 2001062255}
   - component: {fileID: 2001062258}
   - component: {fileID: 2001062257}
-  - component: {fileID: 2001062256}
   m_Layer: 0
   m_Name: ball
   m_TagString: Untagged
@@ -35359,27 +35182,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1840858015}
   m_LocalEulerAnglesHint: {x: -8.419, y: -263.24402, z: 90.318}
---- !u!135 &2001062256
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001062254}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2001062257
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38267,6 +38069,10 @@ PrefabInstance:
     - target: {fileID: 3052415916858715251, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613121359359477459, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: FootstepAudioVolume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4907923929549781509, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: hackBar
