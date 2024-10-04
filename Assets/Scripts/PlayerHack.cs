@@ -216,7 +216,7 @@ public class PlayerHack : MonoBehaviour
                             MiniTutorial.Instance.CompleteStep(5);
                         GameManager.Instance.ToggleHackMode(true);
                         animator.SetBool("Hacking", true);
-                        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[1], 0.2f, transform.position);
+                        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[2], transform.position);
                         if (crosshair)
                         {
                             crosshair.SetActive(true);
@@ -231,7 +231,7 @@ public class PlayerHack : MonoBehaviour
                 {
                     GameManager.Instance.ToggleHackMode(false);
                     animator.SetBool("Hacking", false);
-                    AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[1], 0.2f, transform.position);
+                    AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[3], transform.position);
                     if (crosshair)
                     {
                         crosshair.SetActive(false);
@@ -271,6 +271,7 @@ public class PlayerHack : MonoBehaviour
                     hackBarAmount = 0.0f;
                     lastHackedHackable = currentSelectedEntity;
                     currentSelectedEntity.Hack(GetComponent<Entity>());
+                    AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[0], transform.position);
                     if (MiniTutorial.Instance)
                         MiniTutorial.Instance.CompleteStep(6);
                     if (currentSelectedEntity.GetComponent<EnemyAI>())

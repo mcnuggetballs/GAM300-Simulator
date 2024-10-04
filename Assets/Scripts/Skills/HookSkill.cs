@@ -154,6 +154,7 @@ public class HookSkill : Skill
 
     private IEnumerator LaunchHook(GameObject enemy, GameObject user)
     {
+        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyHookSounds[0], enemy.transform.position);
         Transform hookStartPoint = null;
         // Set initial LineRenderer positions
         if (user.GetComponent<Entity>())
@@ -265,6 +266,7 @@ public class HookSkill : Skill
 
     private IEnumerator ShowMiss(GameObject user, Vector3 missPosition)
     {
+        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyHookSounds[0], transform.position);
         Transform hookStartPoint = null;
         // Set initial LineRenderer positions
         if (user.GetComponent<Entity>())

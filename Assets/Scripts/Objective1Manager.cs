@@ -20,7 +20,14 @@ public class Objective1Manager : MonoBehaviour
     bool obj2Complete = false;
     [SerializeField]
     GameObject checkMarkGameObject;
-
+    public void PlayToDoEnterSound()
+    {
+        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[6], transform.position);
+    }
+    public void PlayStrikeSound()
+    {
+        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[Random.Range(7,9)], transform.position);
+    }
     private void Awake()
     {
         checkMarkGameObject.SetActive(false);
@@ -55,6 +62,7 @@ public class Objective1Manager : MonoBehaviour
             if (currentEnemies <= 0)
             {
                 checkMarkGameObject.SetActive(true);
+                AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[5], transform.position);
                 StartCoroutine(ShowLines(1));
                 obj1Complete = true;
             }

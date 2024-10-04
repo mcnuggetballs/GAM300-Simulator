@@ -27,6 +27,10 @@ public class MiniTutorial : MonoBehaviour
     GameObject pauseGame;
     Animator animator;
     bool pressedLeft, pressedRight, pressedUp, pressedDown = false;
+    public void PlayPopupSound()
+    {
+        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[4], transform.position);
+    }
     public void PressArrowLeft()
     {
         if (step == 1)

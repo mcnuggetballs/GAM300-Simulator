@@ -26,6 +26,8 @@ public class SpawnHit : StateMachineBehaviour
     float duration;
 
     bool spawned = false;
+    [SerializeField]
+    string hitTag = "";
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -54,7 +56,7 @@ public class SpawnHit : StateMachineBehaviour
                             hitCollider.damage = entity.GetBaseDamage() * animationDamageMultiplier;
                         }
                         Vector3 spawnPos = new Vector3(animator.transform.position.x,animator.transform.position.y + positionHeightOffset,animator.transform.position.z);
-                        hitCollider.Spawn(spawnPos + animator.transform.forward * positionForwardOffset * 0.5f, width, height, length);
+                        hitCollider.Spawn(spawnPos + animator.transform.forward * positionForwardOffset * 0.5f, width, height, length, hitTag);
                         hitCollider.transform.rotation = Quaternion.Euler(0.0f, animator.transform.eulerAngles.y, 0.0f);
                         hitCollider.transform.parent = animator.transform;
                         hitCollider.spawnedFrom = animator.gameObject;

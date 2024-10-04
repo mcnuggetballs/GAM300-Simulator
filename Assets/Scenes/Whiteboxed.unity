@@ -813,7 +813,6 @@ MonoBehaviour:
   PlayerHurtFX:
   - {fileID: 8300000, guid: b28391b6575844b4da48ff269e416463, type: 3}
   - {fileID: 8300000, guid: afb35925f6ec6214f890283e2de19e58, type: 3}
-  EnemySounds: []
   MiscSounds:
   - {fileID: 8300000, guid: b28391b6575844b4da48ff269e416463, type: 3}
   - {fileID: 8300000, guid: ac55c9c75e610ef4d8070cae2d1625c1, type: 3}
@@ -823,6 +822,75 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 374531fa9818acb4d8941a836a79e553, type: 3}
   - {fileID: 8300000, guid: b9221ad0429fa314180ee826dba2de6a, type: 3}
   - {fileID: 8300000, guid: f288f4a1f2ad76b4293549ea434d6764, type: 3}
+  EnemyAggroSounds:
+  - {fileID: 8300000, guid: ce5630ba3450822488e2fe7a975263e6, type: 3}
+  - {fileID: 8300000, guid: 2be25ca945d862d438a9b3bc82d2eb8b, type: 3}
+  - {fileID: 8300000, guid: d68c514830b5a7947ae759ae72b71608, type: 3}
+  EnemyDeathSounds:
+  - {fileID: 8300000, guid: 4acfca0308c35d04d8ad10a34850d36f, type: 3}
+  - {fileID: 8300000, guid: 6c67e58f02aa1c644ae027b448a398ab, type: 3}
+  EnemyHurtSounds:
+  - {fileID: 8300000, guid: 4963e19046fe21e4eb1168340199b4ac, type: 3}
+  - {fileID: 8300000, guid: 6884720fa5bd3ba42a1d719dab6cc465, type: 3}
+  - {fileID: 8300000, guid: af51d347873be6d48bd8e43605bc0091, type: 3}
+  - {fileID: 8300000, guid: 28e830fcc67e40b40a2b47676c15956e, type: 3}
+  - {fileID: 8300000, guid: 4a79ac45819fd69438471057e5ea800b, type: 3}
+  - {fileID: 8300000, guid: 8c9e9ccd975f683418f7c54117a8728e, type: 3}
+  EnemyPatrolSounds:
+  - {fileID: 8300000, guid: df89f5d0e3261a24a9703c2f8492e390, type: 3}
+  - {fileID: 8300000, guid: ab9d893fac14a2149b9a589bb4c3a0b7, type: 3}
+  - {fileID: 8300000, guid: e95fe1190c3a80949b4e7d4a4af177fd, type: 3}
+  - {fileID: 8300000, guid: 4144bb71db74d3f4d8aaa44d5bcbfbd5, type: 3}
+  - {fileID: 8300000, guid: f5f003dde6857a9498153422acc1e2ce, type: 3}
+  - {fileID: 8300000, guid: d7f8053edf6f6d84398bee585917c41e, type: 3}
+  - {fileID: 8300000, guid: c1c61d0dc09fddc4688e76e7ca20a566, type: 3}
+  - {fileID: 8300000, guid: 43b1e00e591f3684dad08b9a815d8648, type: 3}
+  - {fileID: 8300000, guid: 751323bcc98d8314187b359be0edd47c, type: 3}
+  - {fileID: 8300000, guid: 72e25e13c5af26d44b16810019abb363, type: 3}
+  - {fileID: 8300000, guid: 1b81bdbff5c4b0a4f93dd7c4e110e44c, type: 3}
+  - {fileID: 8300000, guid: 3172c0169a69fb648a8f557a5aef7265, type: 3}
+  - {fileID: 8300000, guid: cfdd0b10eb64f8a4b828f945bd6738f4, type: 3}
+  - {fileID: 8300000, guid: 9cc38b583e629d44ab0a81a87e492863, type: 3}
+  - {fileID: 8300000, guid: 1812bcebdf834854cadcb6ba20f13a6d, type: 3}
+  - {fileID: 8300000, guid: b3bcc1008b872ad4b8e885833179a55a, type: 3}
+  EnemyHookSounds:
+  - {fileID: 8300000, guid: 032b274639c0e7b41bd8b64f8c9933a1, type: 3}
+  - {fileID: 8300000, guid: 24ad9aeb0af25aa4198086ca48dea1d0, type: 3}
+  - {fileID: 8300000, guid: d1bfd1bb3765cc04c8e1635c53f79ffc, type: 3}
+  EnemyShooterSounds:
+  - {fileID: 8300000, guid: d2bb0413a702d1e4597d84c4dbf0ef49, type: 3}
+  - {fileID: 8300000, guid: da25547bb17fa3d468a0d9096b9eaaec, type: 3}
+  - {fileID: 8300000, guid: 75851c944f175804f8621fb977528f27, type: 3}
+  - {fileID: 8300000, guid: dc353e79195f0c841b1dabf564387405, type: 3}
+  EnemySmashSounds:
+  - {fileID: 8300000, guid: c3d04ca8667fb114b927ee8fb33efe4d, type: 3}
+  PlayerDashSound: {fileID: 8300000, guid: 63ead81ab92dd5e41a650abebfc9cac3, type: 3}
+  PlayerSlashGroaningSounds:
+  - {fileID: 8300000, guid: ebdedaaa030c2444985f806b010ac162, type: 3}
+  - {fileID: 8300000, guid: 308d0b85338f837499699be69a63df6c, type: 3}
+  - {fileID: 8300000, guid: 0fa1097f71089214e8a81989cd36a862, type: 3}
+  - {fileID: 8300000, guid: ef6a1dc5750180240a524c8fda1122e5, type: 3}
+  - {fileID: 8300000, guid: bd777f178aa68d940afb0317eca4b1b3, type: 3}
+  PlayerDeathSounds:
+  - {fileID: 8300000, guid: dad5593f3ccd64245a5757a65094080b, type: 3}
+  - {fileID: 8300000, guid: 15b5c858a5d3c954c9a2b4019322cc92, type: 3}
+  - {fileID: 8300000, guid: e8548304454ff8242958b6bff76f2cd9, type: 3}
+  - {fileID: 8300000, guid: 2a114a1929f67de48ac2086e3e9b9905, type: 3}
+  PlayerHurtSounds:
+  - {fileID: 8300000, guid: 38390f9fa4335c24799267a2e98949ff, type: 3}
+  - {fileID: 8300000, guid: 5dd7fdc666bb6584b9ff0e3b847b98ed, type: 3}
+  - {fileID: 8300000, guid: 643fea4f5e2c5474289aac99d730c3d0, type: 3}
+  - {fileID: 8300000, guid: 89e4b75c72e22294989e1c4f3dbcb436, type: 3}
+  HackSounds:
+  - {fileID: 8300000, guid: 1159fb6c2fffe284aad73426c68e8446, type: 3}
+  - {fileID: 8300000, guid: 1c392d26f01b41b48810eda977a3f7e6, type: 3}
+  - {fileID: 8300000, guid: 5e33773630db1e843954eba3eab892d9, type: 3}
+  - {fileID: 8300000, guid: 576c18d865f9a4a4d95754046c0fd323, type: 3}
+  - {fileID: 8300000, guid: 704fe68efd6d7f84abb211f11cb03a7a, type: 3}
+  - {fileID: 8300000, guid: 8f11ed2893949924cb29de51a04cb94c, type: 3}
+  - {fileID: 8300000, guid: 398235df7b33e5041b6e714eb09e6d54, type: 3}
+  - {fileID: 8300000, guid: 362b6df288e8c704b946fa80b1894c74, type: 3}
+  - {fileID: 8300000, guid: 9da0758c7775fe946bfb8359d9aeaf01, type: 3}
 --- !u!4 &38331165
 Transform:
   m_ObjectHideFlags: 0

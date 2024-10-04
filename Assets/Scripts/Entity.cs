@@ -60,6 +60,14 @@ public class Entity : MonoBehaviour
 
     public void TakeDamage(float value, Vector3 hitDirection, float kb)
     {
+        if (GetComponent<EnemyAI>())
+        {
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyHurtSounds[Random.Range(0, AudioManager.instance.EnemyHurtSounds.Length)], transform.position);
+        }
+        if (GetComponent<PlayerHack>())
+        {
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.PlayerHurtSounds[Random.Range(0, AudioManager.instance.PlayerHurtSounds.Length)], animator.transform.position);
+        }
         hitDir = hitDirection;
         knockBackAmount = kb;
         currentHealth -= value;
@@ -152,10 +160,12 @@ public class Entity : MonoBehaviour
         }
         if (GetComponent<EnemyAI>())
         {
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyDeathSounds[Random.Range(0, AudioManager.instance.EnemyDeathSounds.Length)], transform.position);
             Destroy(GetComponent<EnemyAI>());
         }
         if (GetComponent<ThirdPersonControllerRB>())
         {
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.PlayerDeathSounds[Random.Range(0, AudioManager.instance.PlayerDeathSounds.Length)], animator.transform.position);
             Destroy(GetComponent<ThirdPersonControllerRB>());
         }
         if (GetComponent<Rigidbody>()) 

@@ -56,6 +56,7 @@ public class Projectile : MonoBehaviour
                 maxDistance = 8f
             };
             GameManager.Instance.TriggerCameraShake(shakeSettings, Camera.main);
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyShooterSounds[Random.Range(2,4)], transform.position);
             Destroy(gameObject);
         }
         else
@@ -75,6 +76,7 @@ public class Projectile : MonoBehaviour
                 maxDistance = 8f
             };
             GameManager.Instance.TriggerCameraShake(shakeSettings, Camera.main);
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyShooterSounds[Random.Range(2, 4)], transform.position);
             Destroy(gameObject);
         }
     }

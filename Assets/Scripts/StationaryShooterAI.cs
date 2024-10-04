@@ -28,6 +28,7 @@ public class StationaryShooterAI : EnemyAI
     {
         if (_playerDetected = DetectPlayer())
         {
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyAggroSounds[Random.Range(0, AudioManager.instance.EnemyAggroSounds.Length - 1)], transform.position);
             _currentState = State.Chasing;
         }
     }

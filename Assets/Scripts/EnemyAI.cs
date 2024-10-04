@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     protected Vector3 _lastKnownPlayerPosition;
     protected float _timeSinceLastAttack;
     protected float _timeSinceLastPatrol;
+    protected float patrolSoundTime;
     protected bool _playerDetected;
     Animator animator;
 
@@ -50,6 +51,7 @@ public class EnemyAI : MonoBehaviour
         _currentState = State.Patrolling;
         _timeSinceLastAttack = attackCooldown;
         _timeSinceLastPatrol = 0f;
+        patrolSoundTime = 0f;
     }
 
     protected virtual void Update()
@@ -75,15 +77,23 @@ public class EnemyAI : MonoBehaviour
         _playerDetected = true;
         _lastKnownPlayerPosition = player.position;
         _currentState = State.Chasing;
+        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyAggroSounds[Random.Range(0, AudioManager.instance.EnemyAggroSounds.Length)], transform.position);
     }
     protected virtual void Patrol()
     {
         if (_playerDetected = DetectPlayer())
         {
             _currentState = State.Chasing;
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyAggroSounds[Random.Range(0, AudioManager.instance.EnemyAggroSounds.Length)],transform.position);
         }
         else
         {
+            patrolSoundTime += Time.deltaTime;
+            if (patrolSoundTime >= 0.5f)
+            {
+                AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyPatrolSounds[Random.Range(0, AudioManager.instance.EnemyPatrolSounds.Length)], transform.position);
+                patrolSoundTime = 0f;
+            }
             if (_timeSinceLastPatrol >= patrolWaitTime)
             {
                 Vector3 randomDestination = GetRandomNavMeshPosition(transform.position, 10f);

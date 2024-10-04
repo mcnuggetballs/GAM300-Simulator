@@ -13,10 +13,12 @@ public class HitCollider : MonoBehaviour
     public int parentLayer;
     public Vector3 hitDirection;
     public GameObject spawnedFrom;
-    public void Spawn(Vector3 pos, float xSize, float ySize, float zSize)
+    public string tag = "";
+    public void Spawn(Vector3 pos, float xSize, float ySize, float zSize, string tagVal = "")
     {
         transform.position = pos;
         transform.localScale = new Vector3(xSize,ySize,zSize);
+        tag = tagVal;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -39,10 +41,21 @@ public class HitCollider : MonoBehaviour
                 }
                 if(other.CompareTag("Player"))
                 {
+                    if (spawnedFrom.GetComponent<HookEnemyAI>() != null)
+                    {
+                        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyHookSounds[Random.Range(1, AudioManager.instance.EnemyHookSounds.Length)], transform.position);
+                    }
                     AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[0],0.2f,other.transform.position,true);
-                } else AudioManager.instance.PlayCachedSound(AudioManager.instance.HitSoundsFX,other.transform.position,0.2f);
+                }
+                else
+                {
+                    AudioManager.instance.PlayCachedSound(AudioManager.instance.HitSoundsFX,other.transform.position,0.2f);
+                }
 
-                VFXManager.Instance.Spawn("Hit_02", GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
+                if (tag == "Smash")
+                    AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemySmashSounds[0], GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
+                else
+                    VFXManager.Instance.Spawn("Hit_02", GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
 
                 CameraShake.ShakeSettings shakeSettings = new CameraShake.ShakeSettings
                 {

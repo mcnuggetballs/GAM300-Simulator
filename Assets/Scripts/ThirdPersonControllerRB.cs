@@ -409,6 +409,7 @@ namespace StarterAssets
 
         private void StartDash()
         {
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.PlayerDashSound, transform.position);
             _isDashing = true;
             _dashTimeLeft = DashDuration;
             _dashCooldownLeft = DashCooldown;

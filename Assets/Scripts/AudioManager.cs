@@ -18,9 +18,20 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] HitSoundsFX;
     public AudioClip[] WhooshSoundsFX;
     public AudioClip[] PlayerHurtFX;
-    public AudioClip[] EnemySounds;
     public AudioClip[] MiscSounds;
     public AudioClip[] ExplosionSounds;
+    public AudioClip[] EnemyAggroSounds;
+    public AudioClip[] EnemyDeathSounds;
+    public AudioClip[] EnemyHurtSounds;
+    public AudioClip[] EnemyPatrolSounds;
+    public AudioClip[] EnemyHookSounds;
+    public AudioClip[] EnemyShooterSounds;
+    public AudioClip[] EnemySmashSounds;
+    public AudioClip PlayerDashSound;
+    public AudioClip[] PlayerSlashGroaningSounds;
+    public AudioClip[] PlayerDeathSounds;
+    public AudioClip[] PlayerHurtSounds;
+    public AudioClip[] HackSounds;
     private void Awake()
     {
         instance = this;

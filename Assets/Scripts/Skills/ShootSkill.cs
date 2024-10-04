@@ -25,7 +25,7 @@ public class ShootSkill : Skill
     private IEnumerator ShootProjectile(GameObject user)
     {
         yield return new WaitForSeconds(projectileDelay);
-
+        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyShooterSounds[1], transform.position);
         // Case for when user is an enemy
         if ((enemyLayer.value & (1 << user.layer)) != 0)
         {
