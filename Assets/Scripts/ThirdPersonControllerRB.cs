@@ -311,6 +311,8 @@ namespace StarterAssets
                 // Jump
                 if (Input.GetButtonDown("Jump") && !disableMovement && _jumpTimeoutDelta <= 0.0f)
                 {
+                    if (MiniTutorial.Instance)
+                        MiniTutorial.Instance.CompleteStep(3);
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
                     _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _verticalVelocity, _rigidbody.velocity.z);
 
@@ -379,6 +381,8 @@ namespace StarterAssets
             // Check for dash input and ensure dash is not on cooldown
             if (Input.GetKeyDown(KeyCode.LeftShift) && _dashCooldownLeft <= 0.0f && !_isDashing)
             {
+                if (MiniTutorial.Instance)
+                    MiniTutorial.Instance.CompleteStep(2);
                 StartDash();
             }
 

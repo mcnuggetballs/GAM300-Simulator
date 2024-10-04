@@ -107,6 +107,10 @@ public class MiniTutorial : MonoBehaviour
             useskill.SetActive(false);
             pauseGame.SetActive(true);
         }
+        else if (value == 8)
+        {
+            pauseGame.SetActive(false);
+        }
         yield return new WaitForSeconds(0.5f);
         animator.SetTrigger("Enter");
     }
@@ -184,6 +188,15 @@ public class MiniTutorial : MonoBehaviour
                 StartCoroutine(Enter(value));
             }
         }
+        else if (value == 8)
+        {
+            if (step == 8)
+            {
+                animator.SetTrigger("Exit");
+                step = 9;
+                StartCoroutine(Enter(value));
+            }
+        }
     }
     private void Awake()
     {
@@ -203,5 +216,12 @@ public class MiniTutorial : MonoBehaviour
 
     void Update()
     {
+        if (step == 1)
+        {
+            if (pressedDown && pressedLeft && pressedRight && pressedUp)
+            {
+                CompleteStep(1);
+            }
+        }
     }
 }

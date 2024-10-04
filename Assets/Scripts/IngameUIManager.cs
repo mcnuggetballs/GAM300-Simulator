@@ -85,6 +85,8 @@ public class IngameUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && isDead == false)
         {
+            if (MiniTutorial.Instance)
+                MiniTutorial.Instance.CompleteStep(8);
             PressPause();
         }
         if (playerEntity)

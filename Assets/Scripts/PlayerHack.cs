@@ -212,6 +212,8 @@ public class PlayerHack : MonoBehaviour
                 {
                     if (chargeValue >= 10)
                     {
+                        if (MiniTutorial.Instance)
+                            MiniTutorial.Instance.CompleteStep(5);
                         GameManager.Instance.ToggleHackMode(true);
                         animator.SetBool("Hacking", true);
                         AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.MiscSounds[1], 0.2f, transform.position);
@@ -269,6 +271,8 @@ public class PlayerHack : MonoBehaviour
                     hackBarAmount = 0.0f;
                     lastHackedHackable = currentSelectedEntity;
                     currentSelectedEntity.Hack(GetComponent<Entity>());
+                    if (MiniTutorial.Instance)
+                        MiniTutorial.Instance.CompleteStep(6);
                     if (currentSelectedEntity.GetComponent<EnemyAI>())
                     {
                         if (currentSelectedEntity.GetComponent<Animator>())
