@@ -26,6 +26,35 @@ public class MiniTutorial : MonoBehaviour
     [SerializeField]
     GameObject pauseGame;
     Animator animator;
+    bool pressedLeft, pressedRight, pressedUp, pressedDown = false;
+    public void PressArrowLeft()
+    {
+        if (step == 1)
+        {
+            pressedLeft = true;
+        }
+    }
+    public void PressArrowRight()
+    {
+        if (step == 1)
+        {
+            pressedRight = true;
+        }
+    }
+    public void PressArrowUp()
+    {
+        if (step == 1)
+        {
+            pressedUp = true;
+        }
+    }
+    public void PressArrowDown()
+    {
+        if (step == 1)
+        {
+            pressedDown = true;
+        }
+    }
     private static MiniTutorial _instance;
 
     public static MiniTutorial Instance

@@ -168,7 +168,7 @@ namespace StarterAssets
             transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             CinemachineCameraTarget.transform.parent = transform;
         }
-
+        
         private void Move()
         {
             if (disableMovement || _isDashing)
@@ -188,19 +188,27 @@ namespace StarterAssets
             if (Input.GetKey(KeyCode.W))
             {
                 vertical = 1;
+                if (MiniTutorial.Instance)
+                    MiniTutorial.Instance.PressArrowUp();
             }
             else if (Input.GetKey(KeyCode.S))
             {
                 vertical = -1;
+                if (MiniTutorial.Instance)
+                    MiniTutorial.Instance.PressArrowDown();
             }
 
             if (Input.GetKey(KeyCode.D))
             {
                 horizontal = 1;
+                if (MiniTutorial.Instance)
+                    MiniTutorial.Instance.PressArrowRight();
             }
             else if (Input.GetKey(KeyCode.A))
             {
                 horizontal = -1;
+                if (MiniTutorial.Instance)
+                    MiniTutorial.Instance.PressArrowLeft();
             }
 
             if (horizontal == 0 && vertical == 0)
