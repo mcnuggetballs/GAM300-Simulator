@@ -125,11 +125,13 @@ public class EnemyAI : MonoBehaviour
                 // Calculate a position closer to the player but within the stopping distance
                 Vector3 directionToPlayer = (_lastKnownPlayerPosition - transform.position).normalized;
 
+                GetComponent<EnemyControllerRB>().disableMovement = false;
                 SetDestinationAndPathfinding(_lastKnownPlayerPosition);
             }
             else
             {
-                SetDestinationAndPathfinding(transform.position);
+                GetComponent<EnemyControllerRB>().disableMovement = true;
+                GetComponent<EnemyControllerRB>().StopMovement();
             }
 
             // Switch to attacking if within attack range
