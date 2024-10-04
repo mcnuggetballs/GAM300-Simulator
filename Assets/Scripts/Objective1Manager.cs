@@ -22,11 +22,11 @@ public class Objective1Manager : MonoBehaviour
     GameObject checkMarkGameObject;
     public void PlayToDoEnterSound()
     {
-        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[6], transform.position);
+        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[6], FindAnyObjectByType<PlayerHack>().transform.position);
     }
     public void PlayStrikeSound()
     {
-        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[Random.Range(7,9)], transform.position);
+        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[Random.Range(7,9)], FindAnyObjectByType<PlayerHack>().transform.position);
     }
     private void Awake()
     {
