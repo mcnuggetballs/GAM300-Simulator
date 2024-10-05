@@ -15,17 +15,19 @@ public class LiftSFX : MonoBehaviour
         // Play SFX1 first
         sfx1.Play();
 
-        // Subscribe to the event when SFX1 finishes playing
-        StartCoroutine(WaitForSFX1ToFinish());
+        // Start the coroutine to monitor SFX1 and trigger SFX2 once SFX1 is done
+        StartCoroutine(PlaySFX2AfterSFX1());
     }
 
-    // Coroutine to wait for SFX1 to finish
-    IEnumerator WaitForSFX1ToFinish()
+    IEnumerator PlaySFX2AfterSFX1()
     {
-        // Wait for the duration of SFX1
-        yield return new WaitForSeconds(sfx1.clip.length);
+        // Wait until SFX1 is no longer playing
+        while (sfx1.isPlaying)
+        {
+            yield return null; // Wait for the next frame
+        }
 
-        // Play SFX2 and set it to loop
+        // Once SFX1 has finished, play SFX2 and set it to loop
         sfx2.loop = true;
         sfx2.Play();
     }
