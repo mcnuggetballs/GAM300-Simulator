@@ -78,6 +78,7 @@ public class MiniTutorial : MonoBehaviour
             return _instance;
         }
     }
+    bool sayHello = false;
     IEnumerator Enter(int value)
     {
         yield return new WaitForSeconds(1.0f);
@@ -223,19 +224,25 @@ public class MiniTutorial : MonoBehaviour
         PromptToggleManager promptManager = promptToggler.AddComponent<PromptToggleManager>();
         promptManager.SetPrompt(gameObject);
     }
-    private void Start()
-    {
-        StartCoroutine(Hello());
-    }
     IEnumerator Hello()
     {
         hello.SetActive(true);
         yield return new WaitForSeconds(3.0f);
         CompleteStep(0);
+        if (step == 0)
+        {
+            sayHello = false;
+        }
     }
 
     void Update()
     {
+        if (sayHello == false && ignoreEverything == false)
+        {
+            Debug.LogError("Tried to complete");
+            StartCoroutine(Hello());
+            sayHello = true;
+        }
         if (step == 1)
         {
             if (pressedDown && pressedLeft && pressedRight && pressedUp)

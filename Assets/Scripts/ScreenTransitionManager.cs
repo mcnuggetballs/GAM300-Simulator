@@ -22,7 +22,7 @@ public class ScreenTransitionManager : MonoBehaviour
     bool inTransition = false;
 
     public AudioMixer audioMixer;
-    protected string bgmVolumeParameter = "Master";
+    protected string bgmVolumeParameter = "BGM";
     float fadeDuration = 2.0f;
 
     private void Awake()
@@ -87,7 +87,6 @@ public class ScreenTransitionManager : MonoBehaviour
 
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            Debug.LogError(Mathf.Lerp(originalBGMVolume, -80f, t / fadeDuration));
             float newVolume = Mathf.Lerp(originalBGMVolume, -80f, t / fadeDuration);
             audioMixer.SetFloat(bgmVolumeParameter, newVolume);
             yield return null;
