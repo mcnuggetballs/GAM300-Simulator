@@ -695,6 +695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ListofAudioSources: []
   source: {fileID: 476358275}
+  sfxVolume: 1
   BGMSource: {fileID: 480068075}
   HitSoundsFX:
   - {fileID: 8300000, guid: c5a741ac60f2fa343804badaa2caaac9, type: 3}
@@ -7747,7 +7748,7 @@ AudioSource:
   m_GameObject: {fileID: 476358274}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1089020747580656482, guid: 598d47c1fd1b1424eb5b79a8989fe4bf, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -7875,7 +7876,7 @@ AudioSource:
   m_GameObject: {fileID: 480068074}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2772710793558463066, guid: 598d47c1fd1b1424eb5b79a8989fe4bf, type: 2}
   m_audioClip: {fileID: 8300000, guid: 72570679ed98868429148638adb294d1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.75

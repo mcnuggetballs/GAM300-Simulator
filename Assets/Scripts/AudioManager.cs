@@ -10,9 +10,9 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     AudioSource source;
-
+    [SerializeField]
+    float sfxVolume = 1.0f;
     public AudioSource BGMSource;
-
 
     //hard code babeyyy~
     public AudioClip[] HitSoundsFX;

@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 8473801272040645201}
   - component: {fileID: 4437324692725119590}
   - component: {fileID: 8985627909307996116}
+  - component: {fileID: 219453458996885065}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -452,6 +453,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &219453458996885065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2384702255069749930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0991a7c673afbb46a9de1bf327dd5de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 598d47c1fd1b1424eb5b79a8989fe4bf, type: 2}
+  masterVolumeSlider: {fileID: 5268926165651267172}
+  masterVolumeText: {fileID: 4329236734478115548}
+  bgmVolumeSlider: {fileID: 8871956816735868010}
+  bgmVolumeText: {fileID: 8675184325162683165}
+  sfxVolumeSlider: {fileID: 5473009078221410596}
+  sfxVolumeText: {fileID: 6546487683615184280}
 --- !u!1 &2456258943602049890
 GameObject:
   m_ObjectHideFlags: 0
