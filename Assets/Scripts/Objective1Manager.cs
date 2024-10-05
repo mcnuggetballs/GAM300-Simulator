@@ -16,6 +16,8 @@ public class Objective1Manager : MonoBehaviour
     GameObject Objective1;
     [SerializeField]
     GameObject Objective2;
+    [SerializeField]
+    IngameLift lift;
     bool obj1Complete = false;
     bool obj2Complete = false;
     [SerializeField]
@@ -48,6 +50,7 @@ public class Objective1Manager : MonoBehaviour
         }
         currentEnemies = totalEnemies;
         animator = GetComponent<Animator>();
+        lift.enabled = false;
     }
     private void Start()
     {
@@ -65,6 +68,17 @@ public class Objective1Manager : MonoBehaviour
                 AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[5], transform.position);
                 StartCoroutine(ShowLines(1));
                 obj1Complete = true;
+                lift.enabled = true;
+            }
+        }
+        else if (!obj2Complete)
+        {
+            if (lift.GetOpenLiftCollider().GetCollisions() >= 1)
+            {
+                checkMarkGameObject.SetActive(true);
+                AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[5], transform.position);
+                StartCoroutine(ShowLines(2));
+                obj2Complete = true;
             }
         }
     }
