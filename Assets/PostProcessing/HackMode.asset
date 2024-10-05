@@ -65,7 +65,7 @@ MonoBehaviour:
     value: 0
   saturation:
     overrideState: 1
-    value: -67
+    value: -100
   brightness:
     overrideState: 1
     value: 0
@@ -1354,7 +1354,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0
+    value: 0.266
   smoothness:
     overrideState: 1
     value: 0.995
