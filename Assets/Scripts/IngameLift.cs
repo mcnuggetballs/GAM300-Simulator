@@ -13,6 +13,7 @@ public class IngameLift : MonoBehaviour
     Animator animator;
     [SerializeField]
     CinemachineVirtualCamera cameraController;
+    [SerializeField] AudioSource liftOpenSFX;  // SFX for the lift opening
     bool changeScene = false;
     public LiftCollider GetOpenLiftCollider()
     {
@@ -74,7 +75,14 @@ public class IngameLift : MonoBehaviour
         {
             if (openLiftCollider.GetCollisions() >= 1)
             {
-                animator.SetBool("Open", true);
+                if (!animator.GetBool("Open"))
+                {
+                    // Play the lift open SFX
+                    liftOpenSFX.Play();
+
+                    // Start the lift opening animation after the SFX has started
+                    animator.SetBool("Open", true);
+                }
             }
             else
             {

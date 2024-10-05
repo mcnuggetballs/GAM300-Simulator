@@ -39558,6 +39558,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lift
       objectReference: {fileID: 0}
+    - target: {fileID: 4026466065947369497, guid: 7e0cdd74f3e6dc24596a5ccbdb7472d5, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7328045031462435104, guid: 7e0cdd74f3e6dc24596a5ccbdb7472d5, type: 3}
       propertyPath: cameraController
       value: 
