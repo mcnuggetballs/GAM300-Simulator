@@ -766,7 +766,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dc353e79195f0c841b1dabf564387405, type: 3}
   EnemySmashSounds:
   - {fileID: 8300000, guid: c3d04ca8667fb114b927ee8fb33efe4d, type: 3}
-  PlayerDashSound: {fileID: 8300000, guid: 63ead81ab92dd5e41a650abebfc9cac3, type: 3}
+  PlayerDashSound: {fileID: 8300000, guid: a8738df470c14fa49b3750cf1d31b3a7, type: 3}
   PlayerSlashGroaningSounds:
   - {fileID: 8300000, guid: ebdedaaa030c2444985f806b010ac162, type: 3}
   - {fileID: 8300000, guid: 308d0b85338f837499699be69a63df6c, type: 3}
