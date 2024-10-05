@@ -26,6 +26,15 @@ public class Entity : MonoBehaviour
     private Rigidbody _rigidbody;
     private Coroutine knockbackCoroutine;
 
+    [Header("XP")]
+    protected int experiencePoints = 0;
+    [SerializeField]
+    public GameObject experienceOrbPrefab;
+    public int numOrbs = 5;
+    public int GetXP()
+    {
+        return experiencePoints;
+    }
     public float GetCurrentHealth()
     {
         return currentHealth;
@@ -141,7 +150,29 @@ public class Entity : MonoBehaviour
             _rigidbody.velocity = Vector3.zero;
         }
         DisableComponentsOnDeath();
+        if (GetComponent<EnemyControllerRB>())
+        {
+            ExplodeExperienceOrbs();
+        }
+
         StartCoroutine(DestroyOverTime(3f));
+    }
+
+    private void ExplodeExperienceOrbs()
+    {
+        for (int i = 0; i < numOrbs; i++)
+        {
+            GameObject orb = Instantiate(experienceOrbPrefab, neck.position, Quaternion.identity);
+            Rigidbody orbRb = orb.GetComponent<Rigidbody>();
+
+            // Add random explosion force
+            Vector3 randomDirection = Random.insideUnitSphere.normalized;
+            float explosionForce = Random.Range(0.1f, 0.3f); // Random force
+            orbRb.AddForce(randomDirection * explosionForce, ForceMode.Impulse);
+
+            // Start the orb movement after a delay
+            orb.GetComponent<ExperienceOrb>().StartFollowPlayer();
+        }
     }
 
     private void DisableComponentsOnDeath()
@@ -239,5 +270,10 @@ public class Entity : MonoBehaviour
             yield return null;
         }
         Destroy(gameObject);
+    }
+
+    public void AddExperience(int value)
+    {
+        experiencePoints += value;
     }
 }

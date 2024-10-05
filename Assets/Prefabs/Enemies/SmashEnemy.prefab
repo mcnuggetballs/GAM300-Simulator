@@ -763,6 +763,8 @@ MonoBehaviour:
   rightHand: {fileID: 594610895024178031}
   leftHand: {fileID: 4519823786263951547}
   neck: {fileID: 9144437609568149819}
+  experienceOrbPrefab: {fileID: 8419897222370457097, guid: dbe4ed4d59988a74891f1404b5f27579, type: 3}
+  numOrbs: 5
 --- !u!114 &7981846958145473040
 MonoBehaviour:
   m_ObjectHideFlags: 0

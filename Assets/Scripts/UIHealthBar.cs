@@ -24,6 +24,8 @@ public class UIHealthBar : MonoBehaviour
     Sprite idYellow;
     [SerializeField]
     Sprite idRed;
+    [SerializeField]
+    TMPro.TextMeshProUGUI xpCount;
 
     private void Update()
     {
@@ -45,6 +47,10 @@ public class UIHealthBar : MonoBehaviour
                 theID.sprite = idRed;
                 healthBar.sprite = red;
             }
+        }
+        if (xpCount)
+        {
+            xpCount.text = theEntity.GetXP().ToString();
         }
     }
 }
