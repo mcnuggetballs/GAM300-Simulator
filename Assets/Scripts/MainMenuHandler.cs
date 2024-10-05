@@ -41,6 +41,12 @@ public class MainMenuHandler : MonoBehaviour
         SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
         SceneTransition.Instance.TransitionToScene("AssetShowcase");
     }
+
+    public void PressBackToMMButton()
+    {
+        SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
+        SceneTransition.Instance.TransitionToScene("MainMenu");
+    }
     public void SetScene(string sceneName)
     {
         SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
