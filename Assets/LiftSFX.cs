@@ -6,12 +6,11 @@ public class LiftSFX : MonoBehaviour
 {
     public AudioSource sfx1;  // Reference to SFX1 (plays once)
     public AudioSource sfx2;  // Reference to SFX2 (loops)
-    public AudioSource ambi;
+
 
     void Start()
     {
-        ambi.loop = true;
-        ambi.Play();
+
         // Play SFX1 first
         sfx1.Play();
 

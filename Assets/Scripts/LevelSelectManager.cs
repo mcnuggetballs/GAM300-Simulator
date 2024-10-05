@@ -10,6 +10,7 @@ public class LevelSelectManager : MonoBehaviour
     public ToggleButtonSprite selectedLevelButton;
     public ToggleButtonSprite selectedDifficultyButton;
     public static LevelSelectManager Instance { get; private set; }
+    public AudioSource proceedSFX;
 
     private Animator animator;
 
@@ -53,22 +54,39 @@ public class LevelSelectManager : MonoBehaviour
             }
         }
     }
-    
+
     public void Proceed()
     {
         if (animator)
         {
             if (selectedLevelButton && selectedDifficultyButton)
             {
-                animator.SetTrigger("Proceed");
+                // Play the proceed SFX
+                proceedSFX.Play();
+
+                // Trigger the Proceed animation after SFX
+                StartCoroutine(PlayProceedAnimation());
+
+                // Disable interaction with level buttons
                 Image[] levelButtons = FindObjectsOfType<Image>();
-                foreach(Image levelButton in levelButtons)
+                foreach (Image levelButton in levelButtons)
                 {
                     levelButton.raycastTarget = false;
                 }
-                StartCoroutine(ProceedToLevel());
             }
         }
+    }
+
+    IEnumerator PlayProceedAnimation()
+    {
+        // Wait for the proceed SFX to finish before triggering the animation
+        yield return new WaitForSeconds(proceedSFX.clip.length);
+
+        // Trigger the Proceed animation
+        animator.SetTrigger("Proceed");
+
+        // Start the coroutine to load the next level
+        StartCoroutine(ProceedToLevel());
     }
 
     public void InvalidButton()
