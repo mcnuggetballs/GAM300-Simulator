@@ -27,6 +27,10 @@ public class EnemyAI : MonoBehaviour
     {
         return player.transform.position;
     }
+    public Transform GetCurrentPlayerTransform()
+    {
+        return player.transform;
+    }
     public Vector3 GetCurrentPlayerNeckPos()
     {
         return player.GetComponent<Entity>().neck.position;

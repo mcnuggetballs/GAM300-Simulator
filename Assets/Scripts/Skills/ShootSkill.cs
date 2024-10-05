@@ -4,7 +4,7 @@ using UnityEngine;
 public class ShootSkill : Skill
 {
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private float projectileDelay = 0.2f; // Delay before firing the projectile
+    private float projectileDelay = 1.3f; // Delay before firing the projectile
     public LayerMask targetLayer;
     public LayerMask enemyLayer;
     public LayerMask playerLayer;
@@ -14,8 +14,6 @@ public class ShootSkill : Skill
         if (isOnCooldown)
             return false;
 
-        if (user.GetComponent<Animator>())
-            user.GetComponent<Animator>().SetTrigger("Hook");
         StartCoroutine(ShootProjectile(user));
         StartCoroutine(Cooldown());
 
@@ -24,7 +22,21 @@ public class ShootSkill : Skill
 
     private IEnumerator ShootProjectile(GameObject user)
     {
-        yield return new WaitForSeconds(projectileDelay);
+        if ((enemyLayer.value & (1 << user.layer)) != 0)
+        {
+            GameObject aim = Instantiate(Resources.Load("SHOOTERAIM", typeof(GameObject)) as GameObject, user.GetComponent<EnemyAI>().GetCurrentPlayerNeckPos(), Quaternion.identity,user.GetComponent<EnemyAI>().GetCurrentPlayerTransform());
+            aim.transform.position -= Camera.main.transform.forward * 0.3f;
+            yield return new WaitForSeconds(projectileDelay);
+            if (user.GetComponent<Animator>())
+                user.GetComponent<Animator>().SetTrigger("Hook");
+            yield return new WaitForSeconds(0.3f);
+        }
+        else
+        {
+            if (user.GetComponent<Animator>())
+                user.GetComponent<Animator>().SetTrigger("Hook");
+            yield return new WaitForSeconds(0.2f);
+        }
         AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyShooterSounds[1], transform.position);
         // Case for when user is an enemy
         if ((enemyLayer.value & (1 << user.layer)) != 0)

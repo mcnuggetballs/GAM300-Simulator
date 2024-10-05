@@ -8,4 +8,9 @@ public class AlwaysFacePlayer : MonoBehaviour
     {
         this.transform.forward = transform.position - Camera.main.transform.position;
     }
+
+    public void DestroyThing()
+    {
+        Destroy(this.gameObject);
+    }
 }
