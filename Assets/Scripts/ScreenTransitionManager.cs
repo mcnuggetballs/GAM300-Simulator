@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using static UnityEditor.PlayerSettings;
 
@@ -19,9 +20,14 @@ public class ScreenTransitionManager : MonoBehaviour
     public string nextSceneName;
     protected TransitionMode transitionMode = TransitionMode.None;
     bool inTransition = false;
-    
+
+    public AudioMixer audioMixer;
+    protected string bgmVolumeParameter = "Master";
+    float fadeDuration = 2.0f;
+
     private void Awake()
     {
+        audioMixer = Resources.Load<AudioMixer>("AudioMixer");
         if (Instance == null)
         {
             Instance = this;
@@ -55,6 +61,7 @@ public class ScreenTransitionManager : MonoBehaviour
     {
         if (inTransition)
             return;
+        StartCoroutine(FadeOutBGM());
         transitionAnimator.SetTrigger("StartTransition");
         nextSceneName = sceneName;
         inTransition = true;
@@ -70,5 +77,34 @@ public class ScreenTransitionManager : MonoBehaviour
 
         transitionAnimator.SetTrigger("EndTransition");
         inTransition = false;
+        StartCoroutine(FadeInBGM());
+    }
+
+    float originalBGMVolume = 0;
+    private IEnumerator FadeOutBGM()
+    {
+        audioMixer.GetFloat(bgmVolumeParameter, out originalBGMVolume);
+
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            Debug.LogError(Mathf.Lerp(originalBGMVolume, -80f, t / fadeDuration));
+            float newVolume = Mathf.Lerp(originalBGMVolume, -80f, t / fadeDuration);
+            audioMixer.SetFloat(bgmVolumeParameter, newVolume);
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeInBGM()
+    {
+        float originalVolume = originalBGMVolume;
+
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            float newVolume = Mathf.Lerp(-80f, originalVolume, t / fadeDuration);
+            audioMixer.SetFloat(bgmVolumeParameter, newVolume);
+            yield return null;
+        }
+
+        audioMixer.SetFloat(bgmVolumeParameter, originalVolume);
     }
 }
