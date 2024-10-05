@@ -17,7 +17,7 @@ public class ToggleButtonSprite : MonoBehaviour, IPointerEnterHandler, IPointerE
         get { return isSelected; }
         set { isSelected = value; }
     }
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(OnButtonClick);
@@ -47,6 +47,17 @@ public class ToggleButtonSprite : MonoBehaviour, IPointerEnterHandler, IPointerE
         UpdateButtonState();
     }
 
+    public void Deselect()
+    {
+        isSelected = false;
+        UpdateButtonState();
+    }
+    public void Select()
+    {
+        isSelected = true;
+        UpdateButtonState();
+    }
+
     protected virtual void UpdateButtonState()
     {
         // Determine the sprite based on hover and selection states
@@ -58,7 +69,8 @@ public class ToggleButtonSprite : MonoBehaviour, IPointerEnterHandler, IPointerE
         else if (isHovered)
         {
             // Set the hover sprite if the button is hovered but not selected
-            button.image.sprite = hoverSprite;
+            if (hoverSprite)
+                button.image.sprite = hoverSprite;
         }
         else
         {

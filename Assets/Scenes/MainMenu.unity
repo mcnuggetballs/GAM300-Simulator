@@ -406,7 +406,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 291518126}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1189425373}
+        m_TargetAssemblyTypeName: MainMenuHandler, Assembly-CSharp
+        m_MethodName: PressAssetShowcaseButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &291518126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2953,7 +2965,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1607591332959021744, guid: f5698087bd8493845b1ed8d62dcb2999, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1806331779411469709, guid: f5698087bd8493845b1ed8d62dcb2999, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2969,19 +2981,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6541309091172687270, guid: f5698087bd8493845b1ed8d62dcb2999, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6719727188968240753, guid: f5698087bd8493845b1ed8d62dcb2999, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7136406331373157279, guid: f5698087bd8493845b1ed8d62dcb2999, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427922366716215536, guid: f5698087bd8493845b1ed8d62dcb2999, type: 3}
+      propertyPath: m_Transition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7769918428944350811, guid: f5698087bd8493845b1ed8d62dcb2999, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473801272040645201, guid: f5698087bd8493845b1ed8d62dcb2999, type: 3}
       propertyPath: m_Pivot.x
@@ -3065,7 +3081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8514989563770143503, guid: f5698087bd8493845b1ed8d62dcb2999, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

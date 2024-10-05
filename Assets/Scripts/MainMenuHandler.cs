@@ -36,6 +36,11 @@ public class MainMenuHandler : MonoBehaviour
         animator.SetTrigger("Close");
         animator.SetBool("Settings", false);
     }
+    public void PressAssetShowcaseButton()
+    {
+        SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
+        SceneTransition.Instance.TransitionToScene("AssetShowcase");
+    }
     public void SetScene(string sceneName)
     {
         SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);

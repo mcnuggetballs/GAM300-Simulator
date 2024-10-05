@@ -27,12 +27,16 @@ public class MiniTutorial : MonoBehaviour
     GameObject pauseGame;
     Animator animator;
     bool pressedLeft, pressedRight, pressedUp, pressedDown = false;
+
+    public bool ignoreEverything = false;
     public void PlayPopupSound()
     {
         AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[4], transform.position);
     }
     public void PressArrowLeft()
     {
+        if (ignoreEverything)
+            return;
         if (step == 1)
         {
             pressedLeft = true;
@@ -40,6 +44,8 @@ public class MiniTutorial : MonoBehaviour
     }
     public void PressArrowRight()
     {
+        if (ignoreEverything)
+            return;
         if (step == 1)
         {
             pressedRight = true;
@@ -47,6 +53,8 @@ public class MiniTutorial : MonoBehaviour
     }
     public void PressArrowUp()
     {
+        if (ignoreEverything)
+            return;
         if (step == 1)
         {
             pressedUp = true;
@@ -54,6 +62,8 @@ public class MiniTutorial : MonoBehaviour
     }
     public void PressArrowDown()
     {
+        if (ignoreEverything)
+            return;
         if (step == 1)
         {
             pressedDown = true;
@@ -120,6 +130,8 @@ public class MiniTutorial : MonoBehaviour
     }
     public void CompleteStep(int value)
     {
+        if (ignoreEverything)
+            return;
         if (value == 0)
         {
             if (step == 0)
@@ -206,6 +218,10 @@ public class MiniTutorial : MonoBehaviour
     {
         _instance = this;
         animator = GetComponent<Animator>();
+
+        GameObject promptToggler = new GameObject();
+        PromptToggleManager promptManager = promptToggler.AddComponent<PromptToggleManager>();
+        promptManager.SetPrompt(gameObject);
     }
     private void Start()
     {

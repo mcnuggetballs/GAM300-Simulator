@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager
 {
     protected bool hackMode;
+    protected bool promptsDisabled = false;
     //singleton
     private static GameManager _instance;
 
@@ -20,7 +21,14 @@ public class GameManager
             return _instance;
         }
     }
-
+    public bool GetPromptsDisabled()
+    {
+        return promptsDisabled;
+    }
+    public void TogglePrompts()
+    {
+        promptsDisabled = !promptsDisabled;
+    }
     public bool GetHackMode()
     {
         return hackMode;

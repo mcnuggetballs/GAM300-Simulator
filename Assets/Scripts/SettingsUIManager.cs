@@ -13,6 +13,8 @@ public class SettingsUIManager : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI bgmVolumeText;
     [SerializeField] Slider sfxVolumeSlider;
     [SerializeField] TMPro.TextMeshProUGUI sfxVolumeText;
+    [SerializeField]
+    ToggleButtonSprite promptToggle;
 
     private void Start()
     {
@@ -34,6 +36,15 @@ public class SettingsUIManager : MonoBehaviour
         mixer.GetFloat("SFX", out sfxVolume);
         sfxVolumeSlider.value = Mathf.Pow(10, sfxVolume / 20);
         UpdateVolumeText(sfxVolumeText, sfxVolumeSlider.value);
+
+        if (GameManager.Instance.GetPromptsDisabled())
+        {
+            promptToggle.Deselect();
+        }
+        else
+        {
+            promptToggle.Select();
+        }
     }
 
     public void SetMasterVolume(float sliderValue)
@@ -85,5 +96,10 @@ public class SettingsUIManager : MonoBehaviour
     {
         int percentage = Mathf.RoundToInt(sliderValue * 100);
         textElement.text = percentage.ToString();
+    }
+
+    public void TogglePrompts()
+    {
+        GameManager.Instance.TogglePrompts();
     }
 }

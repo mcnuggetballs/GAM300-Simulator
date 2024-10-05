@@ -18,6 +18,7 @@ public class ScreenTransitionManager : MonoBehaviour
     public float transitionDuration = 1f;
     public string nextSceneName;
     protected TransitionMode transitionMode = TransitionMode.None;
+    bool inTransition = false;
     
     private void Awake()
     {
@@ -52,8 +53,11 @@ public class ScreenTransitionManager : MonoBehaviour
     }
     public void TransitionToScene(string sceneName)
     {
+        if (inTransition)
+            return;
         transitionAnimator.SetTrigger("StartTransition");
         nextSceneName = sceneName;
+        inTransition = true;
     }
 
     private IEnumerator LoadScene()
@@ -65,5 +69,6 @@ public class ScreenTransitionManager : MonoBehaviour
         yield return null;
 
         transitionAnimator.SetTrigger("EndTransition");
+        inTransition = false;
     }
 }
