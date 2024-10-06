@@ -38,12 +38,10 @@ public class HookSkill : Skill
         if ((enemyLayer.value & (1 << user.layer)) != 0)
         {
             targetLayer = playerLayer;
-            targetLayer = targetLayer | LayerMask.GetMask("Default");
         }
         else
         {
             targetLayer = enemyLayer;
-            targetLayer = targetLayer | LayerMask.GetMask("Default");
         }
 
         // Disable movement during the hook
@@ -99,7 +97,7 @@ public class HookSkill : Skill
             RaycastHit hit;
 
             // If the spherecast hits an enemy
-            if (Physics.SphereCast(ray, sphereCastRadius, out hit, hookRange, targetLayer))
+            if (Physics.SphereCast(ray, 1.0f, out hit, hookRange, targetLayer))
             {
                 if (hit.collider.GetComponent<Entity>())
                 {
