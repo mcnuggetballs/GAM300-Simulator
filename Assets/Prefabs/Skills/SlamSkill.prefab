@@ -49,4 +49,4 @@ MonoBehaviour:
   iconFill: {fileID: 21300000, guid: e79bd4d0dc9ef29409596bcdf3362a7c, type: 3}
   iconBorder: {fileID: 21300000, guid: 8d5465a9a1caf6a459e894d83eb7d105, type: 3}
   iconTriangle: {fileID: 21300000, guid: 2f16d596bb1843c489917aac42dc387d, type: 3}
-  cooldownTime: 1
+  cooldownTime: 3

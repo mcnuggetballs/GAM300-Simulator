@@ -263,10 +263,10 @@ public class PlayerHack : MonoBehaviour
             if (currentSelectedEntity != null && chargeValue >= 10)
             {
                 isHackingHackable = true;
-                hackBar.fillAmount = hackBarAmount;
+                hackBar.fillAmount = hackBarAmount/ currentSelectedEntity.hackDuration;
                 hackBarGameObject.SetActive(true);
                 hackBarAmount += Time.deltaTime;
-                if (hackBarAmount >= 1.0f)
+                if (hackBarAmount >= currentSelectedEntity.hackDuration)
                 {
                     hackBarAmount = 0.0f;
                     lastHackedHackable = currentSelectedEntity;

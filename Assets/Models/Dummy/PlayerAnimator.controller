@@ -2290,13 +2290,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateName: InAirSmash
   animationDamageMultiplier: 1.2
-  animationTime: 0.6
+  animationTime: 0.2
   length: 1.5
   width: 1
   height: 2.3
   positionForwardOffset: 0.8
   positionHeightOffset: 1.3
-  duration: 0.4
+  duration: 1
   hitTag: 
 --- !u!1101 &6133393925146002906
 AnimatorStateTransition:

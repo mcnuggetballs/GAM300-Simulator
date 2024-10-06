@@ -7,6 +7,7 @@ public class Hackable : MonoBehaviour
 {
     public bool hacked = false;
     public bool isClose = false;
+    public float hackDuration = 1.0f;
     protected Color originalTintColor = new Color(1.0f, 0f, 0f, 1.0f);
     protected Color closeTintColor = new Color(1.0f, 0.5f, 0f, 1.0f);
     protected Color selectedTintColor = new Color(0.0f, 1.0f, 0.0f, 1.0f);

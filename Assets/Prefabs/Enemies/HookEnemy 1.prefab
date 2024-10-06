@@ -861,6 +861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hacked: 0
   isClose: 0
+  hackDuration: 1
 --- !u!195 &6939424279410678359
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -912,7 +913,7 @@ MonoBehaviour:
   player: {fileID: 0}
   pathfinding: {fileID: 1281126349258720039}
   detectionRadius: 3
-  attackRadius: 2
+  attackRadius: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 8

@@ -122,11 +122,13 @@ public class HookEnemyAI : EnemyAI
             {
                 // Otherwise, continue to chase the player but stop within stopping distance
                 Vector3 directionToPlayer = (player.position - transform.position).normalized;
+                GetComponent<EnemyControllerRB>().disableMovement = false;
                 SetDestinationAndPathfinding(player.position);
             }
             else
             {
-                SetDestinationAndPathfinding(transform.position);
+                GetComponent<EnemyControllerRB>().disableMovement = true;
+                GetComponent<EnemyControllerRB>().StopMovement();
             }
             if (distanceToPlayer <= attackRadius)
             {
