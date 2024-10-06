@@ -3,7 +3,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
-using static UnityEditor.PlayerSettings;
 
 public class ScreenTransitionManager : MonoBehaviour
 {

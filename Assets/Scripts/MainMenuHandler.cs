@@ -73,4 +73,9 @@ public class MainMenuHandler : MonoBehaviour
     {
         return animator.GetCurrentAnimatorStateInfo(0).IsName(value);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
