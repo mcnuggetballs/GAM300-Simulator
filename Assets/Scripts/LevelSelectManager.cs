@@ -103,7 +103,7 @@ public class LevelSelectManager : MonoBehaviour
         SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.Fade);
         if (level == 1)
         {
-            SceneTransition.Instance.TransitionToScene("Whiteboxed");
+            SceneTransition.Instance.TransitionToScene("Hogie");
         }
         yield return null;
     }
