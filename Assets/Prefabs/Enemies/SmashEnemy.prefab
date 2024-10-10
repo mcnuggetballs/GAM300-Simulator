@@ -475,7 +475,7 @@ PrefabInstance:
     - target: {fileID: -2049929814205202405, guid: 332ad02f052095e49b165090bbe43494, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: dd727a192d84f7349a37844f25b959eb, type: 2}
+      objectReference: {fileID: 2100000, guid: b081d109eee4bfa48b4dbd7a91565c43, type: 2}
     - target: {fileID: -1946453301020861864, guid: 332ad02f052095e49b165090bbe43494, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -866,6 +866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hacked: 0
   isClose: 0
+  hackDuration: 1
 --- !u!195 &7429064918728151010
 NavMeshAgent:
   m_ObjectHideFlags: 0
