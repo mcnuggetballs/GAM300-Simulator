@@ -1747,6 +1747,8 @@ MonoBehaviour:
   rightHand: {fileID: 4551055653878787818}
   leftHand: {fileID: 8980548316130641121}
   neck: {fileID: 9003048034071301424}
+  experienceOrbPrefab: {fileID: 0}
+  numOrbs: 5
 --- !u!114 &1038657972688612252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1789,6 +1791,18 @@ MonoBehaviour:
   hackCharge: {fileID: 0}
   hackChargeNotif: {fileID: 0}
   crosshair: {fileID: 0}
+  defaultHackDisplay: {fileID: 0}
+  smashHackDisplay: {fileID: 0}
+  hookHackDisplay: {fileID: 0}
+  explodableHackDisplay: {fileID: 0}
+  shootHackDisplay: {fileID: 0}
+  smashHackedDisplay: {fileID: 0}
+  hookHackedDisplay: {fileID: 0}
+  explodableHackedDisplay: {fileID: 0}
+  shootHackedDisplay: {fileID: 0}
+  hackingInProgressDisplay: {fileID: 0}
+  isHackingHackable: 0
+  hasHacked: 0
 --- !u!136 &6570543130884617560
 CapsuleCollider:
   m_ObjectHideFlags: 0
