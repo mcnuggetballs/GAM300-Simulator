@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7739935424295604580}
   - component: {fileID: 6854920896765685675}
   m_Layer: 0
-  m_Name: escalado
+  m_Name: escalado down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
   stepAfter: 1
   speed: 0.355
   stopped: 0
-  reversed: 0
+  reversed: 1
   disableCollider: 0
   disableMesh: 0
   destPoints:
