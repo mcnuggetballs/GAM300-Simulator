@@ -5545,6 +5545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: escalado
       objectReference: {fileID: 0}
+    - target: {fileID: 6139813343398723938, guid: fa93062131be4804a842c26a2c885157, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7739935424295604580, guid: fa93062131be4804a842c26a2c885157, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.95
@@ -21038,6 +21042,10 @@ PrefabInstance:
     - target: {fileID: 6139813343398723938, guid: 4ac1100a4a24d6847a6c24100c7fb67b, type: 3}
       propertyPath: m_Name
       value: escalado down
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139813343398723938, guid: 4ac1100a4a24d6847a6c24100c7fb67b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7739935424295604580, guid: 4ac1100a4a24d6847a6c24100c7fb67b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -45136,14 +45144,6 @@ PrefabInstance:
     - target: {fileID: 8271928831877810571, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: SprintSpeed
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147087036349843805, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
-      propertyPath: m_Drag
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147087036349843805, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
