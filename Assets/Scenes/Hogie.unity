@@ -14778,12 +14778,12 @@ GameObject:
   - component: {fileID: 890229864}
   - component: {fileID: 890229863}
   m_Layer: 9
-  m_Name: roof
+  m_Name: Cube (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &890229863
 BoxCollider:
   m_ObjectHideFlags: 0
