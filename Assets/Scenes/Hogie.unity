@@ -20746,9 +20746,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 244614730812424507, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 244614730812424507, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -17.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5827121269416646851, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
       propertyPath: m_Name
       value: tutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157691355352497967, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23.87
       objectReference: {fileID: 0}
     - target: {fileID: 9215170592616299291, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40990,6 +41002,10 @@ PrefabInstance:
       propertyPath: iconImage
       value: 
       objectReference: {fileID: 21903742}
+    - target: {fileID: 8271928831877810571, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: MoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
