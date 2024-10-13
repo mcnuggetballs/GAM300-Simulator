@@ -266,7 +266,7 @@ public class PlayerHack : MonoBehaviour
                 hackBar.fillAmount = hackBarAmount/ currentSelectedEntity.hackDuration;
                 hackBarGameObject.SetActive(true);
                 hackBarAmount += Time.deltaTime;
-                if (hackBarAmount >= currentSelectedEntity.hackDuration)
+                if (hackBarAmount >= currentSelectedEntity.hackDuration * SkillTreeManager.Instance.hackTimeMultiplier)
                 {
                     hackBarAmount = 0.0f;
                     lastHackedHackable = currentSelectedEntity;

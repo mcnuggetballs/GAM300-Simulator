@@ -48,7 +48,7 @@ public class ExperienceOrb : MonoBehaviour
     {
         if (other.GetComponent<PlayerHack>())
         {
-            other.GetComponent<Entity>().AddExperience(1);
+            GameManager.Instance.AddExperience(1);
             Destroy(gameObject);
         }
     }

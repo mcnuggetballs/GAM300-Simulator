@@ -26,15 +26,9 @@ public class Entity : MonoBehaviour
     private Rigidbody _rigidbody;
     private Coroutine knockbackCoroutine;
 
-    [Header("XP")]
-    protected int experiencePoints = 0;
     [SerializeField]
     public GameObject experienceOrbPrefab;
     public int numOrbs = 5;
-    public int GetXP()
-    {
-        return experiencePoints;
-    }
     public float GetCurrentHealth()
     {
         return currentHealth;
@@ -270,10 +264,5 @@ public class Entity : MonoBehaviour
             yield return null;
         }
         Destroy(gameObject);
-    }
-
-    public void AddExperience(int value)
-    {
-        experiencePoints += value;
     }
 }

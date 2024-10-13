@@ -7,6 +7,24 @@ public class GameManager
 {
     protected bool hackMode;
     protected bool promptsDisabled = false;
+    [Header("XP")]
+    protected int experiencePoints = 0;
+    public int GetXP()
+    {
+        return experiencePoints;
+    }
+    public void AddExperience(int value)
+    {
+        experiencePoints += value;
+    }
+    public void MinusExperience(int value)
+    {
+        experiencePoints -= value;
+        if (experiencePoints < 0)
+        {
+            experiencePoints= 0;
+        }
+    }
     //singleton
     private static GameManager _instance;
 

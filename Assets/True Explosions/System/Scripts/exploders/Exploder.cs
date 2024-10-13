@@ -101,7 +101,9 @@ public class Exploder : MonoBehaviour
                 if (theEntity != null)
                 {
                     if (!theEntity.GetComponent<ThirdPersonControllerRB>())
+                    {
                         theEntity.TakeDamage(damage);
+                    }
                 }
                 if (hit.rigidbody)
                 {

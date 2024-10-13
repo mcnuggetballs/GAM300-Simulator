@@ -50,7 +50,7 @@ public class UIHealthBar : MonoBehaviour
         }
         if (xpCount)
         {
-            xpCount.text = theEntity.GetXP().ToString();
+            xpCount.text = GameManager.Instance.GetXP().ToString();
         }
     }
 }

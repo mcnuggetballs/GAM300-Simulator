@@ -26,6 +26,7 @@ public class Projectile : MonoBehaviour
         else if (spawnedFrom.layer == LayerMask.NameToLayer("Player"))
         {
             gameObject.layer = LayerMask.NameToLayer("PlayerProjectile");
+            damage = damage * SkillTreeManager.Instance.skillDamageMultiplier;
         }
     }
 
