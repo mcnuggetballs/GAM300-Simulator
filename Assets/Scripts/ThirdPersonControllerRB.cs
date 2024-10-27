@@ -273,8 +273,14 @@ namespace StarterAssets
             if (_hasAnimator)
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat("MoveX", horizontal);
-                _animator.SetFloat("MoveY", vertical);
+                _animator.SetFloat("MoveX", 0);
+                if (vertical != 0)
+                    _animator.SetFloat("MoveY", Mathf.Abs(vertical));
+                else if (horizontal != 0)
+                    _animator.SetFloat("MoveY", Mathf.Abs(horizontal));
+                else
+                    _animator.SetFloat("MoveY", 0);
+
             }
         }
 
