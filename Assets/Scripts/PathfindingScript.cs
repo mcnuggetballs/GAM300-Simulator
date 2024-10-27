@@ -98,7 +98,7 @@ public class PathfindingScript : MonoBehaviour
         }
 
         // If close enough to the current path point, move to the next one
-        if (distance < 0.1f)
+        if (distance < 0.2f)
         {
             _currentPathIndex++;
         }
