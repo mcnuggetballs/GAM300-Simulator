@@ -139,8 +139,29 @@ namespace StarterAssets
                 _animator.SetBool(_animIDGrounded, Grounded);
             }
         }
-
         private void CameraRotation()
+        {
+            // Get input for camera look direction
+            float lookX = Input.GetAxis("Mouse X");
+            float lookY = Input.GetAxis("Mouse Y");
+
+            // If there's input and camera position isn't locked
+            if ((lookX != 0 || lookY != 0) && !LockCameraPosition)
+            {
+                // Don't multiply mouse input by Time.deltaTime
+                _cinemachineTargetYaw += lookX;
+                _cinemachineTargetPitch -= lookY;
+            }
+
+            // Clamp the pitch
+            _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
+            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
+
+            // Cinemachine will follow this target
+            CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
+                _cinemachineTargetYaw, 0.0f);
+        }
+        private void CameraRotation2()
         {
             // Get input for camera look direction
             float lookX = Input.GetAxis("Mouse X");
@@ -232,16 +253,21 @@ namespace StarterAssets
                 _speed = targetSpeed;
             }
 
-            // Update the animation blend value
-            _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
-            if (_animationBlend < 0.01f) _animationBlend = 0f;
+            if (horizontal != 0 || vertical != 0)
+            {
+                _targetRotation = Mathf.Atan2(horizontal, vertical) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
+                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
 
-            // Calculate movement direction based on camera's forward direction
-            Vector3 targetDirection = _mainCamera.transform.forward * vertical + _mainCamera.transform.right * horizontal;
-            targetDirection.y = 0.0f; // Ignore the vertical component to stay on the ground
+                // Rotate to face the input direction
+                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+            }
+
+            // Calculate movement direction based on camera's rotation
+            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
             // Apply movement to the rigidbody
             _rigidbody.velocity = new Vector3(targetDirection.normalized.x * _speed, _rigidbody.velocity.y, targetDirection.normalized.z * _speed);
+
 
             // Update animator if using character
             if (_hasAnimator)
