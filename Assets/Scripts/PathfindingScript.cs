@@ -13,6 +13,7 @@ public class PathfindingScript : MonoBehaviour
 
     // Variables for handling the jump
     public bool isJumping = false;
+    public bool jumpingNavLinkEnabled = true;
     private Vector3 jumpStartPos;
     private Vector3 jumpEndPos;
     private float jumpDuration = 1.0f; // Time to complete the jump
@@ -43,7 +44,7 @@ public class PathfindingScript : MonoBehaviour
             _navMeshAgent.Warp(transform.position);
         }
 
-        if (_navMeshAgent.isOnOffMeshLink && !isJumping)
+        if (_navMeshAgent.isOnOffMeshLink && !isJumping && jumpingNavLinkEnabled)
         {
             // Start the jump
             jumpStartPos = transform.position;

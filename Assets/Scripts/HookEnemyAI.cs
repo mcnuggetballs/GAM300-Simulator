@@ -27,12 +27,15 @@ public class HookEnemyAI : EnemyAI
         switch (_currentState)
         {
             case State.Patrolling:
+                GetComponent<PathfindingScript>().jumpingNavLinkEnabled = false;
                 Patrol();
                 break;
             case State.Chasing:
+                GetComponent<PathfindingScript>().jumpingNavLinkEnabled = true;
                 Chase();
                 break;
             case State.Attacking:
+                GetComponent<PathfindingScript>().jumpingNavLinkEnabled = true;
                 Attack();
                 break;
         }

@@ -22,6 +22,7 @@ public class EnemyAI : MonoBehaviour
     protected float patrolSoundTime;
     protected bool _playerDetected;
     Animator animator;
+    protected Vector3 oldPos;
 
     public Vector3 GetCurrentPlayerPos()
     {
@@ -46,6 +47,7 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual void Start()
     {
+        oldPos = transform.position;
         animator = GetComponent<Animator>();
         if (animator != null )
         {
@@ -65,12 +67,15 @@ public class EnemyAI : MonoBehaviour
         switch (_currentState)
         {
             case State.Patrolling:
+                GetComponent<PathfindingScript>().jumpingNavLinkEnabled = false;
                 Patrol();
                 break;
             case State.Chasing:
+                GetComponent<PathfindingScript>().jumpingNavLinkEnabled = true;
                 Chase();
                 break;
             case State.Attacking:
+                GetComponent<PathfindingScript>().jumpingNavLinkEnabled = true;
                 Attack();
                 break;
         }
@@ -108,6 +113,18 @@ public class EnemyAI : MonoBehaviour
             {
                 if (!pathfinding.IsMoving())
                     _timeSinceLastPatrol += Time.deltaTime;
+            }
+            if (GetComponent<NavMeshAgent>().isOnOffMeshLink && !GetComponent<PathfindingScript>().jumpingNavLinkEnabled)
+            {
+                transform.position = oldPos;
+                GetComponent<NavMeshAgent>().Warp(oldPos);
+                Debug.Log(gameObject.name);
+                SetDestinationAndPathfinding(oldPos);
+                return;
+            }
+            else
+            {
+                oldPos = transform.position;
             }
         }
     }
