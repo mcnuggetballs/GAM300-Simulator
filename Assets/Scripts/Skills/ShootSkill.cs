@@ -8,7 +8,22 @@ public class ShootSkill : Skill
     public LayerMask targetLayer;
     public LayerMask enemyLayer;
     public LayerMask playerLayer;
-
+    private LineRenderer lineRenderer;
+    bool isShooting = false;
+    GameObject user = null;
+    private void Awake()
+    {
+        if (lineRenderer == null)
+        {
+            lineRenderer = gameObject.AddComponent<LineRenderer>();
+            lineRenderer.startWidth = 0.05f;
+            lineRenderer.endWidth = 0.05f;
+            lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+            lineRenderer.startColor = Color.red;
+            lineRenderer.endColor = Color.red;
+            lineRenderer.enabled = false; // Hide initially
+        }
+    }
     public override bool Activate(GameObject user)
     {
         if (isOnCooldown)
@@ -19,11 +34,24 @@ public class ShootSkill : Skill
 
         return true;
     }
+    private void Update()
+    {
+        if (isShooting && user)
+        {
+            Vector3 startPoint, targetPoint;
+            startPoint = user.GetComponent<Entity>().leftHand.position;
+            targetPoint = user.GetComponent<EnemyAI>().GetCurrentPlayerNeckPos();
+            ShowLine(startPoint, targetPoint);
+        }
 
+    }
     private IEnumerator ShootProjectile(GameObject user)
     {
         if ((enemyLayer.value & (1 << user.layer)) != 0)
         {
+            this.user = user;
+            isShooting = true;
+            lineRenderer.enabled = true;
             GameObject aim = Instantiate(Resources.Load("SHOOTERAIM", typeof(GameObject)) as GameObject, user.GetComponent<EnemyAI>().GetCurrentPlayerNeckPos(), Quaternion.identity,user.GetComponent<EnemyAI>().GetCurrentPlayerTransform());
             aim.transform.position -= Camera.main.transform.forward * 0.3f;
             yield return new WaitForSeconds(projectileDelay);
@@ -85,5 +113,14 @@ public class ShootSkill : Skill
                 }
             }
         }
+
+        this.user = null;
+        isShooting = false;
+        lineRenderer.enabled = false;
+    }
+    private void ShowLine(Vector3 startPoint, Vector3 endPoint)
+    {
+        lineRenderer.SetPosition(0, startPoint);
+        lineRenderer.SetPosition(1, endPoint);
     }
 }
