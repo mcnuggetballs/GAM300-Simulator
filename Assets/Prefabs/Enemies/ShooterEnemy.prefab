@@ -774,6 +774,19 @@ MonoBehaviour:
   neck: {fileID: 7123790570817528664}
   experienceOrbPrefab: {fileID: 8419897222370457097, guid: dbe4ed4d59988a74891f1404b5f27579, type: 3}
   numOrbs: 3
+  nutsAndBolts:
+  - {fileID: 7339131360005981747, guid: baa88985adafc154e8dabb0b470f9aea, type: 3}
+  - {fileID: 5399864305354452667, guid: 2d0ac455826077b478ca77f24d4b1954, type: 3}
+  - {fileID: 2249842577638527942, guid: b9c2daa4a81785848bdbba03571ea849, type: 3}
+  - {fileID: 8174826535886625080, guid: 80f8fafea22800e4d8027c7031ac7273, type: 3}
+  - {fileID: 8026841594924503017, guid: ef17efa0ca6e0724e8193f82263f68b3, type: 3}
+  - {fileID: 3884825379365718850, guid: f84cd06f1de59e349b01d8d7fb9b99b7, type: 3}
+  - {fileID: 8427449323426944025, guid: 58a53aeb8e3555249965e0c2118271bf, type: 3}
+  - {fileID: 1870277110769103320, guid: fcb02d0f927e88b45919d7bdcb46d74c, type: 3}
+  - {fileID: 4442074572126592453, guid: c0f633b8200fa46429f72a9917c675fb, type: 3}
+  - {fileID: 232846624631182247, guid: 85c30db9767aebf44a0763d74228597d, type: 3}
+  - {fileID: 6174335158217350531, guid: 0cd1b97be265ef747925116e3448fc6b, type: 3}
+  amountExploded: 4
 --- !u!114 &1739537231012271511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -912,6 +925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyController: {fileID: 6031336868091927073}
   isJumping: 0
+  jumpingNavLinkEnabled: 1
 --- !u!114 &4265625702072199137
 MonoBehaviour:
   m_ObjectHideFlags: 0

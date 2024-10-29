@@ -29,6 +29,11 @@ public class Entity : MonoBehaviour
     [SerializeField]
     public GameObject experienceOrbPrefab;
     public int numOrbs = 5;
+
+    [SerializeField]
+    public GameObject[] nutsAndBolts;
+    public int amountExploded;
+
     public float GetCurrentHealth()
     {
         return currentHealth;
@@ -66,6 +71,7 @@ public class Entity : MonoBehaviour
         if (GetComponent<EnemyAI>())
         {
             AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyHurtSounds[Random.Range(0, AudioManager.instance.EnemyHurtSounds.Length)], transform.position);
+            ExplodeNutsAndBolts();
         }
         if (GetComponent<PlayerHack>())
         {
@@ -152,6 +158,18 @@ public class Entity : MonoBehaviour
         StartCoroutine(DestroyOverTime(3f));
     }
 
+    protected void ExplodeNutsAndBolts()
+    {
+        for (int i = 0; i < amountExploded; i++)
+        {
+            GameObject nut = Instantiate(nutsAndBolts[Random.Range(0,nutsAndBolts.Length)], neck.position, Quaternion.identity);
+            Rigidbody nutrb = nut.GetComponent<Rigidbody>();
+
+            Vector3 randomDirection = Random.insideUnitSphere.normalized;
+            float explosionForce = Random.Range(0.1f, 0.3f);
+            nutrb.AddForce(randomDirection * explosionForce, ForceMode.Impulse);
+        }
+    }
     private void ExplodeExperienceOrbs()
     {
         for (int i = 0; i < numOrbs; i++)
