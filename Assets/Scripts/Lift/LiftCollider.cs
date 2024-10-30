@@ -1,6 +1,7 @@
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 public class LiftCollider : MonoBehaviour
@@ -28,7 +29,16 @@ public class LiftCollider : MonoBehaviour
 
     public ThirdPersonControllerRB GetPlayerInCollision()
     {
-        Collider playerCollider = collisions.Find(item => item.GetComponent<ThirdPersonControllerRB>());
+        Collider playerCollider = null;
+        foreach (Collider col in collisions)
+        {
+            if (col == null)
+                continue;
+            if (col.GetComponent<ThirdPersonControllerRB>())
+            {
+                playerCollider = col;
+            }
+        }
         if (playerCollider)
         {
             return playerCollider.GetComponent<ThirdPersonControllerRB>();

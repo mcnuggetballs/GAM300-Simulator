@@ -253,6 +253,10 @@ namespace StarterAssets
                 _speed = targetSpeed;
             }
 
+            // Update the animation blend value
+            _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
+            if (_animationBlend < 0.01f) _animationBlend = 0f;
+
             if (horizontal != 0 || vertical != 0)
             {
                 _targetRotation = Mathf.Atan2(horizontal, vertical) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
