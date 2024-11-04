@@ -160,6 +160,7 @@ public class Entity : MonoBehaviour
 
     protected void ExplodeNutsAndBolts()
     {
+        AudioManager.instance.PlayCachedSound(AudioManager.instance.NutsAndBolts, transform.position, 1.0f);
         for (int i = 0; i < amountExploded; i++)
         {
             GameObject nut = Instantiate(nutsAndBolts[Random.Range(0,nutsAndBolts.Length)], neck.position, Quaternion.identity);

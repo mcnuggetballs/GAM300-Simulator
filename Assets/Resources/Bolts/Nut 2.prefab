@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1532084152177472407}
   - component: {fileID: -3782398858313090045}
   - component: {fileID: -8110911144977248576}
+  - component: {fileID: -4537737603286246253}
   m_Layer: 0
   m_Name: Nut 2
   m_TagString: Untagged
@@ -134,3 +135,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-4537737603286246253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870277110769103320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c46f3e96a5a1a46990461db7fe3378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seconds: 5

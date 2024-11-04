@@ -32155,6 +32155,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Important
       objectReference: {fileID: 0}
+    - target: {fileID: 5975402827608087196, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
+      propertyPath: NutsAndBolts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975402827608087196, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
+      propertyPath: NutsAndBolts.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: eb42c337f94169646b0c62077966e7cc, type: 3}
+    - target: {fileID: 5975402827608087196, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
+      propertyPath: NutsAndBolts.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: aac04c0e3334f6b43ae09264d5ed14cd, type: 3}
     - target: {fileID: 6197791081120431049, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7344645456671467378}
   - component: {fileID: -5144148212192952512}
   - component: {fileID: -602665995214916616}
+  - component: {fileID: -8088336415429311607}
   m_Layer: 0
   m_Name: Bolt 4
   m_TagString: Untagged
@@ -134,3 +135,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-8088336415429311607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174826535886625080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c46f3e96a5a1a46990461db7fe3378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seconds: 5

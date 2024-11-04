@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] PlayerDeathSounds;
     public AudioClip[] PlayerHurtSounds;
     public AudioClip[] HackSounds;
+    public AudioClip[] NutsAndBolts;
     private void Awake()
     {
         instance = this;
