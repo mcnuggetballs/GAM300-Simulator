@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hacked: 0
   isClose: 0
+  hackDuration: 1
   explosionPrefab: {fileID: 6803756487982418761, guid: e784b4ef535d7814a8d228c7b9719a62, type: 3}
   explosionPoint: {fileID: 5229549874227436299}
   explodeSelf: 1
@@ -125,7 +126,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2613382614300109230, guid: a550b6725081357439746670afb62c10, type: 3}
+  - {fileID: 2100000, guid: bc56154998f3ac04c829202276994004, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
