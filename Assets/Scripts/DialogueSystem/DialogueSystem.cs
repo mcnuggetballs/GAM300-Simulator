@@ -98,6 +98,7 @@ public class DialogueSystem : MonoBehaviour
                         currentDialogueTextBox = bubble.textBox;
                         currentDialogueTextBox.text = "";
                         bubble.nameText.text = dialogue[index].name;
+                        bubble.PlayerIcon.sprite = dialogue[index].PlayerIcon;
                     }
                 }
                 else
@@ -110,6 +111,7 @@ public class DialogueSystem : MonoBehaviour
                         currentDialogueTextBox = bubble.textBox;
                         currentDialogueTextBox.text = "";
                         bubble.nameText.text = dialogue[index].name;
+                        bubble.PlayerIcon.sprite = dialogue[index].PlayerIcon;
                     }
                 }
             }
@@ -178,6 +180,7 @@ public class DialogueSystem : MonoBehaviour
                         currentDialogueTextBox = bubble.textBox;
                         currentDialogueTextBox.text = "";
                         bubble.nameText.text = dialogues[index].name;
+                        bubble.PlayerIcon.sprite = dialogues[index].PlayerIcon;
                     }
                 }
                 else
@@ -190,6 +193,7 @@ public class DialogueSystem : MonoBehaviour
                         currentDialogueTextBox = bubble.textBox;
                         currentDialogueTextBox.text = "";
                         bubble.nameText.text = dialogues[index].name;
+                        bubble.PlayerIcon.sprite = dialogues[index].PlayerIcon;
                     }
                 }
             }

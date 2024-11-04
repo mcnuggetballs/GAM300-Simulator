@@ -11,6 +11,10 @@ public class AttackingScript : MonoBehaviour
     protected ThirdPersonController controller;
     public string skillName;
     PlayerHack playerHack;
+    [Header("Cheat")]
+    [SerializeField]
+    Vector3 teleportPos;
+
     private void Start()
     {
         if (controller == null)
@@ -26,6 +30,22 @@ public class AttackingScript : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            Entity[] entities = FindObjectsOfType<Entity>();
+            foreach(Entity entity in entities)
+            {
+                if (entity != GetComponent<Entity>())
+                {
+                    entity.TakeDamage(100000);
+                }
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            transform.position = teleportPos;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             OnClick();
