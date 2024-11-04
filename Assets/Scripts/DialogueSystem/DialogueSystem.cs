@@ -56,22 +56,29 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    public TextMeshProUGUI nameTextBox;
-    public TextMeshProUGUI dialogueTextBox;
-    public Image player1Image;
-    public Image player2Image;
+    public TextMeshProUGUI currentDialogueTextBox;
     public float textSpeed;
     protected List<Dialogue> dialogues;
     public GameObject dialogueUI;
-
-    public List<ButtonAndText> buttonsList;
-    public GameObject optionsUI;
+    List<GameObject> bubblesSpawned = new List<GameObject>();
 
     public delegate void OnDialogueCompleteDelegate();
     public event OnDialogueCompleteDelegate OnDialogueComplete;
 
     private int index;
     private int optionIndex;
+
+    public GameObject leftPrefab;
+    public GameObject rightPrefab;
+    public void BumpBubbles(float bump)
+    {
+        for(int i = 0; i < bubblesSpawned.Count; i++)
+        {
+            Vector3 bubblePos = bubblesSpawned[i].transform.position;
+            bubblePos.y += bump;
+            bubblesSpawned[i].transform.position = bubblePos;
+        }
+    }
     public void StartDialogue(DialogueList dialogueList, string dialogueID)
     {
         List<Dialogue> dialogue = dialogueList.GetDialoguesFromID(dialogueID);
@@ -79,7 +86,33 @@ public class DialogueSystem : MonoBehaviour
         {
             dialogueUI.SetActive(true);
             index = 0;
-            dialogueTextBox.text = string.Empty;
+            if (dialogue[index] != null)
+            {
+                if (dialogue[index].side == Dialogue.Side.Left)
+                {
+                    GameObject pref = Instantiate(leftPrefab, dialogueUI.transform);
+                    DialogueBubble bubble = pref.GetComponent<DialogueBubble>();
+                    if (bubble)
+                    {
+                        bubblesSpawned.Add(pref);
+                        currentDialogueTextBox = bubble.textBox;
+                        currentDialogueTextBox.text = "";
+                        bubble.nameText.text = dialogue[index].name;
+                    }
+                }
+                else
+                {
+                    GameObject pref = Instantiate(rightPrefab, dialogueUI.transform);
+                    DialogueBubble bubble = pref.GetComponent<DialogueBubble>();
+                    if (bubble)
+                    {
+                        bubblesSpawned.Add(pref);
+                        currentDialogueTextBox = bubble.textBox;
+                        currentDialogueTextBox.text = "";
+                        bubble.nameText.text = dialogue[index].name;
+                    }
+                }
+            }
             dialogues = dialogue;
             StartCoroutine(TypeLine());
         }
@@ -95,10 +128,9 @@ public class DialogueSystem : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        UpdateNameAndImages();
         foreach (char c in dialogues[index].text.ToCharArray())
         {
-            dialogueTextBox.text += c;
+            currentDialogueTextBox.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
     }
@@ -106,46 +138,25 @@ public class DialogueSystem : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        dialogueTextBox.text = string.Empty;
-        nameTextBox.text = string.Empty;
-        player1Image.sprite = null;
-        player1Image.color = Color.clear;
-        player2Image.sprite = null;
-        player2Image.color = Color.clear;
         dialogueUI.SetActive(false);
     }
 
     // Update is called once per frame
     public void ClickNext(bool ignoreOptions)
     {
-        if (dialogueTextBox.text == dialogues[index].text)
+        Debug.LogError("Clicked");
+        if (currentDialogueTextBox == null)
+            return;
+        if (currentDialogueTextBox.text == dialogues[index].text)
         {
-                NextLine();
+            Debug.LogError("Next Line");
+            NextLine();
         }
         else
         {
+            Debug.LogError("Nope");
+            Debug.LogError(currentDialogueTextBox.text + " " + dialogues[index].text);
             StopAllCoroutines();
-        }
-    }
-
-    void UpdateNameAndImages()
-    {
-        nameTextBox.text = dialogues[index].name;
-        if (player1Image.sprite == null)
-        {
-            player1Image.color = Color.clear;
-        }
-        else
-        {
-            player1Image.color = Color.white;
-        }
-        if (player2Image.sprite == null)
-        {
-            player2Image.color = Color.clear;
-        }
-        else
-        {
-            player2Image.color = Color.white;
         }
     }
 
@@ -154,14 +165,35 @@ public class DialogueSystem : MonoBehaviour
         if (index < dialogues.Count - 1)
         {
             ++index;
-            dialogueTextBox.text = string.Empty;
-            nameTextBox.text = string.Empty;
-            player1Image.sprite = null;
-            player1Image.color = Color.clear;
-            player2Image.sprite = null;
-            player2Image.color = Color.clear;
+            if (dialogues[index] != null)
+            {
+                BumpBubbles(140);
+                if (dialogues[index].side == Dialogue.Side.Left)
+                {
+                    GameObject pref = Instantiate(leftPrefab, dialogueUI.transform);
+                    DialogueBubble bubble = pref.GetComponent<DialogueBubble>();
+                    if (bubble)
+                    {
+                        bubblesSpawned.Add(pref);
+                        currentDialogueTextBox = bubble.textBox;
+                        currentDialogueTextBox.text = "";
+                        bubble.nameText.text = dialogues[index].name;
+                    }
+                }
+                else
+                {
+                    GameObject pref = Instantiate(rightPrefab, dialogueUI.transform);
+                    DialogueBubble bubble = pref.GetComponent<DialogueBubble>();
+                    if (bubble)
+                    {
+                        bubblesSpawned.Add(pref);
+                        currentDialogueTextBox = bubble.textBox;
+                        currentDialogueTextBox.text = "";
+                        bubble.nameText.text = dialogues[index].name;
+                    }
+                }
+            }
             StartCoroutine(TypeLine());
-            //UpdateNameAndImages();
         }
         else
         {
