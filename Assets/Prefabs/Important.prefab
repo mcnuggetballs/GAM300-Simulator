@@ -951,6 +951,30 @@ PrefabInstance:
       propertyPath: teleportPos.z
       value: 36.28
       objectReference: {fileID: 0}
+    - target: {fileID: 6247563875273722324, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: teleportLiftPos.x
+      value: 16.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247563875273722324, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: teleportLiftPos.y
+      value: 6.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247563875273722324, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: teleportLiftPos.z
+      value: 36.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247563875273722324, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: teleportLevel1Pos.x
+      value: 18.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247563875273722324, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: teleportLevel1Pos.y
+      value: -0.146
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247563875273722324, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
+      propertyPath: teleportLevel1Pos.z
+      value: 19.91
+      objectReference: {fileID: 0}
     - target: {fileID: 7174194740232241242, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: fill
       value: 

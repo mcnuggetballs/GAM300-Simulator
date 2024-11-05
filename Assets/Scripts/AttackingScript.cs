@@ -13,7 +13,9 @@ public class AttackingScript : MonoBehaviour
     PlayerHack playerHack;
     [Header("Cheat")]
     [SerializeField]
-    Vector3 teleportPos;
+    Vector3 teleportLiftPos;
+    [SerializeField]
+    Vector3 teleportLevel1Pos;
 
     private void Start()
     {
@@ -30,7 +32,7 @@ public class AttackingScript : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             Entity[] entities = FindObjectsOfType<Entity>();
             foreach(Entity entity in entities)
@@ -41,9 +43,13 @@ public class AttackingScript : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.F2))
+        if (Input.GetKeyDown(KeyCode.O))
         {
-            transform.position = teleportPos;
+            transform.position = teleportLiftPos;
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            transform.position = teleportLevel1Pos;
         }
 
         if (Input.GetMouseButtonDown(0))
