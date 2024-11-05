@@ -70,15 +70,9 @@ public class DialogueSystem : MonoBehaviour
 
     public GameObject leftPrefab;
     public GameObject rightPrefab;
-    public void BumpBubbles(float bump)
-    {
-        for(int i = 0; i < bubblesSpawned.Count; i++)
-        {
-            Vector3 bubblePos = bubblesSpawned[i].transform.position;
-            bubblePos.y += bump;
-            bubblesSpawned[i].transform.position = bubblePos;
-        }
-    }
+    float bumpAmount = 140;
+    float bumpWait = 0;
+    float bumpSpeed = 2;
     public void StartDialogue(DialogueList dialogueList, string dialogueID)
     {
         List<Dialogue> dialogue = dialogueList.GetDialoguesFromID(dialogueID);
@@ -90,7 +84,8 @@ public class DialogueSystem : MonoBehaviour
             {
                 if (dialogue[index].side == Dialogue.Side.Left)
                 {
-                    GameObject pref = Instantiate(leftPrefab, dialogueUI.transform);
+                    GameObject pref = Instantiate(leftPrefab, new Vector3(0,0,0), Quaternion.identity, dialogueUI.transform);
+                    pref.transform.localPosition = new Vector3(0, -bumpAmount * 1.5f, 0);
                     DialogueBubble bubble = pref.GetComponent<DialogueBubble>();
                     if (bubble)
                     {
@@ -103,7 +98,8 @@ public class DialogueSystem : MonoBehaviour
                 }
                 else
                 {
-                    GameObject pref = Instantiate(rightPrefab, dialogueUI.transform);
+                    GameObject pref = Instantiate(rightPrefab, new Vector3(0, 0, 0), Quaternion.identity, dialogueUI.transform);
+                    pref.transform.localPosition = new Vector3(0, -bumpAmount * 1.5f, 0);
                     DialogueBubble bubble = pref.GetComponent<DialogueBubble>();
                     if (bubble)
                     {
@@ -114,6 +110,7 @@ public class DialogueSystem : MonoBehaviour
                         bubble.PlayerIcon.sprite = dialogue[index].PlayerIcon;
                     }
                 }
+                StartCoroutine(BumpBubbles());
             }
             dialogues = dialogue;
             StartCoroutine(TypeLine());
@@ -134,6 +131,19 @@ public class DialogueSystem : MonoBehaviour
         {
             currentDialogueTextBox.text += c;
             yield return new WaitForSeconds(textSpeed);
+        }
+    }
+    IEnumerator BumpBubbles()
+    { 
+        for (int i2 = 0; i2 < (int)bumpAmount / bumpSpeed; i2++)
+        {
+            for (int i = 0; i < bubblesSpawned.Count; i++)
+            {
+                Vector3 bubblePos = bubblesSpawned[i].transform.position;
+                bubblePos.y += 1 * bumpSpeed;
+                bubblesSpawned[i].transform.position = bubblePos;
+            }
+            yield return new WaitForSeconds(bumpWait);
         }
     }
     // Start is called before the first frame update
@@ -169,10 +179,10 @@ public class DialogueSystem : MonoBehaviour
             ++index;
             if (dialogues[index] != null)
             {
-                BumpBubbles(140);
                 if (dialogues[index].side == Dialogue.Side.Left)
                 {
-                    GameObject pref = Instantiate(leftPrefab, dialogueUI.transform);
+                    GameObject pref = Instantiate(leftPrefab, new Vector3(0, 0, 0), Quaternion.identity, dialogueUI.transform);
+                    pref.transform.localPosition = new Vector3(0, -bumpAmount*1.5f, 0);
                     DialogueBubble bubble = pref.GetComponent<DialogueBubble>();
                     if (bubble)
                     {
@@ -185,7 +195,8 @@ public class DialogueSystem : MonoBehaviour
                 }
                 else
                 {
-                    GameObject pref = Instantiate(rightPrefab, dialogueUI.transform);
+                    GameObject pref = Instantiate(rightPrefab, new Vector3(0, 0, 0), Quaternion.identity, dialogueUI.transform);
+                    pref.transform.localPosition = new Vector3(0, -bumpAmount * 1.5f, 0);
                     DialogueBubble bubble = pref.GetComponent<DialogueBubble>();
                     if (bubble)
                     {
@@ -196,6 +207,7 @@ public class DialogueSystem : MonoBehaviour
                         bubble.PlayerIcon.sprite = dialogues[index].PlayerIcon;
                     }
                 }
+                StartCoroutine(BumpBubbles());
             }
             StartCoroutine(TypeLine());
         }
