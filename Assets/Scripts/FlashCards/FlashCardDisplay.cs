@@ -16,9 +16,11 @@ public class FlashCardDisplay : MonoBehaviour
     float timer = 0.0f;
     int index = 0;
     bool activated = false;
+    Animator animator;
     private void Awake()
     {
         Instance = this;
+        animator = GetComponent<Animator>();
     }
     public void Activate(List<Sprite> images)
     {
@@ -26,6 +28,7 @@ public class FlashCardDisplay : MonoBehaviour
         displayImages = images;
         activated = true;
         TimeManager.Instance.PauseGame();
+        animator.SetBool("Show", true);
     }
     private void Update()
     {
@@ -45,6 +48,11 @@ public class FlashCardDisplay : MonoBehaviour
         }
     }
     public void Deactivate()
+    {
+        animator.SetBool("Show", false);
+    }
+
+    public void Resume()
     {
         display.SetActive(false);
         activated = false;
