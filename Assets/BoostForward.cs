@@ -93,6 +93,12 @@ public class BoostForward : StateMachineBehaviour
 
                     // Calculate the direction towards the nearest enemy
                     direction = (targetPosition - playerTransform.position).normalized;
+
+                    if ((playerTransform.gameObject.layer == LayerMask.NameToLayer("Player")))
+                    {
+                        float _targetRotation = Quaternion.LookRotation(direction).eulerAngles.y;
+                        playerTransform.transform.rotation = Quaternion.Euler(0.0f, _targetRotation, 0.0f);
+                    }
                 }
             }
         }
