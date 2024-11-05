@@ -80,12 +80,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4acfca0308c35d04d8ad10a34850d36f, type: 3}
   - {fileID: 8300000, guid: 6c67e58f02aa1c644ae027b448a398ab, type: 3}
   EnemyHurtSounds:
-  - {fileID: 8300000, guid: 4963e19046fe21e4eb1168340199b4ac, type: 3}
-  - {fileID: 8300000, guid: 6884720fa5bd3ba42a1d719dab6cc465, type: 3}
-  - {fileID: 8300000, guid: af51d347873be6d48bd8e43605bc0091, type: 3}
-  - {fileID: 8300000, guid: 28e830fcc67e40b40a2b47676c15956e, type: 3}
-  - {fileID: 8300000, guid: 4a79ac45819fd69438471057e5ea800b, type: 3}
-  - {fileID: 8300000, guid: 8c9e9ccd975f683418f7c54117a8728e, type: 3}
+  - {fileID: 8300000, guid: 77f446e139fac9644aa820a38380e4b5, type: 3}
+  - {fileID: 8300000, guid: 7f3bb92094c8d34449c268859b3faf95, type: 3}
+  - {fileID: 8300000, guid: de34241def5101f45b6875b9c837a535, type: 3}
+  - {fileID: 8300000, guid: b24fbfdaa2ef9974e82ae06743d1a8bc, type: 3}
+  - {fileID: 8300000, guid: dceb3c8c83888c145aee775d1deb3cf2, type: 3}
+  - {fileID: 8300000, guid: 00cf62b832f2f544e80845316f918852, type: 3}
   EnemyPatrolSounds:
   - {fileID: 8300000, guid: ab9d893fac14a2149b9a589bb4c3a0b7, type: 3}
   - {fileID: 8300000, guid: e95fe1190c3a80949b4e7d4a4af177fd, type: 3}
