@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SkillTreeImageSwap : MonoBehaviour
 {
+    bool locked = true;
     [SerializeField]
     bool hack;
     [SerializeField]
@@ -16,6 +17,8 @@ public class SkillTreeImageSwap : MonoBehaviour
     [SerializeField]
     Sprite unlockedImage;
     [SerializeField]
+    Sprite lockedImage;
+    [SerializeField]
     Color unlockedColor;
     private void Update()
     {
@@ -26,6 +29,13 @@ public class SkillTreeImageSwap : MonoBehaviour
                 if (unlockedImage)
                     mySprite.sprite = unlockedImage;
                 mySprite.color = unlockedColor;
+                locked = false;
+            }
+            else
+            {
+                if (lockedImage)
+                    mySprite.sprite = lockedImage;
+                locked = true;
             }
         }
         else
@@ -35,12 +45,19 @@ public class SkillTreeImageSwap : MonoBehaviour
                 if (unlockedImage)
                     mySprite.sprite = unlockedImage;
                 mySprite.color = unlockedColor;
+                locked = false;
+            }
+            else
+            {
+                if (lockedImage)
+                    mySprite.sprite = lockedImage;
+                locked = true;
             }
         }
     }
     public void Press()
     {
-        if (SkillTree.Instance.currentSelectedSkill != this)
+        if (SkillTree.Instance.currentSelectedSkill != this && !locked)
         {
             SkillTree.Instance.currentSelectedSkill = this;
         }

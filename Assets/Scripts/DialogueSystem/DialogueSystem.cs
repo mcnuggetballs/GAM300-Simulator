@@ -182,7 +182,7 @@ public class DialogueSystem : MonoBehaviour
             Debug.LogError(currentDialogueTextBox.text + " " + dialogues[index].text);
             currentDialogueTextBox.text = dialogues[index].text;
             StopCoroutine(typeLineCoroutine);
-            StopAudio();
+            //StopAudio();
         }
     }
 
