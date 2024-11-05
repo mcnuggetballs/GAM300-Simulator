@@ -292,7 +292,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   dashDuration: 0.2
-  viewAngleThreshold: 60
+  viewAngleThreshold: 360
 --- !u!114 &-6508620683125153483
 MonoBehaviour:
   m_ObjectHideFlags: 1
