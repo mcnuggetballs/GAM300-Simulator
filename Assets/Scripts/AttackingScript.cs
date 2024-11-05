@@ -13,9 +13,11 @@ public class AttackingScript : MonoBehaviour
     PlayerHack playerHack;
     [Header("Cheat")]
     [SerializeField]
-    Vector3 teleportLiftPos;
+    Transform teleportLiftPos;
     [SerializeField]
-    Vector3 teleportLevel1Pos;
+    Transform teleportLevel1Pos;
+    [SerializeField]
+    Transform cameraRoot;
 
     private void Start()
     {
@@ -45,11 +47,12 @@ public class AttackingScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            transform.position = teleportLiftPos;
+            transform.position = teleportLiftPos.position;
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            transform.position = teleportLevel1Pos;
+            transform.position = teleportLevel1Pos.position;
+            //cameraRoot.rotation = Quaternion.Euler(0f, 180.0f, 0f);
         }
 
         if (Input.GetMouseButtonDown(0))
