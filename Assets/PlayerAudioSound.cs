@@ -9,7 +9,8 @@ public class PlayerAudioSound : StateMachineBehaviour
     {
         if (animator.GetComponent<PlayerHack>() != null)
         {
-            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.PlayerSlashGroaningSounds[Random.Range(0, AudioManager.instance.PlayerSlashGroaningSounds.Length)], animator.transform.position);
+            if (Random.Range(0,100) <= 70)
+                AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.PlayerSlashGroaningSounds[Random.Range(0, AudioManager.instance.PlayerSlashGroaningSounds.Length)], animator.transform.position);
         }
     }
 
