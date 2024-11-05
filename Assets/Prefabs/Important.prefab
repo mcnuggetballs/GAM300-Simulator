@@ -51,10 +51,10 @@ MonoBehaviour:
   sfxVolume: 1
   BGMSource: {fileID: 7230371105629324614}
   HitSoundsFX:
-  - {fileID: 8300000, guid: c5a741ac60f2fa343804badaa2caaac9, type: 3}
-  - {fileID: 8300000, guid: 6f27fc761976efc488e36f3a45c3aa97, type: 3}
-  - {fileID: 8300000, guid: 61a61a9a334c0c443bdcfd2a3807d306, type: 3}
-  - {fileID: 8300000, guid: 5c9d38b359dcd41469fb0b392c8d5637, type: 3}
+  - {fileID: 8300000, guid: a68977df30fa67547a09d80c38a5f7e9, type: 3}
+  - {fileID: 8300000, guid: 6b4c845ba28100343953f8b9de60b2e7, type: 3}
+  - {fileID: 8300000, guid: 58278b67756d5b14788a5357a4bb1c68, type: 3}
+  - {fileID: 8300000, guid: 22c592775025ac54e99b7737aecb33aa, type: 3}
   WhooshSoundsFX:
   - {fileID: 8300000, guid: 2b7413ada060a0d47976cd54072692c3, type: 3}
   - {fileID: 8300000, guid: e5acf1dd7ceaee74e8bd24b85320fae5, type: 3}
