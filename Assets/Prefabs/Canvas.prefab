@@ -670,7 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentDialogueTextBox: {fileID: 0}
-  textSpeed: 0.08
+  textSpeed: 0.1
   dialogueUI: {fileID: 2637158605686957686}
   leftPrefab: {fileID: 4502064793040216435, guid: 13bcd06d41dd9ec4789f6a790aaa844a, type: 3}
   rightPrefab: {fileID: 10574723699021703, guid: ecd76b94caa361748998b50e76242f93, type: 3}
