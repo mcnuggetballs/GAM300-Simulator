@@ -10,6 +10,7 @@ public class SkillTree : MonoBehaviour
 
     public GameObject outline;
     public TMPro.TextMeshProUGUI desc;
+    public TMPro.TextMeshProUGUI cost;
     public static SkillTree Instance { get; private set; }
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class SkillTree : MonoBehaviour
             outline.SetActive(true);
             outline.transform.position = currentSelectedSkill.transform.position;
             desc.text = currentSelectedSkill.description;
+            cost.text = currentSelectedSkill.cost.ToString();
         }
         else
         {

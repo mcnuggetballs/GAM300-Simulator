@@ -8,7 +8,7 @@ public class GameManager
     protected bool hackMode;
     protected bool promptsDisabled = false;
     [Header("XP")]
-    protected int experiencePoints = 0;
+    protected int experiencePoints = 1000;
     public int GetXP()
     {
         return experiencePoints;

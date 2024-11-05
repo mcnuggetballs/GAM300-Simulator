@@ -11,7 +11,7 @@ public class SkillTreeImageSwap : MonoBehaviour
     [SerializeField]
     int level;
     [SerializeField]
-    int cost;
+    public int cost;
     [SerializeField]
     public string description;
     [SerializeField]
@@ -24,7 +24,7 @@ public class SkillTreeImageSwap : MonoBehaviour
     {
         if (hack)
         {
-            if (SkillTreeManager.Instance.hackLevel >= level)
+            if (SkillTreeManager.Instance.hackLevel >= level-1)
             {
                 if (unlockedImage)
                     mySprite.sprite = unlockedImage;
@@ -39,7 +39,7 @@ public class SkillTreeImageSwap : MonoBehaviour
         }
         else
         {
-            if (SkillTreeManager.Instance.slashLevel >= level)
+            if (SkillTreeManager.Instance.slashLevel >= level-1)
             {
                 if (unlockedImage)
                     mySprite.sprite = unlockedImage;

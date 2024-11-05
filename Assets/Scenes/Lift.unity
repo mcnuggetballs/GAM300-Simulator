@@ -289,7 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locked: 0
   hack: 0
-  level: 0
+  level: 1
   cost: 20
   description: 25% chance of generating extra +1 hack energy with each slash
   mySprite: {fileID: 88990371}
@@ -1068,6 +1068,7 @@ MonoBehaviour:
   currentSelectedSkill: {fileID: 0}
   outline: {fileID: 242310888}
   desc: {fileID: 1904301579}
+  cost: {fileID: 812435699}
 --- !u!1 &318046710
 GameObject:
   m_ObjectHideFlags: 0
@@ -2863,8 +2864,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 91.3, y: 0}
-  m_SizeDelta: {x: 71.4944, y: 81.1418}
+  m_AnchoredPosition: {x: 112.55525, y: 0}
+  m_SizeDelta: {x: 114.005, y: 81.1418}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &812435699
 MonoBehaviour:
@@ -5158,7 +5159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locked: 0
   hack: 1
-  level: 0
+  level: 1
   cost: 20
   description: Hack time decreased by 50%
   mySprite: {fileID: 1385812802}
