@@ -20,6 +20,7 @@ public class SkillTreeUIManager : MonoBehaviour
         else
         {
             skillTree.SetActive(true);
+            SkillTree.Instance.currentSelectedSkill = null;
             theText.text = "Close";
         }
     }

@@ -20,6 +20,8 @@ public class SkillTreeImageSwap : MonoBehaviour
     Sprite unlockedImage;
     [SerializeField]
     Sprite lockedImage;
+    public bool purchased = false;
+    public GameObject purchasedGameObject;
     private void Update()
     {
         if (hack)
@@ -36,6 +38,16 @@ public class SkillTreeImageSwap : MonoBehaviour
                     mySprite.sprite = lockedImage;
                 locked = true;
             }
+            if (SkillTreeManager.Instance.hackLevel >= level)
+            {
+                purchased = true;
+                purchasedGameObject.SetActive(true);
+            }
+            else
+            {
+                purchased = false;
+                purchasedGameObject.SetActive(false);
+            }
         }
         else
         {
@@ -51,11 +63,23 @@ public class SkillTreeImageSwap : MonoBehaviour
                     mySprite.sprite = lockedImage;
                 locked = true;
             }
+            if (SkillTreeManager.Instance.slashLevel >= level)
+            {
+                purchased = true;
+                purchasedGameObject.SetActive(true);
+            }
+            else
+            {
+                purchased = false;
+                purchasedGameObject.SetActive(false);
+            }
         }
     }
     public void Press()
     {
-        if (SkillTree.Instance.currentSelectedSkill != this && !locked)
+        if (locked)
+            return;
+        if (SkillTree.Instance.currentSelectedSkill != this)
         {
             SkillTree.Instance.currentSelectedSkill = this;
         }
