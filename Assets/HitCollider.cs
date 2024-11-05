@@ -64,7 +64,7 @@ public class HitCollider : MonoBehaviour
                 }
                 else
                 {
-                    AudioManager.instance.PlayCachedSound(AudioManager.instance.HitSoundsFX,other.transform.position,0.2f);
+                    AudioManager.instance.PlayCachedSound(AudioManager.instance.HitSoundsFX,other.transform.position,0.45f);
                 }
                 VFXManager.Instance.Spawn("Hit_02", GetComponent<Collider>().ClosestPointOnBounds(other.bounds.center));
 
