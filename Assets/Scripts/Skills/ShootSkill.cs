@@ -75,6 +75,7 @@ public class ShootSkill : Skill
             EnemyAI shooterAI = user.GetComponent<EnemyAI>();
             if (shooterAI != null && projectilePrefab != null)
             {
+                AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyShooterSounds[4], user.transform.position);
                 GameObject projectile = Instantiate(projectilePrefab, shooterAI.GetComponent<Entity>().leftHand.position, Quaternion.identity);
                 Vector3 directionToPlayer = (shooterAI.GetCurrentPlayerNeckPos() - shooterAI.GetComponent<Entity>().leftHand.position).normalized;
 
@@ -108,6 +109,7 @@ public class ShootSkill : Skill
 
                 Vector3 shootDirection = (targetPoint - entity.leftHand.position).normalized;
 
+                AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyShooterSounds[4], user.transform.position);
                 GameObject projectile = Instantiate(projectilePrefab, entity.leftHand.position, Quaternion.identity);
                 Projectile projectileScript = projectile.GetComponent<Projectile>();
                 if (projectileScript != null)
