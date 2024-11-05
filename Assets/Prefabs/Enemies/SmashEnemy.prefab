@@ -358,15 +358,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 332ad02f052095e49b165090bbe43494, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.678
+      value: 0.675
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 332ad02f052095e49b165090bbe43494, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.678
+      value: 0.675
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 332ad02f052095e49b165090bbe43494, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.678
+      value: 0.675
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 332ad02f052095e49b165090bbe43494, type: 3}
       propertyPath: m_LocalPosition.x
@@ -845,8 +845,8 @@ MonoBehaviour:
   JumpTimeout: 0.05
   FallTimeout: 0.15
   Grounded: 1
-  GroundedOffset: -0.118
-  GroundedRadius: 0.16
+  GroundedOffset: -0.177
+  GroundedRadius: 0.24
   GroundLayers:
     serializedVersion: 2
     m_Bits: 257
