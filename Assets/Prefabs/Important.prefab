@@ -319,7 +319,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 2772710793558463066, guid: 598d47c1fd1b1424eb5b79a8989fe4bf, type: 2}
   m_audioClip: {fileID: 8300000, guid: 33b5552feb3528b46914a262f5015ffa, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.43
+  m_Volume: 0.165
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -415,7 +415,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 2772710793558463066, guid: 598d47c1fd1b1424eb5b79a8989fe4bf, type: 2}
   m_audioClip: {fileID: 8300000, guid: 3621b8ddd888e4a44bb72d55a87a240e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.804
+  m_Volume: 0.591
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -511,7 +511,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 2772710793558463066, guid: 598d47c1fd1b1424eb5b79a8989fe4bf, type: 2}
   m_audioClip: {fileID: 8300000, guid: 93a904c60e7a9ca4aae7baa5c2c1e5d1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.419
+  m_Volume: 0.188
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -607,7 +607,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 2772710793558463066, guid: 598d47c1fd1b1424eb5b79a8989fe4bf, type: 2}
   m_audioClip: {fileID: 8300000, guid: a989aa05134c0254ea8b7476b59687c6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.465
+  m_Volume: 0.183
   m_Pitch: 2.55
   Loop: 0
   Mute: 0
@@ -877,7 +877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4613121359359477459, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: FootstepAudioVolume
-      value: 1
+      value: 0.344
       objectReference: {fileID: 0}
     - target: {fileID: 4907923929549781509, guid: bbb9698ceb057f942bb9c1571f2f3457, type: 3}
       propertyPath: hackBar
