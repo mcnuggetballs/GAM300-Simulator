@@ -59,13 +59,19 @@ public class TimeManager : MonoBehaviour
     {
         isPaused = true;
         StopAllCoroutines();
-        Time.timeScale = originalTimeScale;
-        Time.fixedDeltaTime = originalFixedDeltaTime;
+        Time.timeScale = 0;
+        Time.fixedDeltaTime = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Method to resume the TimeManager
     public void ResumeGame()
     {
         isPaused = false;
+        Time.timeScale = originalTimeScale;
+        Time.fixedDeltaTime = originalFixedDeltaTime;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

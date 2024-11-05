@@ -78,6 +78,7 @@ public class DialogueSystem : MonoBehaviour
         List<Dialogue> dialogue = dialogueList.GetDialoguesFromID(dialogueID);
         if (dialogue.Count > 0)
         {
+            TimeManager.Instance.PauseGame();
             dialogueUI.SetActive(true);
             index = 0;
             if (dialogue[index] != null)
@@ -168,7 +169,8 @@ public class DialogueSystem : MonoBehaviour
         {
             Debug.LogError("Nope");
             Debug.LogError(currentDialogueTextBox.text + " " + dialogues[index].text);
-            StopAllCoroutines();
+            //currentDialogueTextBox.text = dialogues[index].text;
+            //StopAllCoroutines();
         }
     }
 
@@ -221,6 +223,7 @@ public class DialogueSystem : MonoBehaviour
                 OnDialogueComplete();
                 Debug.LogWarning("DialogueCompleted");
             }
+            TimeManager.Instance.ResumeGame();
         }
     }
 }
