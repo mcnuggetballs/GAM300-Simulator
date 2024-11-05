@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] protected Transform player;
+    protected Transform player;
     [SerializeField] protected PathfindingScript pathfinding;
     [SerializeField] protected float detectionRadius = 10f;
     [SerializeField] protected float attackRadius = 2f;
@@ -47,6 +48,11 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual void Start()
     {
+        ThirdPersonControllerRB pp = FindObjectOfType<ThirdPersonControllerRB>();
+        if (pp != null)
+        {
+            player = pp.transform;
+        }
         oldPos = transform.position;
         animator = GetComponent<Animator>();
         if (animator != null )
