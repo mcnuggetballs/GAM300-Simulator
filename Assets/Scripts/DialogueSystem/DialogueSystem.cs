@@ -28,6 +28,7 @@ public class Dialogue
     public string name;
     public string text;
     public Sprite PlayerIcon;
+    public DialogueEvent OnStart;
     public DialogueEvent OnGoNext;
     public Side side;
 }
@@ -62,6 +63,9 @@ public class DialogueSystem : MonoBehaviour
     public GameObject dialogueUI;
     List<GameObject> bubblesSpawned = new List<GameObject>();
 
+    public delegate void OnDialogueStartDelegate();
+    public event OnDialogueStartDelegate OnDialogueStart;
+
     public delegate void OnDialogueCompleteDelegate();
     public event OnDialogueCompleteDelegate OnDialogueComplete;
 
@@ -83,6 +87,12 @@ public class DialogueSystem : MonoBehaviour
             index = 0;
             if (dialogue[index] != null)
             {
+                dialogue[index].OnStart.Invoke();
+                if (OnDialogueStart != null)
+                {
+                    OnDialogueStart();
+                    Debug.LogWarning("DialogueStart");
+                }
                 if (dialogue[index].side == Dialogue.Side.Left)
                 {
                     GameObject pref = Instantiate(leftPrefab, new Vector3(0,0,0), Quaternion.identity, dialogueUI.transform);
@@ -181,6 +191,12 @@ public class DialogueSystem : MonoBehaviour
             ++index;
             if (dialogues[index] != null)
             {
+                dialogues[index].OnStart.Invoke();
+                if (OnDialogueStart != null)
+                {
+                    OnDialogueStart();
+                    Debug.LogWarning("DialogueStart");
+                }
                 if (dialogues[index].side == Dialogue.Side.Left)
                 {
                     GameObject pref = Instantiate(leftPrefab, new Vector3(0, 0, 0), Quaternion.identity, dialogueUI.transform);
