@@ -51,7 +51,8 @@ public class ShootSkill : Skill
     }
     public void DisableEverything()
     {
-        StopCoroutine(shootingCoroutine);
+        if (shootingCoroutine != null)
+            StopCoroutine(shootingCoroutine);
         shootingCoroutine = null;
         this.user = null;
         isShooting = false;
