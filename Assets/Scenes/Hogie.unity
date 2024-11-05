@@ -52427,12 +52427,24 @@ MonoBehaviour:
           m_Calls: []
       side: 1
     - name: Justin Case
-      text: Access denied? What's going on? No way you robots are replacing me! Let
-        me in now!
+      text: "Hey, intruder? Relax, it\u2019s just me! What, I forget to refill the
+        coffee pot or something?"
       PlayerIcon: {fileID: 21300000, guid: cd77755d27b855648b4865bdec7e7831, type: 3}
       OnStart:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 2084902377}
+            m_TargetAssemblyTypeName: HookEnemyDialogue, Assembly-CSharp
+            m_MethodName: PlayClip
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 2
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       OnGoNext:
         m_PersistentCalls:
           m_Calls: []
@@ -52461,11 +52473,24 @@ MonoBehaviour:
           m_Calls: []
       side: 1
     - name: Justin Case
-      text: I'll beat the bolts out of you, but don't worry. I'll keep it brief.
+      text: "Alright, tin can, I\u2019ll beat the bolts out of you\u2014and I\u2019ll
+        keep it brief!"
       PlayerIcon: {fileID: 21300000, guid: cd77755d27b855648b4865bdec7e7831, type: 3}
       OnStart:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 2084902377}
+            m_TargetAssemblyTypeName: HookEnemyDialogue, Assembly-CSharp
+            m_MethodName: PlayClip
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 3
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       OnGoNext:
         m_PersistentCalls:
           m_Calls:
@@ -52500,6 +52525,8 @@ MonoBehaviour:
   audioClips:
   - {fileID: 8300000, guid: eec0989ddc7aa664ebb93319923c8ac2, type: 3}
   - {fileID: 8300000, guid: 995cda6cae59d974f8defeb560668718, type: 3}
+  - {fileID: 8300000, guid: 23d3d8412fd025841be212d0fe6d2139, type: 3}
+  - {fileID: 8300000, guid: 227af854065e2684c975d3863cad7f34, type: 3}
 --- !u!65 &2084902378
 BoxCollider:
   m_ObjectHideFlags: 0
