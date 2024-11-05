@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SkillTreeImageSwap : MonoBehaviour
 {
-    bool locked = true;
+    public bool locked;
     [SerializeField]
     bool hack;
     [SerializeField]
@@ -13,13 +13,13 @@ public class SkillTreeImageSwap : MonoBehaviour
     [SerializeField]
     int cost;
     [SerializeField]
+    public string description;
+    [SerializeField]
     Image mySprite;
     [SerializeField]
     Sprite unlockedImage;
     [SerializeField]
     Sprite lockedImage;
-    [SerializeField]
-    Color unlockedColor;
     private void Update()
     {
         if (hack)
@@ -28,7 +28,6 @@ public class SkillTreeImageSwap : MonoBehaviour
             {
                 if (unlockedImage)
                     mySprite.sprite = unlockedImage;
-                mySprite.color = unlockedColor;
                 locked = false;
             }
             else
@@ -44,7 +43,6 @@ public class SkillTreeImageSwap : MonoBehaviour
             {
                 if (unlockedImage)
                     mySprite.sprite = unlockedImage;
-                mySprite.color = unlockedColor;
                 locked = false;
             }
             else
