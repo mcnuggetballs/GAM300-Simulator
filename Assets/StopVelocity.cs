@@ -12,6 +12,10 @@ public class StopVelocity : StateMachineBehaviour
         {
             animator.GetComponent<ThirdPersonControllerRB>().StopMovement();
         }
+        if (animator.GetComponent<StationaryShooterAI>())
+        {
+            animator.GetComponent<StationaryShooterAI>().CancelShoot();
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -92,4 +92,16 @@ public class StationaryShooterAI : EnemyAI
             _currentState = State.Chasing;
         }
     }
+
+    public void CancelShoot()
+    {
+        if (theEntity.skill)
+        {
+
+            if (theEntity.skill.GetComponent<ShootSkill>())
+            {
+                theEntity.skill.GetComponent<ShootSkill>().DisableEverything();
+            }
+        }
+    }
 }

@@ -11,11 +11,12 @@ public class ShootSkill : Skill
     private LineRenderer lineRenderer;
     bool isShooting = false;
     GameObject user = null;
+    Coroutine shootingCoroutine;
     private void Awake()
     {
         if (lineRenderer == null)
         {
-            lineRenderer = gameObject.AddComponent<LineRenderer>();
+            lineRenderer = gameObject.GetComponent<LineRenderer>();
             lineRenderer.startWidth = 0.05f;
             lineRenderer.endWidth = 0.05f;
             lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
@@ -29,7 +30,7 @@ public class ShootSkill : Skill
         if (isOnCooldown)
             return false;
 
-        StartCoroutine(ShootProjectile(user));
+        shootingCoroutine = StartCoroutine(ShootProjectile(user));
         StartCoroutine(Cooldown());
 
         return true;
@@ -47,6 +48,14 @@ public class ShootSkill : Skill
             }
         }
 
+    }
+    public void DisableEverything()
+    {
+        StopCoroutine(shootingCoroutine);
+        shootingCoroutine = null;
+        this.user = null;
+        isShooting = false;
+        lineRenderer.enabled = false;
     }
     private IEnumerator ShootProjectile(GameObject user)
     {
