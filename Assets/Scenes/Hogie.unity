@@ -52130,8 +52130,7 @@ MonoBehaviour:
   - dialogueID: 0
     dialogues:
     - name: Ann Cord
-      text: 'Intruder detected: Justin Case, species human. Threat level: moderate.
-        Initiating attack sequence.'
+      text: 'Intruder detected: Justin Case, species human. Initiating attack sequence.'
       PlayerIcon: {fileID: 21300000, guid: de2d2d83651a30744a77702a16a38493, type: 3}
       OnStart:
         m_PersistentCalls:
