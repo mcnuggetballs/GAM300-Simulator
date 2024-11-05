@@ -9994,6 +9994,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2967059239719145777, guid: 4d452c7688b58a044a831b300b808425, type: 3}
   m_PrefabInstance: {fileID: 428239308}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &433858447 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7637611345985155087, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
+  m_PrefabInstance: {fileID: 1101181615}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &435742770
 GameObject:
   m_ObjectHideFlags: 0
@@ -29529,6 +29534,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.31776574
       objectReference: {fileID: 0}
+    - target: {fileID: 5493635258692426626, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
+      propertyPath: cameraRoot
+      value: 
+      objectReference: {fileID: 433858447}
     - target: {fileID: 5493635258692426626, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
       propertyPath: teleportLiftPos
       value: 
