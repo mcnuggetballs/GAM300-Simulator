@@ -38,6 +38,17 @@ public class SkillTreeImageSwap : MonoBehaviour
             }
         }
     }
+    public void Press()
+    {
+        if (SkillTree.Instance.currentSelectedSkill != this)
+        {
+            SkillTree.Instance.currentSelectedSkill = this;
+        }
+        else
+        {
+            SkillTree.Instance.currentSelectedSkill = null;
+        }
+    }
     public void Buy()
     {
         if (hack)

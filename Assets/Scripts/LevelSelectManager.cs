@@ -9,7 +9,6 @@ public class LevelSelectManager : MonoBehaviour
     public int difficulty = -1;
     public ToggleButtonSprite selectedLevelButton;
     public ToggleButtonSprite selectedDifficultyButton;
-    public GameObject outlineSelected;
     public static LevelSelectManager Instance { get; private set; }
     public AudioSource proceedSFX;
 
@@ -34,9 +33,6 @@ public class LevelSelectManager : MonoBehaviour
         {
             if (selectedLevelButton)
             {
-                outlineSelected.SetActive(true);
-                outlineSelected.transform.position = selectedLevelButton.transform.position;
-
                 animator.SetBool("LevelSelected", true);
                 if (selectedDifficultyButton)
                 {
@@ -49,7 +45,6 @@ public class LevelSelectManager : MonoBehaviour
             }
             else
             {
-                outlineSelected.SetActive(false);
                 animator.SetBool("LevelSelected", false);
                 if (selectedDifficultyButton)
                 {
