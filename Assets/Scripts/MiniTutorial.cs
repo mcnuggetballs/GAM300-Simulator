@@ -6,21 +6,21 @@ using UnityEngine;
 
 public class MiniTutorial : MonoBehaviour
 {
-    int step = 0;
-    [SerializeField]
-    GameObject hello;
+    int step = 1;
+    //[SerializeField]
+    //GameObject hello;
     [SerializeField]
     GameObject move;
     [SerializeField]
     GameObject dash;
     [SerializeField]
     GameObject jump;
-    [SerializeField]
-    GameObject attack;
+    //[SerializeField]
+    //GameObject attack;
     [SerializeField]
     GameObject hackmode;
-    [SerializeField]
-    GameObject hackobject;
+    //[SerializeField]
+    //GameObject hackobject;
     [SerializeField]
     GameObject useskill;
     [SerializeField]
@@ -84,7 +84,7 @@ public class MiniTutorial : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         if (value == 0)
         {
-            hello.SetActive(false);
+            //hello.SetActive(false);
             move.SetActive(true);
         }
         else if (value == 1)
@@ -100,23 +100,23 @@ public class MiniTutorial : MonoBehaviour
         else if (value == 3)
         {
             jump.SetActive(false);
-            attack.SetActive(true);
-        }
-        else if (value == 4)
-        {
-            attack.SetActive(false);
             hackmode.SetActive(true);
         }
+        //else if (value == 4)
+        //{
+        //    attack.SetActive(false);
+        //    hackmode.SetActive(true);
+        //}
         else if (value == 5)
         {
             hackmode.SetActive(false);
-            hackobject.SetActive(true);
-        }
-        else if (value == 6)
-        {
-            hackobject.SetActive(false);
             useskill.SetActive(true);
         }
+        //else if (value == 6)
+        //{
+        //    hackobject.SetActive(false);
+        //    useskill.SetActive(true);
+        //}
         else if (value == 7)
         {
             useskill.SetActive(false);
@@ -165,7 +165,7 @@ public class MiniTutorial : MonoBehaviour
             if (step == 3)
             {
                 animator.SetTrigger("Exit");
-                step = 4;
+                step = 5;
                 StartCoroutine(Enter(value));
             }
         }
@@ -183,7 +183,7 @@ public class MiniTutorial : MonoBehaviour
             if (step == 5)
             {
                 animator.SetTrigger("Exit");
-                step = 6;
+                step = 7;
                 StartCoroutine(Enter(value));
             }
         }
@@ -226,7 +226,7 @@ public class MiniTutorial : MonoBehaviour
     }
     IEnumerator Hello()
     {
-        hello.SetActive(true);
+        //hello.SetActive(true);
         yield return new WaitForSeconds(3.0f);
         CompleteStep(0);
         if (step == 0)
