@@ -102,6 +102,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 75851c944f175804f8621fb977528f27, type: 3}
   - {fileID: 8300000, guid: dc353e79195f0c841b1dabf564387405, type: 3}
   - {fileID: 8300000, guid: 156de9f3671e89841be2f7328ccd72fc, type: 3}
+  - {fileID: 8300000, guid: 793e15d58f673ec42b2702be6967b343, type: 3}
   EnemySmashSounds:
   - {fileID: 8300000, guid: c3d04ca8667fb114b927ee8fb33efe4d, type: 3}
   PlayerDashSound: {fileID: 8300000, guid: a8738df470c14fa49b3750cf1d31b3a7, type: 3}
@@ -1034,7 +1035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8833322832391294244, guid: 4252bb2d25a7e8d42ae1dd587e5a70d0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.260004
+      value: 2.2884536
       objectReference: {fileID: 0}
     - target: {fileID: 8833322832391294244, guid: 4252bb2d25a7e8d42ae1dd587e5a70d0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1092,7 +1093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2614119872116586838, guid: f74014afde7d6474189a7ebfffaf3d20, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.260004
+      value: 2.2884536
       objectReference: {fileID: 0}
     - target: {fileID: 2614119872116586838, guid: f74014afde7d6474189a7ebfffaf3d20, type: 3}
       propertyPath: m_LocalRotation.w
