@@ -77,6 +77,7 @@ public class DialogueSystem : MonoBehaviour
     float bumpAmount = 140;
     float bumpWait = 0;
     float bumpSpeed = 2;
+    Coroutine typeLineCoroutine;
     public void StartDialogue(DialogueList dialogueList, string dialogueID)
     {
         List<Dialogue> dialogue = dialogueList.GetDialoguesFromID(dialogueID);
@@ -124,7 +125,7 @@ public class DialogueSystem : MonoBehaviour
                 StartCoroutine(BumpBubbles());
             }
             dialogues = dialogue;
-            StartCoroutine(TypeLine());
+            typeLineCoroutine = StartCoroutine(TypeLine());
         }
         else
         {
@@ -141,7 +142,7 @@ public class DialogueSystem : MonoBehaviour
         foreach (char c in dialogues[index].text.ToCharArray())
         {
             currentDialogueTextBox.text += c;
-            yield return new WaitForSeconds(textSpeed);
+            yield return new WaitForSecondsRealtime(textSpeed);
         }
     }
     IEnumerator BumpBubbles()
@@ -154,7 +155,7 @@ public class DialogueSystem : MonoBehaviour
                 bubblePos.y += 1 * bumpSpeed;
                 bubblesSpawned[i].transform.position = bubblePos;
             }
-            yield return new WaitForSeconds(bumpWait);
+            yield return new WaitForSecondsRealtime(bumpWait);
         }
     }
     // Start is called before the first frame update
@@ -179,8 +180,9 @@ public class DialogueSystem : MonoBehaviour
         {
             Debug.LogError("Nope");
             Debug.LogError(currentDialogueTextBox.text + " " + dialogues[index].text);
-            //currentDialogueTextBox.text = dialogues[index].text;
-            //StopAllCoroutines();
+            currentDialogueTextBox.text = dialogues[index].text;
+            StopCoroutine(typeLineCoroutine);
+            StopAudio();
         }
     }
 
@@ -227,7 +229,7 @@ public class DialogueSystem : MonoBehaviour
                 }
                 StartCoroutine(BumpBubbles());
             }
-            StartCoroutine(TypeLine());
+            typeLineCoroutine = StartCoroutine(TypeLine());
         }
         else
         {
@@ -241,5 +243,18 @@ public class DialogueSystem : MonoBehaviour
             }
             TimeManager.Instance.ResumeGame();
         }
+    }
+    public void SetAudioClip(AudioClip clip)
+    {
+        GetComponent<AudioSource>().clip = clip;
+    }
+    public void PlayAudioClip()
+    {
+        GetComponent<AudioSource>().Play();
+    }
+    public void StopAudio()
+    {
+        if (GetComponent<AudioSource>())
+            GetComponent<AudioSource>().Stop();
     }
 }

@@ -29756,6 +29756,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.001649439
       objectReference: {fileID: 0}
+    - target: {fileID: 6941526314953463553, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
+      propertyPath: textSpeed
+      value: 0.08
+      objectReference: {fileID: 0}
     - target: {fileID: 7117122321012840798, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.000039118244
@@ -52129,6 +52133,21 @@ MonoBehaviour:
       text: 'Intruder detected: Justin Case, species human. Threat level: moderate.
         Initiating attack sequence.'
       PlayerIcon: {fileID: 21300000, guid: de2d2d83651a30744a77702a16a38493, type: 3}
+      OnStart:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 2084902377}
+            m_TargetAssemblyTypeName: HookEnemyDialogue, Assembly-CSharp
+            m_MethodName: PlayClip
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       OnGoNext:
         m_PersistentCalls:
           m_Calls: []
@@ -52137,6 +52156,9 @@ MonoBehaviour:
       text: Access denied? What's going on? No way you robots are replacing me! Let
         me in now!
       PlayerIcon: {fileID: 21300000, guid: cd77755d27b855648b4865bdec7e7831, type: 3}
+      OnStart:
+        m_PersistentCalls:
+          m_Calls: []
       OnGoNext:
         m_PersistentCalls:
           m_Calls: []
@@ -52145,6 +52167,21 @@ MonoBehaviour:
       text: Resistance is illogical. Human interference will be neutralized. Powering
         Up, initiating elimination protocol.
       PlayerIcon: {fileID: 21300000, guid: de2d2d83651a30744a77702a16a38493, type: 3}
+      OnStart:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 2084902377}
+            m_TargetAssemblyTypeName: HookEnemyDialogue, Assembly-CSharp
+            m_MethodName: PlayClip
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 1
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       OnGoNext:
         m_PersistentCalls:
           m_Calls: []
@@ -52152,6 +52189,9 @@ MonoBehaviour:
     - name: Justin Case
       text: I'll beat the bolts out of you, but don't worry. I'll keep it brief.
       PlayerIcon: {fileID: 21300000, guid: cd77755d27b855648b4865bdec7e7831, type: 3}
+      OnStart:
+        m_PersistentCalls:
+          m_Calls: []
       OnGoNext:
         m_PersistentCalls:
           m_Calls:
@@ -52183,6 +52223,9 @@ MonoBehaviour:
   dialogueList: {fileID: 2084902376}
   hookEnemyPrefab: {fileID: 1951315739171085759, guid: 0ea1fc195cc3ae24288f15ccc8c184cc, type: 3}
   speakingEnemy: {fileID: 576985508}
+  audioClips:
+  - {fileID: 8300000, guid: eec0989ddc7aa664ebb93319923c8ac2, type: 3}
+  - {fileID: 8300000, guid: 995cda6cae59d974f8defeb560668718, type: 3}
 --- !u!65 &2084902378
 BoxCollider:
   m_ObjectHideFlags: 0

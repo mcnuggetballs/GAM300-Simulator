@@ -10,6 +10,8 @@ public class HookEnemyDialogue : MonoBehaviour
     GameObject hookEnemyPrefab;
     [SerializeField]
     GameObject speakingEnemy;
+    [SerializeField]
+    List<AudioClip> audioClips;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -21,5 +23,11 @@ public class HookEnemyDialogue : MonoBehaviour
     {
         Instantiate(hookEnemyPrefab, speakingEnemy.transform.position,speakingEnemy.transform.rotation);
         Destroy(speakingEnemy);
+    }
+
+    public void PlayClip(int id)
+    {
+        DialogueSystem.Instance.SetAudioClip(audioClips[id]);
+        DialogueSystem.Instance.PlayAudioClip();
     }
 }
