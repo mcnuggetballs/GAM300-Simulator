@@ -21,6 +21,11 @@ public class BoostForward : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if ((enemyLayer.value & (1 << LayerMask.NameToLayer("Enemy"))) != 0)
+        {
+            float _targetRotation = Camera.main.transform.eulerAngles.y;
+            animator.transform.rotation = Quaternion.Euler(0.0f, _targetRotation, 0.0f);
+        }
         // Get the Rigidbody component to apply the dash
         rb = animator.GetComponent<Rigidbody>();
         if (rb != null)
