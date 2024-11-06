@@ -88,6 +88,7 @@ public class DialogueSystem : MonoBehaviour
             index = 0;
             if (dialogue[index] != null)
             {
+                StopAudio();
                 dialogue[index].OnStart.Invoke();
                 if (OnDialogueStart != null)
                 {
@@ -193,6 +194,7 @@ public class DialogueSystem : MonoBehaviour
             ++index;
             if (dialogues[index] != null)
             {
+                StopAudio();
                 dialogues[index].OnStart.Invoke();
                 if (OnDialogueStart != null)
                 {
@@ -241,6 +243,7 @@ public class DialogueSystem : MonoBehaviour
                 OnDialogueComplete();
                 Debug.LogWarning("DialogueCompleted");
             }
+            StopAudio();
             TimeManager.Instance.ResumeGame();
         }
     }
