@@ -55,7 +55,7 @@ public class AttackingScript : MonoBehaviour
             //cameraRoot.rotation = Quaternion.Euler(0f, 180.0f, 0f);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !TimeManager.Instance.IsGamePaused())
         {
             OnClick();
         }
