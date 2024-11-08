@@ -27675,7 +27675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6941526314953463553, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
       propertyPath: textSpeed
-      value: 0.08
+      value: 0.055
       objectReference: {fileID: 0}
     - target: {fileID: 7117122321012840798, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
       propertyPath: m_LocalPosition.x
@@ -50675,9 +50675,10 @@ MonoBehaviour:
   list:
   - dialogueID: 0
     dialogues:
-    - name: Ann Cord
-      text: 'Intruder detected: Justin Case, species human. Initiating attack sequence.'
-      PlayerIcon: {fileID: 21300000, guid: de2d2d83651a30744a77702a16a38493, type: 3}
+    - name: Justin Case
+      text: "Hey there Miss receptionist. I\u2019m looking for an old buddy of mine,
+        named Gene Yuss. Have you seen him around?"
+      PlayerIcon: {fileID: 21300000, guid: cd77755d27b855648b4865bdec7e7831, type: 3}
       OnStart:
         m_PersistentCalls:
           m_Calls:
@@ -50696,33 +50697,10 @@ MonoBehaviour:
       OnGoNext:
         m_PersistentCalls:
           m_Calls: []
-      side: 1
-    - name: Justin Case
-      text: "Hey, intruder? Relax, it\u2019s just me! What, I forget to refill the
-        coffee pot or something?"
-      PlayerIcon: {fileID: 21300000, guid: cd77755d27b855648b4865bdec7e7831, type: 3}
-      OnStart:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 2084902377}
-            m_TargetAssemblyTypeName: HookEnemyDialogue, Assembly-CSharp
-            m_MethodName: PlayClip
-            m_Mode: 3
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 2
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-      OnGoNext:
-        m_PersistentCalls:
-          m_Calls: []
       side: 0
     - name: Ann Cord
-      text: Resistance is illogical. Human interference will be neutralized. Powering
-        Up, initiating elimination protocol.
+      text: Gene Yuss has not met company standards and has been replaced effective
+        immediately.
       PlayerIcon: {fileID: 21300000, guid: de2d2d83651a30744a77702a16a38493, type: 3}
       OnStart:
         m_PersistentCalls:
@@ -50744,9 +50722,31 @@ MonoBehaviour:
           m_Calls: []
       side: 1
     - name: Justin Case
-      text: "Alright, tin can, I\u2019ll beat the bolts out of you\u2014and I\u2019ll
-        keep it brief!"
+      text: What the SIGMA???
       PlayerIcon: {fileID: 21300000, guid: cd77755d27b855648b4865bdec7e7831, type: 3}
+      OnStart:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 2084902377}
+            m_TargetAssemblyTypeName: HookEnemyDialogue, Assembly-CSharp
+            m_MethodName: PlayClip
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 2
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      OnGoNext:
+        m_PersistentCalls:
+          m_Calls: []
+      side: 0
+    - name: Ann Cord
+      text: The word 'SIGMA' is not within my database, you dumb humans with your
+        strange words.
+      PlayerIcon: {fileID: 21300000, guid: de2d2d83651a30744a77702a16a38493, type: 3}
       OnStart:
         m_PersistentCalls:
           m_Calls:
@@ -50777,7 +50777,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-      side: 0
+      side: 1
 --- !u!114 &2084902377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50794,10 +50794,10 @@ MonoBehaviour:
   hookEnemyPrefab: {fileID: 1951315739171085759, guid: 0ea1fc195cc3ae24288f15ccc8c184cc, type: 3}
   speakingEnemy: {fileID: 576985508}
   audioClips:
-  - {fileID: 8300000, guid: eec0989ddc7aa664ebb93319923c8ac2, type: 3}
-  - {fileID: 8300000, guid: 995cda6cae59d974f8defeb560668718, type: 3}
-  - {fileID: 8300000, guid: 23d3d8412fd025841be212d0fe6d2139, type: 3}
-  - {fileID: 8300000, guid: 227af854065e2684c975d3863cad7f34, type: 3}
+  - {fileID: 8300000, guid: 9b6c9adf46fa3474d926ef5e158aa31f, type: 3}
+  - {fileID: 8300000, guid: e3678b51bc37ada4f917c3cc10d5fdb4, type: 3}
+  - {fileID: 8300000, guid: 867cb25e94c56fa4ea653cbf78a3ec0e, type: 3}
+  - {fileID: 8300000, guid: 03696e8a005a4d84194baeebd783e4d1, type: 3}
 --- !u!65 &2084902378
 BoxCollider:
   m_ObjectHideFlags: 0
