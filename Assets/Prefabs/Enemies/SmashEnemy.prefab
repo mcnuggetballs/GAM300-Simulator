@@ -1116,7 +1116,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.09856195
+  m_Radius: 0.25
   m_Height: 1.1111252
   m_Direction: 1
   m_Center: {x: 0.0040518907, y: 0.56714517, z: -0.007913792}
@@ -1223,8 +1223,8 @@ MonoBehaviour:
   JumpTimeout: 0.05
   FallTimeout: 0.15
   Grounded: 1
-  GroundedOffset: -0.177
-  GroundedRadius: 0.24
+  GroundedOffset: -0.42
+  GroundedRadius: 0.48
   GroundLayers:
     serializedVersion: 2
     m_Bits: 257
@@ -1266,8 +1266,8 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4670511869322011074}
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.1045354
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.25
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

@@ -1,8 +1,11 @@
 using StarterAssets;
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.Events;
+[Serializable]
+public class EntityDeathEvent : UnityEvent { };
 public class Entity : MonoBehaviour
 {
     [SerializeField] protected float maxHealth = 100;
@@ -39,6 +42,14 @@ public class Entity : MonoBehaviour
     protected float iFrameTimer = 0.0f;
     protected bool canBeHit = true;
 
+    [SerializeField]
+    public EntityDeathEvent deathEvent;
+    [SerializeField]
+    public float deathEventDelay = 0.0f;
+    public void SetDeathDelayDuration(float delay)
+    {
+        deathEventDelay = delay;
+    }
     public float GetCurrentHealth()
     {
         return currentHealth;
@@ -79,12 +90,12 @@ public class Entity : MonoBehaviour
     {
         if (GetComponent<EnemyAI>())
         {
-            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyHurtSounds[Random.Range(0, AudioManager.instance.EnemyHurtSounds.Length)], transform.position);
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyHurtSounds[UnityEngine.Random.Range(0, AudioManager.instance.EnemyHurtSounds.Length)], transform.position);
             ExplodeNutsAndBolts();
         }
         if (GetComponent<PlayerHack>())
         {
-            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.PlayerHurtSounds[Random.Range(0, AudioManager.instance.PlayerHurtSounds.Length)], animator.transform.position);
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.PlayerHurtSounds[UnityEngine.Random.Range(0, AudioManager.instance.PlayerHurtSounds.Length)], animator.transform.position);
         }
         hitDir = hitDirection;
         knockBackAmount = kb;
@@ -147,9 +158,14 @@ public class Entity : MonoBehaviour
         // Reset velocity after knockback
         _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
     }
-
+    private IEnumerator DeathEventDelay()
+    {
+        yield return new WaitForSeconds(deathEventDelay);
+        deathEvent.Invoke();
+    }
     public void Die()
     {
+        StartCoroutine(DeathEventDelay());
         currentHealth = 0;
         if (animator != null)
         {
@@ -176,11 +192,11 @@ public class Entity : MonoBehaviour
         AudioManager.instance.PlayCachedSound(AudioManager.instance.NutsAndBolts, transform.position, 1.0f);
         for (int i = 0; i < amountExploded; i++)
         {
-            GameObject nut = Instantiate(nutsAndBolts[Random.Range(0,nutsAndBolts.Length)], neck.position, Quaternion.identity);
+            GameObject nut = Instantiate(nutsAndBolts[UnityEngine.Random.Range(0,nutsAndBolts.Length)], neck.position, Quaternion.identity);
             Rigidbody nutrb = nut.GetComponent<Rigidbody>();
 
-            Vector3 randomDirection = Random.insideUnitSphere.normalized;
-            float explosionForce = Random.Range(0.1f, 0.3f);
+            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere.normalized;
+            float explosionForce = UnityEngine.Random.Range(0.1f, 0.3f);
             nutrb.AddForce(randomDirection * explosionForce, ForceMode.Impulse);
         }
     }
@@ -192,8 +208,8 @@ public class Entity : MonoBehaviour
             Rigidbody orbRb = orb.GetComponent<Rigidbody>();
 
             // Add random explosion force
-            Vector3 randomDirection = Random.insideUnitSphere.normalized;
-            float explosionForce = Random.Range(0.1f, 0.3f); // Random force
+            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere.normalized;
+            float explosionForce = UnityEngine.Random.Range(0.1f, 0.3f); // Random force
             orbRb.AddForce(randomDirection * explosionForce, ForceMode.Impulse);
 
             // Start the orb movement after a delay
@@ -217,12 +233,12 @@ public class Entity : MonoBehaviour
         }
         if (GetComponent<EnemyAI>())
         {
-            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyDeathSounds[Random.Range(0, AudioManager.instance.EnemyDeathSounds.Length)], transform.position);
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyDeathSounds[UnityEngine.Random.Range(0, AudioManager.instance.EnemyDeathSounds.Length)], transform.position);
             Destroy(GetComponent<EnemyAI>());
         }
         if (GetComponent<ThirdPersonControllerRB>())
         {
-            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.PlayerDeathSounds[Random.Range(0, AudioManager.instance.PlayerDeathSounds.Length)], animator.transform.position);
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.PlayerDeathSounds[UnityEngine.Random.Range(0, AudioManager.instance.PlayerDeathSounds.Length)], animator.transform.position);
             Destroy(GetComponent<ThirdPersonControllerRB>());
         }
         if (GetComponent<Rigidbody>()) 

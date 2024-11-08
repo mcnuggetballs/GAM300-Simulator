@@ -12,6 +12,9 @@ public class HookEnemyDialogue : MonoBehaviour
     GameObject speakingEnemy;
     [SerializeField]
     List<AudioClip> audioClips;
+    [SerializeField]
+    public EntityDeathEvent deathEvent;
+    public float deathEventDelay = 0.0f;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -21,7 +24,13 @@ public class HookEnemyDialogue : MonoBehaviour
     }
     public void DestroyMe()
     {
-        Instantiate(hookEnemyPrefab, speakingEnemy.transform.position,speakingEnemy.transform.rotation);
+        GameObject spawnedEnemy = Instantiate(hookEnemyPrefab, speakingEnemy.transform.position,speakingEnemy.transform.rotation);
+        Entity theEntity = spawnedEnemy.GetComponent<Entity>();
+        if (theEntity != null)
+        {
+            theEntity.SetDeathDelayDuration(deathEventDelay);
+            theEntity.deathEvent = deathEvent;
+        }
         Destroy(speakingEnemy);
     }
 

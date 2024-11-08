@@ -271,6 +271,13 @@ public class PlayerHack : MonoBehaviour
                     hackBarAmount = 0.0f;
                     lastHackedHackable = currentSelectedEntity;
                     currentSelectedEntity.Hack(GetComponent<Entity>());
+                    //here
+                    if (GetComponent<FlashCardCollider>() != null)
+                    {
+                        FlashCardDisplay.Instance.Activate(GetComponent<FlashCardCollider>().displayImages);
+                        Destroy(GetComponent<FlashCardCollider>());
+                    }
+
                     AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[0], transform.position);
                     if (MiniTutorial.Instance)
                         MiniTutorial.Instance.CompleteStep(6);

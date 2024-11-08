@@ -15074,6 +15074,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1840858015}
   m_LocalEulerAnglesHint: {x: 0, y: 360, z: 0}
+--- !u!1 &618799500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 618799502}
+  - component: {fileID: 618799501}
+  m_Layer: 0
+  m_Name: NavMesh2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &618799501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618799500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -1372625422
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_UseGeometry: 1
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 0
+  m_NavMeshData: {fileID: 23800000, guid: 04407d93153c2ee4fbded842f0c06530, type: 2}
+  m_BuildHeightMesh: 0
+--- !u!4 &618799502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618799500}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 15.53}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &625605233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16978,7 +17041,7 @@ GameObject:
   - component: {fileID: 693175822}
   - component: {fileID: 693175821}
   m_Layer: 6
-  m_Name: FlashCard2
+  m_Name: FlashCard3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34243,7 +34306,7 @@ GameObject:
   - component: {fileID: 1360861664}
   - component: {fileID: 1360861663}
   m_Layer: 0
-  m_Name: NavMesh
+  m_Name: HumanoidNavMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34431,6 +34494,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1480190177}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &1370382565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1370382567}
+  - component: {fileID: 1370382566}
+  m_Layer: 6
+  m_Name: FlashCard2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1370382566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370382565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2c58fa2f8cff747b392794a62fc56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayImages:
+  - {fileID: 21300000, guid: 9b6c6174f25e3db4ba00885ddd5e683d, type: 3}
+  - {fileID: 21300000, guid: 7b5800fa48d05a7438f6e33eb7afee71, type: 3}
+--- !u!4 &1370382567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370382565}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.64, y: -12.945, z: 111.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1371241815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35906,7 +36016,7 @@ GameObject:
   - component: {fileID: 1432262241}
   - component: {fileID: 1432262240}
   m_Layer: 6
-  m_Name: FlashCard3
+  m_Name: FlashCard4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45651,6 +45761,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 81628d60659d20840b3ebf33c7e5490d, type: 3}
   - {fileID: 8300000, guid: 73d42b2e4f887c246bfc3c037e5e4f85, type: 3}
   - {fileID: 8300000, guid: 62eb78c794d54834898092d79325a75f, type: 3}
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1370382566}
+        m_TargetAssemblyTypeName: FlashCardCollider, Assembly-CSharp
+        m_MethodName: ActivateFlashCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &1798349137
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51096,6 +51221,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e3678b51bc37ada4f917c3cc10d5fdb4, type: 3}
   - {fileID: 8300000, guid: 867cb25e94c56fa4ea653cbf78a3ec0e, type: 3}
   - {fileID: 8300000, guid: 03696e8a005a4d84194baeebd783e4d1, type: 3}
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &2084902378
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52604,6 +52732,7 @@ SceneRoots:
   - {fileID: 78838269}
   - {fileID: 1840858015}
   - {fileID: 1360861664}
+  - {fileID: 618799502}
   - {fileID: 1800810126}
   - {fileID: 111594585}
   - {fileID: 45363944}
@@ -52629,6 +52758,7 @@ SceneRoots:
   - {fileID: 1797654334}
   - {fileID: 1707979732}
   - {fileID: 902554491}
+  - {fileID: 1370382567}
   - {fileID: 693175823}
   - {fileID: 1432262242}
   - {fileID: 581952295}
