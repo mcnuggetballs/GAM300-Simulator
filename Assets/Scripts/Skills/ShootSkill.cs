@@ -54,6 +54,8 @@ public class ShootSkill : Skill
         if (shootingCoroutine != null)
             StopCoroutine(shootingCoroutine);
         shootingCoroutine = null;
+        if (user && user.GetComponent<Animator>())
+            user.GetComponent<Animator>().SetBool("Hook", false);
         this.user = null;
         isShooting = false;
         lineRenderer.enabled = false;
@@ -67,16 +69,16 @@ public class ShootSkill : Skill
             lineRenderer.enabled = true;
             AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyShooterSounds[5], user.transform.position);
             GameObject aim = Instantiate(Resources.Load("SHOOTERAIM", typeof(GameObject)) as GameObject, user.GetComponent<EnemyAI>().GetCurrentPlayerNeckPos(), Quaternion.identity,user.GetComponent<EnemyAI>().GetCurrentPlayerTransform());
+            if (user.GetComponent<Animator>())
+                user.GetComponent<Animator>().SetBool("Hook", true);
             aim.transform.position -= Camera.main.transform.forward * 0.3f;
             yield return new WaitForSeconds(projectileDelay);
-            if (user.GetComponent<Animator>())
-                user.GetComponent<Animator>().SetTrigger("Hook");
             yield return new WaitForSeconds(0.3f);
         }
         else
         {
             if (user.GetComponent<Animator>())
-                user.GetComponent<Animator>().SetTrigger("Hook");
+                user.GetComponent<Animator>().SetBool("Hook", true);
             yield return new WaitForSeconds(0.2f);
         }
         AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyShooterSounds[1], transform.position);
@@ -130,6 +132,8 @@ public class ShootSkill : Skill
             }
         }
 
+        if (user.GetComponent<Animator>())
+            user.GetComponent<Animator>().SetBool("Hook", false);
         this.user = null;
         isShooting = false;
         lineRenderer.enabled = false;

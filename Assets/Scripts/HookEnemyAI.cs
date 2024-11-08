@@ -11,6 +11,12 @@ public class HookEnemyAI : EnemyAI
     public bool complete = false;
     EnemyControllerRB enemyControllerRB;
     bool shotOut = false;
+    [SerializeField]
+    ExpressionDisplayer expression;
+    float shootDelay = 1.5f;
+    float timer = 0.0f;
+    float idleTime = 2.0f;
+    float idleTimer = 0.0f;
 
     private void Awake()
     {
@@ -29,6 +35,14 @@ public class HookEnemyAI : EnemyAI
             case State.Patrolling:
                 GetComponent<PathfindingScript>().jumpingNavLinkEnabled = false;
                 Patrol();
+                break;
+            case State.Idle:
+                idleTimer += Time.deltaTime;
+                if (idleTimer >= idleTime)
+                {
+                    idleTimer = 0.0f;
+                    _currentState = State.Chasing;
+                }
                 break;
             case State.Chasing:
                 GetComponent<PathfindingScript>().jumpingNavLinkEnabled = true;
@@ -49,20 +63,25 @@ public class HookEnemyAI : EnemyAI
         }
         if (hasPulled == false && complete == false && shotOut == false)
         {
+            enemyControllerRB.SetLookDirection((player.position - transform.position).normalized);
             switchState = false;
             complete = false;
-
-            if (GetComponent<EnemyControllerRB>() != null && shotOut == false)
+            timer += Time.deltaTime;
+            if (timer >= shootDelay)
             {
-                GetComponent<EnemyControllerRB>().SetLookDirection((player.position - transform.position).normalized);
-            }
-            // Attack logic here
-            if (theEntity)
-            {
-                if (theEntity.skill)
+                expression.Hide();
+                if (GetComponent<EnemyControllerRB>() != null && shotOut == false)
                 {
-                    shotOut = true;
-                    theEntity.skill.Activate(gameObject);
+                    GetComponent<EnemyControllerRB>().SetLookDirection((player.position - transform.position).normalized);
+                }
+                // Attack logic here
+                if (theEntity)
+                {
+                    if (theEntity.skill)
+                    {
+                        shotOut = true;
+                        theEntity.skill.Activate(gameObject);
+                    }
                 }
             }
         }
@@ -82,7 +101,8 @@ public class HookEnemyAI : EnemyAI
             hasPulled = false;
             switchState = false;
             _timeSinceLastAttack = 0f;
-            _currentState = State.Chasing;
+            _currentState = State.Idle;
+            idleTimer = 0.0f;
             complete = false;
             shotOut = false;
             if (animator != null)
@@ -144,7 +164,9 @@ public class HookEnemyAI : EnemyAI
 
                 if (_timeSinceLastAttack >= attackCooldown)
                 {
+                    timer = 0.0f;
                     _currentState = State.Attacking;
+                    expression.Show();
                 }
             }
         }

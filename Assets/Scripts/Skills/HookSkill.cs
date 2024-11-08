@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using StarterAssets;
 
 public class HookSkill : Skill
 {
     public GameObject hookProjectilePrefab; // Prefab for the hook projectile
-    protected float hookRange = 5.0f;           // Maximum range of the hook
+    protected float hookRange = 7.5f;           // Maximum range of the hook
     public float pullSpeed = 20f;           // Speed at which the player is pulled
     float projectileSpeed = 13.0f;     // Speed of the projectile
     public LayerMask targetLayer;           // Layer for detecting player
@@ -34,19 +35,98 @@ public class HookSkill : Skill
         if ((enemyLayer.value & (1 << user.layer)) != 0)
         {
             targetLayer = playerLayer;
+            StartCoroutine(HookProjectileRoutine(user));
         }
         else
         {
             targetLayer = enemyLayer;
+            StartCoroutine(HookProjectileRoutinePlayer(user));
         }
         // Start the hook projectile coroutine
-        StartCoroutine(HookProjectileRoutine(user));
-
         // Start cooldown
         StartCoroutine(Cooldown());
         return true;
     }
+    private IEnumerator HookProjectileRoutinePlayer(GameObject user)
+    {
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Center of the screen
+        RaycastHit hit;
 
+        float sphereCastRadius = 5.0f; // Adjust the radius of the sphere as needed
+        Transform cameraTransform = Camera.main.transform;
+        Vector3 aimDirection = cameraTransform.forward;
+        // Perform a SphereCast along the ray, checking for collisions with targetLayer and obstacleLayer
+        if (Physics.SphereCast(ray, sphereCastRadius, out hit, hookRange, targetLayer))
+        {
+            // If the SphereCast hits something within the range, set the target position to the hit point
+            targetPosition = hit.point;
+            aimDirection = targetPosition - user.GetComponent<Entity>().leftHand.position;
+            aimDirection.Normalize();
+        }
+        else
+        {
+            // If no hit, set the target position to max range in front of the user
+            targetPosition = user.GetComponent<Entity>().leftHand.position + aimDirection * hookRange;
+        }
+        user.GetComponent<ThirdPersonControllerRB>().RotateTo(aimDirection);
+        //GetComponent<ThirdPersonControllerRB>().RotateTo(aimDirection);
+        // Spawn the projectile at the user's position
+        projectile = Instantiate(Resources.Load("HookProjectile") as GameObject, user.GetComponent<Entity>().leftHand.position, Quaternion.LookRotation(aimDirection));
+        returning = false;
+
+        // Create chain links
+        for (int i = 0; i < numChainLinks; i++)
+        {
+            GameObject newLink = Instantiate(chainLinkPrefab, user.GetComponent<Entity>().leftHand.position, Quaternion.LookRotation(aimDirection));
+            chainLinks.Add(newLink);
+        }
+
+        // Move the projectile toward the target or until it hits the player or obstacle
+        while (Vector3.Distance(projectile.transform.position, targetPosition) > 0.1f && !returning)
+        {
+            projectile.transform.position = Vector3.MoveTowards(projectile.transform.position, targetPosition, projectileSpeed * Time.deltaTime);
+            UpdateChainLinkPositions(user);
+
+            // Check for collision with the player
+            if (Physics.CheckSphere(projectile.transform.position, 0.5f, targetLayer, QueryTriggerInteraction.Ignore))
+            {
+                Collider[] hits = Physics.OverlapSphere(projectile.transform.position, 0.5f, targetLayer);
+                if (hits.Length > 0)
+                {
+                    GameObject player = hits[0].gameObject;
+                    player.GetComponent<Animator>().SetTrigger("Stun");
+                    yield return new WaitForSeconds(playerStunDuration);
+                    StartCoroutine(PullPlayer(player, user));
+                    hitPlayer = true;
+                    returning = true;
+                    user.GetComponent<Animator>().SetBool("Hook", false);
+                }
+            }
+            else if (Physics.CheckSphere(projectile.transform.position, 0.5f, obstacleLayer, QueryTriggerInteraction.Ignore))
+            {
+                returning = true;
+                user.GetComponent<Animator>().SetBool("Hook", false);
+            }
+
+            yield return null;
+        }
+
+        // Start returning the projectile if it reaches max range or hits an object
+        returning = true;
+        user.GetComponent<Animator>().SetBool("Hook", false);
+        while (returning && Vector3.Distance(projectile.transform.position, user.GetComponent<Entity>().leftHand.position) > 0.1f)
+        {
+            projectile.transform.position = Vector3.MoveTowards(projectile.transform.position, user.GetComponent<Entity>().leftHand.position, pullSpeed * Time.deltaTime);
+            UpdateChainLinkPositions(user);
+            yield return null;
+        }
+
+        // Destroy projectile and chain links
+        Destroy(projectile);
+        foreach (GameObject link in chainLinks)
+            Destroy(link);
+        chainLinks.Clear();
+    }
     private IEnumerator HookProjectileRoutine(GameObject user)
     {
         // Spawn the projectile at the user's position
@@ -136,7 +216,8 @@ public class HookSkill : Skill
         // Pull the player towards the user until close enough
         while (Vector3.Distance(player.transform.position, user.transform.position) > 1f)
         {
-            projectile.transform.position = Vector3.MoveTowards(projectile.transform.position, user.GetComponent<Entity>().leftHand.position, pullSpeed * Time.deltaTime);
+            if (projectile != null)
+                projectile.transform.position = Vector3.MoveTowards(projectile.transform.position, user.GetComponent<Entity>().leftHand.position, pullSpeed * Time.deltaTime);
             Vector3 direction = (user.transform.position - player.transform.position).normalized;
             player.transform.position = Vector3.MoveTowards(player.transform.position, user.transform.position, pullSpeed * Time.deltaTime);
             yield return null;

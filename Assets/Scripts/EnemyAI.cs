@@ -39,6 +39,7 @@ public class EnemyAI : MonoBehaviour
     }
     protected enum State
     {
+        Idle,
         Patrolling,
         Chasing,
         Attacking
