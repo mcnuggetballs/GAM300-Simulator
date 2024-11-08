@@ -97,6 +97,9 @@ public class EnemyControllerRB : MonoBehaviour
     public void SetLookDirection(Vector3 dir)
     {
         targetDirection = dir.normalized;
+
+        _targetRotation = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0.0f, _targetRotation, 0.0f);
     }
 
     private void AssignAnimationIDs()

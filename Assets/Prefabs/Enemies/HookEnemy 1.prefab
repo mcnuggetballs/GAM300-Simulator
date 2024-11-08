@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1174653166896378854}
-  theEntity: {fileID: 0}
+  theEntity: {fileID: 7929692271707577858}
 --- !u!1 &8417725307783675568
 GameObject:
   m_ObjectHideFlags: 0

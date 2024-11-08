@@ -51,8 +51,10 @@ MonoBehaviour:
   iconBorder: {fileID: 21300000, guid: 08c291b4512a7964db783ee879849145, type: 3}
   iconTriangle: {fileID: 21300000, guid: 86636a00f6ed2d349a12d23deaad1418, type: 3}
   cooldownTime: 1
+  hookProjectilePrefab: {fileID: 0}
   hookRange: 20
   pullSpeed: 55
+  projectileSpeed: 5
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -62,11 +64,11 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  lineRenderer: {fileID: 4305383428785528378}
-  hookTravelSpeed: 60
-  hookMissDuration: 0.2
-  hitPullDelay: 0.2
-  sphereCastRadius: 0.1
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  chainLinkPrefab: {fileID: 7155700626445852390, guid: a9224254f13dd90438f76a1551b9ac6e, type: 3}
+  chainLinkDistance: 0.5
 --- !u!120 &4305383428785528378
 LineRenderer:
   serializedVersion: 2
