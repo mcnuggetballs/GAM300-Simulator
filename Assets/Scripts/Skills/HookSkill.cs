@@ -145,9 +145,18 @@ public class HookSkill : Skill
             chainLinks.Add(newLink);
         }
 
+        float timer = 0.0f;
+        float homeTime = 0.3f;
         // Move the projectile toward the target or until it hits the player
         while (Vector3.Distance(projectile.transform.position, targetPosition) > 0.1f && !returning)
         {
+            timer += Time.deltaTime;
+            if (timer < homeTime)
+            {
+                toPlayerDir = (playerTransform.GetComponent<Entity>().neck.position - user.GetComponent<Entity>().leftHand.position).normalized;
+                targetPosition = user.GetComponent<Entity>().leftHand.position + toPlayerDir * hookRange;
+            }
+
             projectile.transform.position = Vector3.MoveTowards(projectile.transform.position, targetPosition, projectileSpeed * Time.deltaTime);
             UpdateChainLinkPositions(user);
             // Check for collision with the player
