@@ -258,9 +258,9 @@ public class PlayerHack : MonoBehaviour
             hackBarAmount = 0;
             return;
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && currentSelectedEntity != null)
         {
-            if (currentSelectedEntity != null && chargeValue >= 10)
+            if (chargeValue >= 10)
             {
                 isHackingHackable = true;
                 hackBar.fillAmount = hackBarAmount/ currentSelectedEntity.hackDuration;
@@ -289,12 +289,12 @@ public class PlayerHack : MonoBehaviour
                     chargeValue -= 10.0f;
                 }
             }
-            else
-            {
-                isHackingHackable = false;
-                hackBarGameObject.SetActive(false);
-                hackBarAmount = 0;
-            }
+            //else
+            //{
+            //    isHackingHackable = false;
+            //    hackBarGameObject.SetActive(false);
+            //    hackBarAmount = 0;
+            //}
         }
         else
         {
