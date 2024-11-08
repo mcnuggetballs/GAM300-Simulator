@@ -80,6 +80,12 @@ public class DialogueSystem : MonoBehaviour
     Coroutine typeLineCoroutine;
     public void StartDialogue(DialogueList dialogueList, string dialogueID)
     {
+        foreach(GameObject bubble in bubblesSpawned)
+        {
+            Destroy(bubble);
+        }
+        bubblesSpawned.Clear();
+
         List<Dialogue> dialogue = dialogueList.GetDialoguesFromID(dialogueID);
         if (dialogue.Count > 0)
         {
