@@ -239,7 +239,6 @@ public class MiniTutorial : MonoBehaviour
     {
         if (sayHello == false && ignoreEverything == false)
         {
-            Debug.LogError("Tried to complete");
             StartCoroutine(Hello());
             sayHello = true;
         }
