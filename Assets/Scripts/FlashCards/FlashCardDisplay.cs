@@ -34,6 +34,10 @@ public class FlashCardDisplay : MonoBehaviour
     {
         if (activated)
         {
+            if (!TimeManager.Instance.IsGamePaused())
+            {
+                TimeManager.Instance.PauseGame();
+            }
             cardImage.sprite = displayImages[index];
             timer += Time.unscaledDeltaTime;
             if (timer >= switchTime)
@@ -47,6 +51,17 @@ public class FlashCardDisplay : MonoBehaviour
             }
         }
     }
+
+    private void LateUpdate()
+    {
+        if (activated)
+        {
+            if (!TimeManager.Instance.IsGamePaused())
+            {
+                TimeManager.Instance.PauseGame();
+            }
+        }
+        }
     public void Deactivate()
     {
         animator.SetBool("Show", false);

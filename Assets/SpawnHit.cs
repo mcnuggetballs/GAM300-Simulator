@@ -39,6 +39,15 @@ public class SpawnHit : StateMachineBehaviour
     {
         if (!spawned)
         {
+            if (hitTag == "Smash2")
+            {
+                if (animator.GetBool("SmashSpawned") == true)
+                {
+                    animator.SetBool("SmashSpawned", false);
+                    spawned = true;
+                    return;
+                }
+            }
             if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= animationTime && animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
             {
                 GameObject theGameObject = Instantiate(Resources.Load("HitCollider", typeof(GameObject))) as GameObject;
@@ -73,6 +82,10 @@ public class SpawnHit : StateMachineBehaviour
                     Debug.LogError("No Hit");
                 }
                 spawned = true;
+                if (hitTag == "Smash")
+                {
+                    animator.SetBool("SmashSpawned", true);
+                }
             }
         }
     }
