@@ -34,6 +34,7 @@ public class HookSkill : Skill
         user.GetComponent<Animator>().SetBool("Hook", true);
         if ((enemyLayer.value & (1 << user.layer)) != 0)
         {
+            hitPlayer = false;
             targetLayer = playerLayer;
             StartCoroutine(HookProjectileRoutine(user));
         }
