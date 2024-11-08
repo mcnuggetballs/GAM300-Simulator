@@ -14,4 +14,9 @@ public class FlashCardCollider : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void ActivateFlashCard()
+    {
+        FlashCardDisplay.Instance.Activate(displayImages);
+    }
 }

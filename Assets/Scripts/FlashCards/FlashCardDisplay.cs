@@ -17,6 +17,8 @@ public class FlashCardDisplay : MonoBehaviour
     int index = 0;
     bool activated = false;
     Animator animator;
+    float clickAwayTime = 1.5f;
+    float clickAwayTimer = 0.0f;
     private void Awake()
     {
         Instance = this;
@@ -24,6 +26,7 @@ public class FlashCardDisplay : MonoBehaviour
     }
     public void Activate(List<Sprite> images)
     {
+        clickAwayTimer = 0.0f;
         display.SetActive(true);
         displayImages = images;
         activated = true;
@@ -32,6 +35,7 @@ public class FlashCardDisplay : MonoBehaviour
     }
     private void Update()
     {
+        clickAwayTimer += Time.unscaledDeltaTime;
         if (activated)
         {
             if (!TimeManager.Instance.IsGamePaused())
@@ -64,7 +68,10 @@ public class FlashCardDisplay : MonoBehaviour
         }
     public void Deactivate()
     {
-        animator.SetBool("Show", false);
+        if (clickAwayTimer >= clickAwayTime)
+        {
+            animator.SetBool("Show", false);
+        }
     }
 
     public void Resume()
