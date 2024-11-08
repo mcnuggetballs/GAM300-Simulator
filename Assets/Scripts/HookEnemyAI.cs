@@ -66,6 +66,7 @@ public class HookEnemyAI : EnemyAI
                 }
             }
         }
+        Debug.LogError(hasPulled + " " + complete);
         if (hasPulled && complete == false)
         {
             if (animator != null)
