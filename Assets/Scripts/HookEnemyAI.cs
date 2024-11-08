@@ -11,6 +11,17 @@ public class HookEnemyAI : EnemyAI
     public bool complete = false;
     EnemyControllerRB enemyControllerRB;
     bool shotOut = false;
+    [SerializeField]
+    ExpressionDisplayer expression;
+    float shootDelay = 1.5f;
+    float timer = 0.0f;
+    float idleTime = 2.0f;
+    float idleTimer = 0.0f;
+    [SerializeField]
+    float smackDistance;
+    float smackCooldown = 2.0f;
+    float smackTimer = 0.0f;
+    bool smacked = false;
 
     private void Awake()
     {
@@ -19,18 +30,30 @@ public class HookEnemyAI : EnemyAI
     }
     protected override void Update()
     {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Hurt"))
-        {
-            _timeSinceLastAttack += Time.deltaTime;
-        }
-
         switch (_currentState)
         {
             case State.Patrolling:
                 GetComponent<PathfindingScript>().jumpingNavLinkEnabled = false;
                 Patrol();
                 break;
+            case State.Idle:
+                idleTimer += Time.deltaTime;
+                if (idleTimer >= idleTime)
+                {
+                    idleTimer = 0.0f;
+                    _currentState = State.Chasing;
+                }
+                else
+                {
+                    GetComponent<EnemyControllerRB>().disableMovement = true;
+                    GetComponent<EnemyControllerRB>().StopMovement();
+                }
+                break;
             case State.Chasing:
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Hurt"))
+                {
+                    _timeSinceLastAttack += Time.deltaTime;
+                }
                 GetComponent<PathfindingScript>().jumpingNavLinkEnabled = true;
                 Chase();
                 break;
@@ -43,26 +66,32 @@ public class HookEnemyAI : EnemyAI
 
     protected override void Attack()
     {
+        timer += Time.deltaTime;
+
         if (animator != null)
         {
             animator.SetBool("CanStun", false);
         }
         if (hasPulled == false && complete == false && shotOut == false)
         {
+            enemyControllerRB.SetLookDirection((player.position - transform.position).normalized);
             switchState = false;
             complete = false;
-
-            if (GetComponent<EnemyControllerRB>() != null && shotOut == false)
+            if (timer >= shootDelay)
             {
-                GetComponent<EnemyControllerRB>().SetLookDirection((player.position - transform.position).normalized);
-            }
-            // Attack logic here
-            if (theEntity)
-            {
-                if (theEntity.skill)
+                expression.Hide();
+                if (GetComponent<EnemyControllerRB>() != null && shotOut == false)
                 {
-                    shotOut = true;
-                    theEntity.skill.Activate(gameObject);
+                    GetComponent<EnemyControllerRB>().SetLookDirection((player.position - transform.position).normalized);
+                }
+                // Attack logic here
+                if (theEntity)
+                {
+                    if (theEntity.skill)
+                    {
+                        shotOut = true;
+                        theEntity.skill.Activate(gameObject);
+                    }
                 }
             }
         }
@@ -78,10 +107,12 @@ public class HookEnemyAI : EnemyAI
         }
         if (switchState)
         {
+            timer = 0.0f;
             hasPulled = false;
             switchState = false;
             _timeSinceLastAttack = 0f;
-            _currentState = State.Chasing;
+            _currentState = State.Idle;
+            idleTimer = 0.0f;
             complete = false;
             shotOut = false;
             if (animator != null)
@@ -118,9 +149,29 @@ public class HookEnemyAI : EnemyAI
         }
         float distanceToPlayer = Vector3.Distance(mypos, player.position);
 
+        if (!smacked)
+        {
+            if (distanceToPlayer <= smackDistance)
+            {
+                GetComponent<EnemyControllerRB>().disableMovement = false;
+                StartCoroutine(SwingAttack());
+                smacked = true;
+            }
+        }
+        else
+        {
+            smackTimer += Time.deltaTime;
+            if (smackTimer >= smackCooldown)
+            {
+                smackTimer = 0.0f;
+                smacked = false;
+            }
+        }
+
         if (HasLineOfSight())
         {
             // If the player is within attack range, move away from them
+
             if (distanceToPlayer > stoppingDistance)
             {
                 // Otherwise, continue to chase the player but stop within stopping distance
@@ -133,17 +184,18 @@ public class HookEnemyAI : EnemyAI
                 GetComponent<EnemyControllerRB>().disableMovement = true;
                 GetComponent<EnemyControllerRB>().StopMovement();
             }
-            if (distanceToPlayer <= attackRadius)
-            {
-                if (enemyControllerRB)
-                {
-                    enemyControllerRB.SetLookDirection((player.position - transform.position).normalized);
-                    SetDestinationAndPathfinding(transform.position);
-                }
 
-                if (_timeSinceLastAttack >= attackCooldown)
+            if (_timeSinceLastAttack >= attackCooldown)
+            {
+                timer = 0.0f;
+                if (distanceToPlayer <= attackRadius)
                 {
                     _currentState = State.Attacking;
+                    smacked = false;
+                    smackTimer = 0.0f;
+                    expression.Show();
+                    GetComponent<EnemyControllerRB>().disableMovement = true;
+                    GetComponent<EnemyControllerRB>().StopMovement();
                 }
             }
         }

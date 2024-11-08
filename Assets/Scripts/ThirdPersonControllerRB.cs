@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 namespace StarterAssets
 {
@@ -287,7 +288,11 @@ namespace StarterAssets
 
             }
         }
-
+        public void RotateTo(Vector3 dir)
+        {
+            float rotation = Quaternion.LookRotation(dir).eulerAngles.y;
+            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+        }
         public void Move(Vector3 dir,float speed)
         {
             // Set target speed based on move speed, sprint speed, and if sprint is pressed

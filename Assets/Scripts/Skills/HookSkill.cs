@@ -1,329 +1,244 @@
-using StarterAssets;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
+using System.Collections;
+using System.Collections.Generic;
+using StarterAssets;
 
 public class HookSkill : Skill
 {
-    public float hookRange = 10f;        // Range within which the enemy can be hooked
-    public float pullSpeed = 55f;        // Speed at which the enemy is pulled
-    public LayerMask targetLayer;
+    public GameObject hookProjectilePrefab; // Prefab for the hook projectile
+    protected float hookRange = 16.0f;           // Maximum range of the hook
+    public float pullSpeed = 20f;           // Speed at which the player is pulled
+    float projectileSpeed = 13.0f;     // Speed of the projectile
+    public LayerMask targetLayer;           // Layer for detecting player
     public LayerMask enemyLayer;
     public LayerMask playerLayer;
-    public LineRenderer lineRenderer;    // Reference to the LineRenderer for the hook
+    public LayerMask obstacleLayer;
 
-    public float hookTravelSpeed = 60f;  // Speed at which the hook travels toward the enemy
-    public float hookMissDuration = 0.2f;// Duration the hook remains visible when it misses
-    public float hitPullDelay = 0.2f;    // Delay before pulling the enemy in after hit
-    public float sphereCastRadius = 0.5f;// Radius of the sphere for the sphere cast
-    private float shootDelay = 0.06f;
+    private GameObject projectile;          // Reference to the instantiated projectile
+    private Vector3 targetPosition;         // The position to which the projectile travels
+    private bool returning;                 // Flag to check if the projectile is returning
+    float playerStunDuration = 0.3f;
+    public GameObject chainLinkPrefab;
+    int numChainLinks = 35;
+    private List<GameObject> chainLinks = new List<GameObject>();
+    GameObject userTest = null;
+    bool hitPlayer = false;
 
-    // This method will be called to activate the hooking skill
+    // Activate method to trigger the skill
     public override bool Activate(GameObject user)
     {
-        if (user.GetComponent<Animator>() && !user.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Idle Walk Run Blend"))
-            return false;
-        if (isOnCooldown)
-            return false;  // Prevent activation if the skill is on cooldown
-        if (user.GetComponent<Animator>())
-        {
-            user.GetComponent<Animator>().SetBool("Hook", true);
-        }
-        StartCoroutine(Cast(user));
-        return true;
-    }
+        userTest = user;
+        // Check if the skill is on cooldown
+        if (isOnCooldown) return false;
 
-    private IEnumerator Cast(GameObject user)
-    {
+        user.GetComponent<Animator>().SetBool("Hook", true);
         if ((enemyLayer.value & (1 << user.layer)) != 0)
         {
+            hitPlayer = false;
             targetLayer = playerLayer;
+            StartCoroutine(HookProjectileRoutine(user));
         }
         else
         {
             targetLayer = enemyLayer;
+            StartCoroutine(HookProjectileRoutinePlayer(user));
         }
-
-        // Disable movement during the hook
-        if (user.GetComponent<ThirdPersonControllerRB>())
-        {
-            user.GetComponent<ThirdPersonControllerRB>().disableMovement = true;
-        }
-        if (user.GetComponent<EnemyControllerRB>())
-        {
-            user.GetComponent<EnemyControllerRB>().disableMovement = true;
-        }
-
-        if ((enemyLayer.value & (1 << user.layer)) != 0)
-        {
-            // Cast a spherecast from the user forward
-            Vector3 playerDir = user.transform.forward;
-            if (user.GetComponent<EnemyAI>())
-            {
-                playerDir = user.GetComponent<EnemyAI>().GetCurrentPlayerPos();
-                playerDir.y = user.GetComponent<EnemyAI>().GetCurrentPlayerNeckPos().y;
-                playerDir = (playerDir - user.GetComponent<Entity>().neck.position).normalized;
-            }
-
-            Ray ray = new Ray(user.GetComponent<Entity>().neck.position, playerDir);
-            RaycastHit hit;
-
-            yield return new WaitForSeconds(shootDelay);
-
-            // If the spherecast hits an enemy
-            if (Physics.SphereCast(ray, sphereCastRadius, out hit, hookRange, targetLayer))
-            {
-                if (hit.collider.GetComponent<Entity>())
-                {
-                    HandleHit(hit, user);
-                }
-                else
-                {
-                    Vector3 hookMissPosition = hit.transform.position;
-                    StartCoroutine(ShowMiss(user, hookMissPosition));
-                }
-            }
-            else
-            {
-                // Show the hook going to the point where the spherecast missed
-                Vector3 hookMissPosition = ray.origin + ray.direction * hookRange;
-                StartCoroutine(ShowMiss(user, hookMissPosition));
-            }
-        }
-        else
-        {
-            // Cast a spherecast from the camera forward
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-            RaycastHit hit;
-
-            // If the spherecast hits an enemy
-            if (Physics.SphereCast(ray, 1.0f, out hit, hookRange, targetLayer))
-            {
-                if (hit.collider.GetComponent<Entity>())
-                {
-                    HandleHit(hit, user);
-                }
-                else
-                {
-                    Vector3 hookMissPosition = hit.transform.position;
-                    StartCoroutine(ShowMiss(user, hookMissPosition));
-                }
-            }
-            else
-            {
-                // Show the hook going to the point where the spherecast missed
-                Vector3 hookMissPosition = ray.origin + ray.direction * hookRange;
-                StartCoroutine(ShowMiss(user, hookMissPosition));
-            }
-        }
-
-        // Start the skill cooldown
+        // Start the hook projectile coroutine
+        // Start cooldown
         StartCoroutine(Cooldown());
+        return true;
     }
-
-    // Handles what happens when the spherecast hits a target
-    private void HandleHit(RaycastHit hit, GameObject user)
+    private IEnumerator HookProjectileRoutinePlayer(GameObject user)
     {
-        if (hit.collider.GetComponent<NavMeshAgent>())
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Center of the screen
+        RaycastHit hit;
+
+        float sphereCastRadius = 5.0f; // Adjust the radius of the sphere as needed
+        Transform cameraTransform = Camera.main.transform;
+        Vector3 aimDirection = cameraTransform.forward;
+        // Perform a SphereCast along the ray, checking for collisions with targetLayer and obstacleLayer
+        if (Physics.SphereCast(ray, sphereCastRadius, out hit, hookRange, targetLayer))
         {
-            hit.collider.GetComponent<NavMeshAgent>().CompleteOffMeshLink();
-            hit.collider.GetComponent<NavMeshAgent>().enabled = false;
+            // If the SphereCast hits something within the range, set the target position to the hit point
+            targetPosition = hit.point;
+            aimDirection = targetPosition - user.GetComponent<Entity>().leftHand.position;
+            aimDirection.Normalize();
         }
-        if (hit.collider.GetComponent<PathfindingScript>())
+        else
         {
-            hit.collider.GetComponent<PathfindingScript>().isJumping = false;
-            hit.collider.GetComponent<PathfindingScript>().enabled = false;
+            // If no hit, set the target position to max range in front of the user
+            targetPosition = user.GetComponent<Entity>().leftHand.position + aimDirection * hookRange;
         }
-        if (hit.collider.GetComponent<Animator>())
+        user.GetComponent<ThirdPersonControllerRB>().RotateTo(aimDirection);
+        //GetComponent<ThirdPersonControllerRB>().RotateTo(aimDirection);
+        // Spawn the projectile at the user's position
+        projectile = Instantiate(Resources.Load("HookProjectile") as GameObject, user.GetComponent<Entity>().leftHand.position, Quaternion.LookRotation(aimDirection));
+        returning = false;
+
+        // Create chain links
+        for (int i = 0; i < numChainLinks; i++)
         {
-            hit.collider.GetComponent<Animator>().SetTrigger("Stun");
-            if (hit.collider.GetComponent<ThirdPersonControllerRB>())
+            GameObject newLink = Instantiate(chainLinkPrefab, user.GetComponent<Entity>().leftHand.position, Quaternion.LookRotation(aimDirection));
+            chainLinks.Add(newLink);
+        }
+
+        // Move the projectile toward the target or until it hits the player or obstacle
+        while (Vector3.Distance(projectile.transform.position, targetPosition) > 0.1f && !returning)
+        {
+            projectile.transform.position = Vector3.MoveTowards(projectile.transform.position, targetPosition, projectileSpeed * Time.deltaTime);
+            UpdateChainLinkPositions(user);
+
+            // Check for collision with the player
+            if (Physics.CheckSphere(projectile.transform.position, 0.5f, targetLayer, QueryTriggerInteraction.Ignore))
             {
-                hit.collider.GetComponent<ThirdPersonControllerRB>().StopMovement();
+                Collider[] hits = Physics.OverlapSphere(projectile.transform.position, 0.5f, targetLayer);
+                if (hits.Length > 0)
+                {
+                    GameObject player = hits[0].gameObject;
+                    player.GetComponent<Animator>().SetTrigger("Stun");
+                    yield return new WaitForSeconds(playerStunDuration);
+                    StartCoroutine(PullPlayer(player, user));
+                    hitPlayer = true;
+                    returning = true;
+                    user.GetComponent<Animator>().SetBool("Hook", false);
+                }
             }
-        }
-
-        // Enable the LineRenderer before launching the hook
-        lineRenderer.enabled = true;
-
-        // Start launching the hook toward the enemy
-        StartCoroutine(LaunchHook(hit.collider.gameObject, user));
-    }
-
-    private IEnumerator LaunchHook(GameObject enemy, GameObject user)
-    {
-        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyHookSounds[0], enemy.transform.position);
-        Transform hookStartPoint = null;
-        // Set initial LineRenderer positions
-        if (user.GetComponent<Entity>())
-        {
-            hookStartPoint = user.GetComponent<Entity>().leftHand;
-        }
-        else
-        {
-            hookStartPoint = user.transform;
-        }
-        lineRenderer.SetPosition(0, hookStartPoint.position);  // Start point from public Transform
-        lineRenderer.SetPosition(1, hookStartPoint.position);  // End point (initially same as start)
-
-        Vector3 targetPosition = Vector3.zero;
-        if (enemy.GetComponent<Entity>())
-        {
-            targetPosition = enemy.GetComponent<Entity>().neck.position;
-        }
-        else
-        {
-            targetPosition = enemy.transform.position;
-        }
-        float distanceToEnemy = Vector3.Distance(hookStartPoint.position, targetPosition);
-
-        // Animate the line moving towards the enemy
-        float traveledDistance = 0f;
-
-        while (traveledDistance < distanceToEnemy)
-        {
-            traveledDistance += hookTravelSpeed * Time.deltaTime;
-            Vector3 hookPosition = Vector3.Lerp(hookStartPoint.position, targetPosition, traveledDistance / distanceToEnemy);
-
-            // Update LineRenderer to show hook moving toward the enemy
-            lineRenderer.SetPosition(0, hookStartPoint.position);  // Always set the first position to the hook start point's position
-            lineRenderer.SetPosition(1, hookPosition);             // Update the second position to hook's current position
-
-            yield return null;  // Wait until the next frame
-        }
-
-        // Hook reaches the enemy, delay for 0.2 seconds before pulling
-        yield return new WaitForSeconds(hitPullDelay);
-
-        // Start pulling the enemy toward the player
-        StartCoroutine(PullEnemy(enemy, user));
-    }
-
-    private IEnumerator PullEnemy(GameObject enemy, GameObject user)
-    {
-        Transform hookStartPoint = null;
-        // Set initial LineRenderer positions
-        if (user.GetComponent<Entity>())
-        {
-            hookStartPoint = user.GetComponent<Entity>().leftHand;
-        }
-        else
-        {
-            hookStartPoint = user.transform;
-        }
-        // Pull the enemy toward the player while updating the LineRenderer
-        while (Vector3.Distance(enemy.transform.position, user.transform.position) > 1f)
-        {
-            Vector3 direction = (user.transform.position - enemy.transform.position).normalized;
-            enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, user.transform.position, pullSpeed * Time.deltaTime);
-
-            // Update LineRenderer positions to show the pulling back effect
-            if (hookStartPoint)
-                lineRenderer.SetPosition(0, hookStartPoint.position);  // Set start point to the hook start point's current position
-            else
-                lineRenderer.SetPosition(0, user.transform.position);  // Set start point to the hook start point's current position
-
-            if (enemy.GetComponent<Entity>())
+            else if (Physics.CheckSphere(projectile.transform.position, 0.5f, obstacleLayer, QueryTriggerInteraction.Ignore))
             {
-                lineRenderer.SetPosition(1, enemy.GetComponent<Entity>().neck.position); // Set end point to the enemy's current position
-            }
-            else
-            {
-                lineRenderer.SetPosition(1, enemy.transform.position); // Set end point to the enemy's current position
+                returning = true;
+                user.GetComponent<Animator>().SetBool("Hook", false);
             }
 
-            yield return null;  // Wait until the next frame
+            yield return null;
         }
 
-        if (user.GetComponent<HookEnemyAI>())
+        // Start returning the projectile if it reaches max range or hits an object
+        returning = true;
+        user.GetComponent<Animator>().SetBool("Hook", false);
+        while (returning && Vector3.Distance(projectile.transform.position, user.GetComponent<Entity>().leftHand.position) > 0.1f)
         {
-            user.GetComponent<HookEnemyAI>().hasPulled = true;
-        }
-        // Re-enable movement for the user after pulling is done
-        if (user.GetComponent<EnemyControllerRB>())
-        {
-            user.GetComponent<EnemyControllerRB>().disableMovement = false;
-        }
-        if (user.GetComponent<ThirdPersonControllerRB>())
-        {
-            user.GetComponent<ThirdPersonControllerRB>().disableMovement = false;
+            projectile.transform.position = Vector3.MoveTowards(projectile.transform.position, user.GetComponent<Entity>().leftHand.position, pullSpeed * Time.deltaTime);
+            UpdateChainLinkPositions(user);
+            yield return null;
         }
 
-        // Disable the LineRenderer once the hook is complete
-        lineRenderer.enabled = false;
-        if (enemy.GetComponent<NavMeshAgent>())
-        {
-            enemy.GetComponent<NavMeshAgent>().enabled = true;
-        }
-
-        if (enemy.GetComponent<PathfindingScript>())
-        {
-            enemy.GetComponent<PathfindingScript>().enabled = true;
-        }
+        // Destroy projectile and chain links
+        Destroy(projectile);
+        foreach (GameObject link in chainLinks)
+            Destroy(link);
+        chainLinks.Clear();
     }
-
-    private IEnumerator ShowMiss(GameObject user, Vector3 missPosition)
+    private IEnumerator HookProjectileRoutine(GameObject user)
     {
-        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyHookSounds[0], transform.position);
-        Transform hookStartPoint = null;
-        // Set initial LineRenderer positions
-        if (user.GetComponent<Entity>())
+        Transform playerTransform = user.GetComponent<HookEnemyAI>().GetCurrentPlayerTransform();
+        Vector3 toPlayerDir = (playerTransform.GetComponent<Entity>().neck.position - user.GetComponent<Entity>().leftHand.position).normalized;
+        // Spawn the projectile at the user's position
+        projectile = Instantiate(Resources.Load("HookProjectile") as GameObject, user.GetComponent<Entity>().leftHand.position, Quaternion.LookRotation(toPlayerDir));
+        returning = false;
+
+        // Calculate the direction and target position based on hook range
+        targetPosition = user.GetComponent<Entity>().leftHand.position + toPlayerDir * hookRange;
+
+        for (int i = 0; i < numChainLinks; i++)
         {
-            hookStartPoint = user.GetComponent<Entity>().leftHand;
-        }
-        else
-        {
-            hookStartPoint = user.transform;
-        }
-
-        // Enable the LineRenderer
-        lineRenderer.enabled = true;
-
-        // Set the initial position of the LineRenderer at the hook start point
-        lineRenderer.SetPosition(0, hookStartPoint.position);  // Start at the hook start point
-        lineRenderer.SetPosition(1, hookStartPoint.position);  // Initially, the end is also at the start
-
-        // The total distance the hook should travel (to the miss position)
-        float totalDistance = Vector3.Distance(hookStartPoint.position, missPosition);
-        float traveledDistance = 0f;
-
-        // Animate the line towards the miss position
-        while (traveledDistance < totalDistance)
-        {
-            // Increment the traveled distance based on hook travel speed
-            traveledDistance += hookTravelSpeed * Time.deltaTime;
-
-            // Calculate the new hook position based on the traveled distance
-            Vector3 hookPosition = Vector3.Lerp(hookStartPoint.position, missPosition, traveledDistance / totalDistance);
-
-            // Update the LineRenderer to extend toward the miss position
-            lineRenderer.SetPosition(1, hookPosition);  // Set the second position to the current hook position
-
-            yield return null;  // Wait until the next frame
+            GameObject newLink = Instantiate(chainLinkPrefab, user.GetComponent<Entity>().leftHand.position, Quaternion.LookRotation(toPlayerDir));
+            chainLinks.Add(newLink);
         }
 
-        // Once the hook reaches its maximum distance, wait for a short duration to show the miss
-        yield return new WaitForSeconds(hookMissDuration);
-
-        // Disable the LineRenderer after the miss is shown
-        lineRenderer.enabled = false;
-
-        // Re-enable movement after the miss
-        if (user.GetComponent<EnemyControllerRB>())
+        float timer = 0.0f;
+        float homeTime = 0.3f;
+        // Move the projectile toward the target or until it hits the player
+        while (Vector3.Distance(projectile.transform.position, targetPosition) > 0.1f && !returning)
         {
-            user.GetComponent<EnemyControllerRB>().disableMovement = false;
+            timer += Time.deltaTime;
+            if (timer < homeTime)
+            {
+                toPlayerDir = (playerTransform.GetComponent<Entity>().neck.position - user.GetComponent<Entity>().leftHand.position).normalized;
+                targetPosition = user.GetComponent<Entity>().leftHand.position + toPlayerDir * hookRange;
+            }
+
+            projectile.transform.position = Vector3.MoveTowards(projectile.transform.position, targetPosition, projectileSpeed * Time.deltaTime);
+            UpdateChainLinkPositions(user);
+            // Check for collision with the player
+            if (Physics.CheckSphere(projectile.transform.position, 0.5f, targetLayer, QueryTriggerInteraction.Ignore))
+            {
+                // Pull the player towards the user
+                Collider[] hits = Physics.OverlapSphere(projectile.transform.position, 0.5f, targetLayer);
+                if (hits.Length > 0)
+                {
+                    GameObject player = hits[0].gameObject;
+                    player.GetComponent<Animator>().SetTrigger("Stun");
+                    yield return new WaitForSeconds(playerStunDuration);
+                    StartCoroutine(PullPlayer(player, user));
+                    hitPlayer = true;
+                    returning = true; // Trigger return after hitting the player
+                    user.GetComponent<Animator>().SetBool("Hook", false);
+                }
+            }
+            else if (Physics.CheckSphere(projectile.transform.position, 0.5f, obstacleLayer, QueryTriggerInteraction.Ignore))
+            {
+                returning = true;
+
+                user.GetComponent<Animator>().SetBool("Hook", false);
+            }
+
+            yield return null;
         }
-        if (user.GetComponent<ThirdPersonControllerRB>())
+
+        // After reaching max range or hitting the player, start returning to sender
+        returning = true;
+        user.GetComponent<Animator>().SetBool("Hook", false);
+        while (returning && Vector3.Distance(projectile.transform.position, user.GetComponent<Entity>().leftHand.position) > 0.1f)
         {
-            user.GetComponent<ThirdPersonControllerRB>().disableMovement = false;
+            projectile.transform.position = Vector3.MoveTowards(projectile.transform.position, user.GetComponent<Entity>().leftHand.position, pullSpeed * Time.deltaTime);
+            UpdateChainLinkPositions(user);
+            yield return null;
         }
 
-        if (user.GetComponent<HookEnemyAI>())
+        // Destroy the projectile after return
+        Destroy(projectile);
+        foreach (GameObject link in chainLinks)
+            Destroy(link);
+        chainLinks.Clear();
+        if (!hitPlayer)
         {
+            user.GetComponent<HookEnemyAI>().hasPulled = false;
             user.GetComponent<HookEnemyAI>().switchState = true;
-            user.GetComponent<HookEnemyAI>().hasPulled = true;
             user.GetComponent<HookEnemyAI>().complete = true;
         }
+        else if (hitPlayer)
+        {
+            user.GetComponent<HookEnemyAI>().hasPulled = true;
+        }
+    }
+    private void UpdateChainLinkPositions(GameObject user)
+    {
+        // Calculate distance between each link
+        float segmentLength = Vector3.Distance(user.GetComponent<Entity>().leftHand.position, projectile.transform.position) / (numChainLinks + 1);
+
+        // Position each chain link along the line between user and projectile
+        for (int i = 0; i < numChainLinks; i++)
+        {
+            float t = (float)(i + 1) / (numChainLinks + 1);  // Get normalized position between user and projectile
+            chainLinks[i].transform.position = Vector3.Lerp(user.GetComponent<Entity>().leftHand.position, projectile.transform.position, t);
+        }
     }
 
+    private IEnumerator PullPlayer(GameObject player, GameObject user)
+    {
+        // Pull the player towards the user until close enough
+        while (Vector3.Distance(player.transform.position, user.transform.position) > 1f)
+        {
+            if (projectile != null)
+                projectile.transform.position = Vector3.MoveTowards(projectile.transform.position, user.GetComponent<Entity>().leftHand.position, pullSpeed * Time.deltaTime);
+            Vector3 direction = (user.transform.position - player.transform.position).normalized;
+            player.transform.position = Vector3.MoveTowards(player.transform.position, user.transform.position, pullSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
+    private void Update()
+    {
+        if (userTest != null && projectile != null)
+            UpdateChainLinkPositions(userTest);
+    }
 }

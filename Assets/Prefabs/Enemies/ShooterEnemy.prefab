@@ -617,6 +617,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 332ad02f052095e49b165090bbe43494, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: c668fce017e1f104ca7751309efe416a, type: 3}
+    - target: {fileID: 5866666021909216657, guid: 332ad02f052095e49b165090bbe43494, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f76d2bfa5fd90314d948d7849add6200, type: 2}
@@ -964,7 +968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8fa0fad9c304d44818ae7c8bc7dc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   pathfinding: {fileID: 3590129645282747466}
   detectionRadius: 10
   attackRadius: 10
