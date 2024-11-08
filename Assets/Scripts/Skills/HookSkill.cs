@@ -19,7 +19,7 @@ public class HookSkill : Skill
     private bool returning;                 // Flag to check if the projectile is returning
     float playerStunDuration = 0.3f;
     public GameObject chainLinkPrefab;
-    public int numChainLinks = 20;
+    int numChainLinks = 35;
     private List<GameObject> chainLinks = new List<GameObject>();
     GameObject userTest = null;
     bool hitPlayer = false;
@@ -190,6 +190,7 @@ public class HookSkill : Skill
         chainLinks.Clear();
         if (!hitPlayer)
         {
+            user.GetComponent<HookEnemyAI>().hasPulled = false;
             user.GetComponent<HookEnemyAI>().switchState = true;
             user.GetComponent<HookEnemyAI>().complete = true;
         }
