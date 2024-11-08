@@ -43,8 +43,11 @@ public class ShootSkill : Skill
             if (user != null)
             {
                 startPoint = user.GetComponent<Entity>().leftHand.position;
-                targetPoint = user.GetComponent<EnemyAI>().GetCurrentPlayerNeckPos();
-                ShowLine(startPoint, targetPoint);
+                if (user.GetComponent<EnemyAI>())
+                {
+                    targetPoint = user.GetComponent<EnemyAI>().GetCurrentPlayerNeckPos();
+                    ShowLine(startPoint, targetPoint);
+                }
             }
         }
 

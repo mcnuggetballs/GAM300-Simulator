@@ -37,9 +37,18 @@ public class HookSkill : Skill
             hitPlayer = false;
             targetLayer = playerLayer;
             StartCoroutine(HookProjectileRoutine(user));
+            projectileSpeed = 13.0f;
+            pullSpeed = 20.0f;
         }
         else
         {
+            if (user.GetComponent<ThirdPersonControllerRB>())
+            {
+                user.GetComponent<ThirdPersonControllerRB>().disableMovement = true;
+                user.GetComponent<ThirdPersonControllerRB>().StopMovement();
+                projectileSpeed = 25.0f;
+                pullSpeed = 25.0f;
+            }
             targetLayer = enemyLayer;
             StartCoroutine(HookProjectileRoutinePlayer(user));
         }
@@ -127,6 +136,8 @@ public class HookSkill : Skill
         foreach (GameObject link in chainLinks)
             Destroy(link);
         chainLinks.Clear();
+        if (user.GetComponent<ThirdPersonControllerRB>())
+            user.GetComponent<ThirdPersonControllerRB>().disableMovement = false;
     }
     private IEnumerator HookProjectileRoutine(GameObject user)
     {
