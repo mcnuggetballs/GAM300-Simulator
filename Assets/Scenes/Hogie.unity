@@ -45776,6 +45776,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  deathEventDelay: 1
 --- !u!65 &1798349137
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51224,6 +51225,7 @@ MonoBehaviour:
   deathEvent:
     m_PersistentCalls:
       m_Calls: []
+  deathEventDelay: 0
 --- !u!65 &2084902378
 BoxCollider:
   m_ObjectHideFlags: 0
