@@ -129,16 +129,18 @@ public class HookSkill : Skill
     }
     private IEnumerator HookProjectileRoutine(GameObject user)
     {
+        Transform playerTransform = user.GetComponent<HookEnemyAI>().GetCurrentPlayerTransform();
+        Vector3 toPlayerDir = (playerTransform.GetComponent<Entity>().neck.position - user.GetComponent<Entity>().leftHand.position).normalized;
         // Spawn the projectile at the user's position
-        projectile = Instantiate(Resources.Load("HookProjectile") as GameObject, user.GetComponent<Entity>().leftHand.position, user.transform.rotation);
+        projectile = Instantiate(Resources.Load("HookProjectile") as GameObject, user.GetComponent<Entity>().leftHand.position, Quaternion.LookRotation(toPlayerDir));
         returning = false;
 
         // Calculate the direction and target position based on hook range
-        targetPosition = user.GetComponent<Entity>().leftHand.position + user.transform.forward * hookRange;
+        targetPosition = user.GetComponent<Entity>().leftHand.position + toPlayerDir * hookRange;
 
         for (int i = 0; i < numChainLinks; i++)
         {
-            GameObject newLink = Instantiate(chainLinkPrefab, user.GetComponent<Entity>().leftHand.position, user.transform.rotation);
+            GameObject newLink = Instantiate(chainLinkPrefab, user.GetComponent<Entity>().leftHand.position, Quaternion.LookRotation(toPlayerDir));
             chainLinks.Add(newLink);
         }
 
