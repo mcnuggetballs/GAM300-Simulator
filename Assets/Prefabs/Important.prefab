@@ -1333,7 +1333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4062041121025737331, guid: 8a7d92b6f103c2946a7125b24780a771, type: 3}
       propertyPath: textSpeed
-      value: 0.1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4519642408091620361, guid: 8a7d92b6f103c2946a7125b24780a771, type: 3}
       propertyPath: red
