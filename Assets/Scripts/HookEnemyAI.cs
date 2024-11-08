@@ -19,6 +19,9 @@ public class HookEnemyAI : EnemyAI
     float idleTimer = 0.0f;
     [SerializeField]
     float smackDistance;
+    float smackCooldown = 2.0f;
+    float smackTimer = 0.0f;
+    bool smacked = false;
 
     private void Awake()
     {
@@ -64,35 +67,6 @@ public class HookEnemyAI : EnemyAI
     protected override void Attack()
     {
         timer += Time.deltaTime;
-
-        if (timer >= shootDelay)
-        {
-            Vector3 mypos = transform.position;
-            if (transform.position.y - player.position.y <= 4.0f)
-            {
-                mypos.y = player.position.y;
-            }
-            float distanceToPlayer = Vector3.Distance(mypos, player.position);
-            if (distanceToPlayer <= smackDistance)
-            {
-                timer = 0.0f;
-                GetComponent<EnemyControllerRB>().disableMovement = false;
-                StartCoroutine(SwingAttack());
-                hasPulled = false;
-                switchState = false;
-                _timeSinceLastAttack = 0f;
-                _currentState = State.Idle;
-                idleTimer = 0.0f;
-                complete = false;
-                shotOut = false;
-                if (animator != null)
-                {
-                    animator.SetBool("CanStun", true);
-                }
-                expression.Hide();
-                return;
-            }
-        }
 
         if (animator != null)
         {
@@ -175,6 +149,25 @@ public class HookEnemyAI : EnemyAI
         }
         float distanceToPlayer = Vector3.Distance(mypos, player.position);
 
+        if (!smacked)
+        {
+            if (distanceToPlayer <= smackDistance)
+            {
+                GetComponent<EnemyControllerRB>().disableMovement = false;
+                StartCoroutine(SwingAttack());
+                smacked = true;
+            }
+        }
+        else
+        {
+            smackTimer += Time.deltaTime;
+            if (smackTimer >= smackCooldown)
+            {
+                smackTimer = 0.0f;
+                smacked = false;
+            }
+        }
+
         if (HasLineOfSight())
         {
             // If the player is within attack range, move away from them
@@ -198,6 +191,8 @@ public class HookEnemyAI : EnemyAI
                 if (distanceToPlayer <= attackRadius)
                 {
                     _currentState = State.Attacking;
+                    smacked = false;
+                    smackTimer = 0.0f;
                     expression.Show();
                     GetComponent<EnemyControllerRB>().disableMovement = true;
                     GetComponent<EnemyControllerRB>().StopMovement();
