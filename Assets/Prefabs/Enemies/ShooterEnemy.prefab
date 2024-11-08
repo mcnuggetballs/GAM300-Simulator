@@ -791,6 +791,7 @@ MonoBehaviour:
   - {fileID: 232846624631182247, guid: 85c30db9767aebf44a0763d74228597d, type: 3}
   - {fileID: 6174335158217350531, guid: 0cd1b97be265ef747925116e3448fc6b, type: 3}
   amountExploded: 4
+  iFrameDuration: 0
 --- !u!114 &1739537231012271511
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,6 +34,11 @@ public class Entity : MonoBehaviour
     public GameObject[] nutsAndBolts;
     public int amountExploded;
 
+    [SerializeField]
+    public float iFrameDuration = 1.0f;
+    protected float iFrameTimer = 0.0f;
+    protected bool canBeHit = true;
+
     public float GetCurrentHealth()
     {
         return currentHealth;
@@ -58,7 +63,11 @@ public class Entity : MonoBehaviour
         currentHealth -= value;
         if (animator != null)
         {
-            animator.SetTrigger("Hurt");
+            if (canBeHit)
+            {
+                animator.SetTrigger("Hurt");
+                canBeHit = false;
+            }
         }
         if (currentHealth <= 0)
         {
@@ -85,8 +94,12 @@ public class Entity : MonoBehaviour
         // Trigger hurt animation
         if (animator != null)
         {
-            animator.SetTrigger("Hurt");
-            StartCoroutine(ResetTriggerAfterDelay("Hurt", 0.1f));  // Adjust delay as needed
+            if (canBeHit)
+            {
+                animator.SetTrigger("Hurt");
+                StartCoroutine(ResetTriggerAfterDelay("Hurt", 0.1f));  // Adjust delay as needed
+                canBeHit = false;
+            }
         }
 
         // Handle knockback if the enemy is still alive
@@ -245,6 +258,15 @@ public class Entity : MonoBehaviour
 
     private void Update()
     {
+        if (!canBeHit)
+        {
+            iFrameTimer += Time.deltaTime;
+            if (iFrameTimer >= iFrameDuration)
+            {
+                iFrameTimer = 0;
+                canBeHit = true;
+            }
+        }
         // Other logic, such as health checks or movement, goes here.
         if (GetComponent<PlayerHack>())
         {
