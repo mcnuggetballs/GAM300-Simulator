@@ -41,6 +41,10 @@ public class HitCollider : MonoBehaviour
                     {
                         theEntity.TakeDamage(damage * SkillTreeManager.Instance.skillDamageMultiplier, hitDirection, 15);
                     }
+                    else if (tag == "Hit3")
+                    {
+                        theEntity.TakeDamage(damage * SkillTreeManager.Instance.slashDamageMultiplier, hitDirection, 40);
+                    }
                     else
                     {
                         theEntity.TakeDamage(damage * SkillTreeManager.Instance.slashDamageMultiplier, hitDirection, 15);

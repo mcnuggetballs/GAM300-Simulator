@@ -25,6 +25,11 @@ public class BoostForward : StateMachineBehaviour
         {
             float _targetRotation = Camera.main.transform.eulerAngles.y;
             animator.transform.rotation = Quaternion.Euler(0.0f, _targetRotation, 0.0f);
+            enemyLayer |= (1 << LayerMask.NameToLayer("Enemy"));
+        }
+        else
+        {
+            enemyLayer |= (1 << LayerMask.NameToLayer("Player"));
         }
         // Get the Rigidbody component to apply the dash
         rb = animator.GetComponent<Rigidbody>();

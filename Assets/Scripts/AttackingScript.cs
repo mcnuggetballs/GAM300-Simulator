@@ -126,7 +126,7 @@ public class AttackingScript : MonoBehaviour
         }
         if (noOfClicks >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit2"))
         {
-            anim.SetBool("Hit1", true);
+            anim.SetBool("Hit3", true);
             anim.SetBool("Hit2", false);
             ResetClicks();
         }

@@ -19,7 +19,7 @@ public class HookSkill : Skill
     private bool returning;                 // Flag to check if the projectile is returning
     float playerStunDuration = 0.3f;
     public GameObject chainLinkPrefab;
-    int numChainLinks = 35;
+    int numChainLinks = 50;
     private List<GameObject> chainLinks = new List<GameObject>();
     GameObject userTest = null;
     bool hitPlayer = false;

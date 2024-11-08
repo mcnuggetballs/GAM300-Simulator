@@ -1757,7 +1757,7 @@ MonoBehaviour:
   numOrbs: 5
   nutsAndBolts: []
   amountExploded: 0
-  iFrameDuration: 1.5
+  iFrameDuration: 1
 --- !u!114 &1038657972688612252
 MonoBehaviour:
   m_ObjectHideFlags: 0
