@@ -25,11 +25,6 @@ public class HookEnemyAI : EnemyAI
     }
     protected override void Update()
     {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Hurt"))
-        {
-            _timeSinceLastAttack += Time.deltaTime;
-        }
-
         switch (_currentState)
         {
             case State.Patrolling:
@@ -43,8 +38,17 @@ public class HookEnemyAI : EnemyAI
                     idleTimer = 0.0f;
                     _currentState = State.Chasing;
                 }
+                else
+                {
+                    GetComponent<EnemyControllerRB>().disableMovement = true;
+                    GetComponent<EnemyControllerRB>().StopMovement();
+                }
                 break;
             case State.Chasing:
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Hurt"))
+                {
+                    _timeSinceLastAttack += Time.deltaTime;
+                }
                 GetComponent<PathfindingScript>().jumpingNavLinkEnabled = true;
                 Chase();
                 break;
@@ -142,31 +146,31 @@ public class HookEnemyAI : EnemyAI
         if (HasLineOfSight())
         {
             // If the player is within attack range, move away from them
-            if (distanceToPlayer > stoppingDistance)
+
+            if (_timeSinceLastAttack >= attackCooldown)
             {
-                // Otherwise, continue to chase the player but stop within stopping distance
-                Vector3 directionToPlayer = (player.position - transform.position).normalized;
-                GetComponent<EnemyControllerRB>().disableMovement = false;
-                SetDestinationAndPathfinding(player.position);
+                timer = 0.0f;
+                _currentState = State.Attacking;
+                expression.Show();
+                if (distanceToPlayer <= attackRadius)
+                {
+                    GetComponent<EnemyControllerRB>().disableMovement = true;
+                    GetComponent<EnemyControllerRB>().StopMovement();
+                }
             }
             else
             {
-                GetComponent<EnemyControllerRB>().disableMovement = true;
-                GetComponent<EnemyControllerRB>().StopMovement();
-            }
-            if (distanceToPlayer <= attackRadius)
-            {
-                if (enemyControllerRB)
+                if (distanceToPlayer > stoppingDistance)
                 {
-                    enemyControllerRB.SetLookDirection((player.position - transform.position).normalized);
-                    SetDestinationAndPathfinding(transform.position);
+                    // Otherwise, continue to chase the player but stop within stopping distance
+                    Vector3 directionToPlayer = (player.position - transform.position).normalized;
+                    GetComponent<EnemyControllerRB>().disableMovement = false;
+                    SetDestinationAndPathfinding(player.position);
                 }
-
-                if (_timeSinceLastAttack >= attackCooldown)
+                else
                 {
-                    timer = 0.0f;
-                    _currentState = State.Attacking;
-                    expression.Show();
+                    GetComponent<EnemyControllerRB>().disableMovement = true;
+                    GetComponent<EnemyControllerRB>().StopMovement();
                 }
             }
         }
