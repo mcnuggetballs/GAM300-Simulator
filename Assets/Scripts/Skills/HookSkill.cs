@@ -6,7 +6,7 @@ using StarterAssets;
 public class HookSkill : Skill
 {
     public GameObject hookProjectilePrefab; // Prefab for the hook projectile
-    protected float hookRange = 12.0f;           // Maximum range of the hook
+    protected float hookRange = 16.0f;           // Maximum range of the hook
     public float pullSpeed = 20f;           // Speed at which the player is pulled
     float projectileSpeed = 13.0f;     // Speed of the projectile
     public LayerMask targetLayer;           // Layer for detecting player

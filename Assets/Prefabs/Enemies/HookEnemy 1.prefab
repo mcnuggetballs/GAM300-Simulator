@@ -751,7 +751,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951315739171085759}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: c668fce017e1f104ca7751309efe416a, type: 3}
+  m_Avatar: {fileID: 9000000, guid: ca24d158f9446b546bc0607d887e190f, type: 3}
   m_Controller: {fileID: 9100000, guid: f76d2bfa5fd90314d948d7849add6200, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -973,8 +973,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathfinding: {fileID: 1281126349258720039}
-  detectionRadius: 15
-  attackRadius: 12
+  detectionRadius: 20
+  attackRadius: 16
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
