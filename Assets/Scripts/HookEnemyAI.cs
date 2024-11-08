@@ -66,6 +66,7 @@ public class HookEnemyAI : EnemyAI
 
     protected override void Attack()
     {
+        GetComponent<EnemyControllerRB>().StopMovement();
         timer += Time.deltaTime;
 
         if (animator != null)
