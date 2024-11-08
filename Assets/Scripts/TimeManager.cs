@@ -7,7 +7,10 @@ public class TimeManager : MonoBehaviour
     public float originalTimeScale;
     private static TimeManager _instance;
     private bool isPaused = false; // Track if the game is paused
-
+    public bool IsGamePaused()
+    {
+        return isPaused;
+    }
     public static TimeManager Instance
     {
         get
