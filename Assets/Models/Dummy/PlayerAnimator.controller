@@ -289,7 +289,7 @@ MonoBehaviour:
   dashRange: 2.5
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   dashDuration: 0.2
   viewAngleThreshold: 360
 --- !u!114 &-6508620683125153483
@@ -954,7 +954,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   dashDuration: 0.2
-  viewAngleThreshold: 60
+  viewAngleThreshold: 360
 --- !u!206 &-1920571757310313359
 BlendTree:
   m_ObjectHideFlags: 1
@@ -1121,9 +1121,9 @@ MonoBehaviour:
   dashRange: 2.5
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   dashDuration: 0.2
-  viewAngleThreshold: 60
+  viewAngleThreshold: 360
 --- !u!114 &-1196268646918053539
 MonoBehaviour:
   m_ObjectHideFlags: 1

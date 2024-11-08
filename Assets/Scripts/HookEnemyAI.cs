@@ -17,6 +17,8 @@ public class HookEnemyAI : EnemyAI
     float timer = 0.0f;
     float idleTime = 2.0f;
     float idleTimer = 0.0f;
+    [SerializeField]
+    float smackDistance;
 
     private void Awake()
     {
@@ -61,6 +63,37 @@ public class HookEnemyAI : EnemyAI
 
     protected override void Attack()
     {
+        timer += Time.deltaTime;
+
+        if (timer >= shootDelay)
+        {
+            Vector3 mypos = transform.position;
+            if (transform.position.y - player.position.y <= 4.0f)
+            {
+                mypos.y = player.position.y;
+            }
+            float distanceToPlayer = Vector3.Distance(mypos, player.position);
+            if (distanceToPlayer <= smackDistance)
+            {
+                timer = 0.0f;
+                GetComponent<EnemyControllerRB>().disableMovement = false;
+                StartCoroutine(SwingAttack());
+                hasPulled = false;
+                switchState = false;
+                _timeSinceLastAttack = 0f;
+                _currentState = State.Idle;
+                idleTimer = 0.0f;
+                complete = false;
+                shotOut = false;
+                if (animator != null)
+                {
+                    animator.SetBool("CanStun", true);
+                }
+                expression.Hide();
+                return;
+            }
+        }
+
         if (animator != null)
         {
             animator.SetBool("CanStun", false);
@@ -70,7 +103,6 @@ public class HookEnemyAI : EnemyAI
             enemyControllerRB.SetLookDirection((player.position - transform.position).normalized);
             switchState = false;
             complete = false;
-            timer += Time.deltaTime;
             if (timer >= shootDelay)
             {
                 expression.Hide();
@@ -89,7 +121,6 @@ public class HookEnemyAI : EnemyAI
                 }
             }
         }
-        Debug.LogError(hasPulled + " " + complete);
         if (hasPulled && complete == false)
         {
             if (animator != null)
@@ -102,6 +133,7 @@ public class HookEnemyAI : EnemyAI
         }
         if (switchState)
         {
+            timer = 0.0f;
             hasPulled = false;
             switchState = false;
             _timeSinceLastAttack = 0f;

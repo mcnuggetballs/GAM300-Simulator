@@ -988,6 +988,7 @@ MonoBehaviour:
   switchState: 0
   complete: 0
   expression: {fileID: 4423961381446577921}
+  smackDistance: 2
 --- !u!114 &4761342211670709755
 MonoBehaviour:
   m_ObjectHideFlags: 0
