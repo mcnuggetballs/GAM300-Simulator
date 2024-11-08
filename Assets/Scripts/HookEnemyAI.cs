@@ -147,28 +147,26 @@ public class HookEnemyAI : EnemyAI
         {
             // If the player is within attack range, move away from them
 
-            if (_timeSinceLastAttack >= attackCooldown)
+            if (distanceToPlayer > stoppingDistance)
             {
-                timer = 0.0f;
-                _currentState = State.Attacking;
-                expression.Show();
-                if (distanceToPlayer <= attackRadius)
-                {
-                    GetComponent<EnemyControllerRB>().disableMovement = true;
-                    GetComponent<EnemyControllerRB>().StopMovement();
-                }
+                // Otherwise, continue to chase the player but stop within stopping distance
+                Vector3 directionToPlayer = (player.position - transform.position).normalized;
+                GetComponent<EnemyControllerRB>().disableMovement = false;
+                SetDestinationAndPathfinding(player.position);
             }
             else
             {
-                if (distanceToPlayer > stoppingDistance)
+                GetComponent<EnemyControllerRB>().disableMovement = true;
+                GetComponent<EnemyControllerRB>().StopMovement();
+            }
+
+            if (_timeSinceLastAttack >= attackCooldown)
+            {
+                timer = 0.0f;
+                if (distanceToPlayer <= attackRadius)
                 {
-                    // Otherwise, continue to chase the player but stop within stopping distance
-                    Vector3 directionToPlayer = (player.position - transform.position).normalized;
-                    GetComponent<EnemyControllerRB>().disableMovement = false;
-                    SetDestinationAndPathfinding(player.position);
-                }
-                else
-                {
+                    _currentState = State.Attacking;
+                    expression.Show();
                     GetComponent<EnemyControllerRB>().disableMovement = true;
                     GetComponent<EnemyControllerRB>().StopMovement();
                 }
