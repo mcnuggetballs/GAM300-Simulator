@@ -74,8 +74,8 @@ public class HitCollider : MonoBehaviour
 
                 CameraShake.ShakeSettings shakeSettings = new CameraShake.ShakeSettings
                 {
-                    duration = 0.1f,
-                    shakeStrength = new Vector3(0.05f, 0.05f, 0.05f),
+                    duration = 0.2f,
+                    shakeStrength = new Vector3(0.1f, 0.1f, 0.1f),
                     shakeCurve = AnimationCurve.EaseInOut(0, 1, 1, 0),
                     shakeSpace = CameraShake.ShakeSpace.World,
                     shakePosition = transform.position,
