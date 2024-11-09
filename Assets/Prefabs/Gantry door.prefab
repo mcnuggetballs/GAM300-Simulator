@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 8047780733383231285}
   - component: {fileID: 2665916431699034521}
   - component: {fileID: 3231512594545834708}
+  - component: {fileID: 8113725581251874282}
   m_Layer: 0
   m_Name: gantry glass (1)
   m_TagString: Untagged
@@ -475,6 +476,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &8113725581251874282
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481791468131743478}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4868863872722644391
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +574,7 @@ GameObject:
   - component: {fileID: 1652393702044660180}
   - component: {fileID: 8623599019001419882}
   - component: {fileID: 5885458521760594663}
+  - component: {fileID: 7125374600086994817}
   m_Layer: 0
   m_Name: gantry glass (1)
   m_TagString: Untagged
@@ -650,6 +668,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &7125374600086994817
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5615143127983749481}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5876681087654595219
 GameObject:
   m_ObjectHideFlags: 0
