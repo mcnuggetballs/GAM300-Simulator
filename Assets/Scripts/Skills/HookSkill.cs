@@ -46,6 +46,7 @@ public class HookSkill : Skill
         {
             if (user.GetComponent<ThirdPersonControllerRB>())
             {
+                AudioManager.instance.PlayCachedSound(AudioManager.instance.MCHookSkillBarks, user.transform.position, 1.0f);
                 user.GetComponent<ThirdPersonControllerRB>().disableMovement = true;
                 user.GetComponent<ThirdPersonControllerRB>().StopMovement();
                 projectileSpeed = 25.0f;

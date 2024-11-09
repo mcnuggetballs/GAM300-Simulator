@@ -139,6 +139,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 559d0f83184f87c489d0f05b7817e101, type: 3}
   - {fileID: 8300000, guid: da2871f72638cea42a16f1307536550c, type: 3}
   - {fileID: 8300000, guid: 8f6ef53bf244f20438ae6c9e3392f361, type: 3}
+  MCHookSkillBarks:
+  - {fileID: 8300000, guid: d4967885224f0bd438bc81e1fcc47f8f, type: 3}
+  - {fileID: 8300000, guid: f0815672550c6834b9c3f9eac9ed5da0, type: 3}
+  - {fileID: 8300000, guid: 6755ccd7cbcf6314bab15e596a4b0415, type: 3}
+  MCShootSkillBarks:
+  - {fileID: 8300000, guid: 94fa064d97b30e34590efa20dd68a153, type: 3}
+  - {fileID: 8300000, guid: f59fd545f43584c4c8a0a461fec75a19, type: 3}
+  - {fileID: 8300000, guid: 0d7c4b66ae7ed5d43bad7c96d8c8a68d, type: 3}
+  - {fileID: 8300000, guid: 2627cb96d53b3c044891da3e4d3415d6, type: 3}
+  - {fileID: 8300000, guid: 5970cde3a3b5a6d48a93f24b69f92590, type: 3}
+  - {fileID: 8300000, guid: 413e3376f42da5440a4c7bf55db6d84a, type: 3}
+  MCSlamSkillBarks:
+  - {fileID: 8300000, guid: 784ff7a2f28a06f43aec63b28a2b8009, type: 3}
+  - {fileID: 8300000, guid: 4f943b8803b84c54991cbb28b07d6173, type: 3}
+  - {fileID: 8300000, guid: 8b5080417b70024459250ac8d9ac64bf, type: 3}
 --- !u!1 &3773466729239202462
 GameObject:
   m_ObjectHideFlags: 0

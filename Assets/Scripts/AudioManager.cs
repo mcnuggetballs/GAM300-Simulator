@@ -34,6 +34,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] HackSounds;
     public AudioClip[] NutsAndBolts;
     public AudioClip[] AnnBarks;
+    public AudioClip[] MCHookSkillBarks;
+    public AudioClip[] MCShootSkillBarks;
+    public AudioClip[] MCSlamSkillBarks;
     private void Awake()
     {
         instance = this;

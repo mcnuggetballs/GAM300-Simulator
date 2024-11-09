@@ -1,5 +1,7 @@
+using StarterAssets;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ShootSkill : Skill
 {
@@ -12,6 +14,8 @@ public class ShootSkill : Skill
     bool isShooting = false;
     GameObject user = null;
     Coroutine shootingCoroutine;
+    Vector3 facingDir = Vector3.zero;
+    bool facing = false;
     private void Awake()
     {
         if (lineRenderer == null)
@@ -32,6 +36,13 @@ public class ShootSkill : Skill
         if ((playerLayer.value & (1 << user.layer)) != 0)
         {
             user.GetComponent<Animator>().SetBool("IgnoreStun", true);
+            AudioManager.instance.PlayCachedSound(AudioManager.instance.MCShootSkillBarks, user.transform.position, 1.0f);
+
+            Camera camera = Camera.main;
+            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
+            facingDir = ray.direction;
+            user.GetComponent<ThirdPersonControllerRB>().RotateTo(facingDir);
+            facing = true;
         }
         shootingCoroutine = StartCoroutine(ShootProjectile(user));
         StartCoroutine(Cooldown());
@@ -52,6 +63,10 @@ public class ShootSkill : Skill
                     ShowLine(startPoint, targetPoint);
                 }
             }
+        }
+        if (facing == true)
+        {
+            user.GetComponent<ThirdPersonControllerRB>().RotateTo(facingDir);
         }
 
     }
@@ -144,6 +159,7 @@ public class ShootSkill : Skill
         this.user = null;
         isShooting = false;
         lineRenderer.enabled = false;
+        facing = false;
     }
     private void ShowLine(Vector3 startPoint, Vector3 endPoint)
     {

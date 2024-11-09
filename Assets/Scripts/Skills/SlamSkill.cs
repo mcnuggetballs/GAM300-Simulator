@@ -13,6 +13,11 @@ public class SlamSkill : Skill
 
         if (user.GetComponent<Animator>())
         {
+            if (user.tag == "Player")
+            {
+                AudioManager.instance.PlayCachedSound(AudioManager.instance.MCSlamSkillBarks, user.transform.position, 1.0f);
+            }
+
             user.GetComponent<Animator>().SetBool("IgnoreStun", true);
             user.GetComponent<Animator>().SetTrigger("Smash");
         }
