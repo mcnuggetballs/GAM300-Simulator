@@ -47,6 +47,9 @@ public class Objective1Manager : MonoBehaviour
     }
     private void Start()
     {
+    }
+    public void ShowObjective1()
+    {
         StartCoroutine(ShowObjective());
     }
     IEnumerator PlayObjective1Audio()
@@ -71,6 +74,7 @@ public class Objective1Manager : MonoBehaviour
                 obj1Complete = true;
                 lift.enabled = true;
                 StartCoroutine(PlayObjective1Audio());
+                NotifSystem.Instance.SkipEnter(12);
             }
         }
         else if (!obj2Complete)

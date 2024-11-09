@@ -75,8 +75,6 @@ public class AttackingScript : MonoBehaviour
                                 if (GetComponent<Entity>().skill.Activate(gameObject))
                                 {
                                     playerHack.RemoveChargeValue(10.0f);
-                                    if (MiniTutorial.Instance)
-                                        MiniTutorial.Instance.CompleteStep(7);
                                 }
                             }
                         }
@@ -110,16 +108,12 @@ public class AttackingScript : MonoBehaviour
         }
         if (noOfClicks == 1 && anim.GetBool("Hit2") == false)
         {
-            if (MiniTutorial.Instance)
-                MiniTutorial.Instance.CompleteStep(4);
             anim.SetBool("Hit1", true);
             anim.SetBool("Hit2", false);
             noOfClicks++;
         }
         if (noOfClicks >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f && anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1"))
         {
-            if (MiniTutorial.Instance)
-                MiniTutorial.Instance.CompleteStep(4);
             anim.SetBool("Hit2", true);
             anim.SetBool("Hit1", false);
             noOfClicks++;

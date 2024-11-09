@@ -28,7 +28,7 @@ public class HitCollider : MonoBehaviour
             Entity theEntity = other.transform.GetComponent<Entity>();
             if (theEntity)
             {
-                if (theEntity.gameObject.layer == parentLayer)
+                if (theEntity.gameObject.layer == parentLayer || theEntity.gameObject.layer == 0)
                     return;
 
 

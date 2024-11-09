@@ -212,8 +212,6 @@ public class PlayerHack : MonoBehaviour
                 {
                     if (chargeValue >= 10)
                     {
-                        if (MiniTutorial.Instance)
-                            MiniTutorial.Instance.CompleteStep(5);
                         GameManager.Instance.ToggleHackMode(true);
                         animator.SetBool("Hacking", true);
                         AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[2], transform.position);
@@ -277,10 +275,8 @@ public class PlayerHack : MonoBehaviour
                         FlashCardDisplay.Instance.Activate(GetComponent<FlashCardCollider>().displayImages);
                         Destroy(GetComponent<FlashCardCollider>());
                     }
-
+                    NotifSystem.Instance.SkipEnterOne(7);
                     AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[0], transform.position);
-                    if (MiniTutorial.Instance)
-                        MiniTutorial.Instance.CompleteStep(6);
                     if (currentSelectedEntity.GetComponent<EnemyAI>())
                     {
                         if (currentSelectedEntity.GetComponent<Animator>())
