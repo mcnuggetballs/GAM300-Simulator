@@ -51343,7 +51343,7 @@ MonoBehaviour:
   - dialogueID: 0
     dialogues:
     - name: Justin Case
-      text: "Hey there Miss receptionist. I\u2019m looking for an old buddy of mine,
+      text: "Hey there, Miss Receptionist. I\u2019m looking for an old buddy of mine,
         named Gene Yuss. Have you seen him around?"
       PlayerIcon: {fileID: 21300000, guid: cd77755d27b855648b4865bdec7e7831, type: 3}
       OnStart:
