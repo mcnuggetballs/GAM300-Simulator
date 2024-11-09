@@ -1156,6 +1156,10 @@ MonoBehaviour:
   - {fileID: 6174335158217350531, guid: 0cd1b97be265ef747925116e3448fc6b, type: 3}
   amountExploded: 4
   iFrameDuration: 0
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  deathEventDelay: 0
 --- !u!114 &7981846958145473040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1558,7 +1562,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: eb1554de4b94a5a45b621aed6b08db2d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
