@@ -15,7 +15,7 @@ public class SkillTreeImageSwap : MonoBehaviour
     [SerializeField]
     public string description;
     [SerializeField]
-    Image mySprite;
+    public Image mySprite;
     [SerializeField]
     Sprite unlockedImage;
     [SerializeField]
