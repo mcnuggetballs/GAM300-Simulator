@@ -117,7 +117,7 @@ public class HookSkill : Skill
                 {
                     GameObject player = hits[0].gameObject;
                     player.GetComponent<Animator>().SetTrigger("Stun");
-                    player.GetComponent<Entity>().TakeDamage(0, Vector3.zero, 0, true);
+                    player.GetComponent<Entity>().TakeDamage(1, Vector3.zero, 0, true);
                     yield return new WaitForSeconds(playerStunDuration);
                     StartCoroutine(PullPlayer(player, user));
                     hitPlayer = true;
@@ -203,7 +203,7 @@ public class HookSkill : Skill
                 {
                     GameObject player = hits[0].gameObject;
                     player.GetComponent<Animator>().SetTrigger("Stun");
-                    player.GetComponent<Entity>().TakeDamage(0, Vector3.zero, 0);
+                    player.GetComponent<Entity>().TakeDamage(1, Vector3.zero, 0);
                     yield return new WaitForSeconds(playerStunDuration);
                     StartCoroutine(PullPlayer(player, user));
                     hitPlayer = true;
