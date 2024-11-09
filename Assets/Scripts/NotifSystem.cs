@@ -88,7 +88,7 @@ public class NotifSystem : MonoBehaviour
         }
         else if (value == 11)
         {
-            Objective1Manager.Instance.ShowObjective1();
+            Objective1Manager.Instance.CreateObjectiveKillAllEnemies();
             notifImage.sprite = notifs[value];
             StartCoroutine(CompleteAfterSeconds(5.0f, 11));
         }
