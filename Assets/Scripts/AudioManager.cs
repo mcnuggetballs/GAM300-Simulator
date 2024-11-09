@@ -39,6 +39,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] MCSlamSkillBarks;
     public AudioClip SmashSFX;
     public AudioClip[] ShooterEnemyAggroSounds;
+    public AudioClip IDDropSound;
+    public AudioClip IDPickupSound;
     private void Awake()
     {
         instance = this;
