@@ -54,6 +54,7 @@ public class NotifSystem : MonoBehaviour
         else if (value == 4)
         {
             notifImage.sprite = notifs[value];
+            StartCoroutine(CompleteAfterSeconds(5.0f, 4));
         }
         else if (value == 5)
         {
@@ -87,6 +88,7 @@ public class NotifSystem : MonoBehaviour
         }
         else if (value == 11)
         {
+            Objective1Manager.Instance.ShowObjective1();
             notifImage.sprite = notifs[value];
             StartCoroutine(CompleteAfterSeconds(5.0f, 11));
         }
@@ -234,6 +236,8 @@ public class NotifSystem : MonoBehaviour
                 animator.SetBool("Enter", false);
                 step = 11;
                 active = false;
+                StartCoroutine(Enter(11, 1.0f));
+                StartCoroutine(CompleteAfterSeconds(5.0f, 11));
             }
         }
         else if (value == 11)
@@ -243,8 +247,6 @@ public class NotifSystem : MonoBehaviour
                 animator.SetBool("Enter", false);
                 step = 12;
                 active = false;
-                StartCoroutine(Enter(12, 1.0f));
-                StartCoroutine(CompleteAfterSeconds(5.0f, 12));
             }
         }
         else if (value == 12)
