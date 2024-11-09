@@ -49,6 +49,14 @@ public class Objective1Manager : MonoBehaviour
     {
         StartCoroutine(ShowObjective());
     }
+    IEnumerator PlayObjective1Audio()
+    {
+        yield return new WaitForSeconds(3.0f);
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+    }
     private void Update()
     {
         if (!obj1Complete)
@@ -62,10 +70,7 @@ public class Objective1Manager : MonoBehaviour
                 StartCoroutine(ShowLines(1));
                 obj1Complete = true;
                 lift.enabled = true;
-                if (audioSource != null)
-                {
-                    audioSource.Play();
-                }
+                StartCoroutine(PlayObjective1Audio());
             }
         }
         else if (!obj2Complete)
