@@ -67455,7 +67455,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   deathEventDelay: 0
-  idBadgePrefab: {fileID: 5701947895810485059, guid: d9daf323492eb2746ada002243d7af6e, type: 3}
+  idBadgePrefab: {fileID: 5701947895810485059, guid: 5368bd497a0abf1429a3f76901911726, type: 3}
   idBadgePickupEvent:
     m_PersistentCalls:
       m_Calls:
