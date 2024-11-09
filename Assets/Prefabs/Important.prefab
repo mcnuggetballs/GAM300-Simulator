@@ -104,7 +104,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 156de9f3671e89841be2f7328ccd72fc, type: 3}
   - {fileID: 8300000, guid: 793e15d58f673ec42b2702be6967b343, type: 3}
   EnemySmashSounds:
-  - {fileID: 8300000, guid: c3d04ca8667fb114b927ee8fb33efe4d, type: 3}
+  - {fileID: 8300000, guid: 06d678d136ef0d34396aa7d85e33bf3d, type: 3}
+  - {fileID: 8300000, guid: af416998e8469f94b878e7c0841e160a, type: 3}
+  - {fileID: 8300000, guid: 484d71d246787694195350674ec4e4f6, type: 3}
+  - {fileID: 8300000, guid: 90a776e864c3cce4a91ee416b5abfba5, type: 3}
+  - {fileID: 8300000, guid: c1f59f8272107c2409e4946e1c00f9d9, type: 3}
+  - {fileID: 8300000, guid: 2d00a9b7e1f3c1b448ddd295f5300d79, type: 3}
   PlayerDashSound: {fileID: 8300000, guid: a8738df470c14fa49b3750cf1d31b3a7, type: 3}
   PlayerSlashGroaningSounds:
   - {fileID: 8300000, guid: ebdedaaa030c2444985f806b010ac162, type: 3}
