@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -394, y: -294.73224}
+  m_AnchoredPosition: {x: -394, y: -331}
   m_SizeDelta: {x: 671.2689, y: 157.8895}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8576601910888824310
@@ -399,6 +399,8 @@ MonoBehaviour:
   nameText: {fileID: 2016661200935086760}
   textBox: {fileID: 8369283748412525394}
   PlayerIcon: {fileID: 4387347484980197990}
+  targetY: 0
+  bubbleUpSpeed: 500
 --- !u!1 &5383675296103344047
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +435,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -835, y: -340.27026}
+  m_AnchoredPosition: {x: -835, y: -377}
   m_SizeDelta: {x: 170, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2231573121506151361
