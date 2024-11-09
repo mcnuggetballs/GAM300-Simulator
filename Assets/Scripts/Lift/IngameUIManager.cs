@@ -17,6 +17,15 @@ public class IngameUIManager : MonoBehaviour
     [Header("Tutorial")]
     [SerializeField]
     TMPro.TextMeshProUGUI robotCount;
+    [SerializeField]
+    Animator hurtOverlay;
+    public void TriggerHurtOverlay()
+    {
+        if (hurtOverlay != null)
+        {
+            hurtOverlay.SetTrigger("Show");
+        }
+    }
     public static IngameUIManager Instance { get; private set; }
 
     private void Awake()

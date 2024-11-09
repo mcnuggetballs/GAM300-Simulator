@@ -103,6 +103,7 @@ public class Entity : MonoBehaviour
         if (GetComponent<PlayerHack>())
         {
             AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.PlayerHurtSounds[UnityEngine.Random.Range(0, AudioManager.instance.PlayerHurtSounds.Length)], animator.transform.position);
+            IngameUIManager.Instance.TriggerHurtOverlay();
         }
         hitDir = hitDirection;
         knockBackAmount = kb;
