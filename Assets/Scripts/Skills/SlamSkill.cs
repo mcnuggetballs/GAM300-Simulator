@@ -12,7 +12,10 @@ public class SlamSkill : Skill
             return false;
 
         if (user.GetComponent<Animator>())
+        {
+            user.GetComponent<Animator>().SetBool("IgnoreStun", true);
             user.GetComponent<Animator>().SetTrigger("Smash");
+        }
 
         StartCoroutine(Cooldown());
         return true;

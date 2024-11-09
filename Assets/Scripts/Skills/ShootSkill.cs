@@ -29,7 +29,10 @@ public class ShootSkill : Skill
     {
         if (isOnCooldown)
             return false;
-
+        if ((playerLayer.value & (1 << user.layer)) != 0)
+        {
+            user.GetComponent<Animator>().SetBool("IgnoreStun", true);
+        }
         shootingCoroutine = StartCoroutine(ShootProjectile(user));
         StartCoroutine(Cooldown());
 
@@ -132,6 +135,7 @@ public class ShootSkill : Skill
                 {
                     projectileScript.Initialize(shootDirection, user);
                 }
+                user.GetComponent<Animator>().SetBool("IgnoreStun", false);
             }
         }
 

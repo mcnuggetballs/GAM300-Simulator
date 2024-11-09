@@ -53,6 +53,7 @@ public class HookSkill : Skill
             }
             targetLayer = enemyLayer;
             StartCoroutine(HookProjectileRoutinePlayer(user));
+            user.GetComponent<Animator>().SetBool("IgnoreStun", true);
         }
         // Start the hook projectile coroutine
         // Start cooldown
@@ -116,7 +117,7 @@ public class HookSkill : Skill
                 {
                     GameObject player = hits[0].gameObject;
                     player.GetComponent<Animator>().SetTrigger("Stun");
-                    player.GetComponent<Entity>().TakeDamage(0, Vector3.zero, 0);
+                    player.GetComponent<Entity>().TakeDamage(0, Vector3.zero, 0, true);
                     yield return new WaitForSeconds(playerStunDuration);
                     StartCoroutine(PullPlayer(player, user));
                     hitPlayer = true;
@@ -150,6 +151,7 @@ public class HookSkill : Skill
         chainLinks.Clear();
         if (user.GetComponent<ThirdPersonControllerRB>())
             user.GetComponent<ThirdPersonControllerRB>().disableMovement = false;
+        user.GetComponent<Animator>().SetBool("IgnoreStun", false);
     }
     private IEnumerator HookProjectileRoutine(GameObject user)
     {

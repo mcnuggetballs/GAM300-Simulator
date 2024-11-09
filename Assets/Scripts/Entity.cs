@@ -86,7 +86,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float value, Vector3 hitDirection, float kb)
+    public void TakeDamage(float value, Vector3 hitDirection, float kb, bool ignoreIFrame = false)
     {
         if (GetComponent<EnemyAI>())
         {
@@ -109,7 +109,8 @@ public class Entity : MonoBehaviour
             {
                 animator.SetTrigger("Hurt");
                 StartCoroutine(ResetTriggerAfterDelay("Hurt", 0.1f));  // Adjust delay as needed
-                canBeHit = false;
+                if (!ignoreIFrame)
+                    canBeHit = false;
             }
         }
 

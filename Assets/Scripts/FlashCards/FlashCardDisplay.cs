@@ -65,7 +65,7 @@ public class FlashCardDisplay : MonoBehaviour
                 TimeManager.Instance.PauseGame();
             }
         }
-        }
+    }
     public void Deactivate()
     {
         if (clickAwayTimer >= clickAwayTime)

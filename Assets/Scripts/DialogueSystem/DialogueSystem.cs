@@ -79,6 +79,7 @@ public class DialogueSystem : MonoBehaviour
     float bumpWait = 0;
     float bumpSpeed = 2;
     Coroutine typeLineCoroutine;
+    bool dialogueStarted = false;
     public void StartDialogue(DialogueList dialogueList, string dialogueID)
     {
         foreach(GameObject bubble in bubblesSpawned)
@@ -91,6 +92,7 @@ public class DialogueSystem : MonoBehaviour
         if (dialogue.Count > 0)
         {
             TimeManager.Instance.PauseGame();
+            dialogueStarted = true;
             dialogueUI.SetActive(true);
             index = 0;
             if (dialogue[index] != null)
@@ -257,6 +259,7 @@ public class DialogueSystem : MonoBehaviour
                 Debug.LogWarning("DialogueCompleted");
             }
             StopAudio();
+            dialogueStarted = false;
             TimeManager.Instance.ResumeGame();
         }
     }
@@ -272,5 +275,16 @@ public class DialogueSystem : MonoBehaviour
     {
         if (GetComponent<AudioSource>())
             GetComponent<AudioSource>().Stop();
+    }
+
+    private void LateUpdate()
+    {
+        if (dialogueStarted)
+        {
+            if (!TimeManager.Instance.IsGamePaused())
+            {
+                TimeManager.Instance.PauseGame();
+            }
+        }
     }
 }
