@@ -826,12 +826,17 @@ MonoBehaviour:
   - {fileID: 6174335158217350531, guid: 0cd1b97be265ef747925116e3448fc6b, type: 3}
   amountExploded: 4
   coffeePrefab: {fileID: 2830233848371693089, guid: 6b5c801f5ca0b3e4aa2780dbe3ba0538, type: 3}
-  amount: 0
+  coffeeAmount: 1
+  coffeeDropChance: 33.3333
   iFrameDuration: 0
   deathEvent:
     m_PersistentCalls:
       m_Calls: []
   deathEventDelay: 0
+  deathDrop: {fileID: 0}
+  deathDropPickupEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &206948558910473515
 MonoBehaviour:
   m_ObjectHideFlags: 0

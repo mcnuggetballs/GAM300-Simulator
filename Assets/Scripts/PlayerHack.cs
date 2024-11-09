@@ -18,7 +18,7 @@ public class PlayerHack : MonoBehaviour
     Image hackBar;
     float hackBarAmount = 0;
     [Header("Hack Charge")]
-    protected float chargeValue = 40;
+    protected float chargeValue = 0;
     public float maxChargeValue = 40;
     public float chargeHitAmount = 10;
     [SerializeField]
