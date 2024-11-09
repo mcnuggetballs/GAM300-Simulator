@@ -38,6 +38,10 @@ public class Entity : MonoBehaviour
     public int amountExploded;
 
     [SerializeField]
+    public GameObject coffeePrefab;
+    public int coffeeAmount = 0;
+
+    [SerializeField]
     public float iFrameDuration = 1.0f;
     protected float iFrameTimer = 0.0f;
     protected bool canBeHit = true;
@@ -185,9 +189,24 @@ public class Entity : MonoBehaviour
         {
             ExplodeExperienceOrbs();
         }
+        if (GetComponent<EnemyControllerRB>())
+        {
+            ExplodeCoffee();
+        }
         StartCoroutine(DestroyOverTime(3f));
     }
+    protected void ExplodeCoffee()
+    {
+        for (int i = 0; i < coffeeAmount; i++)
+        {
+            GameObject coffee = Instantiate(coffeePrefab, neck.position, Quaternion.identity);
+            Rigidbody coffeerb = coffee.GetComponent<Rigidbody>();
 
+            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere.normalized;
+            float explosionForce = UnityEngine.Random.Range(0.1f, 0.3f);
+            coffeerb.AddForce(randomDirection * explosionForce, ForceMode.Impulse);
+        }
+    }
     protected void ExplodeNutsAndBolts()
     {
         AudioManager.instance.PlayCachedSound(AudioManager.instance.NutsAndBolts, transform.position, 1.0f);
