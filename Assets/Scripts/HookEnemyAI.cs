@@ -104,6 +104,10 @@ public class HookEnemyAI : EnemyAI
                             animator.SetBool("CanStun", false);
                         }
                         shotOut = true;
+                        if (Random.Range(0.0f,100.0f) <= 25.0f)
+                        {
+                            AudioManager.instance.PlayCachedSound(AudioManager.instance.AnnBarks, transform.position, 1.0f);
+                        }
                         theEntity.skill.Activate(gameObject);
                     }
                 }
