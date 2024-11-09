@@ -15,6 +15,9 @@ public class HookEnemyDialogue : MonoBehaviour
     [SerializeField]
     public EntityDeathEvent deathEvent;
     public float deathEventDelay = 0.0f;
+    [SerializeField]
+    public GameObject idBadgePrefab;
+    public EntityDeathEvent idBadgePickupEvent;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -30,6 +33,8 @@ public class HookEnemyDialogue : MonoBehaviour
         {
             theEntity.SetDeathDelayDuration(deathEventDelay);
             theEntity.deathEvent = deathEvent;
+            theEntity.deathDrop = idBadgePrefab;
+            theEntity.deathDropPickupEvent = idBadgePickupEvent;
         }
         Destroy(speakingEnemy);
     }
