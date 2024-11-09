@@ -88,7 +88,7 @@ public class ShootSkill : Skill
             this.user = user;
             isShooting = true;
             lineRenderer.enabled = true;
-            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyShooterSounds[5], user.transform.position);
+            AudioManager.instance.PlayCachedSound(AudioManager.instance.ShooterEnemyAggroSounds, user.transform.position, 1.0f);
             GameObject aim = Instantiate(Resources.Load("SHOOTERAIM", typeof(GameObject)) as GameObject, user.GetComponent<EnemyAI>().GetCurrentPlayerNeckPos(), Quaternion.identity,user.GetComponent<EnemyAI>().GetCurrentPlayerTransform());
             if (user.GetComponent<Animator>())
                 user.GetComponent<Animator>().SetBool("Hook", true);
