@@ -17,6 +17,10 @@ public class SlamSkill : Skill
             {
                 AudioManager.instance.PlayCachedSound(AudioManager.instance.MCSlamSkillBarks, user.transform.position, 1.0f);
             }
+            else
+            {
+                AudioManager.instance.PlayCachedSound(AudioManager.instance.EnemySmashSounds, user.transform.position, 1.0f);
+            }
 
             user.GetComponent<Animator>().SetBool("IgnoreStun", true);
             user.GetComponent<Animator>().SetTrigger("Smash");

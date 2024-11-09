@@ -9,6 +9,7 @@ public class SkillTree : MonoBehaviour
     public SkillTreeImageSwap currentSelectedSkill;
 
     public GameObject outline;
+    public Image skillIcon;
     public TMPro.TextMeshProUGUI desc;
     public TMPro.TextMeshProUGUI cost;
     public static SkillTree Instance { get; private set; }
@@ -22,8 +23,9 @@ public class SkillTree : MonoBehaviour
     {
         if (currentSelectedSkill != null)
         {
+            skillIcon.sprite = currentSelectedSkill.mySprite.sprite;
             animator.SetBool("Showing",true);
-            outline.SetActive(true);
+            outline.SetActive(true); 
             outline.transform.parent = currentSelectedSkill.transform;
             outline.transform.localPosition = Vector3.zero;
             desc.text = currentSelectedSkill.description;

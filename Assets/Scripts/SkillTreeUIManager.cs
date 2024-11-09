@@ -8,17 +8,20 @@ public class SkillTreeUIManager : MonoBehaviour
     GameObject skillTree;
     [SerializeField]
     TMPro.TextMeshProUGUI orbCount;
-    public void Toggle()
+    [SerializeField]
+    Animator maskAnimator;
+    public void Show()
     {
-        if (skillTree.activeSelf)
+        if (maskAnimator)
         {
-            skillTree.SetActive(false);
+            maskAnimator.SetBool("Show", true);
         }
-        else
-        {
-            skillTree.SetActive(true);
-            SkillTree.Instance.currentSelectedSkill = null;
-        }
+    }
+
+    public void Hide()
+    {
+        maskAnimator.SetBool("Show", false);
+        SkillTree.Instance.currentSelectedSkill = null;
     }
 
     private void Update()
