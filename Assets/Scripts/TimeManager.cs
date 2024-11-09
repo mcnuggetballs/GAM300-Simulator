@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
@@ -7,6 +9,7 @@ public class TimeManager : MonoBehaviour
     public float originalTimeScale;
     private static TimeManager _instance;
     private bool isPaused = false; // Track if the game is paused
+    List<AudioSource> audioSources = new List<AudioSource>();
     public bool IsGamePaused()
     {
         return isPaused;
@@ -66,6 +69,18 @@ public class TimeManager : MonoBehaviour
         Time.fixedDeltaTime = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        AudioSource[] sources = FindObjectsOfType<AudioSource>();
+        audioSources.Clear();
+        foreach(AudioSource source in sources)
+        {
+            if (source.isPlaying)
+            {
+                if (source == AudioManager.instance.BGMSource)
+                    continue;
+                audioSources.Add(source);
+                source.Pause();
+            }
+        }
     }
 
     // Method to resume the TimeManager
@@ -76,5 +91,12 @@ public class TimeManager : MonoBehaviour
         Time.fixedDeltaTime = originalFixedDeltaTime;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        foreach(AudioSource source in audioSources)
+        {
+            if (source != null)
+            {
+                source.UnPause();
+            }
+        }
     }
 }
