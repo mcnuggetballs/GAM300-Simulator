@@ -40,6 +40,7 @@ public class Entity : MonoBehaviour
     [SerializeField]
     public GameObject coffeePrefab;
     public int coffeeAmount = 0;
+    public float coffeeDropChance = 33.3333f;
 
     [SerializeField]
     public float iFrameDuration = 1.0f;
@@ -214,12 +215,15 @@ public class Entity : MonoBehaviour
     {
         for (int i = 0; i < coffeeAmount; i++)
         {
-            GameObject coffee = Instantiate(coffeePrefab, neck.position, Quaternion.identity);
-            Rigidbody coffeerb = coffee.GetComponent<Rigidbody>();
+            if (UnityEngine.Random.Range(0.0f, 100.0f) <= coffeeDropChance)
+            {
+                GameObject coffee = Instantiate(coffeePrefab, neck.position, Quaternion.identity);
+                Rigidbody coffeerb = coffee.GetComponent<Rigidbody>();
 
-            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere.normalized;
-            float explosionForce = UnityEngine.Random.Range(0.1f, 0.3f);
-            coffeerb.AddForce(randomDirection * explosionForce, ForceMode.Impulse);
+                Vector3 randomDirection = UnityEngine.Random.insideUnitSphere.normalized;
+                float explosionForce = UnityEngine.Random.Range(0.1f, 0.3f);
+                coffeerb.AddForce(randomDirection * explosionForce, ForceMode.Impulse);
+            }
         }
     }
     protected void ExplodeNutsAndBolts()
