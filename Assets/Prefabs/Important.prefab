@@ -55,6 +55,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6b4c845ba28100343953f8b9de60b2e7, type: 3}
   - {fileID: 8300000, guid: 58278b67756d5b14788a5357a4bb1c68, type: 3}
   - {fileID: 8300000, guid: 22c592775025ac54e99b7737aecb33aa, type: 3}
+  - {fileID: 8300000, guid: 0a11920911d5aac42b74f85165399387, type: 3}
+  - {fileID: 8300000, guid: c21c62dd838d1144d98fc80411b506f1, type: 3}
+  - {fileID: 8300000, guid: 1de2d5507c9185346a440e51da0baf19, type: 3}
   WhooshSoundsFX:
   - {fileID: 8300000, guid: 2b7413ada060a0d47976cd54072692c3, type: 3}
   - {fileID: 8300000, guid: e5acf1dd7ceaee74e8bd24b85320fae5, type: 3}
