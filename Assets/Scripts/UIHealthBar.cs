@@ -34,16 +34,19 @@ public class UIHealthBar : MonoBehaviour
             healthBar.fillAmount = theEntity.GetHealthFraction();
             if (healthBar.fillAmount >= 0.6666666666666667f)
             {
+                GetComponent<Animator>().SetBool("LowHealth", false);
                 theID.sprite = idGreen;
                 healthBar.sprite = green;
             }
             else if (healthBar.fillAmount >= 0.3333333333333333f)
             {
+                GetComponent<Animator>().SetBool("LowHealth", false);
                 theID.sprite = idYellow;
                 healthBar.sprite = yellow;
             }
             else
             {
+                GetComponent<Animator>().SetBool("LowHealth", true);
                 theID.sprite = idRed;
                 healthBar.sprite = red;
             }

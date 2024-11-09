@@ -104,6 +104,7 @@ public class Entity : MonoBehaviour
         {
             AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.PlayerHurtSounds[UnityEngine.Random.Range(0, AudioManager.instance.PlayerHurtSounds.Length)], animator.transform.position);
             IngameUIManager.Instance.TriggerHurtOverlay();
+            IngameUIManager.Instance.GetComponent<Animator>().SetTrigger("HitFlash");
         }
         hitDir = hitDirection;
         knockBackAmount = kb;
