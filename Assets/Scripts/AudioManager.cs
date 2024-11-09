@@ -37,6 +37,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] MCHookSkillBarks;
     public AudioClip[] MCShootSkillBarks;
     public AudioClip[] MCSlamSkillBarks;
+    public AudioClip SmashSFX;
     private void Awake()
     {
         instance = this;

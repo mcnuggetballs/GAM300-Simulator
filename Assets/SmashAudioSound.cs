@@ -21,7 +21,7 @@ public class SmashAudioSound : StateMachineBehaviour
     {
         if (spawnedSound == false && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= animationTime && animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
         {
-            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemySmashSounds[0], animator.transform.position);
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.SmashSFX, animator.transform.position);
             spawnedSound = true;
         }
     }
