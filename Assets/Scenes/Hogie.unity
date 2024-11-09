@@ -17114,6 +17114,21 @@ MonoBehaviour:
   displayImages:
   - {fileID: 21300000, guid: 8a1aeaa94c2c2ba41bae9543b22c6b4a, type: 3}
   - {fileID: 21300000, guid: ee65359ff59e8a94e9be92f4c8d604d8, type: 3}
+  activateEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555825793}
+        m_TargetAssemblyTypeName: NotifSystem, Assembly-CSharp
+        m_MethodName: SkipEnter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &693175822
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22697,6 +22712,9 @@ MonoBehaviour:
   displayImages:
   - {fileID: 21300000, guid: 79b89b2425fac1e4893937fcdd71d89c, type: 3}
   - {fileID: 21300000, guid: 23cc5ad431a4c524d92600c3a4dfbacb, type: 3}
+  activateEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &903507408
 GameObject:
   m_ObjectHideFlags: 0
@@ -34769,6 +34787,9 @@ MonoBehaviour:
   displayImages:
   - {fileID: 21300000, guid: 9b6c6174f25e3db4ba00885ddd5e683d, type: 3}
   - {fileID: 21300000, guid: 7b5800fa48d05a7438f6e33eb7afee71, type: 3}
+  activateEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1370382567
 Transform:
   m_ObjectHideFlags: 0
@@ -36280,6 +36301,21 @@ MonoBehaviour:
   displayImages:
   - {fileID: 21300000, guid: f9b4abe5429b63440a83ea34abc8ccc6, type: 3}
   - {fileID: 21300000, guid: 6afa62ef58f0ab340a03b0efaa4b954b, type: 3}
+  activateEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1555825793}
+        m_TargetAssemblyTypeName: NotifSystem, Assembly-CSharp
+        m_MethodName: SkipEnter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &1432262241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39768,6 +39804,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1289819467}
   m_SourcePrefab: {fileID: 100100000, guid: 6e128a84bdc9ff648b53b12b979f1c38, type: 3}
+--- !u!114 &1555825793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4954750470007497080, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
+  m_PrefabInstance: {fileID: 1101181615}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa80e6601ae1cac4da927a937140b69c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1563266898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45983,6 +46030,18 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+          - m_Target: {fileID: 1555825793}
+            m_TargetAssemblyTypeName: NotifSystem, Assembly-CSharp
+            m_MethodName: SkipEnter
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 5
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       side: 1
 --- !u!114 &1798349136
 MonoBehaviour:
@@ -46015,6 +46074,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1555825793}
+        m_TargetAssemblyTypeName: NotifSystem, Assembly-CSharp
+        m_MethodName: SkipEnter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -51444,6 +51515,18 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+          - m_Target: {fileID: 1555825793}
+            m_TargetAssemblyTypeName: NotifSystem, Assembly-CSharp
+            m_MethodName: SkipEnter
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 10
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       side: 1
 --- !u!114 &2084902377
 MonoBehaviour:
@@ -51467,7 +51550,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 03696e8a005a4d84194baeebd783e4d1, type: 3}
   deathEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1555825793}
+        m_TargetAssemblyTypeName: NotifSystem, Assembly-CSharp
+        m_MethodName: SkipEnter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 11
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   deathEventDelay: 0
 --- !u!65 &2084902378
 BoxCollider:

@@ -210,27 +210,19 @@ namespace StarterAssets
             if (Input.GetKey(KeyCode.W))
             {
                 vertical = 1;
-                if (MiniTutorial.Instance)
-                    MiniTutorial.Instance.PressArrowUp();
             }
             else if (Input.GetKey(KeyCode.S))
             {
                 vertical = -1;
-                if (MiniTutorial.Instance)
-                    MiniTutorial.Instance.PressArrowDown();
             }
 
             if (Input.GetKey(KeyCode.D))
             {
                 horizontal = 1;
-                if (MiniTutorial.Instance)
-                    MiniTutorial.Instance.PressArrowRight();
             }
             else if (Input.GetKey(KeyCode.A))
             {
                 horizontal = -1;
-                if (MiniTutorial.Instance)
-                    MiniTutorial.Instance.PressArrowLeft();
             }
 
             if (horizontal == 0 && vertical == 0)
@@ -352,8 +344,6 @@ namespace StarterAssets
                 // Jump
                 if (Input.GetButtonDown("Jump") && !disableMovement && _jumpTimeoutDelta <= 0.0f && !GameManager.Instance.GetHackMode())
                 {
-                    if (MiniTutorial.Instance)
-                        MiniTutorial.Instance.CompleteStep(3);
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
                     _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _verticalVelocity, _rigidbody.velocity.z);
 
@@ -422,8 +412,6 @@ namespace StarterAssets
             // Check for dash input and ensure dash is not on cooldown
             if (Input.GetKeyDown(KeyCode.LeftShift) && _dashCooldownLeft <= 0.0f && !_isDashing && !GameManager.Instance.GetHackMode())
             {
-                if (MiniTutorial.Instance)
-                    MiniTutorial.Instance.CompleteStep(2);
                 StartDash();
             }
 

@@ -31,10 +31,6 @@ public class PromptToggleManager : MonoBehaviour
         {
             if (promptGameObject != null)
             {
-                if (MiniTutorial.Instance)
-                {
-                    MiniTutorial.Instance.ignoreEverything = true;
-                }
                 promptGameObject.GetComponent<Animator>().enabled = false;
                 promptGameObject.transform.localScale = Vector3.zero;
             }
@@ -43,10 +39,6 @@ public class PromptToggleManager : MonoBehaviour
         {
             if (promptGameObject != null)
             {
-                if (MiniTutorial.Instance)
-                {
-                    MiniTutorial.Instance.ignoreEverything = false;
-                }
                 promptGameObject.GetComponent<Animator>().enabled = true;
                 promptGameObject.transform.localScale = originalScale;
             }
