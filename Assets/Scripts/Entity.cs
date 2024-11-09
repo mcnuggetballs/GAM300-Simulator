@@ -166,6 +166,7 @@ public class Entity : MonoBehaviour
     }
     public void Die()
     {
+        gameObject.layer = 0;
         StartCoroutine(DeathEventDelay());
         currentHealth = 0;
         if (animator != null)
@@ -184,7 +185,6 @@ public class Entity : MonoBehaviour
         {
             ExplodeExperienceOrbs();
         }
-
         StartCoroutine(DestroyOverTime(3f));
     }
 
@@ -289,7 +289,6 @@ public class Entity : MonoBehaviour
         {
             if (skill)
             {
-                Debug.LogError(gameObject.name + " " + skill.name);
                 if (skill.GetCooldownRemaining() <= 0 && GetComponent<PlayerHack>().GetChargeValue() >= 10)
                 {
                     IngameUIManager.Instance.GetComponent<Animator>().SetBool("CanUse", true);
