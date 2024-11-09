@@ -19,7 +19,7 @@ public class HookEnemyAI : EnemyAI
     float idleTimer = 0.0f;
     [SerializeField]
     float smackDistance;
-    float smackCooldown = 2.0f;
+    float smackCooldown = 3.0f;
     float smackTimer = 0.0f;
     bool smacked = false;
 
@@ -69,9 +69,18 @@ public class HookEnemyAI : EnemyAI
         GetComponent<EnemyControllerRB>().StopMovement();
         timer += Time.deltaTime;
 
-        if (animator != null)
+        if (animator.GetBool("CanStun") && (animator.GetBool("Hurt") || animator.GetBool("Stun")))
         {
-            animator.SetBool("CanStun", false);
+            expression.Hide();
+            timer = 0.0f;
+            hasPulled = false;
+            switchState = false;
+            _timeSinceLastAttack = 0f;
+            _currentState = State.Idle;
+            idleTimer = 0.0f;
+            complete = false;
+            shotOut = false;
+            return;
         }
         if (hasPulled == false && complete == false && shotOut == false)
         {
@@ -90,6 +99,10 @@ public class HookEnemyAI : EnemyAI
                 {
                     if (theEntity.skill)
                     {
+                        if (animator != null)
+                        {
+                            animator.SetBool("CanStun", false);
+                        }
                         shotOut = true;
                         theEntity.skill.Activate(gameObject);
                     }
