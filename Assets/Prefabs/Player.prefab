@@ -1623,9 +1623,6 @@ PrefabInstance:
       addedObject: {fileID: 8501681008190486832}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c668fce017e1f104ca7751309efe416a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1038657972688612252}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c668fce017e1f104ca7751309efe416a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4907923929549781509}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c668fce017e1f104ca7751309efe416a, type: 3}
       insertIndex: -1
@@ -1760,27 +1757,18 @@ MonoBehaviour:
   numOrbs: 5
   nutsAndBolts: []
   amountExploded: 0
+  coffeePrefab: {fileID: 0}
+  coffeeAmount: 0
+  coffeeDropChance: 33.3333
   iFrameDuration: 1
   deathEvent:
     m_PersistentCalls:
       m_Calls: []
   deathEventDelay: 0
---- !u!114 &1038657972688612252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3052415916858715251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b7ad306b9ca0fe41ac77a51b4426fd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 8644554354689387699}
-  briefCaseAnimator: {fileID: 5957093960290634841}
-  mainCamera: {fileID: 0}
-  suitcaseCamera: {fileID: 2568828710902022797}
+  deathDrop: {fileID: 0}
+  deathDropPickupEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4907923929549781509
 MonoBehaviour:
   m_ObjectHideFlags: 0
