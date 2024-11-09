@@ -50,6 +50,8 @@ public class Entity : MonoBehaviour
     public EntityDeathEvent deathEvent;
     [SerializeField]
     public float deathEventDelay = 0.0f;
+    public GameObject deathDrop;
+    public EntityDeathEvent deathDropPickupEvent;
     public void SetDeathDelayDuration(float delay)
     {
         deathEventDelay = delay;
@@ -170,6 +172,10 @@ public class Entity : MonoBehaviour
     }
     public void Die()
     {
+        if (deathDrop != null)
+        {
+            ExplodeDeathDrop();
+        }
         gameObject.layer = 0;
         StartCoroutine(DeathEventDelay());
         currentHealth = 0;
@@ -194,6 +200,15 @@ public class Entity : MonoBehaviour
             ExplodeCoffee();
         }
         StartCoroutine(DestroyOverTime(3f));
+    }
+    protected void ExplodeDeathDrop()
+    {
+        GameObject thing = Instantiate(deathDrop, neck.position, Quaternion.identity);
+        Rigidbody thingrb = thing.GetComponent<Rigidbody>();
+        thing.GetComponent<IDBadge>().deathEvent = deathDropPickupEvent;
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere.normalized;
+        float explosionForce = UnityEngine.Random.Range(0.1f, 0.3f);
+        thingrb.AddForce(randomDirection * explosionForce, ForceMode.Impulse);
     }
     protected void ExplodeCoffee()
     {
