@@ -350,7 +350,7 @@ namespace StarterAssets
                 }
 
                 // Jump
-                if (Input.GetButtonDown("Jump") && !disableMovement && _jumpTimeoutDelta <= 0.0f)
+                if (Input.GetButtonDown("Jump") && !disableMovement && _jumpTimeoutDelta <= 0.0f && !GameManager.Instance.GetHackMode())
                 {
                     if (MiniTutorial.Instance)
                         MiniTutorial.Instance.CompleteStep(3);
@@ -420,7 +420,7 @@ namespace StarterAssets
                 return;
             }
             // Check for dash input and ensure dash is not on cooldown
-            if (Input.GetKeyDown(KeyCode.LeftShift) && _dashCooldownLeft <= 0.0f && !_isDashing)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && _dashCooldownLeft <= 0.0f && !_isDashing && !GameManager.Instance.GetHackMode())
             {
                 if (MiniTutorial.Instance)
                     MiniTutorial.Instance.CompleteStep(2);
