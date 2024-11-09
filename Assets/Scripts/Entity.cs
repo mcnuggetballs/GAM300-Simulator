@@ -220,6 +220,13 @@ public class Entity : MonoBehaviour
 
     private void DisableComponentsOnDeath()
     {
+        if (skill != null)
+        {
+            if (skill.GetComponent<ShootSkill>() != null)
+            {
+                skill.GetComponent<ShootSkill>().DisableEverything();
+            }
+        }
         if (GetComponent<EnemyControllerRB>())
         {
             if (Objective1Manager.Instance != null)

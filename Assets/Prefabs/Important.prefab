@@ -163,6 +163,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4f943b8803b84c54991cbb28b07d6173, type: 3}
   - {fileID: 8300000, guid: 8b5080417b70024459250ac8d9ac64bf, type: 3}
   SmashSFX: {fileID: 8300000, guid: c3d04ca8667fb114b927ee8fb33efe4d, type: 3}
+  ShooterEnemyAggroSounds:
+  - {fileID: 8300000, guid: 31faa3754e360e24da2a53ef3ac0dac6, type: 3}
+  - {fileID: 8300000, guid: b4226c5d46a8aab4fbb2cbc9db05cffa, type: 3}
+  - {fileID: 8300000, guid: d5e451e7f8db809489fc6ace40bd90cd, type: 3}
 --- !u!1 &3773466729239202462
 GameObject:
   m_ObjectHideFlags: 0
