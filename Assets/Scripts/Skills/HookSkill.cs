@@ -18,6 +18,8 @@ public class HookSkill : Skill
     private Vector3 targetPosition;         // The position to which the projectile travels
     private bool returning;                 // Flag to check if the projectile is returning
     float playerStunDuration = 0.3f;
+
+    public float chainLinkLength = 0.5f;
     public GameObject chainLinkPrefab;
     int numChainLinks = 50;
     private List<GameObject> chainLinks = new List<GameObject>();
@@ -84,10 +86,19 @@ public class HookSkill : Skill
         projectile = Instantiate(Resources.Load("HookProjectile") as GameObject, user.GetComponent<Entity>().leftHand.position, Quaternion.LookRotation(aimDirection));
         returning = false;
 
-        // Create chain links
-        for (int i = 0; i < numChainLinks; i++)
+        // Calculate number of links based on the distance to target
+        float distanceToTarget = Vector3.Distance(user.GetComponent<Entity>().leftHand.position, targetPosition);
+        int calculatedLinks = Mathf.FloorToInt(distanceToTarget / chainLinkLength);
+        
+        // Clear any existing links if they exist
+        foreach (GameObject link in chainLinks)
+            Destroy(link);
+        chainLinks.Clear();
+
+        // Create the exact number of chain links needed
+        for (int i = 0; i < calculatedLinks; i++)
         {
-            GameObject newLink = Instantiate(chainLinkPrefab, user.GetComponent<Entity>().leftHand.position, Quaternion.LookRotation(aimDirection));
+            GameObject newLink = Instantiate(chainLinkPrefab, user.GetComponent<Entity>().leftHand.position, Quaternion.identity);
             chainLinks.Add(newLink);
         }
 
@@ -105,6 +116,7 @@ public class HookSkill : Skill
                 {
                     GameObject player = hits[0].gameObject;
                     player.GetComponent<Animator>().SetTrigger("Stun");
+                    player.GetComponent<Entity>().TakeDamage(0, Vector3.zero, 0);
                     yield return new WaitForSeconds(playerStunDuration);
                     StartCoroutine(PullPlayer(player, user));
                     hitPlayer = true;
@@ -150,9 +162,19 @@ public class HookSkill : Skill
         // Calculate the direction and target position based on hook range
         targetPosition = user.GetComponent<Entity>().leftHand.position + toPlayerDir * hookRange;
 
-        for (int i = 0; i < numChainLinks; i++)
+        // Calculate number of links based on the distance to target
+        float distanceToTarget = Vector3.Distance(user.GetComponent<Entity>().leftHand.position, targetPosition);
+        int calculatedLinks = Mathf.FloorToInt(distanceToTarget / chainLinkLength);
+
+        // Clear any existing links if they exist
+        foreach (GameObject link in chainLinks)
+            Destroy(link);
+        chainLinks.Clear();
+
+        // Create the exact number of chain links needed
+        for (int i = 0; i < calculatedLinks; i++)
         {
-            GameObject newLink = Instantiate(chainLinkPrefab, user.GetComponent<Entity>().leftHand.position, Quaternion.LookRotation(toPlayerDir));
+            GameObject newLink = Instantiate(chainLinkPrefab, user.GetComponent<Entity>().leftHand.position, Quaternion.identity);
             chainLinks.Add(newLink);
         }
 
@@ -179,6 +201,7 @@ public class HookSkill : Skill
                 {
                     GameObject player = hits[0].gameObject;
                     player.GetComponent<Animator>().SetTrigger("Stun");
+                    player.GetComponent<Entity>().TakeDamage(0, Vector3.zero, 0);
                     yield return new WaitForSeconds(playerStunDuration);
                     StartCoroutine(PullPlayer(player, user));
                     hitPlayer = true;
@@ -222,16 +245,33 @@ public class HookSkill : Skill
             user.GetComponent<HookEnemyAI>().hasPulled = true;
         }
     }
+
     private void UpdateChainLinkPositions(GameObject user)
     {
-        // Calculate distance between each link
-        float segmentLength = Vector3.Distance(user.GetComponent<Entity>().leftHand.position, projectile.transform.position) / (numChainLinks + 1);
+        // Recalculate distance and number of links based on the current projectile position
+        float currentDistance = Vector3.Distance(user.GetComponent<Entity>().leftHand.position, projectile.transform.position);
+        int requiredLinks = Mathf.FloorToInt(currentDistance / chainLinkLength);
 
-        // Position each chain link along the line between user and projectile
-        for (int i = 0; i < numChainLinks; i++)
+        // Add or remove links if needed
+        if (requiredLinks != chainLinks.Count)
         {
-            float t = (float)(i + 1) / (numChainLinks + 1);  // Get normalized position between user and projectile
+            foreach (GameObject link in chainLinks)
+                Destroy(link);
+            chainLinks.Clear();
+
+            for (int i = 0; i < requiredLinks; i++)
+            {
+                GameObject newLink = Instantiate(chainLinkPrefab, user.GetComponent<Entity>().leftHand.position, Quaternion.identity);
+                chainLinks.Add(newLink);
+            }
+        }
+
+        // Position each chain link between the user and the projectile
+        for (int i = 0; i < chainLinks.Count; i++)
+        {
+            float t = (float)(i + 1) / (chainLinks.Count + 1);
             chainLinks[i].transform.position = Vector3.Lerp(user.GetComponent<Entity>().leftHand.position, projectile.transform.position, t);
+            chainLinks[i].transform.rotation = Quaternion.LookRotation(projectile.transform.position - chainLinks[i].transform.position);
         }
     }
 

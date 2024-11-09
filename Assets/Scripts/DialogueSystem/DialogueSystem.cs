@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System;
 using JetBrains.Annotations;
 using UnityEngine.Events;
+using System.Linq;
 
 [Serializable]
 public class DialogueEvent : UnityEvent { };
@@ -129,7 +130,7 @@ public class DialogueSystem : MonoBehaviour
                         bubble.PlayerIcon.sprite = dialogue[index].PlayerIcon;
                     }
                 }
-                StartCoroutine(BumpBubbles());
+                BumpBubbles();
             }
             dialogues = dialogue;
             typeLineCoroutine = StartCoroutine(TypeLine());
@@ -152,17 +153,22 @@ public class DialogueSystem : MonoBehaviour
             yield return new WaitForSecondsRealtime(textSpeed);
         }
     }
-    IEnumerator BumpBubbles()
-    { 
-        for (int i2 = 0; i2 < (int)bumpAmount / bumpSpeed; i2++)
+    
+    void SnapBubbles()
+    {
+        for (int i = 0; i < bubblesSpawned.Count; ++i)
         {
-            for (int i = 0; i < bubblesSpawned.Count; i++)
-            {
-                Vector3 bubblePos = bubblesSpawned[i].transform.position;
-                bubblePos.y += 1 * bumpSpeed;
-                bubblesSpawned[i].transform.position = bubblePos;
-            }
-            yield return new WaitForSecondsRealtime(bumpWait);
+            DialogueBubble bubble = bubblesSpawned[i].GetComponent<DialogueBubble>();
+            bubble.Snap();
+        }
+    }
+
+    void BumpBubbles()
+    {
+        for (int i = 0; i < bubblesSpawned.Count; ++i)
+        {
+            DialogueBubble bubble = bubblesSpawned[i].GetComponent<DialogueBubble>();
+            bubble.SetTargetY(-bumpAmount * 1.5f + bumpAmount * (bubblesSpawned.Count-i));
         }
     }
     // Start is called before the first frame update
@@ -189,6 +195,7 @@ public class DialogueSystem : MonoBehaviour
             Debug.LogError(currentDialogueTextBox.text + " " + dialogues[index].text);
             currentDialogueTextBox.text = dialogues[index].text;
             StopCoroutine(typeLineCoroutine);
+            SnapBubbles();
             //StopAudio();
         }
     }
@@ -235,7 +242,7 @@ public class DialogueSystem : MonoBehaviour
                         bubble.PlayerIcon.sprite = dialogues[index].PlayerIcon;
                     }
                 }
-                StartCoroutine(BumpBubbles());
+                BumpBubbles();
             }
             typeLineCoroutine = StartCoroutine(TypeLine());
         }
