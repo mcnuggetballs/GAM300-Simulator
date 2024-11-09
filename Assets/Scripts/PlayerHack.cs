@@ -54,6 +54,10 @@ public class PlayerHack : MonoBehaviour
     float hackDisplayTimer = 0;
     float hackDisplayTime = 1.5f;
     protected Hackable lastHackedHackable = null;
+    [SerializeField]
+    AudioSource insufficientHackChargeSource;
+    float vivianVoiceCooldown = 3.0f;
+    float vivianVoiceTimer = 3.0f;
     public void DisplayHackNotification()
     {
         if (hackChargeNotif)
@@ -63,6 +67,12 @@ public class PlayerHack : MonoBehaviour
                 StopCoroutine(hackNotifCoroutine);
             }
             hackChargeNotif.SetActive(true);
+            if (insufficientHackChargeSource != null && vivianVoiceTimer >= vivianVoiceCooldown)
+            {
+                vivianVoiceTimer = 0;
+                insufficientHackChargeSource.Play();
+            }
+            
             hackNotifCoroutine = StartCoroutine(DisableHackChargeNotif(3.0f));
         }
     }
@@ -199,6 +209,7 @@ public class PlayerHack : MonoBehaviour
 
     void Update()
     {
+        vivianVoiceTimer += Time.deltaTime;
         if (hackCharge)
         {
             hackCharge.fillAmount = chargeValue / maxChargeValue;
