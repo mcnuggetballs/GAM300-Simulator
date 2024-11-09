@@ -22,6 +22,8 @@ public class Objective1Manager : MonoBehaviour
     bool obj2Complete = false;
     [SerializeField]
     GameObject checkMarkGameObject;
+    [SerializeField]
+    AudioSource audioSource;
     public void PlayToDoEnterSound()
     {
         AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[6], FindAnyObjectByType<PlayerHack>().transform.position);
@@ -40,15 +42,6 @@ public class Objective1Manager : MonoBehaviour
         }
         Instance = this;
         totalEnemies = 0;
-        EnemyControllerRB[] enemies = FindObjectsOfType<EnemyControllerRB>();
-        foreach (EnemyControllerRB enemy in enemies)
-        {
-            if (enemy.gameObject.activeSelf)
-            {
-                ++totalEnemies;
-            }
-        }
-        currentEnemies = totalEnemies;
         animator = GetComponent<Animator>();
         lift.enabled = false;
     }
@@ -69,6 +62,10 @@ public class Objective1Manager : MonoBehaviour
                 StartCoroutine(ShowLines(1));
                 obj1Complete = true;
                 lift.enabled = true;
+                if (audioSource != null)
+                {
+                    audioSource.Play();
+                }
             }
         }
         else if (!obj2Complete)

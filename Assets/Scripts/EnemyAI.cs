@@ -49,6 +49,8 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual void Start()
     {
+        Objective1Manager.Instance.totalEnemies++;
+        Objective1Manager.Instance.currentEnemies++;
         ThirdPersonControllerRB pp = FindObjectOfType<ThirdPersonControllerRB>();
         if (pp != null)
         {
