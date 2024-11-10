@@ -119,6 +119,7 @@ public class Objective1Manager : MonoBehaviour
         {
             objTask.CreateObjective("FindLift", "Find the lift to progress to the next level");
         }
+        NotifSystem.Instance.SkipEnter(12);
         lift.enabled = true;
         tasks.Add(task);
     }
@@ -154,7 +155,7 @@ public class Objective1Manager : MonoBehaviour
     }
     IEnumerator PlayObjectiveAudio()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(2.5f);
         if (audioSource != null)
         {
             audioSource.Play();

@@ -236,8 +236,6 @@ public class NotifSystem : MonoBehaviour
                 animator.SetBool("Enter", false);
                 step = 11;
                 active = false;
-                StartCoroutine(Enter(11, 1.0f));
-                StartCoroutine(CompleteAfterSeconds(5.0f, 11));
             }
         }
         else if (value == 11)
