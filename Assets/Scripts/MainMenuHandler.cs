@@ -8,6 +8,7 @@ public class MainMenuHandler : MonoBehaviour
     Animator animator;
     private void Awake()
     {
+        TimeManager.Instance.ResumeGame();
         animator = GetComponent<Animator>();
     }
     public void PressStartButton()

@@ -30,6 +30,7 @@ public class IngameUIManager : MonoBehaviour
 
     private void Awake()
     {
+        TimeManager.Instance.ResumeGame();
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -43,13 +44,11 @@ public class IngameUIManager : MonoBehaviour
     public void RetryScene()
     {
         ChangeScene(SceneManager.GetActiveScene().name);
-        TimeManager.Instance.ResumeGame();
     }
     public void ChangeScene(string sceneName)
     {
         SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
         SceneTransition.Instance.TransitionToScene(sceneName);
-        TimeManager.Instance.ResumeGame();
     }
     public void SetDead()
     {
