@@ -7,7 +7,10 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float lifeTime = 5f;
     [SerializeField] private float damage = 10f;
     [SerializeField] private GameObject hitEffect;
-
+    public void SetDamage(float theDamage)
+    {
+        damage = theDamage;
+    }
     private Vector3 _direction;
 
     private void Start()

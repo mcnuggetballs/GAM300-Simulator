@@ -162,6 +162,7 @@ public class ShootSkill : Skill
                 if (projectileScript != null)
                 {
                     projectileScript.Initialize(shootDirection, user);
+                    projectileScript.SetDamage(20.0f);
                 }
                 user.GetComponent<Animator>().SetBool("IgnoreStun", false);
             }
