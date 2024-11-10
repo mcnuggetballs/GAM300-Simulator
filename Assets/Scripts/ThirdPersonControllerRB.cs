@@ -1,7 +1,6 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 namespace StarterAssets
 {
