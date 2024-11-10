@@ -289,7 +289,7 @@ MonoBehaviour:
   locked: 0
   hack: 0
   level: 1
-  cost: 20
+  cost: 25
   description: 25% chance of generating extra +1 hack energy with each slash
   mySprite: {fileID: 88990371}
   unlockedImage: {fileID: 21300000, guid: d805fc079b2c9a049adfe9858f46121f, type: 3}
@@ -1031,7 +1031,7 @@ MonoBehaviour:
   locked: 0
   hack: 0
   level: 3
-  cost: 60
+  cost: 45
   description: 50% chance of generating Extra +1 hack energy with each slash, Slash
     damage increase by 100%
   mySprite: {fileID: 212578969}
@@ -1546,7 +1546,7 @@ MonoBehaviour:
   locked: 0
   hack: 1
   level: 3
-  cost: 60
+  cost: 45
   description: Instant hack (hack time decrease by 100%). Increase damage of copied
     skill by 100%
   mySprite: {fileID: 353253045}
@@ -2527,7 +2527,7 @@ MonoBehaviour:
   locked: 0
   hack: 0
   level: 2
-  cost: 40
+  cost: 35
   description: Slash damage increase by 50%
   mySprite: {fileID: 759657740}
   unlockedImage: {fileID: 21300000, guid: e4dccf6c4f6c901428bed89fad3ad625, type: 3}
@@ -3797,7 +3797,7 @@ MonoBehaviour:
   locked: 0
   hack: 1
   level: 2
-  cost: 40
+  cost: 35
   description: Increase damage of copied skill by 50%
   mySprite: {fileID: 1147148682}
   unlockedImage: {fileID: 21300000, guid: cba62cf38afaa0f4a9a0666e9f70280e, type: 3}
@@ -4908,7 +4908,7 @@ MonoBehaviour:
   locked: 0
   hack: 1
   level: 1
-  cost: 20
+  cost: 25
   description: Hack time decreased by 50%
   mySprite: {fileID: 1385812802}
   unlockedImage: {fileID: 21300000, guid: 53310fe8c9e80f142801fdb5f460fb37, type: 3}
