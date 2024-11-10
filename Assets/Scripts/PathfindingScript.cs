@@ -19,6 +19,7 @@ public class PathfindingScript : MonoBehaviour
     private Vector3 jumpEndPos;
     private float jumpDuration = 1.0f; // Time to complete the jump
     private float jumpProgress = 0.0f;
+    public float pathTimer = 0.0f;
 
     private void Awake()
     {
@@ -90,6 +91,7 @@ public class PathfindingScript : MonoBehaviour
 
     private void MoveAlongPath()
     {
+        pathTimer += Time.deltaTime;
         Vector3 direction = (_path[_currentPathIndex] - transform.position).normalized;
         float distance = Vector3.Distance(transform.position, _path[_currentPathIndex]);
 
@@ -113,7 +115,7 @@ public class PathfindingScript : MonoBehaviour
             Vector3 dir = _path[_currentPathIndex] - transform.position;
             if (Physics.Raycast(transform.position, dir, out RaycastHit hit, rayDistance, enemyLayer))
             {
-                _currentPathIndex = int.MaxValue;
+                _path = null;
                 Debug.LogError("Stopped");
             }
         }
@@ -137,6 +139,7 @@ public class PathfindingScript : MonoBehaviour
                 _path = path.corners;
                 _currentPathIndex = 1; // Reset the path index to start
                 foundPath = true;
+                pathTimer = 0.0f;
             }
             else
             {

@@ -112,6 +112,10 @@ public class EnemyAI : MonoBehaviour
                 AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyPatrolSounds[Random.Range(0, AudioManager.instance.EnemyPatrolSounds.Length)], transform.position);
                 patrolSoundTime = 0f;
             }
+            if (GetComponent<PathfindingScript>().pathTimer >= 3.0f)
+            {
+                SetDestinationAndPathfinding(transform.position);
+            }
             if (_timeSinceLastPatrol >= patrolWaitTime)
             {
                 Vector3 randomDestination = GetRandomNavMeshPosition(transform.position, 10f);
