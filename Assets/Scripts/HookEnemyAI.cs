@@ -66,7 +66,17 @@ public class HookEnemyAI : EnemyAI
 
     protected override void Attack()
     {
+        GetComponent<PathfindingScript>().jumpingNavLinkEnabled = false;
         GetComponent<EnemyControllerRB>().StopMovement();
+
+        if (GetComponent<PathfindingScript>() != null)
+        {
+            if (GetComponent<PathfindingScript>().isJumping)
+            {
+                return;
+            }
+        }
+
         timer += Time.deltaTime;
 
         if (animator.GetBool("CanStun") && (animator.GetBool("Hurt") || animator.GetBool("Stun")))
@@ -137,6 +147,7 @@ public class HookEnemyAI : EnemyAI
             {
                 animator.SetBool("CanStun", true);
             }
+            GetComponent<PathfindingScript>().jumpingNavLinkEnabled = true;
         }
     }
 

@@ -186,6 +186,14 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual void Attack()
     {
+        if (GetComponent<PathfindingScript>() != null)
+        {
+            GetComponent<PathfindingScript>().jumpingNavLinkEnabled = false;
+            if (GetComponent<PathfindingScript>().isJumping)
+            {
+                return;
+            }
+        }
         if (GetComponent<EnemyControllerRB>() != null)
         {
             GetComponent<EnemyControllerRB>().SetLookDirection((player.position - transform.position).normalized);
@@ -206,6 +214,7 @@ public class EnemyAI : MonoBehaviour
 
         _timeSinceLastAttack = 0f;
         _currentState = State.Chasing;
+        GetComponent<PathfindingScript>().jumpingNavLinkEnabled = true;
     }
 
     protected virtual bool DetectPlayer()
