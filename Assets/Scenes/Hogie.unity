@@ -4342,7 +4342,7 @@ GameObject:
   - component: {fileID: 118966754}
   - component: {fileID: 118966753}
   - component: {fileID: 118966752}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: InvisibleWall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66244,7 +66244,7 @@ GameObject:
   - component: {fileID: 2015248640}
   - component: {fileID: 2015248639}
   - component: {fileID: 2015248642}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: InvisibleWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
