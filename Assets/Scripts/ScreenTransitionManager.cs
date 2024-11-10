@@ -65,6 +65,10 @@ public class ScreenTransitionManager : MonoBehaviour
         transitionAnimator.SetTrigger("StartTransition");
         nextSceneName = sceneName;
         inTransition = true;
+        if (sceneName == "Hogie")
+        {
+            TimeManager.Instance.ResumeGame();
+        }
     }
 
     private IEnumerator LoadScene()
