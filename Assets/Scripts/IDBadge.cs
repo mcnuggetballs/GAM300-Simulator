@@ -8,10 +8,7 @@ public class IDBadge : MonoBehaviour
     float iFrameTimer = 0.0f;
     bool canPickup = false;
     public EntityDeathEvent deathEvent;
-    private void Start()
-    {
-        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.IDDropSound, transform.position);
-    }
+
     private void Update()
     {
         iFrameTimer += Time.deltaTime;
