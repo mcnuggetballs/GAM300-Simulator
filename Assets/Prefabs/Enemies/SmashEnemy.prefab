@@ -1660,7 +1660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathfinding: {fileID: 3056565879768199586}
   detectionRadius: 6
-  attackRadius: 2
+  attackRadius: 2.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1669,7 +1669,7 @@ MonoBehaviour:
     m_Bits: 0
   patrolWaitTime: 2
   attackCooldown: 5
-  stoppingDistance: 1.8
+  stoppingDistance: 2.3
 --- !u!114 &836539834704175468
 MonoBehaviour:
   m_ObjectHideFlags: 0

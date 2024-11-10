@@ -77,6 +77,7 @@ public class Objective1Manager : MonoBehaviour
                 task.GetComponent<ObjectiveTask>().textUI.text = "Kill all AI robots - " + (totalEnemies - currentEnemies).ToString() + "/" + totalEnemies;
                 if (currentEnemies <= 0)
                 {
+                    AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[5], transform.position);
                     task.GetComponent<ObjectiveTask>().CompleteTask();
                     enemiesAllDead = true;
                 }
@@ -85,6 +86,7 @@ public class Objective1Manager : MonoBehaviour
             {
                 if (coleDead)
                 {
+                    AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[5], transform.position);
                     task.GetComponent<ObjectiveTask>().CompleteTask();
                 }
             }
@@ -92,6 +94,7 @@ public class Objective1Manager : MonoBehaviour
             {
                 if (annDead)
                 {
+                    AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[5], transform.position);
                     task.GetComponent<ObjectiveTask>().CompleteTask();
                 }
             }
@@ -151,6 +154,7 @@ public class Objective1Manager : MonoBehaviour
     }
     IEnumerator PlayObjectiveAudio()
     {
+        yield return new WaitForSeconds(5.0f);
         if (audioSource != null)
         {
             audioSource.Play();
@@ -166,6 +170,7 @@ public class Objective1Manager : MonoBehaviour
         {
             if (addedFindLift == false)
             {
+                StartCoroutine(PlayObjectiveAudio());
                 addedFindLift = true;
                 CreateObjectiveFindLift();
             }
