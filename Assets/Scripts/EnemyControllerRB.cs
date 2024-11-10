@@ -54,7 +54,8 @@ public class EnemyControllerRB : MonoBehaviour
     private bool _jump = false;
 
     Vector3 targetDirection = Vector3.zero;
-
+    public float AvoidanceRadius = 1.5f; // The radius within which it will avoid other enemies
+    public float AvoidanceStrength = 0.3f; // How strongly the enemy will steer away from others
     private void Awake()
     {
         // get a reference to our main camera
@@ -85,6 +86,33 @@ public class EnemyControllerRB : MonoBehaviour
 
         JumpAndGravity();
         GroundedCheck();
+        AvoidOtherEnemies();
+    }
+    private void AvoidOtherEnemies()
+    {
+        Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, AvoidanceRadius);
+
+        Vector3 avoidanceDirection = Vector3.zero;
+        int nearbyCount = 0;
+
+        foreach (Collider collider in nearbyEnemies)
+        {
+            EnemyControllerRB otherEnemy = collider.GetComponent<EnemyControllerRB>();
+            if (otherEnemy != null && otherEnemy != this)
+            {
+                // Calculate the direction away from the other enemy
+                Vector3 directionAway = transform.position - otherEnemy.transform.position;
+                avoidanceDirection += directionAway.normalized;
+                nearbyCount++;
+            }
+        }
+
+        if (nearbyCount > 0)
+        {
+            avoidanceDirection /= nearbyCount; // Average out the avoidance direction
+            targetDirection += avoidanceDirection * AvoidanceStrength; // Apply avoidance to the current target direction
+            targetDirection.Normalize(); // Normalize to ensure consistent speed
+        }
     }
 
     private void LateUpdate()

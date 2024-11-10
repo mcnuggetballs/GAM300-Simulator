@@ -104,6 +104,19 @@ public class PathfindingScript : MonoBehaviour
         {
             _currentPathIndex++;
         }
+        else
+        {
+            float rayDistance = 2.0f;
+            LayerMask enemyLayer = LayerMask.GetMask("Enemy");
+            Vector3 pos = transform.position;
+            pos.y = transform.position.y + 2.0f;
+            Vector3 dir = _path[_currentPathIndex] - transform.position;
+            if (Physics.Raycast(transform.position, dir, out RaycastHit hit, rayDistance, enemyLayer))
+            {
+                _currentPathIndex = int.MaxValue;
+                Debug.LogError("Stopped");
+            }
+        }
     }
 
     public void FindPath(Vector3 targetPos)
@@ -113,15 +126,22 @@ public class PathfindingScript : MonoBehaviour
         NavMeshPath path = new NavMeshPath();
         NavMeshHit hit;
         float distance = 5.0f;
-        NavMesh.SamplePosition(targetPos, out hit, distance, NavMesh.AllAreas);
-        _navMeshAgent.CalculatePath(hit.position, path);
-
-        if ((path.status == NavMeshPathStatus.PathComplete || path.status == NavMeshPathStatus.PathPartial) && path.corners.Length > 0)
+        bool sample = NavMesh.SamplePosition(targetPos, out hit, distance, NavMesh.AllAreas);
+        if (sample)
         {
-            _navMeshAgent.SetDestination(hit.position);
-            _path = path.corners;
-            _currentPathIndex = 1; // Reset the path index to start
-            foundPath = true;
+            _navMeshAgent.CalculatePath(hit.position, path);
+
+            if ((path.status == NavMeshPathStatus.PathComplete || path.status == NavMeshPathStatus.PathPartial) && path.corners.Length > 0)
+            {
+                _navMeshAgent.SetDestination(hit.position);
+                _path = path.corners;
+                _currentPathIndex = 1; // Reset the path index to start
+                foundPath = true;
+            }
+            else
+            {
+                foundPath = false;
+            }
         }
         else
         {
