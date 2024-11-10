@@ -84,13 +84,21 @@ public class TimeManager : MonoBehaviour
     }
 
     // Method to resume the TimeManager
-    public void ResumeGame()
+    public void ResumeGame(bool showCursor = false)
     {
         isPaused = false;
         Time.timeScale = originalTimeScale;
         Time.fixedDeltaTime = originalFixedDeltaTime;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        if (showCursor == false)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
         foreach(AudioSource source in audioSources)
         {
             if (source != null)
