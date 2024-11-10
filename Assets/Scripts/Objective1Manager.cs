@@ -13,8 +13,10 @@ public class Objective1Manager : MonoBehaviour
     [SerializeField]
     IngameLift lift;
 
-    bool obj1Complete = false;
-    bool obj2Complete = false;
+    bool coleDead = false;
+    bool annDead = false;
+    bool enemiesAllDead = false;
+    bool addedFindLift = false;
     [SerializeField]
     AudioSource audioSource;
     [SerializeField]
@@ -33,7 +35,14 @@ public class Objective1Manager : MonoBehaviour
     {
         AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[Random.Range(7,9)], FindAnyObjectByType<PlayerHack>().transform.position);
     }
-
+    public void KilledCole()
+    {
+        coleDead = true;
+    }
+    public void KilledAnn()
+    {
+        annDead = true;
+    }
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -69,9 +78,46 @@ public class Objective1Manager : MonoBehaviour
                 if (currentEnemies <= 0)
                 {
                     task.GetComponent<ObjectiveTask>().CompleteTask();
+                    enemiesAllDead = true;
+                }
+            }
+            if (task.GetComponent<ObjectiveTask>().id == "DefeatCole")
+            {
+                if (coleDead)
+                {
+                    task.GetComponent<ObjectiveTask>().CompleteTask();
+                }
+            }
+            if (task.GetComponent<ObjectiveTask>().id == "DefeatAnn")
+            {
+                if (annDead)
+                {
+                    task.GetComponent<ObjectiveTask>().CompleteTask();
+                }
+            }
+            if (task.GetComponent<ObjectiveTask>().id == "FindLift")
+            {
+                if (addedFindLift)
+                {
+                    if (lift.GetOpenLiftCollider().GetCollisions() >= 1)
+                    {
+                        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[5], transform.position);
+                        task.GetComponent<ObjectiveTask>().CompleteTask();
+                    }
                 }
             }
         }
+    }
+    public void CreateObjectiveFindLift()
+    {
+        GameObject task = Instantiate(taskPrefab, pivot.position, Quaternion.identity, pivot);
+        ObjectiveTask objTask = task.GetComponent<ObjectiveTask>();
+        if (objTask != null)
+        {
+            objTask.CreateObjective("FindLift", "Find the lift to progress to the next level");
+        }
+        lift.enabled = true;
+        tasks.Add(task);
     }
     public void CreateObjectiveKillAllEnemies()
     {
@@ -80,6 +126,26 @@ public class Objective1Manager : MonoBehaviour
         if (objTask != null)
         {
             objTask.CreateObjective("KillAll","Kill all AI robots - " + (totalEnemies - currentEnemies).ToString() + "/" + totalEnemies);
+        }
+        tasks.Add(task);
+    }
+    public void CreateObjectiveDefeatCole()
+    {
+        GameObject task = Instantiate(taskPrefab, pivot.position, Quaternion.identity, pivot);
+        ObjectiveTask objTask = task.GetComponent<ObjectiveTask>();
+        if (objTask != null)
+        {
+            objTask.CreateObjective("DefeatCole", "Defeat Cole Lateral");
+        }
+        tasks.Add(task);
+    }
+    public void CreateObjectiveDefeatAnn()
+    {
+        GameObject task = Instantiate(taskPrefab, pivot.position, Quaternion.identity, pivot);
+        ObjectiveTask objTask = task.GetComponent<ObjectiveTask>();
+        if (objTask != null)
+        {
+            objTask.CreateObjective("DefeatAnn", "Defeat Ann Cord");
         }
         tasks.Add(task);
     }
@@ -96,28 +162,13 @@ public class Objective1Manager : MonoBehaviour
     {
         UpdateTaskPositions();
         UpdateTasks();
-        //if (!obj1Complete)
-        //{
-        //    objectiveText.text = "Kill all AI robots - " + (totalEnemies - currentEnemies).ToString() + "/" + totalEnemies;
-
-        //    if (currentEnemies <= 0)
-        //    {
-        //        checkMarkGameObject.SetActive(true);
-        //        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[5], transform.position);
-        //        obj1Complete = true;
-        //        lift.enabled = true;
-        //        StartCoroutine(PlayObjective1Audio());
-        //        NotifSystem.Instance.SkipEnter(12);
-        //    }
-        //}
-        //else if (!obj2Complete)
-        //{
-        //    if (lift.GetOpenLiftCollider().GetCollisions() >= 1)
-        //    {
-        //        checkMarkGameObject.SetActive(true);
-        //        AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[5], transform.position);
-        //        obj2Complete = true;
-        //    }
-        //}
+        if (enemiesAllDead)
+        {
+            if (addedFindLift == false)
+            {
+                addedFindLift = true;
+                CreateObjectiveFindLift();
+            }
+        }
     }
 }

@@ -37,19 +37,24 @@ public class NotifSystem : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         if (value == 0)
         {
+            Objective1Manager.Instance.CreateObjectiveKillAllEnemies();
             notifImage.sprite = notifs[value];
+            StartCoroutine(CompleteAfterSeconds(5.0f, 0));
         }
         else if (value == 1)
         {
             notifImage.sprite = notifs[value];
+            StartCoroutine(CompleteAfterSeconds(5.0f, 1));
         }
         else if (value == 2)
         {
             notifImage.sprite = notifs[value];
+            StartCoroutine(CompleteAfterSeconds(5.0f, 2));
         }
         else if (value == 3)
         {
             notifImage.sprite = notifs[value];
+            StartCoroutine(CompleteAfterSeconds(5.0f, 3));
         }
         else if (value == 4)
         {
@@ -88,7 +93,6 @@ public class NotifSystem : MonoBehaviour
         }
         else if (value == 11)
         {
-            Objective1Manager.Instance.CreateObjectiveKillAllEnemies();
             notifImage.sprite = notifs[value];
             StartCoroutine(CompleteAfterSeconds(5.0f, 11));
         }
@@ -138,8 +142,7 @@ public class NotifSystem : MonoBehaviour
                 animator.SetBool("Enter", false);
                 step = 1;
                 active = false;
-                StartCoroutine(Enter(1));
-                StartCoroutine(CompleteAfterSeconds(5.0f, 1));
+                StartCoroutine(Enter(1,1.0f));
             }
         }
         else if (value == 1)
@@ -150,7 +153,6 @@ public class NotifSystem : MonoBehaviour
                 step = 2;
                 active = false;
                 StartCoroutine(Enter(2,1.0f));
-                StartCoroutine(CompleteAfterSeconds(5.0f, 2));
             }
         }
         else if (value == 2)
@@ -161,7 +163,6 @@ public class NotifSystem : MonoBehaviour
                 step = 3;
                 active = false;
                 StartCoroutine(Enter(3, 1.0f));
-                StartCoroutine(CompleteAfterSeconds(5.0f, 3));
             }
         }
         else if (value == 3)
@@ -171,6 +172,7 @@ public class NotifSystem : MonoBehaviour
                 animator.SetBool("Enter", false);
                 step = 4;
                 active = false;
+                StartCoroutine(Enter(4, 1.0f));
             }
         }
         else if (value == 4)
@@ -270,7 +272,6 @@ public class NotifSystem : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Enter(0));
-        StartCoroutine(CompleteAfterSeconds(5.0f,0));
     }
     private void Update()
     {

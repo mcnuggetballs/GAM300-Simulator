@@ -20901,6 +20901,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626973795}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &627401199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1955272262739798871, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
+  m_PrefabInstance: {fileID: 1101181615}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &627812901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22257,7 +22268,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -29181,6 +29192,17 @@ Transform:
   - {fileID: 34883476}
   m_Father: {fileID: 1840858015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &875957955 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3626189319591926846, guid: b8b7bb47e8af3d744b2542758a83b262, type: 3}
+  m_PrefabInstance: {fileID: 1101181615}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199a69207eca1b44399a94b89a8b4e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &876064464
 GameObject:
   m_ObjectHideFlags: 0
@@ -46614,7 +46636,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 8
+          m_IntArgument: 9
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -59161,7 +59183,19 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 4
+              m_IntArgument: 5
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 875957955}
+            m_TargetAssemblyTypeName: Objective1Manager, Assembly-CSharp
+            m_MethodName: CreateObjectiveDefeatCole
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
@@ -59209,7 +59243,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -59217,6 +59251,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2015248639}
         m_TargetAssemblyTypeName: DestroyToCall, Assembly-CSharp
         m_MethodName: DestroyMe
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 875957955}
+        m_TargetAssemblyTypeName: Objective1Manager, Assembly-CSharp
+        m_MethodName: KilledCole
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -67410,7 +67456,19 @@ MonoBehaviour:
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 9
+              m_IntArgument: 10
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 875957955}
+            m_TargetAssemblyTypeName: Objective1Manager, Assembly-CSharp
+            m_MethodName: CreateObjectiveDefeatAnn
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
@@ -67446,7 +67504,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
+          m_IntArgument: 11
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -67454,6 +67512,18 @@ MonoBehaviour:
       - m_Target: {fileID: 118966753}
         m_TargetAssemblyTypeName: DestroyToCall, Assembly-CSharp
         m_MethodName: DestroyMe
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 875957955}
+        m_TargetAssemblyTypeName: Objective1Manager, Assembly-CSharp
+        m_MethodName: KilledAnn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -68992,7 +69062,7 @@ PrefabInstance:
     - target: {fileID: 7328045031462435104, guid: 7e0cdd74f3e6dc24596a5ccbdb7472d5, type: 3}
       propertyPath: cameraController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 627401199}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

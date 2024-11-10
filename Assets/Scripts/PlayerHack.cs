@@ -286,7 +286,7 @@ public class PlayerHack : MonoBehaviour
                         FlashCardDisplay.Instance.Activate(GetComponent<FlashCardCollider>().displayImages);
                         Destroy(GetComponent<FlashCardCollider>());
                     }
-                    NotifSystem.Instance.SkipEnterOne(7);
+                    NotifSystem.Instance.SkipEnterOne(8);
                     AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.HackSounds[0], transform.position);
                     if (currentSelectedEntity.GetComponent<EnemyAI>())
                     {
