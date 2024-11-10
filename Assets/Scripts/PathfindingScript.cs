@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -110,11 +111,14 @@ public class PathfindingScript : MonoBehaviour
         if (!(_navMeshAgent.isOnNavMesh && _navMeshAgent.isActiveAndEnabled))
             return;
         NavMeshPath path = new NavMeshPath();
-        _navMeshAgent.CalculatePath(targetPos, path);
+        NavMeshHit hit;
+        float distance = 5.0f;
+        NavMesh.SamplePosition(targetPos, out hit, distance, NavMesh.AllAreas);
+        _navMeshAgent.CalculatePath(hit.position, path);
 
-        if (path.status == NavMeshPathStatus.PathComplete && path.corners.Length > 0)
+        if ((path.status == NavMeshPathStatus.PathComplete || path.status == NavMeshPathStatus.PathPartial) && path.corners.Length > 0)
         {
-            _navMeshAgent.SetDestination(targetPos);
+            _navMeshAgent.SetDestination(hit.position);
             _path = path.corners;
             _currentPathIndex = 1; // Reset the path index to start
             foundPath = true;
