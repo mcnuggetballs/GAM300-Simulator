@@ -19747,7 +19747,7 @@ GameObject:
   - component: {fileID: 618799502}
   - component: {fileID: 618799501}
   m_Layer: 0
-  m_Name: NavMesh2
+  m_Name: Cole Lateral NavMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19780,9 +19780,9 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.18333334
   m_MinRegionArea: 0
-  m_NavMeshData: {fileID: 23800000, guid: 04407d93153c2ee4fbded842f0c06530, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 4c6f8d65b41b27540aa2e8273686d94d, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &618799502
 Transform:
@@ -44682,9 +44682,9 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.11666667
+  m_VoxelSize: 0.13333334
   m_MinRegionArea: 0
-  m_NavMeshData: {fileID: 23800000, guid: f05fd7ede75f5354eb44fcbe81c844bf, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 39558b52f7b444949b0b2b7d5c7afcbd, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &1360861664
 Transform:
