@@ -36,15 +36,6 @@ public class SettingsUIManager : MonoBehaviour
         mixer.GetFloat("SFX", out sfxVolume);
         sfxVolumeSlider.value = Mathf.Pow(10, sfxVolume / 20);
         UpdateVolumeText(sfxVolumeText, sfxVolumeSlider.value);
-
-        if (GameManager.Instance.GetPromptsDisabled())
-        {
-            promptToggle.Deselect();
-        }
-        else
-        {
-            promptToggle.Select();
-        }
     }
 
     public void SetMasterVolume(float sliderValue)
@@ -75,6 +66,7 @@ public class SettingsUIManager : MonoBehaviour
             mixer.SetFloat("BGM", volume);
             UpdateVolumeText(bgmVolumeText, sliderValue);
         }
+        SceneTransition.Instance.SetOriginalBGMVol();
     }
 
     public void SetSFXVolume(float sliderValue)

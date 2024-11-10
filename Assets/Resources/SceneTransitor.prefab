@@ -176,6 +176,7 @@ MonoBehaviour:
   transitionAnimator: {fileID: 5067968198684986060}
   transitionDuration: 1
   nextSceneName: 
+  audioMixer: {fileID: 24100000, guid: 598d47c1fd1b1424eb5b79a8989fe4bf, type: 2}
 --- !u!95 &5067968198684986060
 Animator:
   serializedVersion: 5

@@ -25,5 +25,10 @@ public class SceneTransition
         }
     }
 
+    public void SetOriginalBGM()
+    {
+        SceneTransition.Instance.SetOriginalBGMVol();
+    }
+
 
 }

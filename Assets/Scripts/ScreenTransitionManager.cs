@@ -26,6 +26,7 @@ public class ScreenTransitionManager : MonoBehaviour
 
     private void Awake()
     {
+        SetOriginalBGMVol();
         audioMixer = Resources.Load<AudioMixer>("AudioMixer");
         if (Instance == null)
         {
@@ -80,10 +81,12 @@ public class ScreenTransitionManager : MonoBehaviour
     }
 
     float originalBGMVolume = 0;
-    private IEnumerator FadeOutBGM()
+    public void SetOriginalBGMVol()
     {
         audioMixer.GetFloat(bgmVolumeParameter, out originalBGMVolume);
-
+    }
+    private IEnumerator FadeOutBGM()
+    {
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
             float newVolume = Mathf.Lerp(originalBGMVolume, -80f, t / fadeDuration);
