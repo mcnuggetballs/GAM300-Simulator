@@ -78,6 +78,18 @@ public class Entity : MonoBehaviour
 
     public void TakeDamage(float value)
     {
+        if (GetComponent<EnemyAI>())
+        {
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.EnemyHurtSounds[UnityEngine.Random.Range(0, AudioManager.instance.EnemyHurtSounds.Length)], transform.position);
+            ExplodeNutsAndBolts();
+        }
+        if (GetComponent<PlayerHack>())
+        {
+            AudioManager.instance.PlaySoundAtLocation(AudioManager.instance.PlayerHurtSounds[UnityEngine.Random.Range(0, AudioManager.instance.PlayerHurtSounds.Length)], animator.transform.position);
+            IngameUIManager.Instance.TriggerHurtOverlay();
+            IngameUIManager.Instance.GetComponent<Animator>().SetTrigger("HitFlash");
+        }
+
         currentHealth -= value;
         if (animator != null)
         {
