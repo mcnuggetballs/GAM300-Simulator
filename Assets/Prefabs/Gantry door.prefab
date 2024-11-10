@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5234114153034114272}
   - component: {fileID: 5705848588900147920}
   - component: {fileID: 6415271297478014693}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 1234175937910104707}
   - component: {fileID: 8797051683549488159}
   - component: {fileID: 2949590085281382506}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: border (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 5919091453089420947}
   - component: {fileID: 2142916479954785448}
   - component: {fileID: 2840608974550827583}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: border (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2503554114426220671}
   - component: {fileID: 7441962696844265505}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Gantry door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 2665916431699034521}
   - component: {fileID: 3231512594545834708}
   - component: {fileID: 8113725581251874282}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: gantry glass (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7030085029780619955}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +536,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7045196637648394173}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 8623599019001419882}
   - component: {fileID: 5885458521760594663}
   - component: {fileID: 7125374600086994817}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: gantry glass (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,7 +696,7 @@ GameObject:
   - component: {fileID: 8128529421236303593}
   - component: {fileID: 6235529551903896457}
   - component: {fileID: 1572058445625622590}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: border (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 4856400654705738981}
   - component: {fileID: 4206142490537000360}
   - component: {fileID: 4006533305647265834}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -906,7 +906,7 @@ GameObject:
   - component: {fileID: 4945296045644825406}
   - component: {fileID: 1145942128494111320}
   - component: {fileID: 1415208099136151869}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: border (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
