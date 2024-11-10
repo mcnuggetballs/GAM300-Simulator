@@ -1,6 +1,7 @@
 using StarterAssets;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
 
 public class ShootSkill : Skill
@@ -66,10 +67,20 @@ public class ShootSkill : Skill
         }
         if (facing == true)
         {
-            user.GetComponent<ThirdPersonControllerRB>().RotateTo(facingDir);
+            if (user && user.GetComponent<ThirdPersonControllerRB>())
+                user.GetComponent<ThirdPersonControllerRB>().RotateTo(facingDir);
         }
-
     }
+
+    private void LateUpdate()
+    {
+        if (facing == true)
+        {
+            if (user && user.GetComponent<ThirdPersonControllerRB>())
+                user.GetComponent<ThirdPersonControllerRB>().RotateTo(facingDir);
+        }
+    }
+
     public void DisableEverything()
     {
         if (shootingCoroutine != null)
@@ -81,6 +92,7 @@ public class ShootSkill : Skill
         isShooting = false;
         lineRenderer.enabled = false;
     }
+
     private IEnumerator ShootProjectile(GameObject user)
     {
         if ((enemyLayer.value & (1 << user.layer)) != 0)
@@ -98,6 +110,7 @@ public class ShootSkill : Skill
         }
         else
         {
+            this.user = user;
             if (user.GetComponent<Animator>())
                 user.GetComponent<Animator>().SetBool("Hook", true);
             yield return new WaitForSeconds(0.2f);
@@ -159,6 +172,11 @@ public class ShootSkill : Skill
         this.user = null;
         isShooting = false;
         lineRenderer.enabled = false;
+        StartCoroutine(SetFacingFalse(0.5f));
+    }
+    IEnumerator SetFacingFalse(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         facing = false;
     }
     private void ShowLine(Vector3 startPoint, Vector3 endPoint)
