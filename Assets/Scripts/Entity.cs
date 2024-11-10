@@ -210,7 +210,7 @@ public class Entity : MonoBehaviour
         Rigidbody thingrb = thing.GetComponent<Rigidbody>();
         thing.GetComponent<IDBadge>().deathEvent = deathDropPickupEvent;
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere.normalized;
-        float explosionForce = UnityEngine.Random.Range(0.1f, 0.3f);
+        float explosionForce = UnityEngine.Random.Range(0.02f, 0.08f);
         thingrb.AddForce(randomDirection * explosionForce, ForceMode.Impulse);
     }
     protected void ExplodeCoffee()
