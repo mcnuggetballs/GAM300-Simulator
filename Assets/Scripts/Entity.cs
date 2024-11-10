@@ -219,11 +219,7 @@ public class Entity : MonoBehaviour
     protected void ExplodeDeathDrop()
     {
         GameObject thing = Instantiate(deathDrop, neck.position, Quaternion.identity);
-        Rigidbody thingrb = thing.GetComponent<Rigidbody>();
         thing.GetComponent<IDBadge>().deathEvent = deathDropPickupEvent;
-        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere.normalized;
-        float explosionForce = UnityEngine.Random.Range(0.01f, 0.02f);
-        thingrb.AddForce(randomDirection * explosionForce, ForceMode.Impulse);
     }
     protected void ExplodeCoffee()
     {
