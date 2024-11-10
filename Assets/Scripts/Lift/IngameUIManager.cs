@@ -49,6 +49,7 @@ public class IngameUIManager : MonoBehaviour
     {
         SceneTransition.Instance.SetTransitionMode(ScreenTransitionManager.TransitionMode.WipeLeft);
         SceneTransition.Instance.TransitionToScene(sceneName);
+        TimeManager.Instance.ResumeGame();
     }
     public void SetDead()
     {
