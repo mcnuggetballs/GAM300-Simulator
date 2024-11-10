@@ -43,6 +43,7 @@ public class IngameUIManager : MonoBehaviour
     public void RetryScene()
     {
         ChangeScene(SceneManager.GetActiveScene().name);
+        TimeManager.Instance.ResumeGame();
     }
     public void ChangeScene(string sceneName)
     {
