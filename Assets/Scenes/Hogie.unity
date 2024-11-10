@@ -3385,7 +3385,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3583
+    m_Bits: 19967
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -6864,7 +6864,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3583
+    m_Bits: 19967
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -9159,7 +9159,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3583
+    m_Bits: 19967
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -25969,6 +25969,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: toaster
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4ceea1ddf448ca0428843d1eb91c1401, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31316,7 +31320,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3583
+    m_Bits: 19967
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -32705,7 +32709,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3583
+    m_Bits: 19967
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -37056,6 +37060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: smallPlant1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9e0b12ce17a8a5745b2d2c81c04737a9, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -37998,6 +38006,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.058000114
       objectReference: {fileID: 0}
+    - target: {fileID: 4519976949204644471, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 4548253637403957155, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7949398
@@ -38041,6 +38053,10 @@ PrefabInstance:
     - target: {fileID: 4579300645177262710, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
       propertyPath: m_LocalPosition.z
       value: -89.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633088707768007963, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4673247676381014759, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
       propertyPath: m_LocalScale.z
@@ -38366,6 +38382,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 13.37
       objectReference: {fileID: 0}
+    - target: {fileID: 7398734491418921979, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 7480678401371566613, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -77.35
@@ -38569,6 +38589,10 @@ PrefabInstance:
     - target: {fileID: 9121655361286316520, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
       propertyPath: m_LocalScale.z
       value: 316.999
+      objectReference: {fileID: 0}
+    - target: {fileID: 9164676057239472113, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 9215170592616299291, guid: 5bb45fc0e3ce5fb4698871eecaedfc29, type: 3}
       propertyPath: m_LocalPosition.x
@@ -43286,6 +43310,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840858015}
     m_Modifications:
+    - target: {fileID: -9070748969904699067, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.50650567
@@ -43338,9 +43366,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2053366705322905981, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
       propertyPath: m_Name
       value: sunflower pot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879443767084424695, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930602053348841364, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -43866,6 +43910,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840858015}
     m_Modifications:
+    - target: {fileID: -9070748969904699067, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.61993
@@ -43918,9 +43966,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2053366705322905981, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
       propertyPath: m_Name
       value: sunflower pot
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879443767084424695, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930602053348841364, guid: 1f90a437c265670468c3bef03ede55ba, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -47984,6 +48048,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 601815d39ac98a04fb7a713963e574b1, type: 3}
       propertyPath: m_Name
       value: coffeeMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 601815d39ac98a04fb7a713963e574b1, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -55938,7 +56006,7 @@ GameObject:
   - component: {fileID: 1715488411}
   - component: {fileID: 1715488410}
   - component: {fileID: 1715488409}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cube (73)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
